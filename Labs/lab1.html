@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Labs/lab1" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Lab 1 - Environment Setup | OSM620 - Fundamentals of Microsoft Systems</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://seneca-ictoer.github.io/OSM620v2/Labs/lab1"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Lab 1 - Environment Setup | OSM620 - Fundamentals of Microsoft Systems"><meta data-rh="true" name="description" content="Lab 1 - Environment Setup"><meta data-rh="true" property="og:description" content="Lab 1 - Environment Setup"><link data-rh="true" rel="icon" href="/OSM620v2/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab1"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab1" hreflang="en"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab1" hreflang="x-default"><link rel="icon" href="/OSM620v2/img/pwa/icon-512x512.png">
+<link rel="manifest" href="/OSM620v2/manifest.json">
+<meta name="theme-color" content="#DA291C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#DA291C">
+<link rel="apple-touch-icon" href="/OSM620v2/img/pwa/icon-192x192.png">
+<link rel="mask-icon" href="/OSM620v2/img/pwa/icon-512x512.png" color="#DA291C">
+<meta name="msapplication-TileImage" content="/OSM620v2/img/pwa/icon-512x512.png">
+<meta name="msapplication-TileColor" content="#DA291C">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/OSM620v2/assets/css/styles.cba3e07b.css">
+<script src="/OSM620v2/assets/js/runtime~main.b62f346f.js" defer="defer"></script>
+<script src="/OSM620v2/assets/js/main.87c63611.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/OSM620v2/img/logo.svg"><link rel="preload" as="image" href="/OSM620v2/img/logo-dark.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><a class="navbar__brand" href="/OSM620v2/"><div class="navbar__logo"><img src="/OSM620v2/img/logo.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/OSM620v2/img/logo-dark.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">OSM620 - Fundamentals of Microsoft Systems</b></a></div><div class="navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/">Welcome to OSM620</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/weekly-schedule">Weekly Schedule</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/OSM620v2/Labs/lab1">Labs</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/OSM620v2/Labs/lab1">Lab 1 - Environment Setup</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab2">Lab 2 - Hyper-V, NAT, and Windows Clients</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab3">Lab 3 - Security and Remote Connectivity</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab4">Lab 4 - Implementing DNS</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab5">Lab 5 - Implementing DHCP</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab6">Lab 6 - Active Directory</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab7">Lab 7 - AD Users, Groups, Computers, and GPOs</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab8">Lab 8 - Network File Shares</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab9">Lab 9 - Introduction to Azure</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/OSM620v2/Assignments/assignment1">Assignments</a></div></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/OSM620v2/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Labs</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Lab 1 - Environment Setup</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Lab 1 - Environment Setup</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lab-preparations">Lab Preparations<a href="#lab-preparations" class="hash-link" aria-label="Direct link to Lab Preparations" title="Direct link to Lab Preparations">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="purpose-of-lab-1">Purpose of Lab 1<a href="#purpose-of-lab-1" class="hash-link" aria-label="Direct link to Purpose of Lab 1" title="Direct link to Purpose of Lab 1">​</a></h3>
+<p>In this lab you will stand up the base environment you’ll use for the course. You’ll obtain official installation media and keys, prepare VMware Workstation, and deploy two servers:</p>
+<ul>
+<li>srv1: <strong>Windows Server 2025 Datacenter, GUI</strong> (Desktop Experience)</li>
+<li>srv2: <strong>Windows Server 2025 Datacenter, CLI</strong> (Core)</li>
+</ul>
+<p>You’ll complete essential post-install tasks (time zone, naming, activation, updates), then place both servers on a two-NIC layout so they can talk to each other on a private subnet while still reaching the internet for updates.</p>
+<p>By the end, the machines are clean, consistent, and ready for later labs (Hyper-V, security hardening, DNS, DHCP, and eventually AD).</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="objectives">Objectives<a href="#objectives" class="hash-link" aria-label="Direct link to Objectives" title="Direct link to Objectives">​</a></h3>
+<p>By the end of this lab, you will be able to:</p>
+<ul>
+<li>Acquire <strong>Windows Server 2025 Datacenter</strong> installation media and your individual product key from Azure Education and store them securely.</li>
+<li>Access <strong>VMware Workstation</strong> on a Seneca lab PC (locally or via MyApps) or install it on a personal PC.</li>
+<li>Provision two VMs with the required specs and networks:<!-- -->
+<ul>
+<li>srv1-<code>senecaUsername</code> (GUI) with NAT + VMnet10 NICs.</li>
+<li>srv2-<code>senecaUsername</code> (Core) with NAT + VMnet10 NICs.</li>
+</ul>
+</li>
+<li>Complete essential post-install tasks on each server.</li>
+<li>Verify basic Internet connectivity prerequisites for later labs within each VM.</li>
+</ul>
+<p>Here&#x27;s a basic flowchart of what we&#x27;ll be doing with Lab 1 to give you a visual overview:</p>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 1. Lab 1 - Flowchart Visualization" src="/OSM620v2/assets/images/lab1-flowchart-f3bc963aa16d42e82c115f3c5339b116.png" width="428" height="1640" class="img_ev3q"></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="minimum-requirements">Minimum Requirements<a href="#minimum-requirements" class="hash-link" aria-label="Direct link to Minimum Requirements" title="Direct link to Minimum Requirements">​</a></h3>
+<p>Before beginning, you must have:</p>
+<ol>
+<li>Attended the Week 1 lecture.</li>
+<li>Read through the Week 1 slides, and have them handy as a reference for concepts.</li>
+<li>Working access to <a href="https://portal.azure.com" target="_blank" rel="noopener noreferrer">portal.azure.com</a> with your Seneca credentials.</li>
+<li>Access to VMware Workstation (Seneca lab PC or personal PC meeting course specs).</li>
+<li>Your external SSD with at least 500 GB of dedicated space for this course.</li>
+<li>Your assigned <strong>UID</strong> (from Blackboard Grades) handy for addressing.</li>
+<li>Your physically printed <strong>OSM620 Lab Logbook</strong> for notetaking and saving commands.</li>
+<li>Optional, but recommended: Caffeine delivery system.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-1-downloading-installation-media">Investigation 1: Downloading Installation Media<a href="#investigation-1-downloading-installation-media" class="hash-link" aria-label="Direct link to Investigation 1: Downloading Installation Media" title="Direct link to Investigation 1: Downloading Installation Media">​</a></h2>
+<p>In this investigation, you will be downloading your Windows OS installation media by logging into your Seneca-based Azure account. You will also generate your personal serial keys.</p>
+<ol>
+<li>Navigate to the Microsoft Azure site: <a href="https://portal.azure.com" target="_blank" rel="noopener noreferrer">portal.azure.com</a></li>
+<li>Use your Seneca e-mail address and password to login.</li>
+<li>Once on the main Azure page, look for the Search bar at the top of the page.</li>
+<li>In the Search bar, type: <strong>Education</strong>, then hit Enter.</li>
+<li>In the <strong>Education | Overview</strong> page, look to the left. You will see menu items already displayed on screen. (<em>Overview</em>, <em>Learning resources</em>, etc.)</li>
+<li>Inside <strong>Learning resources</strong> in the left menu, click on <strong>Software</strong>.</li>
+<li>In the main <strong>Software</strong> page, there is a Search bar just below the word Software (it says <em>Search</em> inside it.)</li>
+<li>In that search field, type and enter: <strong>Windows Server 2025 Datacenter</strong></li>
+<li>In the item that appears below (there should only be one), click the link for <strong>Windows Server 2025 Datacenter</strong>.</li>
+<li>On the right, an information box appears describing the software. Using your mouse to hover over this information box, scroll down to the bottom.</li>
+<li>You should now see two items: <strong>View Key</strong> and <strong>Download</strong></li>
+<li>Click on <strong>Download</strong> first to begin downloading the Server 2025 ISO. You will need this for your operating system installation. (Don&#x27;t forget where you&#x27;ve saved it!)</li>
+<li>While the ISO file is downloading, click on <strong>View Key</strong>.</li>
+<li>Copy this key into a text file that you save locally on your personal computer or personal USB key. You will need this for the Server installation and for any reinstalls later in the semester. <strong>Do not lose this key and do NOT share it with anyone!</strong></li>
+<li>Repeat steps 8-14 for the <strong>Windows 11 Education</strong> ISO and serial key. You will need that for later.</li>
+</ol>
+<blockquote>
+<p><strong>Reminder:</strong> Always store all serial keys in a secure location only you have access to.</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-2-using-vmware-workstation">Investigation 2: Using VMware Workstation<a href="#investigation-2-using-vmware-workstation" class="hash-link" aria-label="Direct link to Investigation 2: Using VMware Workstation" title="Direct link to Investigation 2: Using VMware Workstation">​</a></h2>
+<p>The use of <em>VMware Workstation</em> is required for this course. You can either use a Seneca Lab computer (Option 1a / Option 1b) or a personal computer (Option 2).</p>
+<p>If you use an external SSD, you can use both!</p>
+<blockquote>
+<p><strong>WARNING:</strong> Seneca Lab computers erase any locally saved data when restarted from their internal drives. Save all work to an external drive or online storage.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="option-1a-seneca-lab-computers-wvmware-workstation-installed-locally">Option 1a: Seneca Lab Computers w/VMware Workstation Installed Locally<a href="#option-1a-seneca-lab-computers-wvmware-workstation-installed-locally" class="hash-link" aria-label="Direct link to Option 1a: Seneca Lab Computers w/VMware Workstation Installed Locally" title="Direct link to Option 1a: Seneca Lab Computers w/VMware Workstation Installed Locally">​</a></h3>
+<p>How do you know if your particular Seneca Lab classroom has VMware Workstation installed?</p>
+<p><strong>When you log in, the VMware Workstation icon will be visible on the desktop.</strong> If it is not, jump to <em>Option 1b</em>.</p>
+<ol>
+<li>Log in to the Seneca workstation with your Seneca username (don&#x27;t include @myseneca.ca) and password.</li>
+<li>Once the desktop has fully loaded, double-click on the <strong>VMware Workstation</strong> icon on the desktop. (If not present, jump to <em>Option 1b</em> instructions.)</li>
+<li>When the <strong>VMware Workstation</strong> application appears on screen, continue to the next Investigation.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="option-1b-seneca-lab-computers-without-vmware-workstation-installed">Option 1b: Seneca Lab Computers <em>without</em> VMware Workstation Installed<a href="#option-1b-seneca-lab-computers-without-vmware-workstation-installed" class="hash-link" aria-label="Direct link to option-1b-seneca-lab-computers-without-vmware-workstation-installed" title="Direct link to option-1b-seneca-lab-computers-without-vmware-workstation-installed">​</a></h3>
+<p><strong>Do not use this option if your lab computer already has <em>VMware Workstation</em> installed. Go back to <em>Option 1a</em>.</strong></p>
+<ol>
+<li>Log in to the Seneca workstation with your Seneca username (don&#x27;t include @myseneca.ca) and password.</li>
+<li>Once the desktop has fully loaded, double-click on the <strong>Seneca MyApps</strong> icon on the desktop.</li>
+<li>In the browser that launches, log in with your Seneca credentials.</li>
+<li>Do not ignore dialog boxes! Read them carefully instead of just clicking <em>Cancel</em> or randomly.</li>
+<li>In the search bar in the middle of the screen, type <em>VMware</em> and hit <strong>Enter.</strong></li>
+<li>One result should show up, <strong>VMware WS Pro</strong>. Click this result.</li>
+<li>In the new <em>VMware WS Pro</em> page, click on the version number (Example: 17.6.1). This will launch the application over the network.</li>
+<li>Click on allow for any dialog boxes that appear. Remember, <strong>do not ignore dialog boxes!</strong></li>
+<li>Be patient. It can take a bit for the background files to transfer over the network.</li>
+<li>When complete, the <strong>VMware Workstation</strong> application should appear on screen. (You will also see the <strong>VMware Workstation</strong> icon on the desktop. You can launch it from here if you accidentally close the program.)</li>
+<li>Proceed to the next investigation.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="option-2-personal-computer">Option 2: Personal Computer<a href="#option-2-personal-computer" class="hash-link" aria-label="Direct link to Option 2: Personal Computer" title="Direct link to Option 2: Personal Computer">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-computer-hardware-requirements">Part 1: Computer Hardware Requirements<a href="#part-1-computer-hardware-requirements" class="hash-link" aria-label="Direct link to Part 1: Computer Hardware Requirements" title="Direct link to Part 1: Computer Hardware Requirements">​</a></h4>
+<p>To run this course and its tech on a personal computer, it must meet the following minimum system requirements:</p>
+<ol>
+<li>CPU: <strong>6-core Intel/AMD</strong></li>
+<li>RAM: <strong>32 GB</strong></li>
+<li>Storage: <strong>500 GB SSD free</strong>, <em>reserved for this course</em> (if external, USB3.0 or higher)</li>
+<li>Internet connection: <strong>High speed, stable</strong></li>
+</ol>
+<blockquote>
+<p><strong>CPU architecture is vital.</strong> You <em>cannot</em> use ARM or SnapDragon based computers for this course. This includes all Apple Silicon computers (M1/M2/M3/M4, etc).</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-registering-your-broadcom-account">Part 2: Registering Your Broadcom Account<a href="#part-2-registering-your-broadcom-account" class="hash-link" aria-label="Direct link to Part 2: Registering Your Broadcom Account" title="Direct link to Part 2: Registering Your Broadcom Account">​</a></h4>
+<p>Broadcom (formerly VMware) now requires account registration before you can download the VMware Workstation software. Follow the instructions below to do so. You only have to do this once. (If you already have an account using your Seneca e-mail, skip to Part 3.)</p>
+<ol>
+<li>Visit the Broadcom registration site: profile.broadcom.com/web/registration</li>
+<li>Provide your Seneca e-mail address and continue.</li>
+<li>You will be sent a verification code. Check your Seneca e-mail and enter the code on the page.</li>
+<li>On the <em>Complete your Registration</em> page, enter your information and click <strong>Create Account.</strong></li>
+<li>On the <em>Registered Successfully!</em> page, you can skip the rest and simply click <strong>I&#x27;ll do it later</strong>.</li>
+<li>At the top right of the screen, click on the <strong>Login</strong> button. (No, you aren&#x27;t logged in automatically. Yes, it&#x27;s annoying.)</li>
+<li>Enter your Seneca e-mail address as your username and the password you chose on Part 4 as your credentials.</li>
+<li>When complete, you should see your name in the top right of the screen instead of <em>Login.</em> If not, attempt to log in again or ask for help.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-downloading-vmware-workstation">Part 3: Downloading VMware Workstation<a href="#part-3-downloading-vmware-workstation" class="hash-link" aria-label="Direct link to Part 3: Downloading VMware Workstation" title="Direct link to Part 3: Downloading VMware Workstation">​</a></h3>
+<ol>
+<li>Go to this link: <a href="https://support.broadcom.com/group/ecx/productdownloads?subfamily=VMware%20Workstation%20Pro&amp;freeDownloads=true" target="_blank" rel="noopener noreferrer">Download VMware Workstation</a></li>
+<li>Click on <strong>VMware Workstation Pro 17 for Windows</strong></li>
+<li>Click on the highest version available. (17.6.3 as of last update)</li>
+<li>On the next screen, click on the blue link inside <em>I agree to the Terms and Conditions</em> to open a new tab with their terms and conditions. Do not close this window.</li>
+<li>Back in the previous window/tab that&#x27;s still open, now click the checkbox for <em>I agree to the Terms and Conditions</em>.</li>
+<li>Click on the little cloud icon next to the name of the download file.</li>
+<li>Click the <strong>Yes</strong> button when the dialog box pops up.</li>
+<li>In the <em>Trade Compliance and Download Conditions</em> screen, fill in the following school information:<!-- -->
+<ol>
+<li>Address1: <strong>1750 Finch Ave E</strong></li>
+<li>City: <strong>North York</strong></li>
+<li>State/Province: <strong>Ontario</strong></li>
+<li>Country: <strong>Canada</strong></li>
+<li>Zip/Postal Code: <strong>M2J 2X5</strong></li>
+</ol>
+</li>
+<li><em><strong>Finally</strong></em> click on the cloud icon again to begin the actual download.</li>
+<li>If you ever need to download the software again, you won&#x27;t have to go through any of the registration mess. Follow Part 3, Steps 1-3, then Part 9.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-install-vmware-workstation">Part 4: Install VMware Workstation<a href="#part-4-install-vmware-workstation" class="hash-link" aria-label="Direct link to Part 4: Install VMware Workstation" title="Direct link to Part 4: Install VMware Workstation">​</a></h3>
+<ol>
+<li>Find the downloaded .exe file and run the installer.</li>
+<li>Follow all prompts and install.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-5-launch-vmware-workstation">Part 5: Launch VMware Workstation<a href="#part-5-launch-vmware-workstation" class="hash-link" aria-label="Direct link to Part 5: Launch VMware Workstation" title="Direct link to Part 5: Launch VMware Workstation">​</a></h3>
+<ol>
+<li>Open <strong>VMware Workstation</strong> from your desktop or the Start Menu.</li>
+<li>When asked, paste in your serial key.</li>
+<li>Proceed to the next Investigation.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-3-vm1-installation---windows-server-2025-datacenter-srv1">Investigation 3: VM1 Installation - Windows Server 2025 Datacenter (<em>srv1</em>)<a href="#investigation-3-vm1-installation---windows-server-2025-datacenter-srv1" class="hash-link" aria-label="Direct link to investigation-3-vm1-installation---windows-server-2025-datacenter-srv1" title="Direct link to investigation-3-vm1-installation---windows-server-2025-datacenter-srv1">​</a></h2>
+<ul>
+<li>Hypervisor: <strong>VMware Workstation</strong></li>
+<li>Name: <strong>srv1-cjohnson30</strong></li>
+<li>RAM: <strong>16 GB</strong></li>
+<li>CPU: <strong>6 cores</strong></li>
+<li>Storage: <strong>250 GB</strong></li>
+<li>Networking: <strong>2 NICs</strong></li>
+<li>ISO: <strong>Windows Server 2025</strong></li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="flowchart-visualization-of-investigation-3">Flowchart Visualization of Investigation 3<a href="#flowchart-visualization-of-investigation-3" class="hash-link" aria-label="Direct link to Flowchart Visualization of Investigation 3" title="Direct link to Flowchart Visualization of Investigation 3">​</a></h4>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 2. Lab 1, Investigation - Flowchart Visualization" src="/OSM620v2/assets/images/lab1-investigation3-flowchart-ea715773eedda09cff4c62f46353547c.png" width="932" height="1106" class="img_ev3q"></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-setup-instructions">Part 1: Setup Instructions<a href="#part-1-setup-instructions" class="hash-link" aria-label="Direct link to Part 1: Setup Instructions" title="Direct link to Part 1: Setup Instructions">​</a></h3>
+<ol>
+<li>
+<p>In the main window, you should see a large + symbol icon titled <strong>Create a New Virtual Machine</strong>. Click it.</p>
+</li>
+<li>
+<p>In the new dialog box, keep <em>Typical</em> selected and click the <strong>Next</strong> button.</p>
+</li>
+<li>
+<p>On the next screen, <em>Guest Operating System Installation</em>, do the following:</p>
+<ol>
+<li>
+<p>Select <em>Installer disc image file (ISO):</em></p>
+</li>
+<li>
+<p>Now click <strong>Browse</strong>.</p>
+</li>
+<li>
+<p>Navigate to where you saved your <em><strong>Windows Server 2025 Datacenter</strong></em> downloaded ISO and select it.</p>
+</li>
+<li>
+<p>Once selected, the previous screen should now say:</p>
+<blockquote>
+<p><strong>Windows Server 2025 detected.</strong></p>
+<p>This operating system will use Easy Install.</p>
+</blockquote>
+</li>
+<li>
+<p>If it doesn&#x27;t, you haven&#x27;t selected the right file, or your download was corrupted. <strong>Ask for help.</strong></p>
+</li>
+<li>
+<p>Click <strong>Next</strong>.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>On the &quot;Easy Install Information&quot; screen, do the following:</p>
+<ol>
+<li>Paste in your serial key.</li>
+<li>Version of Windows to install: Select <em>Windows Server 2025 Datacenter</em></li>
+<li>Personalize Windows:<!-- -->
+<ol>
+<li>Full Name: <strong>Administrator</strong></li>
+<li>Password (both fields): Select a strong password <strong>you will remember</strong>. You will use this same password for all VMs in this course.</li>
+<li><em><strong>Do not select &quot;Log on automatically&quot;</strong></em>.</li>
+<li>Click <strong>Next</strong>.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>On the &quot;Name the Virtual Machine&quot; screen, do the following:</p>
+<ol>
+<li>
+<p>Virtual machine name: <strong>srv1-<em>senecausername</em></strong></p>
+<blockquote>
+<p><strong>Explanation:</strong> For example, if my Seneca e-mail address is <code>cjohnson30@myseneca.ca</code>, then my Seneca username is <em>cjohnson30</em>. This would give me a VM name of <em>srv1-cjohnson30</em>.</p>
+</blockquote>
+</li>
+<li>
+<p>Location: If using an external SSD (like with our lab computers), click <strong>Browse</strong> and navigate to your external SSD.</p>
+<ol>
+<li>
+<p>Create the following directory structure in your SSD: <em>OSM620 &gt; Virtual Machines/srv1-cjohnson30</em></p>
+</li>
+<li>
+<p>Select this new <em>srv1-cjohnson30</em> folder.</p>
+</li>
+<li>
+<p>Make sure you now see this change in the Location field.</p>
+<blockquote>
+<p><strong>Example:</strong> <em>Z:\OSM620\Virtual Machines\srv1-cjohnson30</em></p>
+<p><img decoding="async" loading="lazy" alt="Fig 3. Proper VM location saving." src="/OSM620v2/assets/images/srv1-save-80e63f95473df4a899f9203d7f6c4817.png" width="889" height="892" class="img_ev3q"></p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li>
+<p>Click <strong>Next</strong>.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>On the &quot;Specify Disk Capacity&quot; screen, do the following:</p>
+<ol>
+<li>Maximum disk size (GB): <strong>250</strong></li>
+<li>Select <em>Split virtual disk into multiple files</em>.</li>
+<li>Click Next.</li>
+</ol>
+</li>
+<li>
+<p>On the &quot;Ready to Create Virtual Machine&quot; screen, do the following:</p>
+<ol>
+<li>Click on <strong>Customize hardware...</strong></li>
+</ol>
+</li>
+<li>
+<p>On the new &quot;Hardware&quot; screen, do the following:</p>
+<ol>
+<li>Select <em>Memory</em>, and change the value to: <strong>16384</strong></li>
+<li>Select <em>Processors</em>, and change:<!-- -->
+<ol>
+<li>Number of processors: <strong>1</strong></li>
+<li>Number of cores per processor: <strong>6</strong></li>
+<li>Virtualize Intel VT-x/EPT or AMD-V/RVI: <strong>Checked</strong></li>
+<li>Virtualize CPU performance counters: <em><strong>Unchecked</strong></em></li>
+<li>Virtualize IOMMU (IO memory management unit): <strong>Checked</strong></li>
+</ol>
+</li>
+<li>Select <em>Network Adapter</em> and confirm:<!-- -->
+<ol>
+<li><em>Connected at power on:</em> <strong>Checked</strong></li>
+<li><em>NAT</em>: <strong>Checked</strong></li>
+</ol>
+</li>
+<li>Click on the <em><strong>Add...</strong></em> button on the bottom left of the <em>Hardware</em> window.<!-- -->
+<ol>
+<li>Select <em>Network Adapter</em> and click <strong>Finish</strong>.</li>
+<li>Back in the <em>Hardware</em> window, click on <em>Network Adapter 2</em>.</li>
+<li>Under <em>Network connection</em>, click the <strong>Custom: Specific virtual network</strong> radio button.</li>
+<li>Just below that, click the drop-down (it likely says <em>VMnet0</em> by default). Find and select <strong>VMnet10</strong>.</li>
+<li>Click <strong>Close</strong>.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>Back in the &quot;Ready to Create Virtual Machine&quot; screen, click <strong>Finish</strong>.</p>
+</li>
+<li>
+<p>The virtual machine should launch.</p>
+</li>
+<li>
+<p>If you get a dialog box about <em>Side channel mitigations</em>, check the box for <em>Do not show this hint again</em> and click <strong>OK</strong>.</p>
+</li>
+<li>
+<p>Your new Virtual Machine should now finish creating and then turn on and begin the OS installation.</p>
+</li>
+<li>
+<p>Windows installation is automated at this point and won&#x27;t require any input from you. It may restart several times.</p>
+<blockquote>
+<p><strong>Time Note:</strong> Installation may take some time.</p>
+<p>Feel free to get some caffeine or make a sandwich.</p>
+</blockquote>
+</li>
+<li>
+<p>Eventually, you will be presented with the desktop and the VMware Tools installer having completed and asking if you&#x27;d like to restart. Choose <strong>Yes</strong>.</p>
+</li>
+<li>
+<p>Once you&#x27;ve restarted, your installation is complete.</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-4-post-installation-tasks-srv1">Investigation 4: Post-Installation Tasks (<em>srv1</em>)<a href="#investigation-4-post-installation-tasks-srv1" class="hash-link" aria-label="Direct link to investigation-4-post-installation-tasks-srv1" title="Direct link to investigation-4-post-installation-tasks-srv1">​</a></h2>
+<p>After installing a new operating system, there are always a number of <strong>post-installation tasks</strong> to complete. <strong>These aren&#x27;t optional!</strong></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="overview-check-in-srv1-internet-connection">Overview Check-In: <em>srv1</em> Internet Connection<a href="#overview-check-in-srv1-internet-connection" class="hash-link" aria-label="Direct link to overview-check-in-srv1-internet-connection" title="Direct link to overview-check-in-srv1-internet-connection">​</a></h4>
+<p>Let&#x27;s take a quick look at an overview of our NAT Internet connection as it currently stands. It&#x27;s important to understand how everything is connected.</p>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 4. Lab 1, Investigation 4 - Network Diagram" src="/OSM620v2/assets/images/lab1-netdiag-srv1-746415bf963c2a9c0f99d4ad3877b8dd.png" width="990" height="1528" class="img_ev3q"></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-applying-time-zone-settings">Part 1: Applying Time Zone Settings<a href="#part-1-applying-time-zone-settings" class="hash-link" aria-label="Direct link to Part 1: Applying Time Zone Settings" title="Direct link to Part 1: Applying Time Zone Settings">​</a></h3>
+<p>This one is fairly straight-forward. Having the proper time zone set (EST) is essential for proper time keeping and ensuring encrypted webpages connect properly.</p>
+<ol>
+<li>In the <em>Server Manager</em> application, click on <strong>Local Server</strong> in the left-hand menubar.</li>
+<li>In the main <em>Properties</em> area, on the right-hand column, look for the <em>Time Zone</em> line. It should say <strong>(UTC-05:00) Eastern Time (US &amp; Canada)</strong>.</li>
+<li>If the <em>Time Zone</em> line item doesn&#x27;t say the above, click on the displayed time zone and change it to UTC-05:00 as seen above.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-server-name-change">Part 2: Server Name Change<a href="#part-2-server-name-change" class="hash-link" aria-label="Direct link to Part 2: Server Name Change" title="Direct link to Part 2: Server Name Change">​</a></h3>
+<p>The default name applied to your new server will be semi-randomized. For proper identification (and to not wonder which server you&#x27;re on when you have several), we&#x27;re going to change this.</p>
+<ol>
+<li>In the <em>Server Manager</em> application, click on <strong>Local Server</strong> in the left-hand menubar.</li>
+<li>In the main <em>Properties</em> area, on the left-hand column, look for the <em>Computer name</em> line.</li>
+<li>Click the current computer name.</li>
+<li>In the <em>System Properties</em> dialog box that pops up, find the <strong>Change</strong> button and click it. (Ignore the <em>Computer Description</em> field. It&#x27;s tempting, but wrong!)</li>
+<li>In the new <em>Computer Name/Domain Changes</em> dialog box that pops up, find the <em>Computer name</em> field. Replace it with <strong>srv1-SenecaUsername</strong>.</li>
+<li>When you click <strong>OK</strong>, the system will warn you about restarting. Choose to restart the system when asked.</li>
+<li>Once you&#x27;ve restarted and logged back in, go back to the <em>Server Manager</em> from Part 1 and double-check your new computer name is correct. <strong>Do not skip this step!</strong></li>
+<li>If it is, you&#x27;re done!</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-windows-activation">Part 3: Windows Activation<a href="#part-3-windows-activation" class="hash-link" aria-label="Direct link to Part 3: Windows Activation" title="Direct link to Part 3: Windows Activation">​</a></h3>
+<p>Activating Windows unlocks certain settings and features. Since you&#x27;ve used your valid serial key (right?), you can activate with Microsoft easily.</p>
+<ol>
+<li>In the <em>Server Manager</em> application, click on <strong>Local Server</strong> in the left-hand menubar.</li>
+<li>In the main <em>Properties</em> area, on the right-hand column, look for the <em>Product ID</em> line.</li>
+<li>Click on the <strong>Not activated</strong> link.</li>
+<li>Follow the instructions in the popup dialog box. If unable to activate easily, <strong>ask your professor for help</strong>.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-installing-os-updates">Part 4: Installing OS Updates<a href="#part-4-installing-os-updates" class="hash-link" aria-label="Direct link to Part 4: Installing OS Updates" title="Direct link to Part 4: Installing OS Updates">​</a></h3>
+<p>A critical part of a security-conscious mindset is running regular updates. <strong>This is NOT something you do only once at the start of installation.</strong> You should be running these regularly to keep up to date with security fixes and zero-day exploits.</p>
+<ol>
+<li>If you&#x27;re already in the <em>Settings</em> application, look through the left menubar for <strong>Windows Update</strong> and click it. (Otherwise, click on the <em>Start</em> menu and search for <strong>Updates</strong>.)</li>
+<li>In the <em>Windows Update</em> main screen, scroll down to <strong>Advanced Options</strong> and click it.</li>
+<li>The very first option is <em>Receive updates to other Microsoft products</em>. Toggle this from <strong>Off</strong> to <strong>On</strong>.</li>
+<li>At the top of the screen, where it says <em>Windows Update &gt; Advanced Options</em>, click <strong>Windows Update</strong> to go back to the previous screen.</li>
+<li>You will likely already see updates ready. Click on <strong>Download &amp; install all</strong>.</li>
+<li>As you might expect, this can take a while. Timing will depend on your Internet connection, how fast your computer is, how fast your SSD is, and how many updates there are. Please be patient. Your computer may restart.</li>
+<li>Once updates have begun, take a break while it does its thing. Grab a drink, make a sandwich, text a friend.</li>
+<li>After updates are complete, go back into <em>Windows Update</em> and click <strong>Check for updates</strong> again. There may be (and often times are) more.</li>
+<li>If there are more updates, complete Steps 5-8 again until there are no more updates available.</li>
+<li>In <em>Windows Update</em>, scroll back down to <strong>Advanced options</strong> again and click it.</li>
+<li>Inside <em>Windows Update &gt; Advanced options</em> scroll down to <strong>Optional updates</strong> and click it.</li>
+<li>Select all available updates that appear (you may have to expand some lists).</li>
+<li>Click <strong>Download &amp; install</strong>.</li>
+<li>Once all updates are complete, restart your VM if asked, then move onto the next section.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-5-internet-connectivity-check-wedge">Part 5: Internet Connectivity Check w/Edge<a href="#part-5-internet-connectivity-check-wedge" class="hash-link" aria-label="Direct link to Part 5: Internet Connectivity Check w/Edge" title="Direct link to Part 5: Internet Connectivity Check w/Edge">​</a></h3>
+<p>We&#x27;ll double-check we can access the Internet using the built-in Microsoft Edge application.</p>
+<ol>
+<li>Open <em>Microsoft Edge</em>.</li>
+<li>Go through the first-run questions.</li>
+<li>When able, use the browser to navigate to <strong>eff.org</strong>.</li>
+<li>If the website loads, move on to the next step. If not, <strong>ask your professor for help</strong>.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-6-download-and-install-firefox">Part 6: Download and Install Firefox<a href="#part-6-download-and-install-firefox" class="hash-link" aria-label="Direct link to Part 6: Download and Install Firefox" title="Direct link to Part 6: Download and Install Firefox">​</a></h3>
+<p>There are a ton of feature and privacy reasons <em>not</em> to use Microsoft Edge. Instead, we&#x27;ll download and install <strong>Mozilla Firefox</strong> and use that going forward.</p>
+<ol>
+<li>Open <em>Microsoft Edge</em>.</li>
+<li>Navigate to: <a href="https://www.firefox.com/en-CA/browsers/desktop/windows" target="_blank" rel="noopener noreferrer">Download Mozilla Firefox</a></li>
+<li>Wait for the installer to finish, then open it.</li>
+<li>Follow the installer instructions.</li>
+<li>Once complete, open <em>Firefox</em> and navigate to <strong>eff.org</strong> to check everything is okay.</li>
+<li>Close <em>Microsoft Edge</em> forever.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-5-vm2-installation---windows-server-2025-core-srv2">Investigation 5: VM2 Installation - Windows Server 2025 Core (<em>srv2</em>)<a href="#investigation-5-vm2-installation---windows-server-2025-core-srv2" class="hash-link" aria-label="Direct link to investigation-5-vm2-installation---windows-server-2025-core-srv2" title="Direct link to investigation-5-vm2-installation---windows-server-2025-core-srv2">​</a></h2>
+<ul>
+<li>Hypervisor: <strong>VMware Workstation</strong></li>
+<li>Name: <strong>srv2-cjohnson30</strong></li>
+<li>RAM: <strong>4 GB</strong></li>
+<li>CPU: <strong>2 cores</strong></li>
+<li>Storage: <strong>250 GB</strong></li>
+<li>Networking: <strong>2 NICs</strong></li>
+<li>ISO: <strong>Windows Server 2025</strong></li>
+</ul>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="flowchart-visualization-of-investigation-5">Flowchart Visualization of Investigation 5<a href="#flowchart-visualization-of-investigation-5" class="hash-link" aria-label="Direct link to Flowchart Visualization of Investigation 5" title="Direct link to Flowchart Visualization of Investigation 5">​</a></h4>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 5. Lab 1, Investigation 5 - Flowchart Visualization" src="/OSM620v2/assets/images/lab1-investigation5-flowchart-dd57fc2a67f851f8f5137ac10135b6f3.png" width="928" height="1102" class="img_ev3q"></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-setup-instructions-1">Part 1: Setup Instructions<a href="#part-1-setup-instructions-1" class="hash-link" aria-label="Direct link to Part 1: Setup Instructions" title="Direct link to Part 1: Setup Instructions">​</a></h3>
+<ol>
+<li>
+<p>In the main window, you should see a large + symbol icon titled <strong>Create a New Virtual Machine</strong>. Click it.</p>
+</li>
+<li>
+<p>In the new dialog box, keep <em>Typical</em> selected and click the <strong>Next</strong> button.</p>
+</li>
+<li>
+<p>On the next screen, <em>Guest Operating System Installation</em>, do the following:</p>
+<ol>
+<li>Select <em>Installer disc image file (ISO):</em></li>
+<li>Now click <strong>Browse</strong>.<!-- -->
+<ol>
+<li>
+<p>Navigate to where you saved your <em><strong>Windows Server 2025 Datacenter</strong></em> downloaded ISO and select it.</p>
+</li>
+<li>
+<p>Once selected, the previous screen should now say:</p>
+<blockquote>
+<p><strong>Windows Server 2025 detected.</strong></p>
+<p>This operating system will use Easy Install.</p>
+</blockquote>
+</li>
+<li>
+<p>If it doesn&#x27;t, you haven&#x27;t selected the right file, or your download was corrupted. <strong>Ask for help.</strong></p>
+</li>
+</ol>
+</li>
+<li>Click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li>
+<p>On the &quot;Easy Install Information&quot; screen, do the following:</p>
+<ol>
+<li>Paste in your serial key.</li>
+<li>Version of Windows to install: Select <em>Windows Server 2025 Datacenter</em> <em><strong>(Core)</strong></em></li>
+<li>Personalize Windows:<!-- -->
+<ol>
+<li>Full Name: Administrator</li>
+<li>Password (both fields): Select a strong password <strong>you will remember</strong>. You will use this same password for all VMs in this course.</li>
+</ol>
+</li>
+<li><em><strong>Do not select &quot;Log on automatically&quot;</strong></em>.</li>
+<li>Click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li>
+<p>On the &quot;Name the Virtual Machine&quot; screen, do the following:</p>
+<ol>
+<li>
+<p>Virtual machine name: <strong>srv2-<em>senecausername</em></strong></p>
+<blockquote>
+<p><strong>Explanation:</strong> For example, if my Seneca e-mail address is <code>cjohnson30@myseneca.ca</code>, then my Seneca username is <em>cjohnson30</em>. This would give me a VM name of <em>srv2-cjohnson30</em>.</p>
+</blockquote>
+</li>
+<li>
+<p>Location: If using an external SSD (like with our lab computers), click <strong>Browse</strong> and navigate to your external SSD.</p>
+<ol>
+<li>Create the following directory structure in your SSD: <em>OSM620 &gt; Virtual Machines &gt; srv2-cjohnson30</em></li>
+<li>Select this new <em>srv2-cjohnson30</em> folder.</li>
+<li>Make sure you now see this change in the Location field. (Example: <em>Z:/OSM620/Virtual Machines/srv2-cjohnson30</em>)</li>
+</ol>
+</li>
+<li>
+<p>Click <strong>Next</strong>.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>On the &quot;Specify Disk Capacity&quot; screen, do the following:</p>
+<ol>
+<li>Maximum disk size (GB): <strong>250</strong></li>
+<li>Select <em>Split virtual disk into multiple files</em>.</li>
+<li>Click Next.</li>
+</ol>
+</li>
+<li>
+<p>On the &quot;Ready to Create Virtual Machine&quot; screen, do the following:</p>
+<ol>
+<li>Click on <strong>Customize hardware...</strong></li>
+</ol>
+</li>
+<li>
+<p>On the new &quot;Hardware&quot; screen, do the following:</p>
+<ol>
+<li>Select <em>Memory</em>, and change the value to: <strong>4096</strong></li>
+<li>Select <em>Processors</em>, and change:<!-- -->
+<ol>
+<li>Number of processors: <strong>1</strong></li>
+<li>Number of cores per processor: <strong>2</strong></li>
+<li>Virtualize Intel VT-x/EPT or AMD-V/RVI: <strong>Checked</strong></li>
+<li>Virtualize CPU performance counters: <em><strong>Unchecked</strong></em></li>
+<li>Virtualize IOMMU (IO memory management unit): <strong>Checked</strong></li>
+</ol>
+</li>
+<li>Select <em>Network Adapter</em> and confirm:<!-- -->
+<ol>
+<li><em>Connected at power on:</em> <strong>Checked</strong></li>
+<li><em>NAT</em>: <strong>Checked</strong></li>
+</ol>
+</li>
+<li>Click on the <em><strong>Add...</strong></em> button on the bottom left of the <em>Hardware</em> window.<!-- -->
+<ol>
+<li>Select <em>Network Adapter</em> and click <strong>Finish</strong>.</li>
+<li>Back in the <em>Hardware</em> window, click on <em>Network Adapter 2</em>.</li>
+<li>Under <em>Network connection</em>, click the <strong>Custom: Specific virtual network</strong> radio button.</li>
+<li>Just below that, click the drop-down (it likely says <em>VMnet0</em> by default). Find and select <strong>VMnet10</strong>.</li>
+<li>Click <strong>Close</strong>.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+<p>Back in the &quot;Ready to Create Virtual Machine&quot; screen, click <strong>Finish</strong>.</p>
+</li>
+<li>
+<p>The virtual machine should launch.</p>
+</li>
+<li>
+<p>If you get a dialog box about <em>Side channel mitigations</em>, check the box for <em>Do not show this hint again</em> and click <strong>OK</strong>.</p>
+</li>
+<li>
+<p>Your new Virtual Machine should now finish creating and then turn on and begin the OS installation.</p>
+</li>
+<li>
+<p>Windows installation is automated at this point and won&#x27;t require any input from you. It may restart several times.</p>
+<blockquote>
+<p><strong>Time Note:</strong> Installation may take some time.</p>
+<p>Feel free to get some caffeine or make a sandwich.</p>
+</blockquote>
+</li>
+<li>
+<p>Eventually, you will be presented with the Command Prompt window open to the <em>SConfig</em> text-based application, and the VMware Tools installer having completed and asking if you&#x27;d like to restart. Choose <strong>Yes</strong>.</p>
+</li>
+<li>
+<p>Once you&#x27;ve restarted, your installation is complete.</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-6-post-installation-tasks-srv2">Investigation 6: Post-Installation Tasks (<em>srv2</em>)<a href="#investigation-6-post-installation-tasks-srv2" class="hash-link" aria-label="Direct link to investigation-6-post-installation-tasks-srv2" title="Direct link to investigation-6-post-installation-tasks-srv2">​</a></h2>
+<p>After installing a new operating system, there are always a number of <strong>post-installation tasks</strong> to complete. <strong>These aren&#x27;t optional!</strong></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="overview-check-in-srv2-internet-connection">Overview Check-In: srv2 Internet Connection<a href="#overview-check-in-srv2-internet-connection" class="hash-link" aria-label="Direct link to Overview Check-In: srv2 Internet Connection" title="Direct link to Overview Check-In: srv2 Internet Connection">​</a></h3>
+<p>Let&#x27;s take a quick look at an overview of our NAT Internet connection as it currently stands since our newest server addition. It&#x27;s important to understand how everything is connected as we continue to build out our VMs.</p>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 6. Lab 1, Investigation 6 - Network Diagram" src="/OSM620v2/assets/images/lab1-netdiag-srv2-4e81bad6a3ba97e8eae33d2bc74234f8.png" width="1892" height="1524" class="img_ev3q"></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-applying-time-zone-settings-1">Part 1: Applying Time Zone Settings<a href="#part-1-applying-time-zone-settings-1" class="hash-link" aria-label="Direct link to Part 1: Applying Time Zone Settings" title="Direct link to Part 1: Applying Time Zone Settings">​</a></h3>
+<p>This one is fairly straight-forward. Having the proper time zone set (EST) is essential for proper time keeping and ensuring encrypted webpages connect properly.</p>
+<ol>
+<li>In the <em>SConfig</em> application, select Option 9 (<em>Date and Time</em>). Use your keyboard.</li>
+<li>The <em>Date and Time</em> dialog box pops up.</li>
+<li>Look for the <em>Time Zone</em> line. It should say <strong>(UTC-05:00) Eastern Time (US &amp; Canada)</strong>.</li>
+<li>If the <em>Time Zone</em> line item doesn&#x27;t say the above, click on the <em>Change time zone...</em> button and change it to UTC-05:00 as seen above.</li>
+<li>Click <strong>OK</strong> to close out of <em>Date and Time</em>.</li>
+<li>Back in <em>SConfig</em>, choose Option 9 again to confirm your changes have stuck. If yes, continue to Part 2.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-server-name-change-1">Part 2: Server Name Change<a href="#part-2-server-name-change-1" class="hash-link" aria-label="Direct link to Part 2: Server Name Change" title="Direct link to Part 2: Server Name Change">​</a></h3>
+<p>The default name applied to your new server will be semi-randomized. For proper identification (and to not wonder which server you&#x27;re on when you have several), we&#x27;re going to change this.</p>
+<ol>
+<li>In the <em>SConfig</em> application, select Option 2 (<em>Computer name</em>). Use your keyboard.</li>
+<li>In the new <em>Computer name</em> screen, enter your new computer name in the waiting text field: <strong>srv2-SenecaUsername</strong></li>
+<li>Press <strong>Enter</strong> on your keyboard to confirm the change.</li>
+<li>The system now asks you about restarting. Enter <strong>Y</strong> to choose yes and hit the <strong>Enter</strong> key to confirm.</li>
+<li>Once you&#x27;ve restarted and logged back in, go back to the <em>Computer name</em> screen from Part 2 and double-check your new computer name is correct. <strong>Do not skip this step!</strong></li>
+<li>If it is, you&#x27;re done!</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-windows-activation-1">Part 3: Windows Activation<a href="#part-3-windows-activation-1" class="hash-link" aria-label="Direct link to Part 3: Windows Activation" title="Direct link to Part 3: Windows Activation">​</a></h3>
+<p>Activating Windows unlocks certain settings and features. Since you&#x27;ve used your valid serial key (right?), you can activate with Microsoft easily.</p>
+<ol>
+<li>In the <em>SConfig</em> application, select Option 11 (<em>Windows activation</em>). Use your keyboard.</li>
+<li>In the new <em>Windows activation</em> screen, enter <strong>2</strong> (<em>Activate Windows</em>) and hit <strong>Enter</strong> to begin the activation process with Microsoft.</li>
+<li>Follow the instructions on screen. If unable to activate easily, <strong>ask your professor for help</strong>.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-installing-os-updates-1">Part 4: Installing OS Updates<a href="#part-4-installing-os-updates-1" class="hash-link" aria-label="Direct link to Part 4: Installing OS Updates" title="Direct link to Part 4: Installing OS Updates">​</a></h3>
+<p>A critical part of a security-conscious mindset is running regular updates. <strong>This is NOT something you do only once at the start of installation.</strong> You should be running these regularly to keep up to date with security fixes and zero-day exploits.</p>
+<blockquote>
+<p><strong>IMPORTANT:</strong> If Windows Update fails with errors, you may have Internet connectivity issues. Ask your professor for help!</p>
+</blockquote>
+<ol>
+<li>In the <em>SConfig</em> application, select Option 5 (<em>Update settings</em>). Use your keyboard.</li>
+<li>In the new <em>Update setting</em> screen, enter <strong>5</strong> (<em>Opt-in to Microsoft Update</em>) and hit <strong>Enter</strong> to confirm.</li>
+<li>The next screen will ask you confirm again. Enter <strong>y</strong> and hit <strong>Enter</strong> to continue. (Then, hit <strong>Enter</strong> again.)</li>
+<li>In the <em>SConfig</em> application, select Option 6 (<em>Install updates</em>). Use your keyboard.</li>
+<li>In the new <em>Install updates</em> screen, enter <strong>1</strong> (<em>All quality updates</em>) and hit <strong>Enter</strong> to confirm.</li>
+<li>After a short check, you are asked which updates to install. Select <strong>a</strong> to install all updates and hit <strong>Enter</strong> to confirm.</li>
+<li>As you might expect, this can take a while. Timing will depend on your Internet connection, how fast your computer is, how fast your SSD is, and how many updates there are. Please be patient.</li>
+<li>Once updates have begun, take a break while it does its thing. Grab a drink, make a sandwich, text a friend.</li>
+<li>If asked to restart, choose <strong>yes</strong>.</li>
+<li>After updates are complete, go through Steps 4-6 again. Do so until the system tells you there are no new updates. (It may take a few cycles to get them all.)</li>
+<li>When complete, shut down <em>srv2</em> safely. Use the on-screen menu options in <em>SConfig</em> to do so.</li>
+</ol>
+<p>That&#x27;s it! Now you&#x27;re done. Congratulations!</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lab-1-sign-off">Lab 1 Sign-Off<a href="#lab-1-sign-off" class="hash-link" aria-label="Direct link to Lab 1 Sign-Off" title="Direct link to Lab 1 Sign-Off">​</a></h2>
+<p>It is extremely important that you complete Lab 1 correctly as these Windows Server installs will be the platform on which the rest of the course will be completed.</p>
+<p>When you have completed Lab 1, ask your instructor to come and check your installation. This must be done in class. They will ask you to complete a set of tasks/commands. If everything has been completed correctly, your instructor will mark your Lab 1 as complete.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sign-off-checklist">Sign-Off Checklist<a href="#sign-off-checklist" class="hash-link" aria-label="Direct link to Sign-Off Checklist" title="Direct link to Sign-Off Checklist">​</a></h3>
+<ol>
+<li>Open VMware Hardware Settings window for <em>srv1</em> and <em>srv2</em>.</li>
+<li><em>srv1</em> is currently running and logged in.</li>
+<li><em>srv2</em> is currently running and logged in.</li>
+<li>No new updates available for both VMs.</li>
+<li>Server names have been applied correctly.</li>
+<li>Time zone is in EST.</li>
+<li>Servers have been properly activated.</li>
+<li><em>srv1</em>: Firefox installed and open.</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/catherine-leung/OSM620v2/tree/main/docs/Labs/lab1.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/OSM620v2/weekly-schedule"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Weekly Schedule</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/OSM620v2/Labs/lab2"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Lab 2 - Hyper-V, NAT, and Windows Clients</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#lab-preparations" class="table-of-contents__link toc-highlight">Lab Preparations</a><ul><li><a href="#purpose-of-lab-1" class="table-of-contents__link toc-highlight">Purpose of Lab 1</a></li><li><a href="#objectives" class="table-of-contents__link toc-highlight">Objectives</a></li><li><a href="#minimum-requirements" class="table-of-contents__link toc-highlight">Minimum Requirements</a></li></ul></li><li><a href="#investigation-1-downloading-installation-media" class="table-of-contents__link toc-highlight">Investigation 1: Downloading Installation Media</a></li><li><a href="#investigation-2-using-vmware-workstation" class="table-of-contents__link toc-highlight">Investigation 2: Using VMware Workstation</a><ul><li><a href="#option-1a-seneca-lab-computers-wvmware-workstation-installed-locally" class="table-of-contents__link toc-highlight">Option 1a: Seneca Lab Computers w/VMware Workstation Installed Locally</a></li><li><a href="#option-1b-seneca-lab-computers-without-vmware-workstation-installed" class="table-of-contents__link toc-highlight">Option 1b: Seneca Lab Computers <em>without</em> VMware Workstation Installed</a></li><li><a href="#option-2-personal-computer" class="table-of-contents__link toc-highlight">Option 2: Personal Computer</a><ul><li><a href="#part-1-computer-hardware-requirements" class="table-of-contents__link toc-highlight">Part 1: Computer Hardware Requirements</a></li><li><a href="#part-2-registering-your-broadcom-account" class="table-of-contents__link toc-highlight">Part 2: Registering Your Broadcom Account</a></li></ul></li><li><a href="#part-3-downloading-vmware-workstation" class="table-of-contents__link toc-highlight">Part 3: Downloading VMware Workstation</a></li><li><a href="#part-4-install-vmware-workstation" class="table-of-contents__link toc-highlight">Part 4: Install VMware Workstation</a></li><li><a href="#part-5-launch-vmware-workstation" class="table-of-contents__link toc-highlight">Part 5: Launch VMware Workstation</a></li></ul></li><li><a href="#investigation-3-vm1-installation---windows-server-2025-datacenter-srv1" class="table-of-contents__link toc-highlight">Investigation 3: VM1 Installation - Windows Server 2025 Datacenter (<em>srv1</em>)</a><ul><li><a href="#flowchart-visualization-of-investigation-3" class="table-of-contents__link toc-highlight">Flowchart Visualization of Investigation 3</a></li><li><a href="#part-1-setup-instructions" class="table-of-contents__link toc-highlight">Part 1: Setup Instructions</a></li></ul></li><li><a href="#investigation-4-post-installation-tasks-srv1" class="table-of-contents__link toc-highlight">Investigation 4: Post-Installation Tasks (<em>srv1</em>)</a><ul><li><a href="#overview-check-in-srv1-internet-connection" class="table-of-contents__link toc-highlight">Overview Check-In: <em>srv1</em> Internet Connection</a></li><li><a href="#part-1-applying-time-zone-settings" class="table-of-contents__link toc-highlight">Part 1: Applying Time Zone Settings</a></li><li><a href="#part-2-server-name-change" class="table-of-contents__link toc-highlight">Part 2: Server Name Change</a></li><li><a href="#part-3-windows-activation" class="table-of-contents__link toc-highlight">Part 3: Windows Activation</a></li><li><a href="#part-4-installing-os-updates" class="table-of-contents__link toc-highlight">Part 4: Installing OS Updates</a></li><li><a href="#part-5-internet-connectivity-check-wedge" class="table-of-contents__link toc-highlight">Part 5: Internet Connectivity Check w/Edge</a></li><li><a href="#part-6-download-and-install-firefox" class="table-of-contents__link toc-highlight">Part 6: Download and Install Firefox</a></li></ul></li><li><a href="#investigation-5-vm2-installation---windows-server-2025-core-srv2" class="table-of-contents__link toc-highlight">Investigation 5: VM2 Installation - Windows Server 2025 Core (<em>srv2</em>)</a><ul><li><a href="#flowchart-visualization-of-investigation-5" class="table-of-contents__link toc-highlight">Flowchart Visualization of Investigation 5</a></li><li><a href="#part-1-setup-instructions-1" class="table-of-contents__link toc-highlight">Part 1: Setup Instructions</a></li></ul></li><li><a href="#investigation-6-post-installation-tasks-srv2" class="table-of-contents__link toc-highlight">Investigation 6: Post-Installation Tasks (<em>srv2</em>)</a><ul><li><a href="#overview-check-in-srv2-internet-connection" class="table-of-contents__link toc-highlight">Overview Check-In: srv2 Internet Connection</a></li><li><a href="#part-1-applying-time-zone-settings-1" class="table-of-contents__link toc-highlight">Part 1: Applying Time Zone Settings</a></li><li><a href="#part-2-server-name-change-1" class="table-of-contents__link toc-highlight">Part 2: Server Name Change</a></li><li><a href="#part-3-windows-activation-1" class="table-of-contents__link toc-highlight">Part 3: Windows Activation</a></li><li><a href="#part-4-installing-os-updates-1" class="table-of-contents__link toc-highlight">Part 4: Installing OS Updates</a></li></ul></li><li><a href="#lab-1-sign-off" class="table-of-contents__link toc-highlight">Lab 1 Sign-Off</a><ul><li><a href="#sign-off-checklist" class="table-of-contents__link toc-highlight">Sign-Off Checklist</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">OSM620 - Fundamentals of Microsoft Systems</div><ul class="footer__items clean-list"><li class="footer__item"><a href="#" id="pwa-button" class="footer__link-item" hidden>Install as an App</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Seneca Polytechnic.</div></div></div></footer></div>
+</body>
+</html>

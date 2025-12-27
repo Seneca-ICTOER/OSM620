@@ -1,0 +1,821 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Assignments/assignment1" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Assignment 1 | OSM620 - Fundamentals of Microsoft Systems</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://seneca-ictoer.github.io/OSM620v2/Assignments/assignment1"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Assignment 1 | OSM620 - Fundamentals of Microsoft Systems"><meta data-rh="true" name="description" content="Assignment 1 - Roaming Employee Laptop"><meta data-rh="true" property="og:description" content="Assignment 1 - Roaming Employee Laptop"><link data-rh="true" rel="icon" href="/OSM620v2/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://seneca-ictoer.github.io/OSM620v2/Assignments/assignment1"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Assignments/assignment1" hreflang="en"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Assignments/assignment1" hreflang="x-default"><link rel="icon" href="/OSM620v2/img/pwa/icon-512x512.png">
+<link rel="manifest" href="/OSM620v2/manifest.json">
+<meta name="theme-color" content="#DA291C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#DA291C">
+<link rel="apple-touch-icon" href="/OSM620v2/img/pwa/icon-192x192.png">
+<link rel="mask-icon" href="/OSM620v2/img/pwa/icon-512x512.png" color="#DA291C">
+<meta name="msapplication-TileImage" content="/OSM620v2/img/pwa/icon-512x512.png">
+<meta name="msapplication-TileColor" content="#DA291C">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/OSM620v2/assets/css/styles.cba3e07b.css">
+<script src="/OSM620v2/assets/js/runtime~main.b62f346f.js" defer="defer"></script>
+<script src="/OSM620v2/assets/js/main.87c63611.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/OSM620v2/img/logo.svg"><link rel="preload" as="image" href="/OSM620v2/img/logo-dark.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><a class="navbar__brand" href="/OSM620v2/"><div class="navbar__logo"><img src="/OSM620v2/img/logo.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/OSM620v2/img/logo-dark.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">OSM620 - Fundamentals of Microsoft Systems</b></a></div><div class="navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/">Welcome to OSM620</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/weekly-schedule">Weekly Schedule</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/OSM620v2/Labs/lab1">Labs</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/OSM620v2/Assignments/assignment1">Assignments</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/OSM620v2/Assignments/assignment1">Assignment 1</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Assignments/assignment2">Assignment 2</a></li></ul></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/OSM620v2/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Assignments</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Assignment 1</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Assignment 1 - Roaming Employee Laptop</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lab-preparation">Lab Preparation<a href="#lab-preparation" class="hash-link" aria-label="Direct link to Lab Preparation" title="Direct link to Lab Preparation">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="purpose-of-assignment-1">Purpose of Assignment 1<a href="#purpose-of-assignment-1" class="hash-link" aria-label="Direct link to Purpose of Assignment 1" title="Direct link to Purpose of Assignment 1">​</a></h3>
+<p>In this assignment, you will provision a new Windows 11 “office laptop,” validate how it behaves <strong>on premises</strong> (HQ Network) versus <strong>remote</strong> (over the Internet via VPN), and explain routing/DNS differences between the two scenarios.</p>
+<p><strong>Scenario Overview:</strong> A new employee has been hired and you are in charge of onboarding them. This means provisioning a new company laptop for them to use for their work.</p>
+<p><strong>Scenario 1 - On-Premises:</strong> Your employee will be in the office with their new company laptop, physically connected to the internal network.</p>
+<p><strong>Scenario 2 - Remote:</strong> Your new employee also needs to work from home. Their remote work requires access to the company&#x27;s internal network resources.</p>
+<p><strong>This is a technical assignment with a reflection component.</strong> Your deliverable will be online inside a single PDF through Blackboard. (Check the <em>Submission</em> section at the end of this assignment.)</p>
+<p>You will produce screenshots and short written explanations (“why/why not?”) to prove each step. The assignment instructs you when to do each with the following notes:</p>
+<blockquote>
+<p><strong>Screenshots:</strong> Heads up of screenshots you will need to take shortly, with a list at which steps each screenshot should be taken.</p>
+<p><strong>Reflection:</strong> Questions you will answer to show some thought and understanding of the overall effects of what you&#x27;re doing.</p>
+</blockquote>
+<p>If you encounter technical issues, please contact your professor via e-mail or in your section&#x27;s Microsoft Teams group.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="objectives">Objectives<a href="#objectives" class="hash-link" aria-label="Direct link to Objectives" title="Direct link to Objectives">​</a></h3>
+<p>By the end, you will:</p>
+<ol>
+<li>Distinguish <strong>on-prem</strong> VS <strong>remote</strong> access paths and when VPN is required.</li>
+<li><strong>Enable and configure L2TP/IPsec (PSK)</strong> in RRAS (RRAS is already installed).</li>
+<li>Connect a client to your server using VPN over the Internet.</li>
+<li>Prove DNS/web reachability to internal services <strong>using FQDNs</strong>.</li>
+<li>Use <code>tracert</code> and <code>nslookup</code> output to explain routing/DNS behavior.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="minimum-progression-requirements">Minimum Progression Requirements<a href="#minimum-progression-requirements" class="hash-link" aria-label="Direct link to Minimum Progression Requirements" title="Direct link to Minimum Progression Requirements">​</a></h3>
+<p>Before beginning, you must have:</p>
+<ol>
+<li>Successfully completed Lab 1-5.</li>
+<li>Watched the <em>Introduction to Assignment 1</em> recorded lecture available through Blackboard.</li>
+<li>Your external SSD (or personal computer) with your VMs.</li>
+<li>Optional, but recommended: Caffeine delivery system.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="minimum-hardware-requirements">Minimum Hardware Requirements<a href="#minimum-hardware-requirements" class="hash-link" aria-label="Direct link to Minimum Hardware Requirements" title="Direct link to Minimum Hardware Requirements">​</a></h3>
+<p>It is <em>possible</em> to run Assignment 1 on a non-lab computer. I have done my best to reduce requirements. You may be able to run A1 on your personal computer. You will need an Intel/AMD-based computer with VMware Workstation installed. Check the grid below.</p>
+<p>Lab computers are available on campus during Study Week and outside of class time.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="absolute-minimum-hardware">Absolute Minimum Hardware<a href="#absolute-minimum-hardware" class="hash-link" aria-label="Direct link to Absolute Minimum Hardware" title="Direct link to Absolute Minimum Hardware">​</a></h4>
+<p>This may result in slow performance and disruptions, but is possible.</p>
+<table><thead><tr><th>VM</th><th>OS</th><th>Cores</th><th>RAM</th></tr></thead><tbody><tr><td>srv1</td><td>Windows Server 2025, Desktop Experience</td><td>2 cores</td><td>4 GB</td></tr><tr><td>srv2</td><td>Windows Server 2025, Core</td><td>2 cores</td><td>4 GB</td></tr><tr><td>laptop1</td><td>Windows 11 Education</td><td>2 cores</td><td>4 GB</td></tr><tr><td>Total:</td><td>-</td><td>4-6 cores</td><td>8-12 GB</td></tr></tbody></table>
+<blockquote>
+<p><strong>Note:</strong> Most of your work only requires <em>srv2</em> to be on temporarily. The absolute minimum would be 4 cores and 8 GB of RAM.
+I cannot guarantee stability under these settings. Use at your own risk.</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="recommended-minimum-hardware">Recommended Minimum Hardware<a href="#recommended-minimum-hardware" class="hash-link" aria-label="Direct link to Recommended Minimum Hardware" title="Direct link to Recommended Minimum Hardware">​</a></h4>
+<p>This is the recommended minimum hardware requirements for A1.</p>
+<table><thead><tr><th>VM</th><th>OS</th><th>Cores</th><th>RAM</th></tr></thead><tbody><tr><td>srv1</td><td>Windows Server 2025, Desktop Experience</td><td>4 cores</td><td>8 GB</td></tr><tr><td>srv2</td><td>Windows Server 2025, Core</td><td>2 cores</td><td>4 GB</td></tr><tr><td>laptop1</td><td>Windows 11 Education</td><td>2 cores</td><td>4 GB</td></tr><tr><td>Total:</td><td>-</td><td>6-8 cores</td><td>12-16 GB</td></tr></tbody></table>
+<blockquote>
+<p><strong>Note:</strong> Most of your work only requires <em>srv2</em> to be on temporarily. The absolute <strong>recommended</strong> minimum would be 6 cores and 12 GB of RAM.</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-1-installing-laptop1-vm">Investigation 1: Installing <em>laptop1</em> VM<a href="#investigation-1-installing-laptop1-vm" class="hash-link" aria-label="Direct link to investigation-1-installing-laptop1-vm" title="Direct link to investigation-1-installing-laptop1-vm">​</a></h2>
+<p>In this investigation, you will create and install a new VM called <em>laptop1</em>. This VM will be created <strong>in VMware Workstation</strong>, <em>not</em> Hyper-V.</p>
+<p><strong>Scenario:</strong> You are setting up a company laptop for a new employee.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="before-you-begin">Before You Begin<a href="#before-you-begin" class="hash-link" aria-label="Direct link to Before You Begin" title="Direct link to Before You Begin">​</a></h3>
+<p><strong>Time to Backup!</strong>
+You will be making major changes to <em>srv1</em>. This is a good time to backup the <em>srv1</em> VM so you can restore from it if something catastrophic occurs.</p>
+<p>With <em>srv1</em> turned off, copy the entire <strong>srv1</strong> folder in your SSD to a separate location. This can be a backup directory on your SSD, or even a separate physical drive. Leave the copy be and use the original going forward. (If you need space, compress the backup folder.)</p>
+<p>Do not continue until the copy has fully completed.</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-creating-laptop1-vm">Part 1: Creating <em>laptop1</em> VM<a href="#part-1-creating-laptop1-vm" class="hash-link" aria-label="Direct link to part-1-creating-laptop1-vm" title="Direct link to part-1-creating-laptop1-vm">​</a></h3>
+<p>In this part, you will create a new Windows 11 virtual machine using the hardware specifications below.</p>
+<blockquote>
+<p><strong>Note:</strong> Keep all other VMs off until told otherwise.</p>
+</blockquote>
+<p>Virtual Machine Specifications:</p>
+<ul>
+<li>Hypervisor: <strong>VMware Workstation</strong></li>
+<li>Name: <strong>laptop1</strong></li>
+<li>Location: <strong>OSM620/Virtual Machines/laptop1</strong></li>
+<li>Encrytiption Information: <strong>See note below.</strong></li>
+<li>RAM: <strong>4 GB</strong></li>
+<li>CPU: <strong>2 processors</strong></li>
+<li>Storage: <strong>64 GB</strong></li>
+<li>NIC: <strong>1</strong>, set to <strong>NAT</strong></li>
+<li>ISO: <strong>Windows 11 Education</strong></li>
+</ul>
+<p>If you can&#x27;t remember how to create a VMware virtual machine, please refer back to <a href="/OSM620v2/Labs/lab1">Lab 1</a>.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="encryption-information-page">Encryption Information Page<a href="#encryption-information-page" class="hash-link" aria-label="Direct link to Encryption Information Page" title="Direct link to Encryption Information Page">​</a></h4>
+<p>Like with <em>client1</em> and <em>client2</em>, this VM&#x27;s Windows 11 uses a TPM to encrypt certain important files. Unlike Hyper-V, VMware Worksation adds the TPM module automatically.</p>
+<ul>
+<li>Choose Encryption Type: <strong>Only the files needed to support a TPM are encrypted.</strong></li>
+<li>Password: <strong>Your normal VM password.</strong></li>
+</ul>
+<p>You do need to choose the encryption type and give it a password. <strong>Use the same password you&#x27;ve used for all other VMs in this course.</strong></p>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 1. The Encryption Information page for creating a new Windows 11 VM in VMware." src="/OSM620v2/assets/images/laptop1-encryption-61469590b903d1e110f8ce2ec2bb86ed.png" width="643" height="667" class="img_ev3q"><br>
+<em>Figure 1. The Encryption Information page for creating a new Windows 11 VM in VMware.</em></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-os-installation-and-configuration">Part 2: OS Installation and Configuration<a href="#part-2-os-installation-and-configuration" class="hash-link" aria-label="Direct link to Part 2: OS Installation and Configuration" title="Direct link to Part 2: OS Installation and Configuration">​</a></h3>
+<p>Use the following instructions to install the OS and run post-installation tasks on your new <em>laptop1</em> VM.</p>
+<ol>
+<li>Create the VM with the specifications above.</li>
+<li>When creating the user, use <code>firstname.lastname</code></li>
+<li>Run through the standard <strong>Post-Installation Tasks</strong> you ran in <em>Lab 2</em>.</li>
+<li>When complete (including internal name and updates!), shut down the VM.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-2-add-laptop1-to-local-hq-network">Investigation 2: Add <code>laptop1</code> to Local HQ Network<a href="#investigation-2-add-laptop1-to-local-hq-network" class="hash-link" aria-label="Direct link to investigation-2-add-laptop1-to-local-hq-network" title="Direct link to investigation-2-add-laptop1-to-local-hq-network">​</a></h2>
+<p>Here, we&#x27;ll connect our new <code>laptop1</code> machine to office HQ network and access some local resources.</p>
+<p><strong>Scenario:</strong> A physical laptop connected to Ethernet inside our company&#x27;s physical office.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="before-you-begin-1">Before You Begin<a href="#before-you-begin-1" class="hash-link" aria-label="Direct link to Before You Begin" title="Direct link to Before You Begin">​</a></h3>
+<p>We will <em>not</em> be using our Hyper-V VMs in this assignment. To make things easier, change <em>srv1</em>&#x27;s hardware settings in VMware Workstation while the VM is powered off.</p>
+<p>On <em>srv1:</em></p>
+<ol>
+<li>CPU: <strong>Change from 6-cores to 4-cores.</strong></li>
+<li>RAM: <strong>Change from 16 GB to 8 GB</strong></li>
+</ol>
+<p>On <em>srv2</em>:</p>
+<ol>
+<li>Disconnect the NAT NIC, leaving only the NIC with the 10.0.<code>UID</code>.2 online. <em>srv2</em> should only be reachable though the 10.0.<code>UID</code>.0/24 network (HQ Network). (Refer to <em>Fig. 2</em> and <em>Fig. 3</em> below.)</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 2. NIC1 connected in VMware&amp;#39;s Hardware Settings." src="/OSM620v2/assets/images/nic1-connected-647b8f914ddc9bbaa9dd60160eef165d.png" width="1151" height="999" class="img_ev3q"><br>
+<em>Figure 2. NIC1 connected in VMware&#x27;s Hardware Settings.</em></p>
+</blockquote>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 3. NIC1 disconnected in VMware&amp;#39;s Hardware Settings." src="/OSM620v2/assets/images/nic1-disconnected-aedbfa684f5b6d4540bba6c381fe06f1.png" width="1151" height="999" class="img_ev3q"><br>
+<em>Figure 3. NIC1 <strong>disconnected</strong> in VMware&#x27;s Hardware Settings.</em></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-switching-the-network">Part 1: Switching the Network<a href="#part-1-switching-the-network" class="hash-link" aria-label="Direct link to Part 1: Switching the Network" title="Direct link to Part 1: Switching the Network">​</a></h3>
+<p>We need to switch <code>laptop1</code>&#x27;s network connection from the basic Internet to our office&#x27;s internal network.</p>
+<ol>
+<li>Power on <code>srv1</code>.</li>
+<li>Power on <code>srv2</code>.</li>
+<li>Power on <code>laptop1</code> and login with your <code>firstname.lastname</code> credentials.</li>
+<li>In VMware&#x27;s hardware settings for <code>laptop1</code>, change NIC1 from <strong>NAT</strong> to <strong>VMnet10</strong>.</li>
+<li>Wait for the changes to apply. This may take a few moments.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-testing-connections-to-hq-resources">Part 2: Testing Connections to HQ Resources<a href="#part-2-testing-connections-to-hq-resources" class="hash-link" aria-label="Direct link to Part 2: Testing Connections to HQ Resources" title="Direct link to Part 2: Testing Connections to HQ Resources">​</a></h3>
+<p>Let&#x27;s see if we can access all the HQ resources we were able to with our other VMs in previous labs.</p>
+<blockquote>
+<p><strong>Screenshots:</strong> Take full desktop screenshots of the end of the following steps:</p>
+<ol>
+<li>Step 4 (Screenshot 1)</li>
+<li>Step 5 (Screenshot 2)</li>
+<li>Step 6 (Screenshot 3)</li>
+</ol>
+</blockquote>
+<ol>
+<li>Switch to <code>laptop1</code>.</li>
+<li>Open <em>Command Prompt</em>.</li>
+<li>Reset DNS cache: <code>ipconfig /flushdns</code></li>
+<li>Let&#x27;s check DNS resolution. Run the following:<!-- -->
+<ol>
+<li><code>nslookup srv1.YourSenecaUsername.com</code></li>
+<li><code>nslookup srv2.YourSenecaUsername.com</code></li>
+<li><code>nslookup eff.org</code></li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 4. Example of a successful DNS lookup using srv1" src="/OSM620v2/assets/images/nslookup-srv1-111b720195c114fe2bdd762375ed39e1.png" width="1127" height="619" class="img_ev3q"><br>
+<em>Figure 4. Example of a successful DNS lookup using srv1.</em></p>
+</blockquote>
+<ol start="5">
+<li>Now, let&#x27;s confirm we have connections to these resources:<!-- -->
+<ol>
+<li><code>ping srv1.cjohnson30.com</code></li>
+<li><code>ping srv2.cjohnson30.com</code></li>
+<li><code>ping eff.org</code></li>
+</ol>
+</li>
+<li>Finally, let&#x27;s take a look at the <strong>path through the network</strong> that our connection to these resources is taking. <code>tracert</code> is a utility that tracks each hop taken between your computer and the destination and shows any others it travelled through to get there. Run the following:<!-- -->
+<ol>
+<li><code>tracert srv1.cjohnson30.com</code></li>
+<li><code>tracert srv2.cjohnson30.com</code></li>
+<li><code>tracert eff.org</code></li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><strong>Reflection 1:</strong> Why do these tests work? Be specific.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-connecting-to-hq-network-resources">Part 3: Connecting to HQ Network Resources<a href="#part-3-connecting-to-hq-network-resources" class="hash-link" aria-label="Direct link to Part 3: Connecting to HQ Network Resources" title="Direct link to Part 3: Connecting to HQ Network Resources">​</a></h3>
+<p>In this part, we&#x27;ll connect to actual resources on the HQ network. Remember, in this scenario, we are in the office and connected to the HQ network directly.</p>
+<p>We will be connecting to the following services from <em>laptop1</em>:</p>
+<ul>
+<li>RDP</li>
+<li>SSH</li>
+<li>Webpage</li>
+</ul>
+<blockquote>
+<p><strong>Screenshots:</strong> Take screenshots of the following:</p>
+<ol>
+<li>Step 3 (Screenshot 4)</li>
+<li>Step 5 (Screenshot 5)</li>
+<li>Step 8 (Screenshot 6)</li>
+<li>Step 10 (Screenshot 7)</li>
+<li>Step 11 (Screenshot 8)</li>
+</ol>
+</blockquote>
+<ol>
+<li>Power on <code>laptop1</code> and login.</li>
+<li>Open the <strong>Remote Desktop Connection</strong> application.</li>
+<li>Connect with to <em>srv1</em> with: <code>srv1.YourSenecaUsername.com</code></li>
+<li>If you see the Server1 desktop, congrats! Close the RDP connection.</li>
+<li>Back on <em>laptop1</em>: Open an RDP connection directly to: <code>srv2.YourSenecaUsername.com</code></li>
+<li>If you see the Server2 desktop with the <code>sconfig</code> window, congrats! Close the RDP connection.</li>
+<li>Open <strong>Command Prompt</strong> and login to <em>srv2</em>&#x27;s SSH connection: <code>ssh Administrator@srv2.YourSenecaUsername.com</code></li>
+<li>To confirm your work, run the following commands in your SSH session:<!-- -->
+<ol>
+<li><code>hostname</code></li>
+<li><code>whoami</code></li>
+</ol>
+</li>
+<li>Close the connection.</li>
+<li>In Firefox, navigate to: <code>http://srv1.cjohnson30.com</code></li>
+<li>In Firefox, navigate to: <code>http://www.eff.org</code></li>
+</ol>
+<blockquote>
+<p><strong>Reflection 2:</strong> Why did these connections work? Be specific.
+What&#x27;s happening when we connect to <code>srv2</code> based on our <code>tracert</code> output?
+What&#x27;s happening when we connect to <code>eff.org</code>?</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-3-virtual-private-networking-vpn">Investigation 3: Virtual Private Networking (VPN)<a href="#investigation-3-virtual-private-networking-vpn" class="hash-link" aria-label="Direct link to Investigation 3: Virtual Private Networking (VPN)" title="Direct link to Investigation 3: Virtual Private Networking (VPN)">​</a></h2>
+<p>In this investigation, you will configure a VPN service on <em>srv1</em>. This will allow <em>laptop1</em> to log into the local HQ network over the Internet and access internal office resources like <em>srv2</em> from outside the office.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="before-you-begin-2">Before You Begin<a href="#before-you-begin-2" class="hash-link" aria-label="Direct link to Before You Begin" title="Direct link to Before You Begin">​</a></h3>
+<p>Only the following VMs need to be turned on:</p>
+<ul>
+<li><em>srv1</em></li>
+</ul>
+<p>Shut down the rest for now (including <em>laptop1</em>).</p>
+<p>Check the following on <em>srv1</em> when online:</p>
+<ol>
+<li>In <strong>Network Connections</strong>, all three adapters (<em>External Network</em>, <em>Internal Network</em>, and <em>vEthernet (HQ Network)</em>) have <em><strong>IPv6 disabled</strong></em>.</li>
+<li>At the VMware level, check the hardware settings for <em>srv1</em>:<!-- -->
+<ol>
+<li>NIC1: <strong>NAT</strong> (Internet)</li>
+<li>NIC2: <strong>VMnet10</strong> (local network)</li>
+</ol>
+</li>
+<li>DNS is running.</li>
+<li>DHCP is running.</li>
+<li>RRAS is running.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-adding-vpn-to-rras">Part 1: Adding VPN to RRAS<a href="#part-1-adding-vpn-to-rras" class="hash-link" aria-label="Direct link to Part 1: Adding VPN to RRAS" title="Direct link to Part 1: Adding VPN to RRAS">​</a></h3>
+<p><strong>Routing and Remote Access (RRAS)</strong> is a service you worked with in previous labs to set up NAT. It also offers VPN services, but our earlier setup didn&#x27;t include it.</p>
+<p>In many services, you can simply add a function or additional configuration. In others, like RRAS, you can&#x27;t. We have to delete the configuration and start again. This isn&#x27;t as daunting as it sounds! You aren&#x27;t uninstalling the Server Feature; this is just reconfiguration within the RRAS tool.</p>
+<p>Let&#x27;s begin.</p>
+<ol>
+<li>Open the <strong>Routing and Remote Access</strong> window. (<em>Server Manager application -&gt; Tools -&gt; Routing and Remote Access</em>)</li>
+<li>Find your local server in the column list on the left (likely <em>SRV1-SENECAUSERNAME (local)</em>).</li>
+<li>Right-click it and select <strong>Disable Routing and Remote Access</strong>.<!-- -->
+<ol>
+<li>You will get a warning that this will remove its configuration. This is what we want. Select <strong>Yes</strong>.</li>
+<li>This may take a few moments. Be patient.</li>
+</ol>
+</li>
+<li>Once complete, the left-hand column list should refresh, showing almost nothing aside from the server name. The server name will also have a <strong>red status icon</strong> next to it showing you it&#x27;s disabled. (If the left-hand column list is unchanged, refresh the view.)</li>
+<li>Right-click <em>SRV1</em> and select <strong>Configure and Enable Routing and Remote Access</strong></li>
+<li>You&#x27;re brought back into the <em>Routing and Remote Access Server Setup Wizard</em> from earlier in the course.</li>
+<li>Select <strong>Next</strong> on the first info page. You are now in the <strong>Configuration</strong> page.</li>
+<li>In the <strong>Configuration</strong> page, select: <em>Custom configuration</em> and click <strong>Next</strong>.</li>
+<li>In the <strong>Custom Configuration</strong> page, select the following options and click <strong>Next</strong>:<!-- -->
+<ol>
+<li>VPN Access</li>
+<li>NAT</li>
+<li>LAN routing</li>
+</ol>
+</li>
+<li>The last page is the confirmation page. If the above selections show up in the display, click <strong>Finish</strong> to complete. (If not, hit the <strong>Back</strong> button and fix your selection. Feel free to ask for help!)</li>
+<li>A popup window will appear asking if you&#x27;d like to start the service. <strong>Select <em>Cancel</em></strong>. We have more configuration to do before starting it up.</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 2. Select CANCEL on this screen!" src="/OSM620v2/assets/images/RRAS-donotstart-fc7fa89b705366e9fa09b650b52aa6a1.png" width="1023" height="872" class="img_ev3q"><br>
+<em>Figure 2. <strong>Select CANCEL on this screen!</strong></em></p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong> Keeping the RRAS server offline for now allows us to make additional changes without having to restart the service every time we make a change. This saves us a ton of time and frustration.</p>
+</blockquote>
+<ol start="12">
+<li>You should now see the familiar list of items in the left-hand menu column, with two new additions:<!-- -->
+<ol>
+<li>Ports</li>
+<li>Remote Access Clients</li>
+</ol>
+</li>
+<li><strong>Check:</strong> The RRAS service should still be offline. Look for the red status icon over SRV1.</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 3. RRAS service offline with red status icon." src="/OSM620v2/assets/images/RRAS-offline-a8d9a42c99064add2123f32484c8d28c.png" width="553" height="518" class="img_ev3q"><br>
+<em>Figure 3. RRAS service offline with red status icon.</em></p>
+</blockquote>
+<ol start="14">
+<li>If the service is online (green), right-click it and go to: <strong>All Tasks &gt; Stop</strong></li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-reconfiguring-nat">Part 2: Reconfiguring NAT<a href="#part-2-reconfiguring-nat" class="hash-link" aria-label="Direct link to Part 2: Reconfiguring NAT" title="Direct link to Part 2: Reconfiguring NAT">​</a></h3>
+<p>In this part, we&#x27;ll reconfigure NAT to what we had set up before.</p>
+<ol>
+<li>In the left-hand column, click on and expand the <strong>IPv4</strong> entry.</li>
+<li>Click on <strong>IPv4 -&gt; NAT</strong>.</li>
+<li>Inside the NAT main window, right-click in the white space and select <em>New Interface</em>. Add the following:<!-- -->
+<ol>
+<li>External Network -&gt; Interface Type: Public interface connected to the Internet -&gt; Enable NAT on this interface checked.</li>
+<li>vEthernet (HQ Network) -&gt; Interface Type: Private interface connected to private network</li>
+</ol>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-configuring-the-server-for-ipv4-and-local-networks">Part 3: Configuring the Server for IPv4 and Local Networks<a href="#part-3-configuring-the-server-for-ipv4-and-local-networks" class="hash-link" aria-label="Direct link to Part 3: Configuring the Server for IPv4 and Local Networks" title="Direct link to Part 3: Configuring the Server for IPv4 and Local Networks">​</a></h3>
+<p>In this part, we&#x27;ll configure the RRAS service to only use IPv4 and to take network information from our vEthernet (HQ Network) where our DHCP and DNS live.</p>
+<ol>
+<li>Back in the left-hand column, right-click on <strong>SRV1</strong> and select <strong>Properties</strong>.</li>
+<li>In the <em>Properties</em> window, click on the <strong>IPv6</strong> tab.</li>
+<li>Disable those pesky IPv6 options by <em><strong>unchecking</strong></em> the following:<!-- -->
+<ol>
+<li>Enable IPv6 Forwarding</li>
+<li>Enable Default Route Advertisement</li>
+</ol>
+</li>
+<li>Click in the <strong>IPv4</strong> tab.</li>
+<li>Near the bottom of the tab, look for the <em>Adapter</em> entry and click on the drop-down menu.<!-- -->
+<ol>
+<li>Select <strong>vEthernet (HQ Network)</strong></li>
+</ol>
+</li>
+<li>Click <strong>Apply</strong> (not <strong>OK</strong>!). We have more work to do here.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-assigning-ip-ranges-for-vpn-clients">Part 4: Assigning IP Ranges for VPN Clients<a href="#part-4-assigning-ip-ranges-for-vpn-clients" class="hash-link" aria-label="Direct link to Part 4: Assigning IP Ranges for VPN Clients" title="Direct link to Part 4: Assigning IP Ranges for VPN Clients">​</a></h3>
+<p>In this part, we&#x27;re going to assign IP addresses that the VPN can use. When a client (like <em>laptop1</em>) connects to the server using VPN, it&#x27;ll be given an internal 10.0.<code>UID</code>.x address so it&#x27;s part of the local network. That&#x27;s how <em>laptop1</em> will be able to access internal network resources.</p>
+<p>Remember in our DHCP lab where we specified that the DHCP could only use 10.0.<code>UID</code>.2-10.0.<code>UID</code>.199, even though we could have gone up to .254? That wasn&#x27;t arbitrary! We&#x27;ll use those remaining addresses here.</p>
+<blockquote>
+<p><strong>Screenshots:</strong> Take screenshots of the following:</p>
+<ol>
+<li>Step 2.v (Screenshot 9)</li>
+</ol>
+</blockquote>
+<ol>
+<li>In RRAS, open the <strong>Properties</strong> window of <em>SRV1-SENECAUSERNAME (local)</em> and click on the <strong>IPv4</strong> tab. (If this is already open from <em>Part 3</em>, skip to Step 2.)</li>
+<li>Look for the <em>IPv4 address assignment</em> section in this tab.<!-- -->
+<ol>
+<li>Change the selection from <strong>Dynamic Host Configuration Protocol (DHCP)</strong> to <strong>Static address pool</strong>.</li>
+<li>Below that, click the <strong>Add</strong> button.</li>
+<li>The <em>New IPv4 Address Range</em> window pops up.</li>
+<li>Enter the following:<!-- -->
+<ol>
+<li>Start IP address: <strong>10.0.<code>UID</code>.200</strong></li>
+<li>End IP address: <strong>10.0.<code>UID</code>.209</strong></li>
+<li><img decoding="async" loading="lazy" alt="Example IP range." src="/OSM620v2/assets/images/RRAS-IP-range-mini-fbce15c12f6d480ba8648e04ff14874e.png" width="821" height="508" class="img_ev3q"></li>
+<li>This should give you <strong>10</strong> in the field below automatically. Click <strong>OK</strong>.</li>
+</ol>
+</li>
+<li>You should now see that IP address range in the <em>Static Address pool</em> table. (See <em>Figure 4</em> below.)</li>
+<li>Click <strong>Apply</strong> (not <strong>OK</strong>!). We have just a little more work to do here.</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 4. Completed IPv4 tab." src="/OSM620v2/assets/images/RRAS-IPv4-complete-65352f38424404dfdb68c80ed54ac3b6.png" width="826" height="1174" class="img_ev3q"><br>
+<em>Figure 4. Completed IPv4 tab.</em></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-5-vpn-security-and-authentication">Part 5: VPN Security and Authentication<a href="#part-5-vpn-security-and-authentication" class="hash-link" aria-label="Direct link to Part 5: VPN Security and Authentication" title="Direct link to Part 5: VPN Security and Authentication">​</a></h3>
+<p>Here, we&#x27;ll decide how clients (like <em>laptop1</em>) will authenticate to <em>srv1</em> when using VPN. These are security settings and must match on both the server and the client.</p>
+<blockquote>
+<p><strong>PROD NOTE:</strong> We&#x27;ll be using an older protocol called <strong>L2TP</strong> and a <strong>Shared passphrase</strong>. This is an older, deprecated setup with security flaws and should not be used in normal production environments! We&#x27;re using it here in an educational environment for simplicity.</p>
+<p>In a production environment, we&#x27;d use certificate-based <strong>IKEv2</strong> instead of L2TP. It&#x27;s more sophisticated, secure, and Microsoft recommended. We&#x27;ll look at this briefly after Active Directory is installed in a later lab.</p>
+</blockquote>
+<blockquote>
+<p><strong>Screenshots:</strong> Take screenshots of the following:</p>
+<ol>
+<li>Step 6 (when all changes complete) (Screenshot 10)</li>
+</ol>
+</blockquote>
+<p>Let&#x27;s begin our setup.</p>
+<ol>
+<li>In RRAS, open the <strong>Properties</strong> window of <em>SRV1-SENECAUSERNAME (local)</em>. (If this is already open from <em>Part 3</em>, skip to Step 2.)</li>
+<li>Change to the <strong>Security</strong> tab.</li>
+<li>One of the first things you can see is <em>Authentication provider</em>. It&#x27;s set to <strong>Windows Authentication</strong>. Leave it as is.</li>
+<li>Just below that, there&#x27;s a button labelled <strong>Authentication Methods...</strong>. Click it.</li>
+<li>The <em>Authentication Methods</em> pop-up window appears. We&#x27;re going to be changing a few settings here</li>
+<li>Verify the following settings, and change the ones on your setup that don&#x27;t match the values below (Refer to <em>Figure 5</em> below):<!-- -->
+<ol>
+<li>Extensible authentication protocol (EAP): <strong>Unchecked</strong></li>
+<li>Microsoft encrypted authentication version 2 (MS-CHAP v2): <strong>Checked</strong></li>
+<li>Encrypted authentication (CHAP): <strong>Unchecked</strong></li>
+<li>Unencrypted password: <strong>Unchecked</strong></li>
+<li>Allow machine certificate authentication for IKEv2: <strong>Unchecked</strong></li>
+<li>Allow remote systems to connect without authentication: <strong>Unchecked</strong></li>
+</ol>
+</li>
+<li>Click <strong>OK</strong> when done.</li>
+<li>Click <strong>OK</strong> on the <em>Properties -&gt; Security</em> tab to close the window.</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 5. Properly selected authentication methods." src="/OSM620v2/assets/images/RRAS-auth-methods-complete-e991d8a03541a1bcb82acbc4087708ca.png" width="821" height="1177" class="img_ev3q"><br>
+<em>Figure 5. Properly selected authentication methods.</em></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-6-starting-up-the-rras-service-with-vpn">Part 6: Starting up the RRAS service with VPN<a href="#part-6-starting-up-the-rras-service-with-vpn" class="hash-link" aria-label="Direct link to Part 6: Starting up the RRAS service with VPN" title="Direct link to Part 6: Starting up the RRAS service with VPN">​</a></h3>
+<p>In this part, we&#x27;ll start up the RRAS service, check our VPN work, and make a small change to our VPN configuration we couldn&#x27;t do until the service was running.</p>
+<p>First, let&#x27;s start up the RRAS service.</p>
+<ol>
+<li>In RRAS, find the <em>SRV1-SENECAUSERNAME (local)</em> entry and right-click it.</li>
+<li>In the drop-down context menu, click <strong>All tasks</strong>, then <strong>Start</strong>. This may take a few moments to start up.</li>
+<li>When complete, the local server entry should now have a green icon.</li>
+<li>Right-click <em>SRV1</em> again and select <strong>Properties</strong>.</li>
+<li>In the <strong>Security</strong> tab, change the following:<!-- -->
+<ol>
+<li>Allow custom IPsec policy for L2TP/IKEv2 connection: <strong>Checked</strong></li>
+<li>Preshared Key: <strong>OSM620-2025F-L2TP-ONLY-DoNotReuse!</strong></li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 6. Example of an entered Preshared Key value." src="/OSM620v2/assets/images/RRAS-PSK-86157a66671729fd03ce4adc2ca2ca80.png" width="825" height="1174" class="img_ev3q"><br>
+<em>Figure 6. Example of an entered Preshared Key value.</em></p>
+</blockquote>
+<ol start="6">
+<li>Click <strong>OK</strong> to apply and close the window.</li>
+<li>It may ask you to restart the service. Click <strong>OK</strong>.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-7-creating-available-ports-for-vpn-connections">Part 7: Creating Available Ports for VPN Connections<a href="#part-7-creating-available-ports-for-vpn-connections" class="hash-link" aria-label="Direct link to Part 7: Creating Available Ports for VPN Connections" title="Direct link to Part 7: Creating Available Ports for VPN Connections">​</a></h3>
+<p>In this part, we&#x27;ll create a pool of ports that can be used for individual VPN client connections. Each connection must have its own unshared port. These are recycled after disconnect.</p>
+<p>In production environments, decisions have to be made from a business perspective at this point. How many people do we expect to be logging in to the VPN at any given time? We need to have enough ports available for that number, otherwise ports will run out and additional people won&#x27;t be able to connect.</p>
+<p>For us, we&#x27;re going to stick with a demo number of 10 ports. <strong>That means we will support 10 simultaneous active VPN client connections.</strong> (If an 11th person tried to connect when 10 others were online, they&#x27;d get a connection error.)</p>
+<blockquote>
+<p><strong>IMPORTANT:</strong> The RRAS service must be in a <em>Started</em> state (green icon)!
+Adding the ports below when the service is disabled will cause configuration damage that is very difficult to fix.</p>
+</blockquote>
+<blockquote>
+<p><strong>Screenshots:</strong> Take screenshots of the following:</p>
+<ol>
+<li>Step 8 (Screenshot 11)</li>
+</ol>
+</blockquote>
+<p>Let&#x27;s set this up.</p>
+<ol>
+<li>In RRAS, verify that the service is online (look for the green icon.) If it isn&#x27;t, right-click and select: <strong>All Tasks &gt; Start</strong>.</li>
+<li>Find the <em>Ports</em> entry.</li>
+<li>Right-click and select <strong>Properties</strong>.</li>
+<li>The <em>Ports Properties</em> window appears.</li>
+<li>We have some major changes to make here. To make changes, you&#x27;ll click on one of the entries and then select the <strong>Configure...</strong> button. When you change the number of ports, a popup asking if you&#x27;re sure will appear when you hit <strong>OK</strong>. Select <strong>Yes</strong>.</li>
+<li>Verify the following settings, and change the <em>Number of ports</em> on your setup that don&#x27;t match the values below:<!-- -->
+<ol>
+<li>WAN Miniport (SSTP): <strong>0</strong></li>
+<li>WAN Miniport (IKEv2): <strong>0</strong></li>
+<li>WAN Miniport (PPTP): <strong>0</strong></li>
+<li>WAN Miniport (PPPoE): <strong>1</strong> (Though we don&#x27;t need it, server will not let you set this to zero.)</li>
+<li>WAN Miniport (GRE): <strong>0</strong></li>
+<li>WAN Miniport (L2TP): <strong>10</strong>
+<ol>
+<li><strong>Note:</strong> Select <em>Remote access connections (inbound only)</em> in this window.</li>
+<li><strong>Note:</strong> When you make this change, a popup will ask if you want to restart the RRAS server. Select <strong>Yes</strong>.</li>
+<li><strong>Your <em>srv1</em> computer will restart.</strong> This is normal.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>When you&#x27;ve finished restarting and logged back in, reopen the RRAS application.</li>
+<li>In the main <em>Ports</em> window, the list in the main window should only contain the 10 L2TP ports (and 1 PPPoE).</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 7. Completed L2TP ports listing." src="/OSM620v2/assets/images/RRAS-ports-complete-c119fd1f072d3ba7258b7d5663f78bd4.png" width="1489" height="693" class="img_ev3q"><br>
+<em>Figure 7. Completed L2TP ports listing.</em></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-8-network-policy-server">Part 8: Network Policy Server<a href="#part-8-network-policy-server" class="hash-link" aria-label="Direct link to Part 8: Network Policy Server" title="Direct link to Part 8: Network Policy Server">​</a></h3>
+<p>In this section, we&#x27;ll open the <strong>Network Policy Server</strong> application and enable the profile that allows VPN authentication. This is an easy security task. This feature is installed by default through our previous lab work.</p>
+<ol>
+<li>Open <strong>Server Manager</strong>.</li>
+<li>Click <em>Tools</em> -&gt; <em>Network Policy Server</em></li>
+<li>In the <em>Network Policy Server</em> application, use the left-hand column to go to <strong>Policies &gt; Network Policies</strong>.</li>
+<li>In the main window, find the policy entry listed as <strong>Connections to Microsoft Routing and Remote Access Server</strong>.</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 8. CNetwork Policy Server application with the correct profile selected to edit." src="/OSM620v2/assets/images/NPS-application-fac615e04c9c68a2bf1742817a6c0c01.png" width="1925" height="1341" class="img_ev3q"><br>
+<em>Figure 8. Network Policy Server application with the correct profile selected to edit.</em></p>
+</blockquote>
+<ol start="5">
+<li>Double-click this entry.</li>
+<li>In the new <em>Properties</em> window, stay on the <em>Overview</em> tab.</li>
+<li>Find the section on that tab labelled <em>Access Permission</em>.</li>
+<li>Select: <strong>Grant access. Grant access if the connection matches this policy.</strong></li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 9. Granting access to the defined policy we&amp;#39;re editing." src="/OSM620v2/assets/images/NPS-grant-access-a8b1aa82c09eb5c6b4225b21121d8bfc.png" width="1477" height="1239" class="img_ev3q"><br>
+<em>Figure 9. Granting access to the defined policy we&#x27;re editing.</em></p>
+</blockquote>
+<ol start="9">
+<li>Click <strong>OK</strong> to apply and close the window.</li>
+<li>The policy name in the main window should now have a green icon next to it.</li>
+<li>You can now close the <em>Network Policy Server</em> application.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-9-creating-a-local-user">Part 9: Creating a Local User<a href="#part-9-creating-a-local-user" class="hash-link" aria-label="Direct link to Part 9: Creating a Local User" title="Direct link to Part 9: Creating a Local User">​</a></h3>
+<p>Up to this point, you&#x27;ve been using the basic <strong>Administrator</strong> account. As the name implies, it has administrative privileges and can modify the system and access other users&#x27; files. The laptop we&#x27;ve set up is for a normal employee, not someone on the admin team. Giving our normal employee admin access is a <em><strong>terrible</strong></em> security choice, so we won&#x27;t!</p>
+<p>For the employee to connect to <em>srv1</em>, we need to give them an account on that server. We&#x27;ll create one for them below. It&#x27;s a quick process. (There are other ways of creating VPN users, but this is easiest.) A new local account is, by default, not an admin.</p>
+<blockquote>
+<p><strong>Screenshots:</strong> Take screenshots of the following:</p>
+<ol>
+<li>Step 7 (Screenshot 12)</li>
+</ol>
+</blockquote>
+<ol>
+<li>On <em>srv1</em>, open <strong>Server Manager</strong>.</li>
+<li>Click <em>Tools -&gt; Computer Management</em></li>
+<li>In the <em>Computer Management</em> application, use the left-hand column to go to <strong>Local Users and Groups &gt; Users</strong>.</li>
+<li>Right-click the <em>Users</em> folder and select <strong>New User...</strong></li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 10. New User selection from context menu." src="/OSM620v2/assets/images/new-local-user-19b7ae7ab7c0c8a08eb3255d732dba6e.png" width="741" height="692" class="img_ev3q"><br>
+<em>Figure 10. New User selection from context menu.</em></p>
+</blockquote>
+<ol start="5">
+<li>In the <em>New User</em> popup window, fill out the following values:<!-- -->
+<ol>
+<li>User name: <strong><code>firstname.lastname</code></strong> (This is the same as you used for <em>laptop1</em>)</li>
+<li>Full name: <strong>Enter your full name</strong> (Example: Chris Johnson)</li>
+<li>Description: <strong>VPN User</strong></li>
+<li>Password: <strong>Same as <em>laptop1</em></strong></li>
+<li>Confirm password: <strong>Same as <em>laptop1</em></strong></li>
+<li>User must change password at next login: <strong>Unchecked</strong></li>
+<li>User cannot change password: <strong>Unchecked</strong></li>
+<li>Password never expires: <strong>Checked</strong></li>
+<li>Account is disabled: <strong>Unchecked</strong></li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 11. New User Dialog Box - Filled Out." src="/OSM620v2/assets/images/local-user-dialog-f0ea2770fac12124c4e1c1146a7f080b.png" width="798" height="815" class="img_ev3q"><br>
+<em>Figure 11. New User Dialog Box - Filled Out.</em></p>
+</blockquote>
+<ol start="6">
+<li>Confirm your settings are correct and click <strong>Create</strong>.</li>
+<li>Confirm you can see your new user in the list. If so, move on to the next Investigation!</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 12. New user successfully added to list." src="/OSM620v2/assets/images/new-user-added-to-list-2b4aae81a38904ad7bdc8e8e50cdc148.png" width="1624" height="464" class="img_ev3q"><br>
+<em>Figure 12. New user successfully added to list.</em></p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-4-connecting-to-the-vpn-with-laptop1">Investigation 4: Connecting to the VPN with <em>laptop1</em><a href="#investigation-4-connecting-to-the-vpn-with-laptop1" class="hash-link" aria-label="Direct link to investigation-4-connecting-to-the-vpn-with-laptop1" title="Direct link to investigation-4-connecting-to-the-vpn-with-laptop1">​</a></h2>
+<p>In this investigation, we will set up <em>laptop1</em> to connect to the VPN service we configured on <em>srv1</em>.</p>
+<p><strong>Scenario:</strong> Our new employee wants to connect to office resources from home. Let&#x27;s make sure they can.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="before-you-begin-3">Before You Begin:<a href="#before-you-begin-3" class="hash-link" aria-label="Direct link to Before You Begin:" title="Direct link to Before You Begin:">​</a></h3>
+<p>Turn on the following VMs:</p>
+<ul>
+<li><em>srv1</em></li>
+<li><em>srv2</em></li>
+<li><em>laptop1</em></li>
+</ul>
+<blockquote>
+<p><strong>IMPORTANT!</strong> Check the following on <em>laptop1</em>:</p>
+<p>In <strong>Network Connections</strong>, the single adapter <strong>Ethernet0</strong> has <em><strong>IPv6 disabled</strong></em>.</p>
+</blockquote>
+<p>This should already be set from previous labs, but now is a good time to check. Missing this will break this investigation in interesting and very frustrating ways.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-switching-laptop1s-network">Part 1: Switching <em>laptop1</em>&#x27;s Network<a href="#part-1-switching-laptop1s-network" class="hash-link" aria-label="Direct link to part-1-switching-laptop1s-network" title="Direct link to part-1-switching-laptop1s-network">​</a></h3>
+<p>Here, we&#x27;ll emulate taking our new laptop home. This means removing it from the HQ network and putting it on NAT. Basically, giving it a standard Internet connection you&#x27;d get if you used it at home with your normal setup.</p>
+<blockquote>
+<p><strong>Screenshots:</strong> Take screenshots of the following:</p>
+<ol>
+<li>Step 2 (Screenshot 13)</li>
+<li>Step 8 (Screenshot 14)</li>
+</ol>
+</blockquote>
+<ol>
+<li>Turn on <em>laptop1</em>.</li>
+<li>Once logged in, open Command Prompt and run: <code>ipconfig</code></li>
+<li>Observe the IP address and other network information. This will be important later.</li>
+<li>In VMware Workstation, open <em>laptop1</em>&#x27;s Settings.</li>
+<li>Find the <strong>Network Adapter</strong> and click on it.</li>
+<li>Change the network selected from <strong>VMnet10</strong> to <strong>NAT</strong>.</li>
+<li>Give it a few moments to apply the change.</li>
+<li>Back inside <em>laptop1</em>, run the <code>ipconfig</code> command again.</li>
+<li>Has the IP address changed from the 10.0.<code>UID</code>.x address? Good!</li>
+</ol>
+<blockquote>
+<p><strong>Reflection 3:</strong> Why has the IP address changed and what does it mean for what <em>laptop1</em> can now access compared to <em>Investigation 2</em>?</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-testing-connections-to-resources-under-nat">Part 2: Testing Connections to Resources Under NAT<a href="#part-2-testing-connections-to-resources-under-nat" class="hash-link" aria-label="Direct link to Part 2: Testing Connections to Resources Under NAT" title="Direct link to Part 2: Testing Connections to Resources Under NAT">​</a></h3>
+<p>We will now check our ability to connect to several HQ network and Internet resources to see the difference between our on-premises (ie. in office) connection and a typical out-of-office Internet connection.</p>
+<blockquote>
+<p><strong>Screenshots:</strong> Take screenshots of the following:</p>
+<ol>
+<li>Step 3 (Screenshot 15)</li>
+<li>Step 4 (Screenshot 16)</li>
+</ol>
+</blockquote>
+<ol>
+<li>On <em>laptop1</em>, open <em>Command Prompt</em>.</li>
+<li>Reset DNS cache: <code>ipconfig /flushdns</code></li>
+<li>Let&#x27;s check DNS resolution. Run the following:<!-- -->
+<ol>
+<li><code>nslookup srv1.YourSenecaUsername.com</code></li>
+<li><code>nslookup srv2.YourSenecaUsername.com</code></li>
+<li><code>nslookup eff.org</code></li>
+</ol>
+</li>
+<li>Now, let&#x27;s check our connections to these resources:<!-- -->
+<ol>
+<li><code>ping srv1.cjohnson30.com</code></li>
+<li><code>ping srv2.cjohnson30.com</code></li>
+<li><code>ping eff.org</code></li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><strong>Reflection 4:</strong> Why can&#x27;t you connect to certain things but can connect to others?</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-creating-the-fqdn-vpnyoursenecausernamecom">Part 3: Creating the FQDN: vpn.<code>YourSenecaUsername</code>.com<a href="#part-3-creating-the-fqdn-vpnyoursenecausernamecom" class="hash-link" aria-label="Direct link to part-3-creating-the-fqdn-vpnyoursenecausernamecom" title="Direct link to part-3-creating-the-fqdn-vpnyoursenecausernamecom">​</a></h3>
+<p>In this part, we&#x27;ll create a local entry on <em>laptop1</em> that points a new FQDN (URL), <strong>vpn.<code>YourSenecaUsername</code>.com</strong> to <em>srv1</em>. <strong>This is necessary for our VPN connection in <em>Part 3</em>.</strong></p>
+<p>Why are we doing this?</p>
+<p>Normally, in a production or corporate environment, we&#x27;d have a registered domain name that works on the Internet. So, an address like <code>vpn.cjohnson30.com</code> would point to our <em>srv1</em>&#x27;s External Network NIC. This is the one that has an IP address that allows Internet connections, so it can be reached through the Internet from anywhere.</p>
+<p>We don&#x27;t have a purchased domain name like <code>cjohnson30.com</code>. We&#x27;re doing everything local. So, we have to cheat a little.</p>
+<p>We trick <em>laptop1</em> into thinking <code>vpn.YourSenecaUsername.com</code> is a valid Internet address.</p>
+<blockquote>
+<p><strong>PROD NOTE</strong>: This is only done in lab testing environments! Never do this on production.</p>
+</blockquote>
+<blockquote>
+<p><strong>Screenshots:</strong> Take screenshots of the following:</p>
+<ol>
+<li>Step 9 (Screenshot 17)</li>
+</ol>
+</blockquote>
+<p>Let&#x27;s trick <em>laptop1</em>:</p>
+<ol>
+<li>First, on <em>srv1</em>: Open <em>Command Prompt</em> and run: <code>ipconfig</code>
+<ol>
+<li>Write down the IP address of the <strong>External Network</strong>. We&#x27;ll need this shortly.</li>
+</ol>
+</li>
+<li>Over on <em>laptop1</em>: Open the folder: <code>C:\Windows\System32\drivers\etc</code></li>
+<li>There are several files here, including one called: <code>hosts</code></li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 13. List of files in: C:\Windows\System32\drivers\etc" src="/OSM620v2/assets/images/hosts-folder-location-1ba9f16021425000bed42d7adab6d9cc.png" width="2300" height="1238" class="img_ev3q"><br>
+<em>Figure 13. List of files in: C:\Windows\System32\drivers\etc</em></p>
+</blockquote>
+<ol start="4">
+<li>Copy the <code>hosts</code> file to your <em>laptop1</em> desktop.</li>
+<li>Double-click it to open it. The system will ask you what application to use. Choose <strong>Notepad</strong>.</li>
+<li>At the very bottom of the text document, add the following line (and change it according to your setup!):<!-- -->
+<ol>
+<li><em>srv1 External Network IP address</em>        vpn.<code>YourSenecaUsername</code>.com<!-- -->
+<blockquote>
+<p><strong>Example:</strong> <code>192.168.122.105     vpn.cjohnson30.com</code></p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 14. Example VPN entry in hosts file." src="/OSM620v2/assets/images/hosts-file-1686565d088b010cc5db55d9708790b0.png" width="1201" height="1011" class="img_ev3q"><br>
+<em>Figure 14. Example VPN entry in hosts file.</em></p>
+</blockquote>
+<ol start="7">
+<li>Save this file. When the dialog box comes up asking for a name, use this:<!-- -->
+<ol>
+<li><code>&quot;hosts&quot;</code></li>
+<li><strong>Those double-quotes are necessary.</strong> This ensures it doesn&#x27;t add <em>.txt</em> to the end.</li>
+</ol>
+</li>
+<li>Copy the file back to: <code>C:\Windows\System32\drivers\etc</code></li>
+<li>Check your work by opening <em>Command Prompt</em> and running the following command: <code>ping vpn.YourSenecaUsername.com</code></li>
+<li>If you received a response pointing for your <em>srv1</em> external IP address, congrats! Move to <strong>Part 4</strong>.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-configuring-a-vpn-connection-on-laptop1">Part 4: Configuring a VPN Connection on <em>laptop1</em><a href="#part-4-configuring-a-vpn-connection-on-laptop1" class="hash-link" aria-label="Direct link to part-4-configuring-a-vpn-connection-on-laptop1" title="Direct link to part-4-configuring-a-vpn-connection-on-laptop1">​</a></h3>
+<p>In this part, we&#x27;ll use our <em>laptop1</em> client VM to connect to the VPN on <em>srv1</em>. This involves creating a VPN profile and then connecting.</p>
+<blockquote>
+<p><strong>Screenshots:</strong> Take screenshots of the following:</p>
+<ol>
+<li>Step 3 (completed) (Screenshot 18)</li>
+<li>Step 7 (Screenshot 19)</li>
+</ol>
+</blockquote>
+<ol>
+<li>On <em>laptop1</em>, open: <em>Settings</em> &gt; <em>Network &amp; internet</em> &gt; <em>VPN</em></li>
+<li>Click on <strong>Add VPN</strong></li>
+<li>Use the following settings:<!-- -->
+<ol>
+<li>VPN Provider: <strong>Windows (built-in)</strong></li>
+<li>Connection name: <strong>SRV1 VPN</strong></li>
+<li>Server name or address: <strong>vpn.YourSenecaUsername.com</strong> (replace with <em>your</em> domain)</li>
+<li>VPN type: <strong>L2TP/IPsec with pre-shared key</strong></li>
+<li>Pre-shared key: <strong>OSM620-2025F-L2TP-ONLY-DoNotReuse!</strong></li>
+<li>Type of sign-in info: <strong>Username and password</strong></li>
+<li>Username: <strong><code>firstname.lastname</code></strong></li>
+<li>Password: <strong><code>password you used for the above account on srv1</code></strong></li>
+<li>Remember my sign-in info: <strong>Checked</strong></li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 15. Example of filled out VPN client information." src="/OSM620v2/assets/images/vpn-client-settings-7bb2548c979281bbb7084f5552052410.png" width="838" height="1546" class="img_ev3q"><br>
+<em>Figure 15. Example of filled out VPN client information.</em></p>
+</blockquote>
+<ol start="4">
+<li>Double-check the above information, then click <strong>Save</strong>.</li>
+<li>Back in the <em>VPN</em> window, a new entry has appeared: <strong>SRV1 VPN</strong></li>
+<li>Click the <strong>Connect</strong> button.</li>
+<li>After a few moments, it should say <em>Connected</em>.</li>
+</ol>
+<blockquote>
+<p><img decoding="async" loading="lazy" alt="Fig 16. VPN connected." src="/OSM620v2/assets/images/vpn-connected-aabb34ceebcf8e37243ed3764df984ab.png" width="2059" height="949" class="img_ev3q"><br>
+<em>Figure 16. VPN connected.</em></p>
+</blockquote>
+<ol start="8">
+<li>If not, review your previous settings and/or ask for help.</li>
+<li>Check your work once more by opening <em>Command Prompt</em> and running: <code>ipconfig</code></li>
+</ol>
+<blockquote>
+<p><strong>Reflection 5:</strong> What do you notice that&#x27;s different? Why do you think this is?
+What might this mean?</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-5-testing-connections-to-hq-network-resources">Part 5: Testing Connections to HQ Network Resources<a href="#part-5-testing-connections-to-hq-network-resources" class="hash-link" aria-label="Direct link to Part 5: Testing Connections to HQ Network Resources" title="Direct link to Part 5: Testing Connections to HQ Network Resources">​</a></h3>
+<p>This is the fun part. Let&#x27;s test our connection to HQ network resources, things that <em>aren&#x27;t</em> accessible through a normal Internet connection.</p>
+<blockquote>
+<p><strong>Screenshots:</strong> Take screenshots of the following:</p>
+<ol>
+<li>Step 3 (Screenshot 20)</li>
+<li>Step 4 (Screenshot 21)</li>
+<li>Step 5 (Screenshot 22)</li>
+</ol>
+</blockquote>
+<ol>
+<li>On <em>laptop1</em>, open <em>Command Prompt</em>.</li>
+<li>Reset DNS cache: <code>ipconfig /flushdns</code></li>
+<li>Let&#x27;s check DNS resolution. Run the following:<!-- -->
+<ol>
+<li><code>nslookup srv1.YourSenecaUsername.com</code></li>
+<li><code>nslookup srv2.YourSenecaUsername.com</code></li>
+<li><code>nslookup eff.org</code></li>
+</ol>
+</li>
+<li>Now, let&#x27;s confirm we have connections to these resources:<!-- -->
+<ol>
+<li><code>ping srv1.cjohnson30.com</code></li>
+<li><code>ping srv2.cjohnson30.com</code></li>
+<li><code>ping eff.org</code></li>
+</ol>
+</li>
+<li>Finally, let&#x27;s take a look at the <strong>path through the network</strong> that our connection to these resources is taking:<!-- -->
+<ol>
+<li><code>tracert srv1.cjohnson30.com</code></li>
+<li><code>tracert srv2.cjohnson30.com</code></li>
+<li><code>tracert eff.org</code></li>
+</ol>
+</li>
+</ol>
+<p>These should all work! If they don&#x27;t, start troubleshooting.</p>
+<blockquote>
+<p><strong>Reflection 6:</strong> How are these results different from when you ran them in <em>Investigation 2</em>? How are they not?
+How are these results different from when you ran them in <em>Part 2</em> above?
+<em><strong>Why?</strong></em></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-6-connecting-to-hq-network-resources">Part 6: Connecting to HQ Network Resources<a href="#part-6-connecting-to-hq-network-resources" class="hash-link" aria-label="Direct link to Part 6: Connecting to HQ Network Resources" title="Direct link to Part 6: Connecting to HQ Network Resources">​</a></h3>
+<p>In this final part, we&#x27;ll connect to actual resources on the HQ network through the VPN. Remember, in this scenario, we are at home and not on the HQ network directly.</p>
+<p>We will be connecting to the following services from <em>laptop1</em>:</p>
+<ul>
+<li>RDP</li>
+<li>SSH</li>
+<li>IIS (Website)</li>
+</ul>
+<blockquote>
+<p><strong>Screenshots:</strong> Take screenshots of the following:</p>
+<ol>
+<li>Step 3 (Screenshot 23)</li>
+<li>Step 5 (Screenshot 24)</li>
+<li>Step 8 (Screenshot 25)</li>
+<li>Step 10 (Screenshot 26)</li>
+<li>Step 11 (Screenshot 27)</li>
+</ol>
+</blockquote>
+<ol>
+<li>On <em>laptop1</em>, connect to the SRV1 VPN. (If you already are, skip to <em>Step 2</em>.)</li>
+<li>Open the <strong>Remote Desktop Connection</strong> application.</li>
+<li>Connect to <em>srv1</em> with: <code>srv1.YourSenecaUsername.com</code></li>
+<li>If you see the Server1 desktop, congrats! Close the RDP connection.</li>
+<li>Back on <em>laptop1</em>, open an RDP connection directly to: <code>srv2.YourSenecaUsername.com</code></li>
+<li>If you see the Server2 desktop with the <code>sconfig</code> window, congrats! Close the RDP connection.</li>
+<li>Open <strong>Command Prompt</strong> and login to <em>srv2</em>&#x27;s SSH connection: <code>ssh Administrator@srv2.YourSenecaUsername.com</code></li>
+<li>To confirm your work, run the following commands in your SSH session:<!-- -->
+<ol>
+<li><code>hostname</code></li>
+<li><code>whoami</code></li>
+</ol>
+</li>
+<li>Close the connection.</li>
+<li>Open Firefox and navigate to: <code>http://srv1.YourSenecaUsername.com</code></li>
+<li>Open Firefox and navigate to: <code>http://www.eff.org</code></li>
+<li>Now, disconnect from the VPN and re-run the RDP, SSH connections and Firefox steps.</li>
+</ol>
+<blockquote>
+<p><strong>Reflection 7:</strong> Why did these connections only work while the VPN was running? What still works with the VPN off?
+What&#x27;s happening when the VPN is connected? <em>Hint: Think about the <code>ipconfig</code> and <code>tracert</code> results you saw earlier.</em></p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="submission">Submission<a href="#submission" class="hash-link" aria-label="Direct link to Submission" title="Direct link to Submission">​</a></h2>
+<p>Submission for assignments is a bit different from labs. Instead of live checks, you will be submitting a <strong>report</strong>.</p>
+<p>You will submit to Blackboard with a single PDF document that includes the following:</p>
+<ol>
+<li>Title page that includes:<!-- -->
+<ol>
+<li>Full name</li>
+<li>Student ID Number</li>
+<li>Course code and section</li>
+<li>Calendar Semester (Fall 2025)</li>
+<li>Date</li>
+</ol>
+</li>
+<li>For each Investigation:<!-- -->
+<ol>
+<li>The requested screenshots.</li>
+<li>The reflection questions and your answers to each.</li>
+<li>Each Investigation should start on a new page, and screenshots/reflection answers should be placed in the appropriate Investigation pages.</li>
+<li>Number your pages!</li>
+</ol>
+</li>
+</ol>
+<p>Export to PDF from your editor with images embedded. <strong>No external links!</strong></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/catherine-leung/OSM620v2/tree/main/docs/Assignments/assignment1.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/OSM620v2/Labs/lab9"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Lab 9 - Introduction to Azure</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/OSM620v2/Assignments/assignment2"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Assignment 2</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#lab-preparation" class="table-of-contents__link toc-highlight">Lab Preparation</a><ul><li><a href="#purpose-of-assignment-1" class="table-of-contents__link toc-highlight">Purpose of Assignment 1</a></li><li><a href="#objectives" class="table-of-contents__link toc-highlight">Objectives</a></li><li><a href="#minimum-progression-requirements" class="table-of-contents__link toc-highlight">Minimum Progression Requirements</a></li><li><a href="#minimum-hardware-requirements" class="table-of-contents__link toc-highlight">Minimum Hardware Requirements</a><ul><li><a href="#absolute-minimum-hardware" class="table-of-contents__link toc-highlight">Absolute Minimum Hardware</a></li><li><a href="#recommended-minimum-hardware" class="table-of-contents__link toc-highlight">Recommended Minimum Hardware</a></li></ul></li></ul></li><li><a href="#investigation-1-installing-laptop1-vm" class="table-of-contents__link toc-highlight">Investigation 1: Installing <em>laptop1</em> VM</a><ul><li><a href="#before-you-begin" class="table-of-contents__link toc-highlight">Before You Begin</a></li><li><a href="#part-1-creating-laptop1-vm" class="table-of-contents__link toc-highlight">Part 1: Creating <em>laptop1</em> VM</a><ul><li><a href="#encryption-information-page" class="table-of-contents__link toc-highlight">Encryption Information Page</a></li></ul></li><li><a href="#part-2-os-installation-and-configuration" class="table-of-contents__link toc-highlight">Part 2: OS Installation and Configuration</a></li></ul></li><li><a href="#investigation-2-add-laptop1-to-local-hq-network" class="table-of-contents__link toc-highlight">Investigation 2: Add <code>laptop1</code> to Local HQ Network</a><ul><li><a href="#before-you-begin-1" class="table-of-contents__link toc-highlight">Before You Begin</a></li><li><a href="#part-1-switching-the-network" class="table-of-contents__link toc-highlight">Part 1: Switching the Network</a></li><li><a href="#part-2-testing-connections-to-hq-resources" class="table-of-contents__link toc-highlight">Part 2: Testing Connections to HQ Resources</a></li><li><a href="#part-3-connecting-to-hq-network-resources" class="table-of-contents__link toc-highlight">Part 3: Connecting to HQ Network Resources</a></li></ul></li><li><a href="#investigation-3-virtual-private-networking-vpn" class="table-of-contents__link toc-highlight">Investigation 3: Virtual Private Networking (VPN)</a><ul><li><a href="#before-you-begin-2" class="table-of-contents__link toc-highlight">Before You Begin</a></li><li><a href="#part-1-adding-vpn-to-rras" class="table-of-contents__link toc-highlight">Part 1: Adding VPN to RRAS</a></li><li><a href="#part-2-reconfiguring-nat" class="table-of-contents__link toc-highlight">Part 2: Reconfiguring NAT</a></li><li><a href="#part-3-configuring-the-server-for-ipv4-and-local-networks" class="table-of-contents__link toc-highlight">Part 3: Configuring the Server for IPv4 and Local Networks</a></li><li><a href="#part-4-assigning-ip-ranges-for-vpn-clients" class="table-of-contents__link toc-highlight">Part 4: Assigning IP Ranges for VPN Clients</a></li><li><a href="#part-5-vpn-security-and-authentication" class="table-of-contents__link toc-highlight">Part 5: VPN Security and Authentication</a></li><li><a href="#part-6-starting-up-the-rras-service-with-vpn" class="table-of-contents__link toc-highlight">Part 6: Starting up the RRAS service with VPN</a></li><li><a href="#part-7-creating-available-ports-for-vpn-connections" class="table-of-contents__link toc-highlight">Part 7: Creating Available Ports for VPN Connections</a></li><li><a href="#part-8-network-policy-server" class="table-of-contents__link toc-highlight">Part 8: Network Policy Server</a></li><li><a href="#part-9-creating-a-local-user" class="table-of-contents__link toc-highlight">Part 9: Creating a Local User</a></li></ul></li><li><a href="#investigation-4-connecting-to-the-vpn-with-laptop1" class="table-of-contents__link toc-highlight">Investigation 4: Connecting to the VPN with <em>laptop1</em></a><ul><li><a href="#before-you-begin-3" class="table-of-contents__link toc-highlight">Before You Begin:</a></li><li><a href="#part-1-switching-laptop1s-network" class="table-of-contents__link toc-highlight">Part 1: Switching <em>laptop1</em>&#39;s Network</a></li><li><a href="#part-2-testing-connections-to-resources-under-nat" class="table-of-contents__link toc-highlight">Part 2: Testing Connections to Resources Under NAT</a></li><li><a href="#part-3-creating-the-fqdn-vpnyoursenecausernamecom" class="table-of-contents__link toc-highlight">Part 3: Creating the FQDN: vpn.<code>YourSenecaUsername</code>.com</a></li><li><a href="#part-4-configuring-a-vpn-connection-on-laptop1" class="table-of-contents__link toc-highlight">Part 4: Configuring a VPN Connection on <em>laptop1</em></a></li><li><a href="#part-5-testing-connections-to-hq-network-resources" class="table-of-contents__link toc-highlight">Part 5: Testing Connections to HQ Network Resources</a></li><li><a href="#part-6-connecting-to-hq-network-resources" class="table-of-contents__link toc-highlight">Part 6: Connecting to HQ Network Resources</a></li></ul></li><li><a href="#submission" class="table-of-contents__link toc-highlight">Submission</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">OSM620 - Fundamentals of Microsoft Systems</div><ul class="footer__items clean-list"><li class="footer__item"><a href="#" id="pwa-button" class="footer__link-item" hidden>Install as an App</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Seneca Polytechnic.</div></div></div></footer></div>
+</body>
+</html>

@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Labs/lab6" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Lab 6 - Active Directory | OSM620 - Fundamentals of Microsoft Systems</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://seneca-ictoer.github.io/OSM620v2/Labs/lab6"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Lab 6 - Active Directory | OSM620 - Fundamentals of Microsoft Systems"><meta data-rh="true" name="description" content="Lab 6 - Active Directory"><meta data-rh="true" property="og:description" content="Lab 6 - Active Directory"><link data-rh="true" rel="icon" href="/OSM620v2/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab6"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab6" hreflang="en"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab6" hreflang="x-default"><link rel="icon" href="/OSM620v2/img/pwa/icon-512x512.png">
+<link rel="manifest" href="/OSM620v2/manifest.json">
+<meta name="theme-color" content="#DA291C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#DA291C">
+<link rel="apple-touch-icon" href="/OSM620v2/img/pwa/icon-192x192.png">
+<link rel="mask-icon" href="/OSM620v2/img/pwa/icon-512x512.png" color="#DA291C">
+<meta name="msapplication-TileImage" content="/OSM620v2/img/pwa/icon-512x512.png">
+<meta name="msapplication-TileColor" content="#DA291C">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/OSM620v2/assets/css/styles.cba3e07b.css">
+<script src="/OSM620v2/assets/js/runtime~main.b62f346f.js" defer="defer"></script>
+<script src="/OSM620v2/assets/js/main.87c63611.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/OSM620v2/img/logo.svg"><link rel="preload" as="image" href="/OSM620v2/img/logo-dark.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><a class="navbar__brand" href="/OSM620v2/"><div class="navbar__logo"><img src="/OSM620v2/img/logo.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/OSM620v2/img/logo-dark.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">OSM620 - Fundamentals of Microsoft Systems</b></a></div><div class="navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/">Welcome to OSM620</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/weekly-schedule">Weekly Schedule</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/OSM620v2/Labs/lab1">Labs</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab1">Lab 1 - Environment Setup</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab2">Lab 2 - Hyper-V, NAT, and Windows Clients</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab3">Lab 3 - Security and Remote Connectivity</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab4">Lab 4 - Implementing DNS</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab5">Lab 5 - Implementing DHCP</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/OSM620v2/Labs/lab6">Lab 6 - Active Directory</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab7">Lab 7 - AD Users, Groups, Computers, and GPOs</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab8">Lab 8 - Network File Shares</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab9">Lab 9 - Introduction to Azure</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/OSM620v2/Assignments/assignment1">Assignments</a></div></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/OSM620v2/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Labs</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Lab 6 - Active Directory</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Lab 6 - Active Directory</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lab-preparation">Lab Preparation<a href="#lab-preparation" class="hash-link" aria-label="Direct link to Lab Preparation" title="Direct link to Lab Preparation">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="purpose-of-lab-6">Purpose of Lab 6<a href="#purpose-of-lab-6" class="hash-link" aria-label="Direct link to Purpose of Lab 6" title="Direct link to Purpose of Lab 6">​</a></h3>
+<p>In this lab, you’ll redesign and configure your environment to a more realistic, low-footprint, on-premises design. You’ll move core network services off <strong>srv1</strong> and into <strong>Active Directory</strong> by promoting <strong>srv2</strong> to <strong>Domain Controller (DC1)</strong> with integrated <strong>DNS</strong> and <strong>DHCP</strong>, manage everything remotely from <strong>srv1</strong> using <strong>RSAT</strong>, and prove end-to-end client functionality by joining <strong>laptop1</strong> to the domain.</p>
+<p>You’ll also prepare a clean clone (<strong>srv3</strong>) and promote it to <strong>DC2</strong> for redundancy.</p>
+<p>The lightweight <strong>router</strong> VM you&#x27;ll create replaces RRAS/NAT, mirroring how real sites use a dedicated edge device.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="objectives">Objectives<a href="#objectives" class="hash-link" aria-label="Direct link to Objectives" title="Direct link to Objectives">​</a></h3>
+<p>By the end of this lab, you will be able to:</p>
+<ul>
+<li>
+<p>Build a minimal <strong>VyOS router</strong> VM and configure LAN/WAN, default route, and NAT for Internet access.</p>
+</li>
+<li>
+<p>Configure a consistent <strong>IP plan</strong> (gateway 10.0.UID.254, statics for servers, DHCP range for clients).</p>
+</li>
+<li>
+<p>Promote <strong>srv2</strong> to <strong>AD DS</strong> as the first domain controller for <strong>yourSenecaUsername.com</strong> with integrated <strong>DNS</strong>.</p>
+</li>
+<li>
+<p>Configure <strong>DNS forwarders</strong> and create a <strong>reverse lookup zone</strong> with <strong>Secure only</strong> dynamic updates.</p>
+</li>
+<li>
+<p>Convert <strong>srv1</strong> into a <strong>management server</strong> (RSAT only) and manage <strong>srv2</strong> remotely via <strong>Server Manager</strong>.</p>
+</li>
+<li>
+<p>Join <strong>srv1</strong> and <strong>laptop1</strong> to the domain and verify <strong>Kerberos + name resolution</strong> end-to-end.</p>
+</li>
+<li>
+<p>Validate DNS registration: confirm <strong>A</strong> and <strong>PTR</strong> records for servers and client populate correctly.</p>
+</li>
+<li>
+<p>Use GUI tools (<strong>DNS</strong>, <strong>DHCP</strong>, <strong>ADUC/AD DS</strong>) to administer services from <strong>srv1</strong>.</p>
+</li>
+<li>
+<p>Clone <strong>srv3</strong>, join it to the domain, promote it to <strong>DC2 (GC + DNS)</strong>, and verify DNS replication.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="minimum-progression-requirements">Minimum Progression Requirements<a href="#minimum-progression-requirements" class="hash-link" aria-label="Direct link to Minimum Progression Requirements" title="Direct link to Minimum Progression Requirements">​</a></h3>
+<p>Before beginning, you must have:</p>
+<ol>
+<li><strong>Successfully graded <em>Labs 1-5</em> and <em>Assignment 1</em>.</strong></li>
+<li>Attended the <strong>Week 8 - Active Directory</strong> lecture.</li>
+<li>Your external SSD (or personal computer) with your VMs.</li>
+<li>Your OSM620 Lab Logbook.</li>
+<li>Optional, but recommended: Caffeine delivery system.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="before-you-begin">Before You Begin<a href="#before-you-begin" class="hash-link" aria-label="Direct link to Before You Begin" title="Direct link to Before You Begin">​</a></h3>
+<p><strong>Time to Backup!</strong> <em>You will be making major changes to all virtual machines.</em> This is a good time to backup these VMs so you can restore from them if something catastrophic occurs.</p>
+<p>With all VMs turned off, copy the entire <code>Virtual Machines</code> folder on your SSD to a separate location. This can be a backup directory on your SSD, or even a separate physical drive. Leave the copy be and use the original going forward. (If you need space, compress the backup folder.)</p>
+<p><strong>Do not continue until the copy has fully completed.</strong></p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-1-adding-the-router-vm">Investigation 1: Adding the <em>router</em> VM<a href="#investigation-1-adding-the-router-vm" class="hash-link" aria-label="Direct link to investigation-1-adding-the-router-vm" title="Direct link to investigation-1-adding-the-router-vm">​</a></h2>
+<p>In this investigation, we&#x27;ll be adding a Linux-based router to our setup. This low-footprint virtual machine will take the place of the RRAS NAT work you did in previous labs. Most on-premises installations (offices, warehouses, schools) will have a physical router that does this instead of relying on Windows Server to do that work.</p>
+<p>Setting this up is extremely easy and should only take a few minutes.</p>
+<p>After you&#x27;re done, you will need to have this VM powered on during all lab work. I&#x27;ll remind you of this often.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="vm-specifications">VM Specifications<a href="#vm-specifications" class="hash-link" aria-label="Direct link to VM Specifications" title="Direct link to VM Specifications">​</a></h3>
+<table><thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody><tr><td>VM Name</td><td>router</td></tr><tr><td>Role</td><td>Router / NAT (edge)</td></tr><tr><td>OS / Image</td><td>VyOS (current stable ISO)</td></tr><tr><td>vCPU</td><td>1</td></tr><tr><td>RAM</td><td>512 MB</td></tr><tr><td>Disk</td><td>20 GB</td></tr><tr><td>NICs</td><td>2</td></tr><tr><td>NIC1</td><td>VMware NAT</td></tr><tr><td>NIC2</td><td>VMnet10</td></tr><tr><td>NIC2 IPv4</td><td><strong>10.0.<code>UID</code>.254/24</strong> (static)</td></tr></tbody></table>
+<p>Instructions to set this up are provided below.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-create-router-vm">Part 1: Create <em>router</em> VM<a href="#part-1-create-router-vm" class="hash-link" aria-label="Direct link to part-1-create-router-vm" title="Direct link to part-1-create-router-vm">​</a></h3>
+<p>Here we&#x27;ll create the VM hardware and install the VyOS operating system. This is very quick process.</p>
+<blockquote>
+<p><strong>Reminder</strong>: Remember to create a new <em>router</em> folder on your SSD for the VM files!</p>
+</blockquote>
+<ol>
+<li>Download the VyOS ISO: <a href="https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso" target="_blank" rel="noopener noreferrer">https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso</a></li>
+<li>Create a new VMware VM with the following:<!-- -->
+<ol>
+<li>ISO: <strong>VyOS ISO image</strong></li>
+<li>Type: <strong>Debian 12.x 64-bit</strong></li>
+<li>Boot firmware: <strong>UEFI</strong></li>
+<li>Name: <strong>router</strong></li>
+<li>CPU: <strong>1 core</strong></li>
+<li>RAM: <strong>512 MB</strong></li>
+<li>CPU &gt; IOMMU: <strong>Enable</strong></li>
+<li>CPU &gt; Enable hypervisor: <strong>Disabled</strong></li>
+<li>Storage: <strong>20 GB</strong></li>
+<li>NIC1: <strong>NAT</strong></li>
+<li>NIC2: <strong>VMnet10</strong></li>
+</ol>
+</li>
+<li>Power on VM.</li>
+<li>In the boot menu, select the first option: <strong>Live system (vyos)</strong></li>
+<li>Login with these credentials:<!-- -->
+<ol>
+<li>Username: <strong>vyos</strong></li>
+<li>Password: <strong>vyos</strong></li>
+</ol>
+</li>
+<li>Install VyOS on the disk using this command: <code>install image</code>
+<ol>
+<li>Would you like to continue?: <strong>y</strong></li>
+<li>What would you like to name this image?: <strong>Just hit Enter to select the default</strong></li>
+<li>Please enter a password for the &quot;vyos&quot; user: <em>yourNormalAdminPassword</em></li>
+<li>What console should be used as default?: <strong>Hit Enter to select default</strong></li>
+<li>Which one should be used for installation?: <strong>Enter to select default</strong></li>
+<li>Installation will delete all data on the drive. Continue?: <strong>y</strong></li>
+<li>Would you like to use all the free space on this drive:? <strong>y</strong></li>
+<li>What would you like to use as boot config?: <strong>Enter to select default</strong></li>
+</ol>
+</li>
+<li>The installation proceeds (it&#x27;s very fast). When finished, reboot: <code>sudo reboot</code></li>
+<li>Wait for the machine OS to boot up again.</li>
+<li>Use the following credentials for your new VM:<!-- -->
+<ol>
+<li>Username: <em><strong>vyos</strong></em></li>
+<li>Password: <em><strong>yourNormalAdminPassword</strong></em></li>
+</ol>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-configuring-routing">Part 2: Configuring Routing<a href="#part-2-configuring-routing" class="hash-link" aria-label="Direct link to Part 2: Configuring Routing" title="Direct link to Part 2: Configuring Routing">​</a></h3>
+<p>Now that our new virtual machine is installed and running, we need to configure it to do our routing. This is a one-time process.</p>
+<ol>
+<li>Power on router VM and login. (If you haven&#x27;t already.)</li>
+<li>Run the following commands ONE AT A TIME (<strong>Replace UID!</strong>):</li>
+</ol>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">configure</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set interface ethernet eth0 address dhcp</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set system name-server eth0</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set interface ethernet eth1 address 10.0.UID.254/24</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set nat source rule 20 outbound-interface name eth0</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set nat source rule 20 source address 10.0.UID.0/24</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set nat source rule 20 translation address &#x27;masquerade&#x27;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set system ipv6 disable </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">commit</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">save</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">exit</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<blockquote>
+<p><em>Figure 1. Example of VyOS commands</em></p>
+</blockquote>
+<ol start="3">
+<li>Check your router can access the Internet: <code>ping eff.org</code></li>
+</ol>
+<blockquote>
+<p><em>Figure 2. Proper ping completion</em></p>
+</blockquote>
+<ol start="4">
+<li>If it receives proper ping, move on to the next step. If not, ask for help!</li>
+<li>Log out: <code>exit</code></li>
+<li>Keep this VM up! Minimize and move on to the next Investigation.</li>
+</ol>
+<p>Congratulations! You now have a NAT router VM that uses minimal resources.</p>
+<blockquote>
+<p>Note: After this lab, whenever you have other Windows VMs turned on, turn this one on first. (You don&#x27;t need to log into it, just let it do its thing.)</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-2-create-srv3-vm">Investigation 2: Create srv3 VM<a href="#investigation-2-create-srv3-vm" class="hash-link" aria-label="Direct link to Investigation 2: Create srv3 VM" title="Direct link to Investigation 2: Create srv3 VM">​</a></h2>
+<p>In this investigation, we&#x27;re going to clone <em>srv2</em>, reset it to defaults, then configure the clone with <em>srv3</em> information.</p>
+<p><strong>Do not create the VM below from scratch!</strong> This is just for quick reference.</p>
+<table><thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody><tr><td>VM Name</td><td>srv3</td></tr><tr><td>Role</td><td>Windows Server Core #2</td></tr><tr><td>vCPU</td><td>2</td></tr><tr><td>RAM</td><td>4 GB</td></tr><tr><td>Disk</td><td>250 GB</td></tr><tr><td>NICs</td><td>1</td></tr><tr><td>NIC1</td><td><em>Removed</em></td></tr><tr><td>NIC2</td><td>VMnet10</td></tr><tr><td>NIC2 IPv4</td><td><strong>10.0.<code>UID</code>.3</strong> (static)</td></tr></tbody></table>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-cloning-in-vmware">Part 1: Cloning in VMware<a href="#part-1-cloning-in-vmware" class="hash-link" aria-label="Direct link to Part 1: Cloning in VMware" title="Direct link to Part 1: Cloning in VMware">​</a></h3>
+<ol>
+<li>Shut down ALL VMs except the router.</li>
+<li>Create a new folder inside Virtual Machines on your SSD and call it: <em>srv3-yourSenecaUsername</em></li>
+<li>In VMware Workstation, right-click on <em>srv2</em> and select: <strong>Create Full Clone</strong></li>
+<li>Rename when asked to: <strong>srv3-yourSenecaUsername</strong></li>
+<li>Save it inside: <strong>Virtual Machines/srv3-yourSenecaUsername/</strong></li>
+<li>This may take several minutes to complete.</li>
+<li>Once complete, change the following hardware (do not power on):<!-- -->
+<ol>
+<li>Remove NIC1 (External Network)</li>
+<li>Confirm hardware:<!-- -->
+<ol>
+<li>CPU: <strong>2 cores</strong></li>
+<li>RAM: <strong>4 GB</strong></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-cleaning-the-clone-srv3">Part 2: Cleaning the Clone (srv3)<a href="#part-2-cleaning-the-clone-srv3" class="hash-link" aria-label="Direct link to Part 2: Cleaning the Clone (srv3)" title="Direct link to Part 2: Cleaning the Clone (srv3)">​</a></h3>
+<ol>
+<li>Power on and login.</li>
+<li>Exit to PowerShell.</li>
+<li>Run the following command: <code>C:\Windows\System32\Sysprep\Sysprep.exe /oobe /generalize /shutdown</code></li>
+<li>This will take a <em>very</em> long time, around 10 minutes. When complete, the computer will shut down.</li>
+<li>Power on <em>srv3</em> again.</li>
+<li>It will ask you to change the login password. Just use the same you&#x27;ve been using before. (Tab to go to the next field, then Enter to send both fields.)</li>
+<li>When asked about diagnostics, select option 1 (Required only)</li>
+<li>Your scrubbed <em>srv3</em> will now start up.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-configuring-srv3">Part 3: Configuring srv3<a href="#part-3-configuring-srv3" class="hash-link" aria-label="Direct link to Part 3: Configuring srv3" title="Direct link to Part 3: Configuring srv3">​</a></h3>
+<ol>
+<li>
+<p>Login to <em>srv3</em>.</p>
+</li>
+<li>
+<p>Stay in <em>sconfig</em>.</p>
+</li>
+<li>
+<p>Change the computer name to to <em>srv3</em>. (<em><strong>not srv3-yourSenecaUsername!</strong></em>)</p>
+</li>
+<li>
+<p>The computer restarts.</p>
+</li>
+<li>
+<p>After restart, log back in.</p>
+</li>
+<li>
+<p>Change your network adapter settings to the following:</p>
+<ol>
+<li>Name: <strong>Internal Network</strong></li>
+<li>IP address: <strong>10.0.<code>UID</code>.3</strong></li>
+<li>Subnet: <strong>255.255.255.0</strong></li>
+<li>Gateway: <strong>10.0.<code>UID</code>.254</strong></li>
+<li>DNS1: <strong>10.0.<code>UID</code>.2</strong></li>
+<li>DNS2: <em><strong>Blank</strong></em></li>
+<li>DNS3: <em><strong>Blank</strong></em></li>
+</ol>
+</li>
+<li>
+<p>Exit to PowerShell</p>
+</li>
+<li>
+<p>Check Internet connection by running: <code>ping 173.239.79.200</code></p>
+<blockquote>
+<p><strong>Note:</strong> DNS won&#x27;t work yet, that&#x27;s okay.</p>
+</blockquote>
+</li>
+<li>
+<p>If Step 8 worked, go back to sconfig and shutdown the system.</p>
+</li>
+<li>
+<p>Keep this VM powered off until told otherwise.</p>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-3-convert-srv1-to-a-management-server">Investigation 3: Convert srv1 to a Management Server<a href="#investigation-3-convert-srv1-to-a-management-server" class="hash-link" aria-label="Direct link to Investigation 3: Convert srv1 to a Management Server" title="Direct link to Investigation 3: Convert srv1 to a Management Server">​</a></h2>
+<p>In this investigation, we&#x27;ll remove all our network services from Labs 1-5 and turn <em>srv1</em> into a <strong>Management Server</strong>. Essentially, a GUI that lets us control other servers remotely from the <strong>Server Manager</strong> application.</p>
+<p>This is a very normal on-prem setup, and you&#x27;ll see why later on in the lab. It makes everything far easier and it&#x27;s more secure.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-removing-old-roles">Part 1: Removing Old Roles<a href="#part-1-removing-old-roles" class="hash-link" aria-label="Direct link to Part 1: Removing Old Roles" title="Direct link to Part 1: Removing Old Roles">​</a></h3>
+<ol>
+<li>Turn off all VMs.</li>
+<li>Power on <em>srv1</em> and login.</li>
+<li>In <em>Server Manager &gt; Remove Roles</em>:<!-- -->
+<ol>
+<li>Roles &gt; Select these roles (Remove features when asked):<!-- -->
+<ol>
+<li>DHCP</li>
+<li>DNS</li>
+<li>Remote Access</li>
+<li>Hyper-V</li>
+<li>IIS</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><strong>Do NOT select restart this server.</strong></li>
+<li>This may take a while!</li>
+<li>When complete, shut down <em>srv1</em>.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-hardware-changes-for-srv1">Part 2: Hardware Changes for srv1<a href="#part-2-hardware-changes-for-srv1" class="hash-link" aria-label="Direct link to Part 2: Hardware Changes for srv1" title="Direct link to Part 2: Hardware Changes for srv1">​</a></h3>
+<ol>
+<li>Go into srv1&#x27;s hardware properties in VMware (do not power on!)</li>
+<li>Remove NIC1 (External Network)</li>
+<li>Reduce hardware:<!-- -->
+<ol>
+<li>CPU: <strong>4 cores</strong></li>
+<li>RAM: <strong>8 GB</strong></li>
+</ol>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-network-configuration-srv1">Part 3: Network Configuration (srv1)<a href="#part-3-network-configuration-srv1" class="hash-link" aria-label="Direct link to Part 3: Network Configuration (srv1)" title="Direct link to Part 3: Network Configuration (srv1)">​</a></h3>
+<ol>
+<li>Turn on <em>router</em> VM.</li>
+<li>Power on <em>srv1</em> and login.</li>
+<li>Set static network configuration for Internal Network NIC:<!-- -->
+<ol>
+<li>IP address: <strong>10.0.<code>UID</code>.1</strong></li>
+<li>Subnet: <strong>255.255.255.0</strong></li>
+<li>Gateway: <strong>10.0.<code>UID</code>.254</strong></li>
+<li>DNS: <strong>149.112.121.20</strong></li>
+</ol>
+</li>
+<li>Confirm Internet connection.<!-- -->
+<ol>
+<li>In Command Prompt, run: <code>ping eff.org</code></li>
+<li>Confirm it works. If not, ask for help!</li>
+</ol>
+</li>
+<li>Shut down <em>srv1</em>.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-4-promote-srv2-to-ad-dc1">Investigation 4: Promote srv2 to AD DC1<a href="#investigation-4-promote-srv2-to-ad-dc1" class="hash-link" aria-label="Direct link to Investigation 4: Promote srv2 to AD DC1" title="Direct link to Investigation 4: Promote srv2 to AD DC1">​</a></h2>
+<p>In this investigation, we&#x27;re going to promote <em>srv2</em> to an <strong>Active Directory Domain Controller</strong>. As the first Core machine, we have to do this purely from the command line with PowerShell.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-network-reconfiguration-srv2">Part 1: Network Reconfiguration (srv2)<a href="#part-1-network-reconfiguration-srv2" class="hash-link" aria-label="Direct link to Part 1: Network Reconfiguration (srv2)" title="Direct link to Part 1: Network Reconfiguration (srv2)">​</a></h3>
+<p>Let&#x27;s configure the server to get it ready for Active Directory.</p>
+<ol>
+<li>Remove NIC1 (External Network)</li>
+<li>Confirm hardware:<!-- -->
+<ol>
+<li>CPU: <strong>2 cores</strong></li>
+<li>RAM: <strong>4 GB</strong></li>
+</ol>
+</li>
+<li>Power on.</li>
+<li>Change computer name from <em>srv2-yourSenecaUsername</em> to <em>srv2</em>. <strong>Restart</strong>.</li>
+<li>Log back in.</li>
+<li>Set static network configuration for Internal Network NIC:<!-- -->
+<ol>
+<li>IP address: <strong>10.0.<code>UID</code>.2</strong></li>
+<li>Subnet: <strong>255.255.255.0</strong></li>
+<li>Gateway: <strong>10.0.<code>UID</code>.254</strong></li>
+<li>DNS: <strong>10.0.<code>UID</code>.2</strong>
+<ol>
+<li>Note: If DHCP won&#x27;t be removed, go to PowerShell and run: <code>Set-NetIPInterface -InterfaceAlias &quot;Internal Network&quot; -Dhcp disabled</code></li>
+<li>Go back to <em>sconfig</em> and rerun Step 6.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Exit to PowerShell.</li>
+<li>Check Internet connection by running: <code>ping 173.239.79.200</code></li>
+<li>If ping is successful, move on to the next Investigation. If not, ask for help!</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-installing-ad-and-dc-promotion">Part 2: Installing AD and DC Promotion<a href="#part-2-installing-ad-and-dc-promotion" class="hash-link" aria-label="Direct link to Part 2: Installing AD and DC Promotion" title="Direct link to Part 2: Installing AD and DC Promotion">​</a></h3>
+<p>Here, we install the Active Directory server role and then promote <em>srv2</em> to be an AD Domain Controller.</p>
+<ol>
+<li>Install the Active Directory role:</li>
+</ol>
+<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Install-WindowsFeature AD-Domain-Services</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ol start="2">
+<li><strong>This can take a while!</strong> Be patient.</li>
+<li>Promote srv2 to a domain controller:</li>
+</ol>
+<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Install-ADDSForest -DomainName &#x27;yourSenecaUsername.com&#x27; -DomainNetbiosName &#x27;YOURSENECAUSERNAME&#x27; -InstallDNS -Force</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ol start="4">
+<li>When asked for a password, use the same one you&#x27;ve used for your Administrator accounts.</li>
+<li><strong>This will take several minutes!</strong> Your VM will restart and take a few more minutes. Be patient.</li>
+<li>Once you can, login with: <code>YOURSENECAUSERNAME\Administrator</code></li>
+<li>In sconfig, confirm you can see:<!-- -->
+<ol>
+<li>Computer name: <strong>srv2</strong></li>
+<li>Domain: <strong>yourSenecaUsername.com</strong></li>
+</ol>
+</li>
+<li>Minimize srv2 VM but keep it on!</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-5-manage-srv2-from-srv1-gui">Investigation 5: Manage srv2 from srv1 GUI<a href="#investigation-5-manage-srv2-from-srv1-gui" class="hash-link" aria-label="Direct link to Investigation 5: Manage srv2 from srv1 GUI" title="Direct link to Investigation 5: Manage srv2 from srv1 GUI">​</a></h2>
+<p>Let&#x27;s use <em>srv1</em>&#x27;s <strong>Server Manager</strong> to manage and configure <em>srv2</em>!</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-join-srv1-to-the-new-domain">Part 1: Join srv1 to the new domain<a href="#part-1-join-srv1-to-the-new-domain" class="hash-link" aria-label="Direct link to Part 1: Join srv1 to the new domain" title="Direct link to Part 1: Join srv1 to the new domain">​</a></h3>
+<p>We now have an Active Directory domain, but we need to join <em>srv1</em> to it.</p>
+<ol>
+<li>Double-check the following VMs are already powered on:<!-- -->
+<ol>
+<li>router</li>
+<li>srv2</li>
+</ol>
+</li>
+<li>Power on <em>srv1</em> and login.</li>
+<li>Change &quot;Internal Network&quot; NIC DNS to: <code>10.0.</code>UID<code>.2</code></li>
+<li>In <em>Computer Properties</em>, change the computer name from <em>srv1-yourSenecaUsername</em> to <em>srv1</em>.</li>
+<li>Restart and log back in.</li>
+<li>Open <em>Computer Properties</em> again, and click on <strong>Workgroup</strong>.</li>
+<li>Select <em>Domain</em> and enter: <em>yourSenecaUsername.com</em></li>
+<li>When asked for credentials, use your Administrator username and password.</li>
+<li>When it adds properly, you&#x27;ll get a welcome message.</li>
+<li>The computer will now restart.</li>
+<li>When the computer is up again, login using: <strong>Other &gt; YOURSENECAUSERNAME\Administrator</strong></li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-setup-srv1-as-a-gui-management-server-for-srv2">Part 2: Setup srv1 as a GUI Management Server for srv2<a href="#part-2-setup-srv1-as-a-gui-management-server-for-srv2" class="hash-link" aria-label="Direct link to Part 2: Setup srv1 as a GUI Management Server for srv2" title="Direct link to Part 2: Setup srv1 as a GUI Management Server for srv2">​</a></h3>
+<p>This is where we add <em>srv2</em> to <em>Server Manager</em> for remote control. We also install a few features that help with that remote control.</p>
+<ol>
+<li>In <em>Server Manager</em>, go to <strong>All Servers</strong>.</li>
+<li>Go to <em>Manage &gt; Add Servers</em></li>
+<li>Click on <strong>Find Now</strong>.</li>
+<li>Select <em>srv2</em>.</li>
+<li>Click <strong>OK</strong>.</li>
+<li>It may take a few moments to appear properly. <strong>Ensure it says &quot;Online - Performance counters not started.&quot;</strong></li>
+<li>Go to <em>Manage &gt; Add Roles and Features</em></li>
+<li>Select <strong>srv1</strong> from the list.</li>
+<li>Skip <em>Roles</em>, and select the following <em>Features</em>:</li>
+<li><em>Remote Server Administration Tools &gt; Role Administration Tools:</em>
+<ol>
+<li><strong>AD DS and AD LDS Tools</strong></li>
+<li><strong>DHCP Server Tools</strong></li>
+<li><strong>DNS Server Tools</strong></li>
+</ol>
+</li>
+<li>Click <strong>Next</strong> through the rest of the wizard and then <strong>Install</strong>.</li>
+<li>Any other message, ask for help!</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-configure-dns-on-srv2-with-srv1">Part 3: Configure DNS on srv2 with srv1<a href="#part-3-configure-dns-on-srv2-with-srv1" class="hash-link" aria-label="Direct link to Part 3: Configure DNS on srv2 with srv1" title="Direct link to Part 3: Configure DNS on srv2 with srv1">​</a></h3>
+<p>We&#x27;re now going to set up Active Directory DNS on <em>srv2</em>. This is much more advanced than the previous standalone DNS service we installed in a previous lab, and you&#x27;ll see that shortly.</p>
+<ol>
+<li>Go to <em>Server Manager &gt; Tools &gt; DNS</em></li>
+<li>When asked to connect to a DNS server, select &quot;The following computer&quot; and enter: <code>srv2</code></li>
+<li>You will now be connected to the DNS server on <em>srv2</em> remotely, using the GUI on <em>srv1</em>.</li>
+<li>Find <em>srv2</em> in the list, right-click, and select <strong>Properties</strong>.</li>
+<li>Add forwarders: <strong>149.112.121.20</strong></li>
+<li>Right-click on <strong>Reverse Lookup</strong> and select <strong>New Zone</strong>.</li>
+<li>Stick with the wizard defaults until <em>Network ID</em>.</li>
+<li>Enter Network ID: <code>10.0.</code>UID``</li>
+<li>Click <strong>Next</strong> and then <strong>Finish</strong> through the rest of the wizard.</li>
+<li>Go to <em>Reverse Lookup Zones &gt; <code>UID</code>.0.10.in-addr.arpa</em></li>
+<li>Notice the list is currently empty.</li>
+<li>Run <code>ipconfig /registerdns</code> on both <em>srv1</em> and <em>srv2</em>.</li>
+<li>Refresh the view in reverse lookup and confirm the two server entries.</li>
+<li>Check the <em>Forward Lookup Zone &gt; yourSenecaUsername.com</em>. Your two servers are already there!</li>
+<li>On <em>srv1</em>, open <strong>Command Prompt</strong> and run:</li>
+</ol>
+<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">ipconfig /flushdns</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv2</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup eff.org</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping srv2</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping eff.org</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ol start="16">
+<li>Open Firefox and go to: <strong>reddit.com</strong></li>
+<li>If those two steps worked, you now have full Internet using the DNS service on <em>srv2</em>!</li>
+</ol>
+<p>Notice how you didn&#x27;t have to create any A or PTR records! The servers self-registered. <em>How cool is that?</em></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-configure-dhcp-on-srv2-with-srv1">Part 4: Configure DHCP on <em>srv2</em> with <em>srv1</em><a href="#part-4-configure-dhcp-on-srv2-with-srv1" class="hash-link" aria-label="Direct link to part-4-configure-dhcp-on-srv2-with-srv1" title="Direct link to part-4-configure-dhcp-on-srv2-with-srv1">​</a></h3>
+<p>We&#x27;re now going to set up Active Directory DHCP on <em>srv2</em>. As with DNS, this is much more advanced than the standalone we did earlier.</p>
+<p>Unlike DNS, which was installed along with the AD Domain Controller, the DHCP role isn&#x27;t currently on <em>srv2</em>. We have to install it and then configure.</p>
+<ol>
+<li>Go to <em>Server Manager &gt; Manage &gt; Add Roles and Features</em></li>
+<li>Select <strong>srv2</strong> from the list.</li>
+</ol>
+<blockquote>
+<p><strong>WARNING:</strong> Make sure you select <em>srv2</em>! Not <em>srv1</em>!</p>
+</blockquote>
+<ol start="3">
+<li>Select the DHCP role.</li>
+<li>Go through the DHCP wizard and finish.</li>
+<li>When installation is complete, click on <strong>Complete DHCP configuration</strong>.</li>
+<li>Click <strong>Next</strong> and then <strong>Commit</strong>.</li>
+<li>Close the window.</li>
+<li>Go to <em>Server Manager &gt; Tools &gt; DHCP</em></li>
+<li>Right-click the DHCP entry in the left and select <strong>Manage authorized servers...</strong></li>
+<li>Select <em>srv2</em>, then click <strong>OK</strong>.</li>
+<li>In the new <em>srv2</em> entry, create a new scope.</li>
+<li>Configure it with the following:<!-- -->
+<ol>
+<li>Name: <strong>OSM620 Fall 2025 - AD DHCP</strong></li>
+<li>Range: <strong>10.0.<code>UID</code>.1 - 10.0.<code>UID</code>.254</strong></li>
+<li>Exclude:<!-- -->
+<ol>
+<li><strong>10.0.<code>UID</code>.1-10.0.<code>UID</code>.9</strong></li>
+<li><strong>10.0.<code>UID</code>.254</strong></li>
+</ol>
+</li>
+<li>Router: <strong>10.0.<code>UID</code>.254</strong></li>
+<li>DNS:<!-- -->
+<ol>
+<li>DNS1: <strong>10.0.<code>UID</code>.2</strong></li>
+<li>DNS2: <strong>10.0.<code>UID</code>.3</strong></li>
+</ol>
+</li>
+<li>WINS: <strong>Leave defaults</strong></li>
+<li>Select <strong>Activate now</strong>.</li>
+</ol>
+</li>
+<li>Back in the main DHCP window, go to the <em>IPv4</em> folder, right-click, and select <strong>Properties</strong>.</li>
+<li>Click the DNS tab.</li>
+<li>Select <strong>Always dynamically update DNS records</strong></li>
+<li>Click <strong>OK</strong></li>
+<li>That&#x27;s it, you&#x27;re done!</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-6-add-laptop1-to-domain">Investigation 6: Add laptop1 to Domain<a href="#investigation-6-add-laptop1-to-domain" class="hash-link" aria-label="Direct link to Investigation 6: Add laptop1 to Domain" title="Direct link to Investigation 6: Add laptop1 to Domain">​</a></h2>
+<p>Now that we&#x27;ve set up our AD Domain Controller on <em>srv2</em> and remote control on <em>srv1</em>, it&#x27;s time to add a normal client machine to our Active Directory domain. We&#x27;ll use <em>laptop1</em> for this.</p>
+<p>The initial &quot;join to AD&quot; is typically done by an administrator such as yourself. After the laptop is part of the AD domain, you would then give it to the employee.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-setting-proper-network-configuration">Part 1: Setting Proper Network Configuration<a href="#part-1-setting-proper-network-configuration" class="hash-link" aria-label="Direct link to Part 1: Setting Proper Network Configuration" title="Direct link to Part 1: Setting Proper Network Configuration">​</a></h3>
+<ol>
+<li>Have the following VMs powered on:<!-- -->
+<ol>
+<li>router</li>
+<li>srv2</li>
+<li>srv1 (if you have the hardware resources)</li>
+</ol>
+</li>
+<li>Before powering on <em>laptop1</em>, check NIC1 in VMware. Make sure it&#x27;s set to <strong>VMnet10</strong>.</li>
+<li>Power on <em>laptop1</em> and login.</li>
+<li>If you named this machine <em>laptop1-yourSenecaUsername</em>, change it to <em>laptop1</em> and restart.</li>
+<li>Check Windows NIC1 network settings. They should be set to <strong>DHCP</strong>.<!-- -->
+<ol>
+<li>If it was static until now, open <strong>Command Prompt</strong> and run to check it has an Internet connection:<!-- -->
+<ol>
+<li><code>ipconfig /release</code></li>
+<li><code>ipconfig /renew</code></li>
+</ol>
+</li>
+</ol>
+</li>
+<li>In Command Prompt, run: <code>ipconfig /all</code></li>
+<li>Check the information. You should have a 10.0.<code>UID</code>.x address, DNS as <em>srv2</em>, and gateway as 10.0.<code>UID</code>.254.</li>
+<li>In Command Prompt, run:</li>
+</ol>
+<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">ipconfig /flushdns</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv2</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup eff.org</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping srv1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping srv2</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping eff.org</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ol start="9">
+<li>Back on <em>srv1</em>, go to <em>Server Manager &gt; Tools &gt; DHCP</em></li>
+<li>In the DHCP window, go to: <em>srv2 &gt; IPv4 &gt; Scope &gt; Leases</em></li>
+<li>You should see your <em>laptop1</em> in the leases section.</li>
+<li>If all this works, continue to the next section!</li>
+</ol>
+<p><em>Laptop1</em> now has a stable Internet connection using DHCP and DNS from <em>srv2</em>, and is routing to the Internet through the <em>router</em> VM.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-domain-join-for-laptop1">Part 2: Domain Join for laptop1<a href="#part-2-domain-join-for-laptop1" class="hash-link" aria-label="Direct link to Part 2: Domain Join for laptop1" title="Direct link to Part 2: Domain Join for laptop1">​</a></h3>
+<p>Now, it&#x27;s time to join <em>laptop1</em> to our AD domain.</p>
+<ol>
+<li>Open <em>Settings &gt; System &gt; About</em> (at the very bottom)</li>
+<li>Click on the <strong>Domain or workgroup</strong> link.</li>
+<li>In the new <em>System Properties &gt; Computer Name</em> tab, click on <strong>Change</strong>.</li>
+<li>Change from workgroup to domain: <strong>yourSenecaUsername.com</strong></li>
+<li>Authenticate the same as you did with <em>srv1</em>.</li>
+<li>After the congratulations message, allow the machine to restart.</li>
+<li>Do not log in with your normal account.</li>
+<li>Click on Other, and use: <strong>YOURSENECAUSERNAME\Administrator</strong></li>
+<li>Your profile may take a minute to setup. That&#x27;s normal.</li>
+<li>Once you see the desktop, minimize this VM.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-confirm-laptop1-is-in-dns">Part 3: Confirm laptop1 is in DNS<a href="#part-3-confirm-laptop1-is-in-dns" class="hash-link" aria-label="Direct link to Part 3: Confirm laptop1 is in DNS" title="Direct link to Part 3: Confirm laptop1 is in DNS">​</a></h3>
+<p>Let&#x27;s check that <em>laptop1</em> auto-registered to DNS after the AD join.</p>
+<ol>
+<li>On <em>srv1</em>, open the DNS tool.</li>
+<li>Go to <em>srv2 &gt; Forward Lookup Zones</em> &gt; <em>yourSenecaUsername.com</em></li>
+<li>Do you see laptop1? If yes, congrats! It auto-registered, just as we wanted.</li>
+<li>If not, ask for help. Do not continue.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-7-promote-srv3-to-ad-dc2">Investigation 7: Promote <em>srv3</em> to AD DC2<a href="#investigation-7-promote-srv3-to-ad-dc2" class="hash-link" aria-label="Direct link to investigation-7-promote-srv3-to-ad-dc2" title="Direct link to investigation-7-promote-srv3-to-ad-dc2">​</a></h2>
+<p>In this investigation, we&#x27;ll create a second AD Domain Controller by using <em>srv3</em>. This is a much simpler process than <em>srv2</em>, as we can use <em>srv1</em> for part of it.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-domain-join-for-srv3">Part 1: Domain Join for <em>srv3</em><a href="#part-1-domain-join-for-srv3" class="hash-link" aria-label="Direct link to part-1-domain-join-for-srv3" title="Direct link to part-1-domain-join-for-srv3">​</a></h3>
+<p>Time to add <em>srv3</em> to our new AD domain.</p>
+<ol>
+<li>Power on <em>srv2</em> and <em>router</em> (if not already on). Leave all other VMs off.</li>
+<li>Power on <em>srv3</em> and login.</li>
+<li>Change workgroup to domain: <strong>yourSenecaUsername.com</strong></li>
+<li>Authenticate with your Administrator credentials when asked.</li>
+<li>The computer will restart. This will take some time.</li>
+<li>Once you can, login with <code>YOURSENECAUSERNAME\Administrator</code> by hitting the ESC key on your keyboard. (Twice.)</li>
+<li>When it says <em>Select a user</em>, select <strong>Other user</strong>.</li>
+<li>In the next page, use the following credentials to login (tab on your keyboard to go to the next field):<!-- -->
+<ol>
+<li>User name: <strong>YOURSENECAUSERNAME\Administrator</strong></li>
+<li>Password: <em><strong>yournormalpassword</strong></em></li>
+</ol>
+</li>
+<li>If it asks you about diagnostics again, select <strong>1</strong>.</li>
+<li>In sconfig, confirm you can see:<!-- -->
+<ol>
+<li>Computer name: <strong>srv3</strong></li>
+<li>Domain: <strong>yourSenecaUsername.com</strong></li>
+</ol>
+</li>
+<li>Minimize <em>srv3</em> VM but keep it on!</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-install-ad-and-dc-promotion-srv3">Part 2: Install AD and DC Promotion (srv3)<a href="#part-2-install-ad-and-dc-promotion-srv3" class="hash-link" aria-label="Direct link to Part 2: Install AD and DC Promotion (srv3)" title="Direct link to Part 2: Install AD and DC Promotion (srv3)">​</a></h3>
+<p>Now, let&#x27;s use <em>srv1</em>&#x27;s <strong>Server Manager</strong> to install the Active Directory role on <em>srv3</em> and promote <em>srv3</em> to a secondary Domain Controller. All remotely through the GUI.</p>
+<ol>
+<li>Power on srv1 and login using: <strong>YOURSENECAUSERNAME\Administrator</strong></li>
+</ol>
+<blockquote>
+<p><strong>NOTE:</strong> You <strong>must</strong> login as the domain administrator. Otherwise, none of this will work!</p>
+</blockquote>
+<ol start="2">
+<li>
+<p>In Server Manager, go to All Servers.</p>
+</li>
+<li>
+<p>Click on <em>Manage &gt; Add Servers</em></p>
+</li>
+<li>
+<p>Add <em>srv3</em>.</p>
+</li>
+<li>
+<p>This will take a few minutes to process. <strong>Wait until the SRV3 line says: &quot;Online - Performance counters not started.&quot;</strong></p>
+</li>
+<li>
+<p>In Server Manager, add a new role. (<em>Manage &gt; Add Roles and Features</em>)</p>
+<ol>
+<li>Select: <strong>srv3</strong></li>
+<li>Select: <strong>Active Directory Domain Services</strong></li>
+<li>Go through wizard and select defaults until you get to the <em>Confirmation</em> page.</li>
+<li>On the <em>Confirmation</em> page, select the option <strong>&quot;Restart the destination server automatically if required&quot;</strong>, then click <strong>Install</strong></li>
+<li>Active Directory will now install onto <em>srv3</em>.</li>
+<li>When complete, the <strong>Promote this server to a domain controller</strong> link is active on the <em>Results</em> page. <strong>Click it</strong>.</li>
+</ol>
+</li>
+<li>
+<p>The <em>Active Directory Domain Services Configuration Wizard</em> now opens.</p>
+<ol>
+<li>
+<p>Keep the defaults on the first page, but click on the <strong>Change...</strong> button. We need to authorize this connection.</p>
+</li>
+<li>
+<p>The credentials window opens. Enter the following:</p>
+<ol>
+<li>User name: <strong>Administrator</strong></li>
+<li>Password: <em><strong>yournormalpassword</strong></em></li>
+</ol>
+</li>
+<li>
+<p>Back in the main wizard, click <strong>Next</strong>,</p>
+</li>
+<li>
+<p>On the next page, its asking for a <em>DSRM password</em>. Enter the same password you&#x27;ve been using for all your admin accounts.</p>
+</li>
+<li>
+<p>Keep all other defaults and click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>The DNS page gives you a warning. Don&#x27;t worry about it and click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>On the <em>Additional options</em> page, for the <em>Replicate from:</em> field, select <em>srv2</em> from the drop down. Click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Next</strong> on the rest of the pages to accept defaults until you arrive on <em>Prerequisites Check</em> page.</p>
+</li>
+<li>
+<p>Look for the green check mark that says: <em><strong>&quot;All prerequisites checks passed successfully. Click Install to begin installation.&quot;</strong></em></p>
+<blockquote>
+<p><strong>NOTE: If you do NOT see the green check mark, do not continue! Ask for help!</strong></p>
+</blockquote>
+</li>
+<li>
+<p>Click <strong>Install</strong>.</p>
+</li>
+<li>
+<p>It will now install. The DNS warning will come up again. Continue to ignore it.</p>
+</li>
+<li>
+<p>Once it finishes, click <strong>Close</strong>.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>Give it a few minutes as it processes.</p>
+</li>
+<li>
+<p>When the <em>srv3</em> VM is back to the login screen, go to <em>srv1</em>. (This will take a few minutes.)</p>
+</li>
+<li>
+<p>Open <strong>Server Manager</strong> on <em>srv1</em>.</p>
+</li>
+<li>
+<p>Go to <strong>AD DS</strong> and confirm <em>srv3</em> is there.</p>
+</li>
+<li>
+<p>It may take a few moments to appear properly. <strong>Ensure it says &quot;Online - Performance counters not started.&quot;</strong></p>
+</li>
+<li>
+<p>Any other message, ask for help!</p>
+</li>
+</ol>
+<p>You have now converted <em>srv3</em> into our second AD Domain Controller, mostly using the GUI remotely!</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-confirm-dns-replication">Part 3: Confirm DNS replication<a href="#part-3-confirm-dns-replication" class="hash-link" aria-label="Direct link to Part 3: Confirm DNS replication" title="Direct link to Part 3: Confirm DNS replication">​</a></h3>
+<p>Always confirm your work. Let&#x27;s check on DNS.</p>
+<ol>
+<li>In <em>srv1</em>, open the DNS tool.</li>
+<li>When asked, tell it to connect to <strong>srv3</strong>.</li>
+<li>In the new window, right-click on DNS and select <strong>Connect to DNS Server</strong>.</li>
+<li>Add <em>srv2</em> to your list of servers in DNS.</li>
+<li>Open <em>IPv4 &gt; Forward Lookup Zones</em> in both <em>srv2</em> and <em>srv3</em>.</li>
+<li>They should look identical.</li>
+<li>If they do, then DNS replication is working.</li>
+<li>Find <em>srv3</em> in the list, right-click, and select <strong>Properties</strong>.</li>
+<li>Add forwarders: <strong>149.112.121.20</strong></li>
+<li>Congratulations, you now have two Domain Controllers!</li>
+</ol>
+<p>This confirms <em>srv2</em> and <em>srv3</em> are communicating and syncing information, including DNS records.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-8-test-without-srv1">Investigation 8: Test Without srv1<a href="#investigation-8-test-without-srv1" class="hash-link" aria-label="Direct link to Investigation 8: Test Without srv1" title="Direct link to Investigation 8: Test Without srv1">​</a></h2>
+<p>In this investigation, we&#x27;ll explore the consequences of what we&#x27;ve set up in this lab and how much more efficient on hardware resources it is.</p>
+<ol>
+<li>Shut down <em>srv1</em> and <em>srv3</em>.</li>
+<li>Have the following VMs powered on:<!-- -->
+<ol>
+<li>router</li>
+<li>srv2</li>
+</ol>
+</li>
+<li>Power on <em>laptop1</em>.</li>
+<li>Login to <em>laptop1</em> with: <strong>YOURSENECAUSERNAME\Administrator</strong></li>
+<li>Use Command Prompt and run: <code>ipconfig /all</code></li>
+<li>Does it look correct? If so, move to the next step.</li>
+<li>Open <em>Firefox</em> and go to: <strong>reddit.com</strong></li>
+<li>Did that work? If so, move to the next step. <strong>Otherwise, ask for help.</strong></li>
+<li>In Command Prompt, run:</li>
+</ol>
+<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">ipconfig /flushdns</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv2</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv3</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup eff.org</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping srv1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping srv2</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping srv3</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping eff.org</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ol start="10">
+<li>Why did some of these work and not the others?</li>
+</ol>
+<p>Congrats! You now have a low profile Domain Controller. Resource usage is at a minimum.</p>
+<blockquote>
+<p><strong>A note about Hyper-V:</strong> In a real production environment, we could use <em>srv1</em> to install Hyper-V VMs on <em>srv2</em>, allowing us to run these VMs on a lower resource Core machine. That&#x27;s beyond the scope of this course, but something cool to know.</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lab-6-sign-off">Lab 6 Sign-Off<a href="#lab-6-sign-off" class="hash-link" aria-label="Direct link to Lab 6 Sign-Off" title="Direct link to Lab 6 Sign-Off">​</a></h2>
+<p>It’s essential to complete Lab 6 correctly. All later labs assume working Active Directory Domain Controllers and its services.</p>
+<p>When you finish Lab 6, ask your instructor for a sign-off.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="sign-off-checklist">Sign-Off Checklist<a href="#sign-off-checklist" class="hash-link" aria-label="Direct link to Sign-Off Checklist" title="Direct link to Sign-Off Checklist">​</a></h3>
+<p>Please have the following on screen and ready to show. You will need to power on ALL VMs for the check.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="on-srv1">On srv1<a href="#on-srv1" class="hash-link" aria-label="Direct link to On srv1" title="Direct link to On srv1">​</a></h4>
+<ol>
+<li><em>Server Manager &gt; All Servers</em>: Shows <em>srv1</em>, <em>srv2</em>, and <em>srv3</em></li>
+<li><em>Server Manager &gt; AD DS</em>: Shows <em>srv2</em> and <em>srv3</em></li>
+<li><code>ipconfig /all</code> shows the correct information.</li>
+<li>Firefox loads: <strong>eff.org</strong></li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="on-srv2">On srv2<a href="#on-srv2" class="hash-link" aria-label="Direct link to On srv2" title="Direct link to On srv2">​</a></h4>
+<ol>
+<li>Sconfig shows:<!-- -->
+<ol>
+<li>Name: <strong>srv2</strong></li>
+<li>Domain: <strong>yourSenecaUsername.com</strong></li>
+</ol>
+</li>
+<li>In PowerShell, <code>ipconfig /all</code> shows the correct information.</li>
+<li>You can ping:<!-- -->
+<ol>
+<li>srv1</li>
+<li>srv3</li>
+<li>laptop1</li>
+<li>eff.org</li>
+<li>reddit.com</li>
+</ol>
+</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="on-srv3">On srv3<a href="#on-srv3" class="hash-link" aria-label="Direct link to On srv3" title="Direct link to On srv3">​</a></h4>
+<ol>
+<li>Sconfig shows:<!-- -->
+<ol>
+<li>Name: <strong>srv3</strong></li>
+<li>Domain: <strong>yourSenecaUsername.com</strong></li>
+</ol>
+</li>
+<li>In PowerShell, <code>ipconfig /all</code> shows the correct information.</li>
+<li>You can ping:<!-- -->
+<ol>
+<li>srv1</li>
+<li>srv3</li>
+<li>laptop1</li>
+<li>eff.org</li>
+<li>reddit.com</li>
+</ol>
+</li>
+</ol>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="on-laptop1">On laptop1<a href="#on-laptop1" class="hash-link" aria-label="Direct link to On laptop1" title="Direct link to On laptop1">​</a></h4>
+<ol>
+<li>System Properties shows:<!-- -->
+<ol>
+<li>Name: <strong>laptop1</strong></li>
+<li>Domain: <strong>yourSenecaUsername.com</strong></li>
+</ol>
+</li>
+<li>In Command Prompt, <code>ipconfig /all</code> shows the correct information.</li>
+<li>You can ping:<!-- -->
+<ol>
+<li>srv1</li>
+<li>srv2</li>
+<li>srv3</li>
+<li>eff.org</li>
+<li>reddit.com</li>
+</ol>
+</li>
+<li>In Firefox: <code>http://www.reddit.com</code> loads the Reddit main page.</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/catherine-leung/OSM620v2/tree/main/docs/Labs/lab6.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/OSM620v2/Labs/lab5"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Lab 5 - Implementing DHCP</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/OSM620v2/Labs/lab7"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Lab 7 - AD Users, Groups, Computers, and GPOs</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#lab-preparation" class="table-of-contents__link toc-highlight">Lab Preparation</a><ul><li><a href="#purpose-of-lab-6" class="table-of-contents__link toc-highlight">Purpose of Lab 6</a></li><li><a href="#objectives" class="table-of-contents__link toc-highlight">Objectives</a></li><li><a href="#minimum-progression-requirements" class="table-of-contents__link toc-highlight">Minimum Progression Requirements</a></li><li><a href="#before-you-begin" class="table-of-contents__link toc-highlight">Before You Begin</a></li></ul></li><li><a href="#investigation-1-adding-the-router-vm" class="table-of-contents__link toc-highlight">Investigation 1: Adding the <em>router</em> VM</a><ul><li><a href="#vm-specifications" class="table-of-contents__link toc-highlight">VM Specifications</a></li><li><a href="#part-1-create-router-vm" class="table-of-contents__link toc-highlight">Part 1: Create <em>router</em> VM</a></li><li><a href="#part-2-configuring-routing" class="table-of-contents__link toc-highlight">Part 2: Configuring Routing</a></li></ul></li><li><a href="#investigation-2-create-srv3-vm" class="table-of-contents__link toc-highlight">Investigation 2: Create srv3 VM</a><ul><li><a href="#part-1-cloning-in-vmware" class="table-of-contents__link toc-highlight">Part 1: Cloning in VMware</a></li><li><a href="#part-2-cleaning-the-clone-srv3" class="table-of-contents__link toc-highlight">Part 2: Cleaning the Clone (srv3)</a></li><li><a href="#part-3-configuring-srv3" class="table-of-contents__link toc-highlight">Part 3: Configuring srv3</a></li></ul></li><li><a href="#investigation-3-convert-srv1-to-a-management-server" class="table-of-contents__link toc-highlight">Investigation 3: Convert srv1 to a Management Server</a><ul><li><a href="#part-1-removing-old-roles" class="table-of-contents__link toc-highlight">Part 1: Removing Old Roles</a></li><li><a href="#part-2-hardware-changes-for-srv1" class="table-of-contents__link toc-highlight">Part 2: Hardware Changes for srv1</a></li><li><a href="#part-3-network-configuration-srv1" class="table-of-contents__link toc-highlight">Part 3: Network Configuration (srv1)</a></li></ul></li><li><a href="#investigation-4-promote-srv2-to-ad-dc1" class="table-of-contents__link toc-highlight">Investigation 4: Promote srv2 to AD DC1</a><ul><li><a href="#part-1-network-reconfiguration-srv2" class="table-of-contents__link toc-highlight">Part 1: Network Reconfiguration (srv2)</a></li><li><a href="#part-2-installing-ad-and-dc-promotion" class="table-of-contents__link toc-highlight">Part 2: Installing AD and DC Promotion</a></li></ul></li><li><a href="#investigation-5-manage-srv2-from-srv1-gui" class="table-of-contents__link toc-highlight">Investigation 5: Manage srv2 from srv1 GUI</a><ul><li><a href="#part-1-join-srv1-to-the-new-domain" class="table-of-contents__link toc-highlight">Part 1: Join srv1 to the new domain</a></li><li><a href="#part-2-setup-srv1-as-a-gui-management-server-for-srv2" class="table-of-contents__link toc-highlight">Part 2: Setup srv1 as a GUI Management Server for srv2</a></li><li><a href="#part-3-configure-dns-on-srv2-with-srv1" class="table-of-contents__link toc-highlight">Part 3: Configure DNS on srv2 with srv1</a></li><li><a href="#part-4-configure-dhcp-on-srv2-with-srv1" class="table-of-contents__link toc-highlight">Part 4: Configure DHCP on <em>srv2</em> with <em>srv1</em></a></li></ul></li><li><a href="#investigation-6-add-laptop1-to-domain" class="table-of-contents__link toc-highlight">Investigation 6: Add laptop1 to Domain</a><ul><li><a href="#part-1-setting-proper-network-configuration" class="table-of-contents__link toc-highlight">Part 1: Setting Proper Network Configuration</a></li><li><a href="#part-2-domain-join-for-laptop1" class="table-of-contents__link toc-highlight">Part 2: Domain Join for laptop1</a></li><li><a href="#part-3-confirm-laptop1-is-in-dns" class="table-of-contents__link toc-highlight">Part 3: Confirm laptop1 is in DNS</a></li></ul></li><li><a href="#investigation-7-promote-srv3-to-ad-dc2" class="table-of-contents__link toc-highlight">Investigation 7: Promote <em>srv3</em> to AD DC2</a><ul><li><a href="#part-1-domain-join-for-srv3" class="table-of-contents__link toc-highlight">Part 1: Domain Join for <em>srv3</em></a></li><li><a href="#part-2-install-ad-and-dc-promotion-srv3" class="table-of-contents__link toc-highlight">Part 2: Install AD and DC Promotion (srv3)</a></li><li><a href="#part-3-confirm-dns-replication" class="table-of-contents__link toc-highlight">Part 3: Confirm DNS replication</a></li></ul></li><li><a href="#investigation-8-test-without-srv1" class="table-of-contents__link toc-highlight">Investigation 8: Test Without srv1</a></li><li><a href="#lab-6-sign-off" class="table-of-contents__link toc-highlight">Lab 6 Sign-Off</a><ul><li><a href="#sign-off-checklist" class="table-of-contents__link toc-highlight">Sign-Off Checklist</a><ul><li><a href="#on-srv1" class="table-of-contents__link toc-highlight">On srv1</a></li><li><a href="#on-srv2" class="table-of-contents__link toc-highlight">On srv2</a></li><li><a href="#on-srv3" class="table-of-contents__link toc-highlight">On srv3</a></li><li><a href="#on-laptop1" class="table-of-contents__link toc-highlight">On laptop1</a></li></ul></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">OSM620 - Fundamentals of Microsoft Systems</div><ul class="footer__items clean-list"><li class="footer__item"><a href="#" id="pwa-button" class="footer__link-item" hidden>Install as an App</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Seneca Polytechnic.</div></div></div></footer></div>
+</body>
+</html>

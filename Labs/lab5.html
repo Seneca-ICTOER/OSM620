@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Labs/lab5" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Lab 5 - Implementing DHCP | OSM620 - Fundamentals of Microsoft Systems</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://seneca-ictoer.github.io/OSM620v2/Labs/lab5"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Lab 5 - Implementing DHCP | OSM620 - Fundamentals of Microsoft Systems"><meta data-rh="true" name="description" content="Lab 5 - Implementing DHCP"><meta data-rh="true" property="og:description" content="Lab 5 - Implementing DHCP"><link data-rh="true" rel="icon" href="/OSM620v2/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab5"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab5" hreflang="en"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab5" hreflang="x-default"><link rel="icon" href="/OSM620v2/img/pwa/icon-512x512.png">
+<link rel="manifest" href="/OSM620v2/manifest.json">
+<meta name="theme-color" content="#DA291C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#DA291C">
+<link rel="apple-touch-icon" href="/OSM620v2/img/pwa/icon-192x192.png">
+<link rel="mask-icon" href="/OSM620v2/img/pwa/icon-512x512.png" color="#DA291C">
+<meta name="msapplication-TileImage" content="/OSM620v2/img/pwa/icon-512x512.png">
+<meta name="msapplication-TileColor" content="#DA291C">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/OSM620v2/assets/css/styles.cba3e07b.css">
+<script src="/OSM620v2/assets/js/runtime~main.b62f346f.js" defer="defer"></script>
+<script src="/OSM620v2/assets/js/main.87c63611.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/OSM620v2/img/logo.svg"><link rel="preload" as="image" href="/OSM620v2/img/logo-dark.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><a class="navbar__brand" href="/OSM620v2/"><div class="navbar__logo"><img src="/OSM620v2/img/logo.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/OSM620v2/img/logo-dark.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">OSM620 - Fundamentals of Microsoft Systems</b></a></div><div class="navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/">Welcome to OSM620</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/weekly-schedule">Weekly Schedule</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/OSM620v2/Labs/lab1">Labs</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab1">Lab 1 - Environment Setup</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab2">Lab 2 - Hyper-V, NAT, and Windows Clients</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab3">Lab 3 - Security and Remote Connectivity</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab4">Lab 4 - Implementing DNS</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/OSM620v2/Labs/lab5">Lab 5 - Implementing DHCP</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab6">Lab 6 - Active Directory</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab7">Lab 7 - AD Users, Groups, Computers, and GPOs</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab8">Lab 8 - Network File Shares</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab9">Lab 9 - Introduction to Azure</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/OSM620v2/Assignments/assignment1">Assignments</a></div></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/OSM620v2/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Labs</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Lab 5 - Implementing DHCP</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Lab 5 - Implementing DHCP</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lab-preparation">Lab Preparation<a href="#lab-preparation" class="hash-link" aria-label="Direct link to Lab Preparation" title="Direct link to Lab Preparation">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="purpose--objectives-of-lab-5">Purpose / Objectives of Lab 5<a href="#purpose--objectives-of-lab-5" class="hash-link" aria-label="Direct link to Purpose / Objectives of Lab 5" title="Direct link to Purpose / Objectives of Lab 5">​</a></h3>
+<p>In this lab, you will deploy <strong>DHCP</strong> on <em>srv1</em> to automatically provide IP configuration for your internal lab network.</p>
+<p>By the end, you will:</p>
+<ol>
+<li>Install the <strong>DHCP Server</strong> role on <em>srv1</em>.</li>
+<li>Create an IPv4 <strong>scope</strong> for your internal subnet <strong>10.0.<code>UID</code>.0/24</strong> with proper <strong>options</strong> (Router, DNS servers, DNS Suffix).</li>
+<li>Create <strong>reservations</strong> so <em>srv2</em>, <em>client1</em>, and <em>client2</em> receive predictable addresses that match prior labs.</li>
+<li>Flip <em>srv2</em>, <em>client1</em>, and <em>client2</em> from <strong>static</strong> addressing to <strong>DHCP</strong>, then verify leases.</li>
+<li>Validate <strong>DHCP + DNS</strong> end‑to‑end with <code>ipconfig</code>, <code>nslookup</code>, and <code>ping</code>.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="minimum-requirements">Minimum Requirements<a href="#minimum-requirements" class="hash-link" aria-label="Direct link to Minimum Requirements" title="Direct link to Minimum Requirements">​</a></h3>
+<p>Before beginning, you must have:</p>
+<ul>
+<li>Successfully completed <strong>Lab 4 – Implementing DNS</strong>, with <em>srv1</em> resolving internal names and using loopback for local DNS testing.</li>
+<li>Your <strong>UID</strong> value handy.</li>
+<li>All four VMs present from earlier labs: <em>srv1</em> (GUI), <em>srv2</em> (Core), <em>client1</em>, <em>client2</em>.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="key-concepts">Key Concepts<a href="#key-concepts" class="hash-link" aria-label="Direct link to Key Concepts" title="Direct link to Key Concepts">​</a></h3>
+<ul>
+<li><strong>DHCP</strong> automatically assigns IP addressing (IPv4 address, subnet mask), <strong>Default Gateway (Option 003)</strong>, <strong>DNS servers (Option 006)</strong>, and <strong>DNS Suffix (Option 015)</strong> to clients on a subnet.</li>
+<li><strong>Scope</strong> defines the usable address pool on a network. <strong>Reservations</strong> ensure specific MAC addresses always receive the same IP.</li>
+<li>In this course, your internal network remains <strong>10.0.<code>UID</code>.0/24</strong>; <em>srv1</em> is the router at <strong>10.0.<code>UID</code>.1</strong>.</li>
+</ul>
+<blockquote>
+<p><strong>Design Note:</strong> We will keep client addresses consistent with Labs 2–4 using <strong>reservations</strong> so your existing DNS host records remain correct.</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-1-install-the-dhcp-server-role-on-srv1">Investigation 1: Install the DHCP Server Role on <em>srv1</em><a href="#investigation-1-install-the-dhcp-server-role-on-srv1" class="hash-link" aria-label="Direct link to investigation-1-install-the-dhcp-server-role-on-srv1" title="Direct link to investigation-1-install-the-dhcp-server-role-on-srv1">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-add-the-dhcp-server-role">Part 1: Add the DHCP Server Role<a href="#part-1-add-the-dhcp-server-role" class="hash-link" aria-label="Direct link to Part 1: Add the DHCP Server Role" title="Direct link to Part 1: Add the DHCP Server Role">​</a></h3>
+<p>In this investigation, we&#x27;ll install the DHCP role on our server so other machines on our network can get their IP address and network configuration from <em>srv1</em>.</p>
+<ol>
+<li><strong>Login to srv1</strong> with your Administrator account.</li>
+<li>Open <strong>Server Manager</strong> → <strong>Manage &gt; Add Roles and Features</strong>.</li>
+<li><strong>Installation Type</strong>: <em>Role-based or feature-based installation</em> → <strong>Next</strong>.</li>
+<li><strong>Server Selection</strong>: choose <strong>srv1</strong> → <strong>Next</strong>.</li>
+<li><strong>Server Roles</strong>: check <strong>DHCP Server</strong> → <strong>Add Features</strong> if prompted → <strong>Next</strong> through <em>Features</em> and <em>DHCP Server</em> pages.</li>
+<li><strong>Confirmation</strong>: <strong>Install</strong> and wait for completion.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-postinstall-configuration">Part 2: Post‑Install Configuration<a href="#part-2-postinstall-configuration" class="hash-link" aria-label="Direct link to Part 2: Post‑Install Configuration" title="Direct link to Part 2: Post‑Install Configuration">​</a></h3>
+<ol>
+<li>In <strong>Server Manager</strong>, click the yellow <strong>!</strong> → <strong>Complete DHCP configuration</strong>.</li>
+<li>In the wizard, click <strong>Commit</strong> → <strong>Close</strong>.</li>
+</ol>
+<p>Once fully complete, move on to the next investigation.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-2-create-scope-and-options-100uid024">Investigation 2: Create Scope and Options (10.0.<code>UID</code>.0/24)<a href="#investigation-2-create-scope-and-options-100uid024" class="hash-link" aria-label="Direct link to investigation-2-create-scope-and-options-100uid024" title="Direct link to investigation-2-create-scope-and-options-100uid024">​</a></h2>
+<p>In this investigation, we&#x27;ll configure the <strong>scope</strong>.</p>
+<p>A DHCP scope is , basically, what slice of the network are we going to use and define. (Example are 10.0.45.0/24, 192.168.1.0/24, 172.16.0.0/16, etc.)</p>
+<p>Here, we&#x27;re going to tell DHCP we want to manage the <strong>10.0.<code>UID</code>.0/24</strong> network. Any machine that connects to our <em>Internal Network</em> will get its IP address, subnet mask, default gateway, and DNS using what we set up below.</p>
+<p>In short: <em>srv1</em> will give other machines their IP addresses automatically, along with other network configuration.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-create-a-new-ipv4-scope">Part 1: Create a New IPv4 Scope<a href="#part-1-create-a-new-ipv4-scope" class="hash-link" aria-label="Direct link to Part 1: Create a New IPv4 Scope" title="Direct link to Part 1: Create a New IPv4 Scope">​</a></h3>
+<ol>
+<li>
+<p><strong>Tools &gt; DHCP</strong>.</p>
+</li>
+<li>
+<p>Expand your server (srv1) → <strong>IPv4</strong> → <strong>Right‑click &gt; New Scope…</strong></p>
+</li>
+<li>
+<p><strong>Scope Name</strong>: <code>OSM620 HQ</code></p>
+</li>
+<li>
+<p><strong>IP Address Range</strong>:</p>
+<ul>
+<li><strong>Start</strong>: <code>10.0.UID.1</code></li>
+<li><strong>End</strong>: <code>10.0.UID.254</code></li>
+<li><strong>Subnet mask</strong>: <code>255.255.255.0</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Add Exclusions and Delay</strong>: Add the following:</p>
+<ul>
+<li><code>10.0.UID.1</code></li>
+<li><code>10.0.UID.200</code> to <code>10.0.UID.254</code></li>
+<li>Leave the delay blank.</li>
+</ul>
+</li>
+<li>
+<p><strong>Lease Duration</strong>: default (8 days) → <strong>Next</strong>.</p>
+</li>
+<li>
+<p><strong>Router (Default Gateway) – Option 003</strong>: <code>10.0.UID.1</code> → <strong>Add</strong> → <strong>Next</strong>.</p>
+</li>
+<li>
+<p><strong>Domain Name and DNS Servers – Option 006/015</strong>:</p>
+<ul>
+<li><strong>Parent domain</strong> (Option 015): <code>yourSenecaUsername.com</code> <em>(replace with your lab domain from Lab 4)</em></li>
+<li><strong>DNS Servers</strong> (Option 006):<!-- -->
+<ul>
+<li><code>10.0.UID.1</code> <em>(srv1)</em></li>
+<li><strong>149.112.121.20</strong> <em>(CIRA)</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>WINS Servers</strong>: leave blank → <strong>Next</strong>.</p>
+</li>
+<li>
+<p><strong>Activate Scope</strong>: select <strong>Yes, I want to activate this scope now</strong> → <strong>Finish</strong>.</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Why start at <code>.2</code>?</strong> <code>.1</code> is the gateway on <em>srv1</em>. We want to make sure our DHCP server can&#x27;t give out the IP address that <em>srv1</em> already uses!</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-3-reservations-for-predictable-addresses">Investigation 3: Reservations for Predictable Addresses<a href="#investigation-3-reservations-for-predictable-addresses" class="hash-link" aria-label="Direct link to Investigation 3: Reservations for Predictable Addresses" title="Direct link to Investigation 3: Reservations for Predictable Addresses">​</a></h2>
+<p>By default, a DHCP server will assign IP addresses to other machines randomly from the range you defined earlier. (10.0.<code>UID</code>.2 - 10.0.<code>UID</code>.254)</p>
+<p>Every time one of your other machines connect, it could get <em>any</em> IP address inside that range. It will always start with 10.0.<code>UID</code>., but that last number (octet) could be anything between 2-254. It can and will change from day to day.</p>
+<p>In this investigation, we&#x27;re going to use <strong>Reservations</strong> to let us decide, from <em>srv1</em>, what IP addresses each of our machines should <em>always</em> have. After we&#x27;re done, when srv2 gets an IP address, it won&#x27;t be random. It will be what we decide.</p>
+<p>We’ll bind specific IPs to each machine’s <strong>MAC address</strong> so they keep the same addresses used in Labs 2–4.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-collect-physical-addresses-from-each-nic">Part 1: Collect Physical Addresses From Each NIC<a href="#part-1-collect-physical-addresses-from-each-nic" class="hash-link" aria-label="Direct link to Part 1: Collect Physical Addresses From Each NIC" title="Direct link to Part 1: Collect Physical Addresses From Each NIC">​</a></h3>
+<p>To set this up, we need to grab the physical address (otherwise known as MAC address) of each network card on each computer. This is how <em>srv1</em> will known which machine is which when it needs to give out IP addresses.</p>
+<p>Write down the physical address for each:</p>
+<ol>
+<li>On <strong>srv2</strong> (Core): <code>ipconfig /all</code> → record the <strong>Physical Address</strong> for the <strong>Internal Network</strong> adapter.</li>
+<li>On <strong>client1</strong>: <code>ipconfig /all</code> → record Physical Address.</li>
+<li>On <strong>client2</strong>: <code>ipconfig /all</code> → record Physical Address.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-create-reservations-on-srv1">Part 2: Create Reservations on <em>srv1</em><a href="#part-2-create-reservations-on-srv1" class="hash-link" aria-label="Direct link to part-2-create-reservations-on-srv1" title="Direct link to part-2-create-reservations-on-srv1">​</a></h3>
+<p>In this part, we&#x27;ll know create a DHCP reservation for each computer. This is how we make sure they get the specific IP address we want them to have, instead of a random one.</p>
+<p>Each computer will have its own reservation. This is like a record.</p>
+<p>In <strong>DHCP Manager</strong> → <strong>IPv4 &gt; OSM620 HQ &gt; Reservations</strong> → <strong>Right‑click &gt; New Reservation…</strong></p>
+<p>Create the following (replace <code>UID</code> and MACs):</p>
+<ul>
+<li>
+<p><strong>srv2</strong></p>
+<ul>
+<li><strong>IP address</strong>: <code>10.0.UID.2</code></li>
+<li><strong>MAC</strong>: <code>&lt;srv2 MAC&gt;</code></li>
+<li><strong>Description</strong>: <code>Windows Server 2025 Datacenter Core</code></li>
+<li><strong>Supported types</strong>: <strong>Both</strong> → <strong>Add</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>client1</strong></p>
+<ul>
+<li><strong>IP address</strong>: <code>10.0.UID.11</code></li>
+<li><strong>MAC</strong>: <code>&lt;client1 MAC&gt;</code></li>
+<li><strong>Description</strong>: <code>Windows 11 Education</code></li>
+<li><strong>Supported types</strong>: <strong>Both</strong> → <strong>Add</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>client2</strong></p>
+<ul>
+<li><strong>IP address</strong>: <code>10.0.UID.12</code></li>
+<li><strong>MAC</strong>: <code>&lt;client2 MAC&gt;</code></li>
+<li><strong>Description</strong>: <code>Windows 11 Education</code></li>
+<li><strong>Supported types</strong>: <strong>Both</strong> → <strong>Add</strong></li>
+</ul>
+</li>
+</ul>
+<p>Verify all three appear under <strong>Reservations</strong>.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-4-switch-from-static-to-dhcp">Investigation 4: Switch from Static to DHCP<a href="#investigation-4-switch-from-static-to-dhcp" class="hash-link" aria-label="Direct link to Investigation 4: Switch from Static to DHCP" title="Direct link to Investigation 4: Switch from Static to DHCP">​</a></h2>
+<p>Right now, you&#x27;re other computers are using <strong>manual static network configuration</strong>. You set up their IP addresses manually.</p>
+<p>In this investigation, we&#x27;ll switch our other machines back to using DHCP so they can get their network information, including IP address, from <em>srv1</em>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-swtiching-srv2-server-core">Part 1: Swtiching <em>srv2</em> (Server Core)<a href="#part-1-swtiching-srv2-server-core" class="hash-link" aria-label="Direct link to part-1-swtiching-srv2-server-core" title="Direct link to part-1-swtiching-srv2-server-core">​</a></h3>
+<ol>
+<li>
+<p>Login as <strong>Administrator</strong>.</p>
+</li>
+<li>
+<p>In PowerShell, identify the interface index of your network adapter (look for <strong>IfIndex</strong>):</p>
+<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Get-NetIPInterface</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Enable DHCP for IPv4 (replace <code>4</code> with your <strong>IfIndex</strong> on the Internal Network adapter):</p>
+<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Set-NetIPInterface -InterfaceIndex 4 -Dhcp Enabled</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Set-DnsClientServerAddress -InterfaceIndex 4 -ResetServerAddresses</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ipconfig /release</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ipconfig /renew</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ipconfig /all</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Run <code>ipconfig /all</code> to confirm the following:
+<strong>IPv4 Address = 10.0.UID.2</strong>, <strong>Default Gateway = 10.0.UID.1</strong>, <strong>DNS = 10.0.UID.1</strong>.</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-client1-windows-11">Part 2: <em>client1</em> (Windows 11)<a href="#part-2-client1-windows-11" class="hash-link" aria-label="Direct link to part-2-client1-windows-11" title="Direct link to part-2-client1-windows-11">​</a></h3>
+<ol>
+<li>
+<p><strong>Settings &gt; Network &amp; Internet &gt; Ethernet &gt; Edit</strong> next to <strong>IP assignment</strong> → <strong>Automatic (DHCP)</strong> → <strong>Save</strong>.</p>
+</li>
+<li>
+<p><strong>Edit</strong> next to <strong>DNS server assignment</strong> → <strong>Automatic (DHCP)</strong> → <strong>Save</strong>.</p>
+</li>
+<li>
+<p>Command Prompt:</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">ipconfig /release</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ipconfig /renew</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ipconfig /all</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Confirm <strong>IPv4 = 10.0.UID.11</strong>, <strong>Gateway 10.0.UID.1</strong>, <strong>DNS 10.0.UID.1</strong>.</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-client2-windows-11">Part 3: <em>client2</em> (Windows 11)<a href="#part-3-client2-windows-11" class="hash-link" aria-label="Direct link to part-3-client2-windows-11" title="Direct link to part-3-client2-windows-11">​</a></h3>
+<p>Repeat the exact steps as client1. Confirm <strong>IPv4 = 10.0.UID.12</strong>.</p>
+<blockquote>
+<p>If a machine doesn’t pick up the reserved address, re‑check the MAC you entered in the reservation and ensure the NIC you changed to DHCP is the <strong>Internal</strong> (HQ) adapter.</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-5-verify-leases-and-name-resolution">Investigation 5: Verify Leases and Name Resolution<a href="#investigation-5-verify-leases-and-name-resolution" class="hash-link" aria-label="Direct link to Investigation 5: Verify Leases and Name Resolution" title="Direct link to Investigation 5: Verify Leases and Name Resolution">​</a></h2>
+<p>In this investigation, we&#x27;ll run checks to confirm that our machines are:</p>
+<ul>
+<li>Using DHCP</li>
+<li>Have an IP address</li>
+<li>Can connect to other machines</li>
+<li>Can connect to the Internet</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-check-leases-in-dhcp-manager">Part 1: Check Leases in DHCP Manager<a href="#part-1-check-leases-in-dhcp-manager" class="hash-link" aria-label="Direct link to Part 1: Check Leases in DHCP Manager" title="Direct link to Part 1: Check Leases in DHCP Manager">​</a></h3>
+<ol>
+<li>On <em>srv1</em>: <strong>DHCP Manager</strong> → <strong>IPv4 &gt; OSM620 HQ &gt; Address Leases</strong>.</li>
+<li>Confirm entries for <strong>srv2</strong>, <strong>client1</strong>, <strong>client2</strong> with correct <strong>Reservation</strong> type and IPs.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-test-dhcp--dns">Part 2: Test DHCP + DNS<a href="#part-2-test-dhcp--dns" class="hash-link" aria-label="Direct link to Part 2: Test DHCP + DNS" title="Direct link to Part 2: Test DHCP + DNS">​</a></h3>
+<p>From <strong>client1</strong> (or <strong>client2</strong>):</p>
+<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">ipconfig /all</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv1.yourSenecaUsername.com</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup client2.yourSenecaUsername.com</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup eff.org</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping srv1.yourSenecaUsername.com</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<ul>
+<li>All should resolve and ping (ICMP allowed per Lab 3). If <code>nslookup</code> for Internet names fails, revisit <strong>DNS Forwarders</strong> on <em>srv1</em>.</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="troubleshooting">Troubleshooting<a href="#troubleshooting" class="hash-link" aria-label="Direct link to Troubleshooting" title="Direct link to Troubleshooting">​</a></h2>
+<ul>
+<li><strong>Client keeps old static IP</strong>: ensure <strong>IP assignment = Automatic (DHCP)</strong>; on Core, run <code>Set-NetIPInterface -Dhcp Enabled</code> then <code>ipconfig /release</code> + <code>/renew</code>.</li>
+<li><strong>Gets wrong pool address</strong>: verify the <strong>reservation MAC</strong> matches the <strong>Internal adapter</strong>; remove/re‑add reservation if needed.</li>
+<li><strong>No default gateway</strong>: re‑check <strong>Option 003</strong> in scope options.</li>
+<li><strong>DNS wrong</strong>: verify <strong>Option 006</strong> points to <code>10.0.UID.1</code> and <strong>Option 015</strong> is your lab domain.</li>
+<li><strong>No Internet</strong>: confirm <em>srv1</em> still NATs traffic between Internal and External (Lab 2 RRAS) and that <strong>Forwarders</strong> work (Lab 4).</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lab-5-signoff">Lab 5 Sign‑Off<a href="#lab-5-signoff" class="hash-link" aria-label="Direct link to Lab 5 Sign‑Off" title="Direct link to Lab 5 Sign‑Off">​</a></h2>
+<p>To complete Lab 5, show your instructor:</p>
+<ol>
+<li><strong>Scope</strong> <code>10.0.UID.2–199</code> active with Options <strong>003</strong>, <strong>006</strong>, <strong>015</strong> set.</li>
+<li><strong>Reservations</strong> for <strong>srv2 (10.0.UID.2)</strong>, <strong>client1 (10.0.UID.11)</strong>, <strong>client2 (10.0.UID.12)</strong>.</li>
+<li>On each client, <code>ipconfig /all</code> showing <strong>DHCP Enabled = Yes</strong> and the correct leased address.</li>
+<li>In Address Leases, entries for all three machines marked as <strong>Reservation</strong>.</li>
+<li><code>nslookup</code> for <code>srv1.yourSenecaUsername.com</code> <strong>and</strong> an Internet site returns addresses successfully.</li>
+</ol>
+<blockquote>
+<p><strong>You’re done!</strong> Your lab environment now uses <strong>DHCP</strong> correctly while keeping earlier labs’ addressing and DNS intact.</p>
+</blockquote></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/catherine-leung/OSM620v2/tree/main/docs/Labs/lab5.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/OSM620v2/Labs/lab4"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Lab 4 - Implementing DNS</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/OSM620v2/Labs/lab6"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Lab 6 - Active Directory</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#lab-preparation" class="table-of-contents__link toc-highlight">Lab Preparation</a><ul><li><a href="#purpose--objectives-of-lab-5" class="table-of-contents__link toc-highlight">Purpose / Objectives of Lab 5</a></li><li><a href="#minimum-requirements" class="table-of-contents__link toc-highlight">Minimum Requirements</a></li><li><a href="#key-concepts" class="table-of-contents__link toc-highlight">Key Concepts</a></li></ul></li><li><a href="#investigation-1-install-the-dhcp-server-role-on-srv1" class="table-of-contents__link toc-highlight">Investigation 1: Install the DHCP Server Role on <em>srv1</em></a><ul><li><a href="#part-1-add-the-dhcp-server-role" class="table-of-contents__link toc-highlight">Part 1: Add the DHCP Server Role</a></li><li><a href="#part-2-postinstall-configuration" class="table-of-contents__link toc-highlight">Part 2: Post‑Install Configuration</a></li></ul></li><li><a href="#investigation-2-create-scope-and-options-100uid024" class="table-of-contents__link toc-highlight">Investigation 2: Create Scope and Options (10.0.<code>UID</code>.0/24)</a><ul><li><a href="#part-1-create-a-new-ipv4-scope" class="table-of-contents__link toc-highlight">Part 1: Create a New IPv4 Scope</a></li></ul></li><li><a href="#investigation-3-reservations-for-predictable-addresses" class="table-of-contents__link toc-highlight">Investigation 3: Reservations for Predictable Addresses</a><ul><li><a href="#part-1-collect-physical-addresses-from-each-nic" class="table-of-contents__link toc-highlight">Part 1: Collect Physical Addresses From Each NIC</a></li><li><a href="#part-2-create-reservations-on-srv1" class="table-of-contents__link toc-highlight">Part 2: Create Reservations on <em>srv1</em></a></li></ul></li><li><a href="#investigation-4-switch-from-static-to-dhcp" class="table-of-contents__link toc-highlight">Investigation 4: Switch from Static to DHCP</a><ul><li><a href="#part-1-swtiching-srv2-server-core" class="table-of-contents__link toc-highlight">Part 1: Swtiching <em>srv2</em> (Server Core)</a></li><li><a href="#part-2-client1-windows-11" class="table-of-contents__link toc-highlight">Part 2: <em>client1</em> (Windows 11)</a></li><li><a href="#part-3-client2-windows-11" class="table-of-contents__link toc-highlight">Part 3: <em>client2</em> (Windows 11)</a></li></ul></li><li><a href="#investigation-5-verify-leases-and-name-resolution" class="table-of-contents__link toc-highlight">Investigation 5: Verify Leases and Name Resolution</a><ul><li><a href="#part-1-check-leases-in-dhcp-manager" class="table-of-contents__link toc-highlight">Part 1: Check Leases in DHCP Manager</a></li><li><a href="#part-2-test-dhcp--dns" class="table-of-contents__link toc-highlight">Part 2: Test DHCP + DNS</a></li></ul></li><li><a href="#troubleshooting" class="table-of-contents__link toc-highlight">Troubleshooting</a></li><li><a href="#lab-5-signoff" class="table-of-contents__link toc-highlight">Lab 5 Sign‑Off</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">OSM620 - Fundamentals of Microsoft Systems</div><ul class="footer__items clean-list"><li class="footer__item"><a href="#" id="pwa-button" class="footer__link-item" hidden>Install as an App</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Seneca Polytechnic.</div></div></div></footer></div>
+</body>
+</html>

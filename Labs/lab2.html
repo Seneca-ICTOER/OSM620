@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Labs/lab2" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Lab 2 - Hyper-V, NAT, and Windows Clients | OSM620 - Fundamentals of Microsoft Systems</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://seneca-ictoer.github.io/OSM620v2/Labs/lab2"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Lab 2 - Hyper-V, NAT, and Windows Clients | OSM620 - Fundamentals of Microsoft Systems"><meta data-rh="true" name="description" content="Lab 2 - Hyper-V, NAT, and Windows Clients"><meta data-rh="true" property="og:description" content="Lab 2 - Hyper-V, NAT, and Windows Clients"><link data-rh="true" rel="icon" href="/OSM620v2/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab2"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab2" hreflang="en"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab2" hreflang="x-default"><link rel="icon" href="/OSM620v2/img/pwa/icon-512x512.png">
+<link rel="manifest" href="/OSM620v2/manifest.json">
+<meta name="theme-color" content="#DA291C">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#DA291C">
+<link rel="apple-touch-icon" href="/OSM620v2/img/pwa/icon-192x192.png">
+<link rel="mask-icon" href="/OSM620v2/img/pwa/icon-512x512.png" color="#DA291C">
+<meta name="msapplication-TileImage" content="/OSM620v2/img/pwa/icon-512x512.png">
+<meta name="msapplication-TileColor" content="#DA291C">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/OSM620v2/assets/css/styles.cba3e07b.css">
+<script src="/OSM620v2/assets/js/runtime~main.b62f346f.js" defer="defer"></script>
+<script src="/OSM620v2/assets/js/main.87c63611.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/OSM620v2/img/logo.svg"><link rel="preload" as="image" href="/OSM620v2/img/logo-dark.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><a class="navbar__brand" href="/OSM620v2/"><div class="navbar__logo"><img src="/OSM620v2/img/logo.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/OSM620v2/img/logo-dark.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">OSM620 - Fundamentals of Microsoft Systems</b></a></div><div class="navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/">Welcome to OSM620</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/weekly-schedule">Weekly Schedule</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/OSM620v2/Labs/lab1">Labs</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab1">Lab 1 - Environment Setup</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/OSM620v2/Labs/lab2">Lab 2 - Hyper-V, NAT, and Windows Clients</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab3">Lab 3 - Security and Remote Connectivity</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab4">Lab 4 - Implementing DNS</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab5">Lab 5 - Implementing DHCP</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab6">Lab 6 - Active Directory</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab7">Lab 7 - AD Users, Groups, Computers, and GPOs</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab8">Lab 8 - Network File Shares</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab9">Lab 9 - Introduction to Azure</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/OSM620v2/Assignments/assignment1">Assignments</a></div></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/OSM620v2/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Labs</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Lab 2 - Hyper-V, NAT, and Windows Clients</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Lab 2 - Hyper-V, NAT, and Windows Clients</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lab-preparations">Lab Preparations<a href="#lab-preparations" class="hash-link" aria-label="Direct link to Lab Preparations" title="Direct link to Lab Preparations">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="purpose-of-lab-2">Purpose of Lab 2<a href="#purpose-of-lab-2" class="hash-link" aria-label="Direct link to Purpose of Lab 2" title="Direct link to Purpose of Lab 2">​</a></h3>
+<p>In this lab, you’ll move beyond basic VM deployment and learn to create nested virtualization environments. This is a crucial skill for modern sysadmins and cloud architects. You’ll enable the Hyper-V role on your Windows Server, build a secure internal network using Hyper-V switches, and deploy Windows 11 client VMs within your existing server VM. You’ll also set up NAT and routing, allowing your nested clients to access the internet safely through your server.</p>
+<p>By the end, you’ll have a working mini-enterprise: one physical computer running a server VM, which itself is hosting client VMs. Just like real-world cloud and enterprise setups! You’ll gain hands-on experience with Hyper-V, RRAS, and NAT, and build a technical foundation for future labs in DHCP, DNS, and security.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="objectives">Objectives<a href="#objectives" class="hash-link" aria-label="Direct link to Objectives" title="Direct link to Objectives">​</a></h3>
+<p>By the end of this lab, you will be able to:</p>
+<ul>
+<li>Enable the Hyper-V role on a Windows Server 2025 VM and configure virtual networking.</li>
+<li>Build and configure a Hyper-V External Virtual Switch bound to a specific NIC.</li>
+<li>Set up Routing and Remote Access (RRAS) for network address translation (NAT) between internal and external networks.</li>
+<li>Deploy Windows 11 client VMs inside Hyper-V, configuring hardware and storage as needed.</li>
+<li>Assign static IPs and ensure that internal client VMs can reach the internet via NAT on your server.</li>
+<li>Practice real-world sysadmin tasks: managing nested VMs, routing, and internal networks.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="minimum-requirements">Minimum Requirements<a href="#minimum-requirements" class="hash-link" aria-label="Direct link to Minimum Requirements" title="Direct link to Minimum Requirements">​</a></h3>
+<p>Before beginning, you must have:</p>
+<ol>
+<li>Completed Lab 1 in full, with both srv1 and srv2 working, activated, and updated.</li>
+<li>Attended the Week 2 lecture, or carefully read through the Week 2 slides.</li>
+<li>Downloaded the Windows 11 Education ISO and your product key (from Lab 1).</li>
+<li>Access to VMware Workstation and your external SSD with at least 200 GB of free space remaining.</li>
+<li>Your printed OSM620 Lab Logbook for notetaking and command recording.</li>
+<li>A basic understanding of server roles, virtual networking, and Windows installation processes.</li>
+<li>Caffeine or snack of your choice: nested virtualization can be a long process!</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-1-hyper-v-role-installation-and-switch-setup-srv1">Investigation 1: Hyper-V Role Installation and Switch Setup <em>(srv1)</em><a href="#investigation-1-hyper-v-role-installation-and-switch-setup-srv1" class="hash-link" aria-label="Direct link to investigation-1-hyper-v-role-installation-and-switch-setup-srv1" title="Direct link to investigation-1-hyper-v-role-installation-and-switch-setup-srv1">​</a></h2>
+<p>In this investigation, you will install the Hyper-V role on srv1 and create a Hyper-V virtual switch that uses your existing Internal Network adapter.</p>
+<p>Your Hyper-V switch will be named Internal Network (Hyper-V).</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-install-the-hyper-v-role">Part 1: Install the Hyper-V Role<a href="#part-1-install-the-hyper-v-role" class="hash-link" aria-label="Direct link to Part 1: Install the Hyper-V Role" title="Direct link to Part 1: Install the Hyper-V Role">​</a></h3>
+<ol>
+<li>Open the <strong>Server Manager</strong> application and go to <strong>Add Roles and Features</strong>.</li>
+<li><strong>Installation Type:</strong> Keep Role-based or feature-based installation selected.</li>
+<li><strong>Server Selection:</strong> Ensure your local server (<em>srv1</em>) is selected.</li>
+<li><strong>Server Roles:</strong> Check <em><strong>Hyper-V</strong></em>.<!-- -->
+<ol>
+<li>When prompted to &quot;<em>Add features that are required for Hyper-V</em>&quot;, click <strong>Add Features</strong>.</li>
+</ol>
+</li>
+<li><strong>Features:</strong> Leave defaults (the <em>Hyper-V Management Tools</em> are already included).</li>
+<li><strong>Hyper-V page</strong>:<!-- -->
+<ol>
+<li>When asked about Virtual Switches, select <strong>Internal Network</strong> only.</li>
+<li>Migration for live migrations: leave unchecked.</li>
+<li>Default Stores: leave defaults.</li>
+</ol>
+</li>
+<li>Confirmation: Check &quot;<em>Restart the destination server automatically if required</em>&quot;.</li>
+<li>Click <strong>Install</strong>.</li>
+<li>Wait for installation to complete. If prompted, allow the reboot. Log back in when finished.</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> It’s normal for <em>Server Manager</em> to take a minute or two after reboot to show the Hyper-V tile.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-rename-the-hyper-v-virtual-switch">Part 2: Rename the Hyper-V Virtual Switch<a href="#part-2-rename-the-hyper-v-virtual-switch" class="hash-link" aria-label="Direct link to Part 2: Rename the Hyper-V Virtual Switch" title="Direct link to Part 2: Rename the Hyper-V Virtual Switch">​</a></h3>
+<p>As part of our Hyper-V role installation, we selected the <em>Internal Network</em> (Part 1, Step 6.1).</p>
+<p>This has created a virtual switch on the server. For easy management, we&#x27;ll rename it.</p>
+<p>Our new virtual switch name will be: <code>HQ Network</code></p>
+<ol>
+<li>
+<p>In Server Manager, click Tools (top-right) and select Hyper-V Manager.</p>
+</li>
+<li>
+<p>In the left pane, click your server name (e.g., srv1-…).</p>
+</li>
+<li>
+<p>In the right Actions pane, click Virtual Switch Manager….</p>
+</li>
+<li>
+<p>Under the Virtual Switches column on the left, look for the switch that&#x27;s already been created. It will likely have a name similar to: <code>Intel(R) 82574L Gigabit Network Connection - Virtual Switch</code></p>
+</li>
+<li>
+<p>In the Virtual Switch Properties window:</p>
+<ol>
+<li>
+<p>Name: Change to <code>HQ Network</code></p>
+</li>
+<li>
+<p>Ensure the <strong>External network</strong> radio button is selected.</p>
+<blockquote>
+<p><strong>Reminder:</strong> This is the adapter you renamed earlier to Internal Network and set to 10.0.<code>UID</code>.1.</p>
+</blockquote>
+</li>
+<li>
+<p>Ensure &quot;<em>Allow management operating system to share this network adapter</em>&quot; is checked.</p>
+</li>
+<li>
+<p>Click OK. If you see a warning about temporary network disruption, click Yes.</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Naming note:</strong> You are creating an External Hyper-V switch, but you’re binding it to the Windows NIC you named Internal Network.</p>
+<p>That’s correct.</p>
+<p>You will end up with a third network adapter called: <code>vEthernet (HQ Network)</code></p>
+</blockquote>
+</li>
+<li>
+<p>Go back to <em>Server Manager &gt; Local Server</em> and refresh. You should now see the following two networks:</p>
+<ul>
+<li><strong>External Network</strong>: Assigned by DHCP</li>
+<li><strong>vEthernet (HQ Network)</strong>: IPv4 addess assigned by DHCP, IPv6 enabled</li>
+</ul>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-configure-network-setting-for-hyper-v-switch">Part 3: Configure Network Setting for Hyper-V Switch<a href="#part-3-configure-network-setting-for-hyper-v-switch" class="hash-link" aria-label="Direct link to Part 3: Configure Network Setting for Hyper-V Switch" title="Direct link to Part 3: Configure Network Setting for Hyper-V Switch">​</a></h3>
+<p>Now that we&#x27;ve created the Hyper-V network adapter, we have to give it an IP address. This will let our Hyper-V VMs talk to the server, and eventually, bridge our Internet connection.</p>
+<ol>
+<li>In <em>Server Manager &gt; Local Server</em>, click on the entry next to <strong>vEthernet (HQ Network)</strong>. This opens the <em>Network Connections</em> window.</li>
+<li>Verify you now see a third network adapter: <code>vEthernet (HQ Network)</code></li>
+<li>Right-click it → Properties and do the following:<!-- -->
+<ol>
+<li>Internet Protocol Version 6 (TCP/IPv6): <strong>Unchecked</strong></li>
+<li>Internet Protocol Version 4 (TCP/IPv4): Select and click <strong>Properties</strong>
+<ol>
+<li>IPv4 Address: <strong>10.0.<code>UID</code>.1</strong></li>
+<li>Subnet Mask: <strong>255.255.255.0</strong></li>
+<li>Leave all other fields blank and click OK.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Back in <em>Server Manager &gt; Local Server</em>, refresh. You should now see the following two networks:<!-- -->
+<ul>
+<li><strong>External Network</strong>: Assigned by DHCP</li>
+<li><strong>vEthernet (HQ Network)</strong>: 10.0.<code>UID</code>.1</li>
+</ul>
+</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-2-rras-and-nat">Investigation 2: RRAS and NAT<a href="#investigation-2-rras-and-nat" class="hash-link" aria-label="Direct link to Investigation 2: RRAS and NAT" title="Direct link to Investigation 2: RRAS and NAT">​</a></h2>
+<p>Our server now has access to two networks:</p>
+<ul>
+<li><strong>External Network</strong>: Connection to the Internet</li>
+<li><strong>vEthernet (HQ Network)</strong>: Internal network only between <em>srv1</em> and the Hyper-V VMs we&#x27;ll create in Investigation 3. This network <em>does not</em> have access to the Internet.</li>
+</ul>
+<p>If we want to give our Hyper-V machines Internet access, we need to route network traffic between the two networks using <em>srv1</em> as a bridge. This keeps our Hyper-V machines on a secure network, and Internet access is handled and monitored by our Windows Server.</p>
+<p>This will involve setting up routing and network address translation (NAT).</p>
+<p>Welcome to Microsoft&#x27;s <strong>Routing and Remote Server (RRAS)</strong>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-installing-the-remote-access-role">Part 1: Installing the Remote Access Role<a href="#part-1-installing-the-remote-access-role" class="hash-link" aria-label="Direct link to Part 1: Installing the Remote Access Role" title="Direct link to Part 1: Installing the Remote Access Role">​</a></h3>
+<ol>
+<li>Open the <strong>Server Manager</strong> application and go to <strong>Add Roles and Features</strong>.</li>
+<li><strong>Installation Type:</strong> Keep Role-based or feature-based installation selected.</li>
+<li><strong>Server Selection:</strong> Ensure your local server (<em>srv1</em>) is selected.</li>
+<li><strong>Server Roles:</strong> Check <em><strong>Remote Access</strong></em>.</li>
+<li><strong>Features:</strong> Leave defaults (the <em>Hyper-V Management Tools</em> are already included).</li>
+<li><strong>Remote Access page:</strong> Click Next.<!-- -->
+<ol>
+<li>The <strong>Add Roles and Features Wizard</strong> dialog box appears. Leave defaults and select <em>Add Features</em>.</li>
+</ol>
+</li>
+<li><strong>Remote Access &gt; Role Services page:</strong> Check the following and click <em>Next</em> when ready:<!-- -->
+<ul>
+<li>Direct Access and VPN (RAS)</li>
+<li>Routing</li>
+</ul>
+</li>
+<li>Keep defaults and select <em>Next</em> on the following pages:<!-- -->
+<ol>
+<li>Web Server Role (IIS)</li>
+<li>Web Server Role (IIS) &gt; Role Services</li>
+</ol>
+</li>
+<li>Confirmation: Click <strong>Install</strong>.</li>
+<li>In the <strong>Results</strong> page: When installation has completed, click on the &quot;<em>Open the Getting Started Wizard</em>&quot; link.</li>
+<li>The wizard opens. Make no changes and close it. (This just removes the system nagging.)</li>
+<li>Back in <strong>Results</strong>, click Close.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-enabling-nat-with-rras">Part 2: Enabling NAT with RRAS<a href="#part-2-enabling-nat-with-rras" class="hash-link" aria-label="Direct link to Part 2: Enabling NAT with RRAS" title="Direct link to Part 2: Enabling NAT with RRAS">​</a></h3>
+<p>You will now install the tools for routing and NAT bridging discussed at the top of this investigation using the <strong>Routing and Remote Access Server</strong> (RRAS) we&#x27;ve just installed.</p>
+<ol>
+<li>Open the <strong>Server Manager</strong> application and go to <strong>Tools &gt; Routing and Remote Access</strong>.</li>
+<li>This opens the <em>Routing and Remote Access</em> application.</li>
+<li>In the right-hand column, find SRV1, right-click it, and select <strong>Configure and Enable Routing and Remote Access</strong>.</li>
+<li>The setup wizard appears. Click <em>Next</em>.</li>
+<li><strong>Configuration:</strong> Select the <em>Custom configuration</em> radio button.</li>
+<li><strong>Custom Configuration:</strong> Select (checkbox) only the following:<!-- -->
+<ul>
+<li>NAT</li>
+<li>LAN routing</li>
+</ul>
+</li>
+<li><strong>Summary window</strong>: Click <em>Finish</em>.</li>
+<li>The <strong>Routing and Remote Access</strong> service status dialog box appears. Click <em>Start service</em>.</li>
+<li>It may take a few moments for the service to fully start. Be patient.</li>
+<li>Once the <em>Routing and Remote Access</em> application reappears, move to the next part.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-configuring-nat-with-rras">Part 3: Configuring NAT with RRAS<a href="#part-3-configuring-nat-with-rras" class="hash-link" aria-label="Direct link to Part 3: Configuring NAT with RRAS" title="Direct link to Part 3: Configuring NAT with RRAS">​</a></h3>
+<p>It&#x27;s now time to configure the routing and NAT bridging between the two networks.</p>
+<ol>
+<li>Open the <strong>Routing and Remote Access</strong> application.</li>
+<li>In the right-hand column, expand <em>SRV1</em>, then expand <em>IPv4</em>.</li>
+<li>Right-click on <em>NAT</em> and select <em>New Interface</em>.</li>
+<li>Select the <strong>External Network</strong> entry and click <em>OK</em>.</li>
+<li>In the <em>Network Address Translation Properties</em> window, select the following and click OK when ready:<!-- -->
+<ul>
+<li>Public interface connected to the Internet</li>
+<li>Enable NAT on this interface</li>
+</ul>
+</li>
+<li>Right-click on <em>NAT</em> and select <em>New Interface</em> again.</li>
+<li>Select the <strong>vEthernet (HQ Network)</strong> entry and click OK.</li>
+<li>In the <em>Network Address Translation Propertie</em>s window, select the following and click OK when ready:<!-- -->
+<ul>
+<li>Private interface connected to private network</li>
+</ul>
+</li>
+<li>Back in the <em>NAT</em> window, you should see two created interfaces:<!-- -->
+<ul>
+<li>External Network</li>
+<li>vEthernet (HQ Network)</li>
+</ul>
+</li>
+<li>Keep the application open on <em>NAT</em> and minimize. We&#x27;ll come back to it later.</li>
+<li>That&#x27;s it! Move on to the next Investigation.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-3-installing-windows-client-1-with-hyper-v-client1">Investigation 3: Installing Windows Client 1 with Hyper-V <em>(client1)</em><a href="#investigation-3-installing-windows-client-1-with-hyper-v-client1" class="hash-link" aria-label="Direct link to investigation-3-installing-windows-client-1-with-hyper-v-client1" title="Direct link to investigation-3-installing-windows-client-1-with-hyper-v-client1">​</a></h2>
+<p>In this investigation, you&#x27;ll create your first Hyper-V based virtual machines.</p>
+<p>These will be Windows 11 client machines. Think of these as typical workstations in a corporate office.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-creating-the-hyper-v-virtual-machine">Part 1: Creating the Hyper-V Virtual Machine<a href="#part-1-creating-the-hyper-v-virtual-machine" class="hash-link" aria-label="Direct link to Part 1: Creating the Hyper-V Virtual Machine" title="Direct link to Part 1: Creating the Hyper-V Virtual Machine">​</a></h3>
+<ul>
+<li>Hypervisor: <strong>Hyper-V</strong></li>
+<li>Name: <strong>client1-<code>SenecaUsername</code></strong></li>
+<li>RAM: <strong>4 GB</strong></li>
+<li>CPU: <strong>2 processors</strong></li>
+<li>Storage: <strong>64 GB</strong></li>
+<li>NIC: <strong>1</strong> (default)</li>
+<li>Security: <strong>Enable Trusted Platform Module</strong></li>
+<li>ISO: <strong>Windows 11 Education</strong></li>
+</ul>
+<ol>
+<li>Drag and drop the <em>Microsoft Windows 11 ISO</em> file from Lab 1 onto the desktop of <em>srv1</em>. It should copy the file there. If it doesn&#x27;t, ask your professor for help before continuing.</li>
+<li>Open the <strong>Server Manager</strong> application and go to <strong>Tools &gt; Hyper-V Manager</strong>.</li>
+<li>This opens the <em>Hyper-V Manager</em> application.</li>
+<li>In the right-hand column, click on <strong>New &gt; Virtual Machine...</strong></li>
+<li>The <em>New Virtual Machine Wizard</em> appears.</li>
+<li>On the <em>Before You Begin</em> page, check the <strong>Do not show this page again</strong> option and click <strong>Next</strong>.</li>
+<li><strong>Specify Name and Location</strong>:<!-- -->
+<ul>
+<li>Name: <strong>client1-<code>SenecaUsername</code></strong></li>
+<li>Leave the rest at their defaults.</li>
+</ul>
+</li>
+<li><strong>Specify Generation:</strong> Leave defaults.</li>
+<li><strong>Assign Memory:</strong> 4096 MB</li>
+<li><strong>Configure Networking:</strong>
+<ul>
+<li>Connection: <strong>HQ Network</strong></li>
+</ul>
+</li>
+<li><strong>Connect Virtual Hard Disk:</strong>
+<ul>
+<li><strong>Create a virtual hard disk</strong> selected.</li>
+<li>Size: <strong>64 GB</strong></li>
+<li>Leave the rest at their defaults.</li>
+</ul>
+</li>
+<li><strong>Installer Options:</strong>
+<ul>
+<li>Select <strong>Install an operating system from a bootable CD/DVD-ROM</strong></li>
+<li>Select <strong>Image file (.iso):</strong></li>
+<li>Click <strong>Browse</strong> and select the Windows 11 ISO image file you copied to <em>srv1</em>.</li>
+</ul>
+</li>
+<li><strong>Summary:</strong> Click <em>Finish</em>.</li>
+</ol>
+<blockquote>
+<p><strong>WARNING:</strong> Do not start the <em>client1</em> VM, yet! We need to modify it. See <em>Part 2</em>.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-modifying-client1-vm-for-windows-11">Part 2: Modifying <em>client1</em> VM for Windows 11<a href="#part-2-modifying-client1-vm-for-windows-11" class="hash-link" aria-label="Direct link to part-2-modifying-client1-vm-for-windows-11" title="Direct link to part-2-modifying-client1-vm-for-windows-11">​</a></h3>
+<p>Despite Hyper-V being a Microsoft product and Windows 11 being a Microsoft product, Hyper-V doesn&#x27;t automatically add everything needed to run Windows 11.</p>
+<p>If you think this is silly... It is. Welcome to the wonderful world of IT.</p>
+<ol>
+<li>In the <strong>Hyper-V Manager</strong> application, select the <em>client1</em> VM.</li>
+<li>In the right-hand column, look for and click on the *<em>Settings...</em> option.</li>
+<li>This opens up the settings window for the <em>client1</em> VM. Change the following:</li>
+<li><strong>Processor:</strong>
+<ul>
+<li>Number of virtual processors: <strong>2</strong></li>
+<li>Make sure to click <strong>Apply</strong>!</li>
+</ul>
+</li>
+<li><strong>Security:</strong>
+<ul>
+<li>Encryption Support &gt; Enable Trusted Platform Module: <strong>Checked</strong></li>
+<li>Make sure to click <strong>Apply</strong>!</li>
+</ul>
+</li>
+<li>Click <strong>OK</strong> to close the VM settings window.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-hyper-v-client-management">Part 3: Hyper-V Client Management<a href="#part-3-hyper-v-client-management" class="hash-link" aria-label="Direct link to Part 3: Hyper-V Client Management" title="Direct link to Part 3: Hyper-V Client Management">​</a></h3>
+<p>Knowing how to power on and off your Hyper-V VM is important and includes a few cool features.</p>
+<p>In the <strong>Hyper-V Manager</strong> application, select the <strong>client1</strong> VM. (Single click. Do not double-click.)</p>
+<p>On the right-hand column, towards the bottom, you have:</p>
+<ul>
+<li><strong>Connect</strong>: This <em>connects</em> to the VM. It will open a virtual monitor to the machine. Just like a normal computer, if the computer (VM) is off, connecting to it will do nothing but give you a blank screen.</li>
+<li><strong>Settings</strong>: You used this in <em>Part 2</em>. Modify VM settings. Don&#x27;t change anything unless told to.</li>
+<li><strong>Start</strong>: Power on the VM. If you are already connected to it, you will see it power up. If not connected, it still powers up. Click on <strong>Connect</strong> to open a screen to it.</li>
+</ul>
+<p>When the VM is powered on, you have additional options in that column:</p>
+<ul>
+<li>
+<p><strong>Turn Off:</strong> This is the equivalent of pulling the power plug. Don&#x27;t do this unless the VM is fully frozen and not responding from commands. (This is the <em>&quot;Nuke it from orbit.&quot;</em> option. It works, but it&#x27;s overkill and may cause damage.)</p>
+</li>
+<li>
+<p><strong>Shut down:</strong> This is the polite version of the option above. Hyper-V will send a gentle &quot;Please shut down.&quot; command to the Windows 11 client. If the Windows 11 client is working, it&#x27;ll close all applications and shut down properly. Hyper-V detects the OS having shut down and then powers off the VM itself. (<strong>This is your preferred option.</strong>)</p>
+</li>
+<li>
+<p><strong>Reset:</strong> Equivalent to pressing the <em>Reset</em> physical button on a computer. Yanks the power and then turns it back on. AKA <em>&quot;Nuke and reload.&quot;</em> (Again, don&#x27;t use unless unresponsive.)</p>
+</li>
+<li>
+<p>The <strong>Start</strong> button disappears when the VM is on, which makes sense.</p>
+</li>
+</ul>
+<p>There are other options, but those are enough to get by for now.</p>
+<blockquote>
+<p><strong>IMPORTANT:</strong> Always safely shut down all Hyper-V VMs before shutting down your Windows Server!</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-installing-windows-11-client1">Part 4: Installing Windows 11 (<em>client1</em>)<a href="#part-4-installing-windows-11-client1" class="hash-link" aria-label="Direct link to part-4-installing-windows-11-client1" title="Direct link to part-4-installing-windows-11-client1">​</a></h3>
+<ol>
+<li>Once the Windows 11 Setup screen appears:</li>
+<li>On <em>Select language settings</em>, keep the defaults and click <strong>Next</strong>.</li>
+<li>On <em>Select keyboard settings</em>, keep the defaults and click <strong>Next</strong>.</li>
+<li>On <em>Select setup option</em>, do the following:<!-- -->
+<ol>
+<li>Select <em>Install Windows 11</em></li>
+<li>Check the box next to <em>I agree everything will be deleted, including files, apps, and settings</em></li>
+<li>Click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li>On the <em>Product key</em> page, enter your product key and click <strong>Next</strong>.</li>
+<li>On <em>Applicable notices and license terms</em>, click <strong>Accept</strong>.</li>
+<li>On <em>Select location to install Windows 11</em>, keep the defaults and click <strong>Next</strong>.</li>
+<li>On <em>Ready to install</em>, click <strong>Install</strong>.</li>
+<li>The Windows Installer will now install the OS. This may take some time, and the percentage may freeze at certain points. Be patient.</li>
+<li>When the installer finishes, Windows 11 will start up and you will be launched into the First-Run Setup. Go to Part 3.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-5--first-run-setup">Part 5:  First-Run Setup<a href="#part-5--first-run-setup" class="hash-link" aria-label="Direct link to Part 5:  First-Run Setup" title="Direct link to Part 5:  First-Run Setup">​</a></h3>
+<ol>
+<li>On <em>Is this the right country or region?</em>, select <strong>Canada</strong> and click <strong>Yes.</strong></li>
+<li>On <em>Is this the right keyboard layout or input method?</em>, stick with the default and click <strong>Yes</strong>.</li>
+<li>On <em>Want to add a secondary keyboard layout?</em>, click <strong>Skip</strong>.</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> If it has an Internet connection, Windows will now check for available updates from the Internet. If it finds any, it will install them automatically.</p>
+<p>If it doesn&#x27;t have an Internet connection, this step will be skipped.</p>
+</blockquote>
+<p>This process may take some time. Please be patient. Your VM may restart on its own.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-6-account-creation">Part 6: Account Creation<a href="#part-6-account-creation" class="hash-link" aria-label="Direct link to Part 6: Account Creation" title="Direct link to Part 6: Account Creation">​</a></h3>
+<p>Now that language/keyboard and installer updates have been applied, it&#x27;s time to create your account.</p>
+<blockquote>
+<p><strong>Note:</strong> Steps 1-2 may not be necessary. If you&#x27;re asked for a name, start with Step 3.</p>
+</blockquote>
+<ol>
+<li>On <em>Let&#x27;s set things up for work or school</em>, select <strong>Sign-in options</strong>.</li>
+<li>On this next screen, click on <strong>Domain join instead</strong>.</li>
+<li>On <em>Who&#x27;s going to use this device?</em>, enter your <strong>Seneca username</strong>, (<em>Not</em> your full name), then click <strong>Next</strong>.</li>
+<li>On <em>Create a super memorable password</em>, enter the same password you&#x27;ve used for your other VMs and click <strong>Next</strong>.</li>
+<li>Confirm it on the next screen and continue.</li>
+<li>On <em>Now add security questions</em>, fill out three security questions, clicking <strong>Next</strong> after each.</li>
+<li>On <em>Let Microsoft and apps use your location</em>, select <strong>No</strong>, then click <strong>Accept</strong>.</li>
+<li>On <em>Find my device</em>, select <strong>No</strong>, then click <strong>Accept</strong>.</li>
+<li>On <em>Send diagnostic data to Microsoft</em>, scroll down to select <strong>Required only</strong>, then click <strong>Accept</strong>.</li>
+<li>On <em>Improve inking &amp; typing</em>, select <strong>No</strong>, then click <strong>Accept</strong>.</li>
+<li>On <em>Get tailored experiences with diagnostic data</em>, select <strong>No</strong>, then click <strong>Accept</strong>.</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> If it has a valid Internet connection, Windows will now check for <em>more</em> available updates. As before, if it finds any, it will install them automatically.</p>
+<p>If not, it will simply continue.</p>
+</blockquote>
+<p>This process may take some time. Please be patient. Your VM may restart on its own.</p>
+<p>Once complete, you will be presented with a login screen. Move to the next part to continue.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-4-post-installation-tasks-client1">Investigation 4: Post-Installation Tasks <em>(client1</em>)<a href="#investigation-4-post-installation-tasks-client1" class="hash-link" aria-label="Direct link to investigation-4-post-installation-tasks-client1" title="Direct link to investigation-4-post-installation-tasks-client1">​</a></h2>
+<p>In this investigation, we&#x27;ll log in for the first time and run through several post-installation tasks both necessary and for user comfort.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-first-login">Part 1: First Login<a href="#part-1-first-login" class="hash-link" aria-label="Direct link to Part 1: First Login" title="Direct link to Part 1: First Login">​</a></h3>
+<ol>
+<li>Enter your password to login. First-login may take a few minutes as your profile is set up.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-network-configuration">Part 2: Network Configuration<a href="#part-2-network-configuration" class="hash-link" aria-label="Direct link to Part 2: Network Configuration" title="Direct link to Part 2: Network Configuration">​</a></h3>
+<ol>
+<li>Click on the <em>Start</em> button and search for <strong>Network Connections</strong>. Open it when found.</li>
+<li>Find the only Ethernet adapter (it may have different names).</li>
+<li>Right-click it → Properties and do the following:<!-- -->
+<ol>
+<li>Internet Protocol Version 6 (TCP/IPv6): <strong>Unchecked</strong></li>
+<li>Internet Protocol Version 4 (TCP/IPv4): Select and click <strong>Properties</strong>
+<ol>
+<li>IPv4 address: <strong>10.0.<code>UID</code>.11</strong></li>
+<li>Subnet mask: <strong>255.255.255.0</strong></li>
+<li>Default gateway: 10.0.<code>UID</code>.1</li>
+<li>Preferred DNS server: 10.0.<code>UID</code>.1</li>
+<li>Alternate DNS server: 8.8.8.8</li>
+<li>Leave all other fields blank and click OK.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Open <em>Microsoft Edge</em> and nagivate to <strong>eff.org</strong>. If the page loads, you&#x27;re done!</li>
+</ol>
+<blockquote>
+<p><strong>Check it out:</strong> You are now using RRAS+NAT on your Windows Server to make this Internet connection happen.</p>
+<p>In <em>srv1</em>, go back to the <strong>Routing and Remote Access</strong> application. Inside, go to <em>SRV1 &gt; IPv4 &gt; NAT</em>. The <strong>External Network</strong> entry now has non-zero numbers under the &#x27;packets translated&#x27; columns. This is your routing and NAT from <em>client1</em> at work! Refresh the page to see the count go up.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-setting-the-time-zone">Part 2: Setting the Time Zone<a href="#part-2-setting-the-time-zone" class="hash-link" aria-label="Direct link to Part 2: Setting the Time Zone" title="Direct link to Part 2: Setting the Time Zone">​</a></h3>
+<ol>
+<li>Login again.</li>
+<li>Find the time on the bottom right of the screen (in the VM, not your host machine!)</li>
+<li>Right-click on the time and select <strong>Adjust date and time</strong>.</li>
+<li>Check the displayed time and time zone.</li>
+<li>The time should match current time, and the time zone should say <em>&quot;(UTC-5:00) Eastern Time (US &amp; Canada)&quot;</em>.</li>
+<li>If the time zone is wrong, change it to the value above.</li>
+<li>Confirm your time zone and time matches local time.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-setting-internal-computer-name">Part 3: Setting Internal Computer Name<a href="#part-3-setting-internal-computer-name" class="hash-link" aria-label="Direct link to Part 3: Setting Internal Computer Name" title="Direct link to Part 3: Setting Internal Computer Name">​</a></h3>
+<p>When we created our VM, we gave it the name <em>client1-SenecaUsername</em>. This only applies to how VMware Workstation sees the VM, not to how the internal Windows OS sees itself. We need to change that to match.</p>
+<ol>
+<li>In the <em>Settings</em> window you still have open (or reopen it from the Search bar), look to the left-hand menu bar and select <strong>System</strong>.</li>
+<li>The very first thing you see at the top is the current computer name. This is what we&#x27;re going to change.</li>
+<li>Click on the <strong>Rename</strong> text link.</li>
+<li>In the <em>Name your device</em> field, enter your VM&#x27;s name: <strong>client1-SenecaUsername</strong> (replacing <em>SenecaUsername</em> with your actual username)</li>
+<li>Click <strong>Next</strong>.</li>
+<li>You will now be asked if you&#x27;d like to restart. Click <strong>Restart now</strong>.</li>
+<li>After restarting and logging back in, go into <em>Settings</em> &gt; <em>System</em> and confirm your computer name is now <strong>client1-SenecaUsername</strong>.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-windows-updates">Part 4: Windows Updates<a href="#part-4-windows-updates" class="hash-link" aria-label="Direct link to Part 4: Windows Updates" title="Direct link to Part 4: Windows Updates">​</a></h3>
+<p>A critical part of a security-conscious mindset is running regular updates. <strong>This is NOT something you do only once at the start of installation.</strong> You should be running these regularly to keep up to date with security fixes and zero-day exploits.</p>
+<ol>
+<li>If you&#x27;re already in the <em>Settings</em> application, look through the left menubar for <strong>Windows Update</strong> and click it.</li>
+<li>In the <em>Windows Update</em> main screen, scroll down to <strong>Advanced Options</strong> and click it.</li>
+<li>The very first option is <em>Receive updates to other Microsoft products</em>. Toggle this from <strong>Off</strong> to <strong>On</strong>.</li>
+<li>At the top of the screen, where it says <em>Windows Update &gt; Advanced Options</em>, click <strong>Windows Update</strong> to go back to the previous screen.</li>
+<li>You will likely already see updates ready. Click on <strong>Download &amp; install all</strong>.</li>
+<li>As you might expect, this can take a while. Timing will depend on your Internet connection, how fast your computer is, how fast your SSD is, and how many updates there are. Please be patient. Your computer may restart.</li>
+<li>Once updates have begun, take a break while it does its thing. Grab a drink, make a sandwich, text a friend.</li>
+<li>After updates are complete, go back into <em>Windows Update</em> and click <strong>Check for updates</strong> again. There may be (and often times are) more.</li>
+<li>If there are more updates, complete Steps 5-8 again until there are no more updates available.</li>
+<li>In <em>Windows Update</em>, scroll back down to <strong>Advanced options</strong> again and click it.</li>
+<li>Inside <em>Windows Update &gt; Advanced options</em> scroll down to <strong>Optional updates</strong> and click it.</li>
+<li>Select all available updates that appear (you may have to expand some lists).</li>
+<li>Click <strong>Download &amp; install</strong>.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-5-installing-windows-client-2-with-hyper-v-client2">Investigation 5: Installing Windows Client 2 with Hyper-V <em>(client2)</em><a href="#investigation-5-installing-windows-client-2-with-hyper-v-client2" class="hash-link" aria-label="Direct link to investigation-5-installing-windows-client-2-with-hyper-v-client2" title="Direct link to investigation-5-installing-windows-client-2-with-hyper-v-client2">​</a></h2>
+<p>In this investigation, you&#x27;ll create your second Hyper-V based virtual machine. This will be another Windows 11 client.</p>
+<p>To conserve resources and speed up installation, it&#x27;s helpful to shutdown <em>client1</em> while doing this.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-creating-the-hyper-v-virtual-machine-1">Part 1: Creating the Hyper-V Virtual Machine<a href="#part-1-creating-the-hyper-v-virtual-machine-1" class="hash-link" aria-label="Direct link to Part 1: Creating the Hyper-V Virtual Machine" title="Direct link to Part 1: Creating the Hyper-V Virtual Machine">​</a></h3>
+<p>Create a second Hyper-V virtual machine with the following settings:</p>
+<ul>
+<li>Hypervisor: <strong>Hyper-V</strong></li>
+<li>Name: <strong>client2-<code>SenecaUsername</code></strong></li>
+<li>RAM: <strong>4 GB</strong></li>
+<li>CPU: <strong>2 processors</strong></li>
+<li>Storage: <strong>64 GB</strong></li>
+<li>NIC: <strong>1</strong> (default)</li>
+<li>Security: <strong>Enable Trusted Platform Module</strong></li>
+<li>ISO: <strong>Windows 11 Education</strong></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-installing-windows-11-client2">Part 2: Installing Windows 11 (<em>client2</em>)<a href="#part-2-installing-windows-11-client2" class="hash-link" aria-label="Direct link to part-2-installing-windows-11-client2" title="Direct link to part-2-installing-windows-11-client2">​</a></h3>
+<p>Set this up exactly as you did with <em>client1</em>, with <strong>two important changes</strong>:</p>
+<ol>
+<li>Computer Name: <strong>client2-<code>SenecaUsername</code></strong></li>
+<li>IP address: <strong>10.0.<code>UID</code>.12</strong></li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-post-installation-tasks-client2">Part 3: Post-Installation Tasks (<em>client2</em>)<a href="#part-3-post-installation-tasks-client2" class="hash-link" aria-label="Direct link to part-3-post-installation-tasks-client2" title="Direct link to part-3-post-installation-tasks-client2">​</a></h3>
+<p>Don&#x27;t forget to run your <strong>Post-Installation Tasks</strong>! These are the same as for <em>client1</em></p>
+<p>Once <em>client2</em> is installed and has a working Internet connection, you&#x27;re done!</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lab-2-sign-off">Lab 2 Sign-Off<a href="#lab-2-sign-off" class="hash-link" aria-label="Direct link to Lab 2 Sign-Off" title="Direct link to Lab 2 Sign-Off">​</a></h2>
+<p>It’s essential to complete Lab 2 correctly, as the nested virtualization setup will be the core environment for all advanced labs. Everything you do from this point (DHCP, DNS, security, and domain controller work) will depend on this structure being solid and consistent.</p>
+<p>When you finish Lab 2, ask your instructor for a sign-off. Your instructor will check your configuration, verify networking, and confirm all VMs are working as required.</p>
+<p>Sign-Off Checklist</p>
+<ol>
+<li>Hyper-V role is installed and running on srv1.</li>
+<li>HQ Network (External Virtual Switch) exists and is bound to the correct NIC.</li>
+<li>RRAS (Routing and Remote Access) is installed and NAT is configured for the two networks:<!-- -->
+<ol>
+<li>External Network: <strong>Internet access (DHCP-assigned)</strong></li>
+<li>vEthernet (HQ Network): <strong>10.0.<code>UID</code>.1/24</strong></li>
+</ol>
+</li>
+<li>client1 and client2 are both running inside Hyper-V, with the following:<!-- -->
+<ol>
+<li>Static IPs set: <strong>10.0.UID.11</strong> and <strong>10.0.UID.12</strong>, respectively.</li>
+<li>Default gateway set to <strong>10.0.UID.1</strong></li>
+<li>Both can access the internet (test by browsing to eff.org).</li>
+<li>Both have correct computer names set.</li>
+<li>Both have time zone set to EST.</li>
+<li>Both are fully updated via Windows Update.</li>
+</ol>
+</li>
+<li>Graceful shutdown: You can demonstrate safe start, shutdown, and reset procedures for Hyper-V VMs.</li>
+<li>All relevant steps, commands, and decisions are recorded in your Lab Logbook.</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/catherine-leung/OSM620v2/tree/main/docs/Labs/lab2.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/OSM620v2/Labs/lab1"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Lab 1 - Environment Setup</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/OSM620v2/Labs/lab3"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Lab 3 - Security and Remote Connectivity</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#lab-preparations" class="table-of-contents__link toc-highlight">Lab Preparations</a><ul><li><a href="#purpose-of-lab-2" class="table-of-contents__link toc-highlight">Purpose of Lab 2</a></li><li><a href="#objectives" class="table-of-contents__link toc-highlight">Objectives</a></li><li><a href="#minimum-requirements" class="table-of-contents__link toc-highlight">Minimum Requirements</a></li></ul></li><li><a href="#investigation-1-hyper-v-role-installation-and-switch-setup-srv1" class="table-of-contents__link toc-highlight">Investigation 1: Hyper-V Role Installation and Switch Setup <em>(srv1)</em></a><ul><li><a href="#part-1-install-the-hyper-v-role" class="table-of-contents__link toc-highlight">Part 1: Install the Hyper-V Role</a></li><li><a href="#part-2-rename-the-hyper-v-virtual-switch" class="table-of-contents__link toc-highlight">Part 2: Rename the Hyper-V Virtual Switch</a></li><li><a href="#part-3-configure-network-setting-for-hyper-v-switch" class="table-of-contents__link toc-highlight">Part 3: Configure Network Setting for Hyper-V Switch</a></li></ul></li><li><a href="#investigation-2-rras-and-nat" class="table-of-contents__link toc-highlight">Investigation 2: RRAS and NAT</a><ul><li><a href="#part-1-installing-the-remote-access-role" class="table-of-contents__link toc-highlight">Part 1: Installing the Remote Access Role</a></li><li><a href="#part-2-enabling-nat-with-rras" class="table-of-contents__link toc-highlight">Part 2: Enabling NAT with RRAS</a></li><li><a href="#part-3-configuring-nat-with-rras" class="table-of-contents__link toc-highlight">Part 3: Configuring NAT with RRAS</a></li></ul></li><li><a href="#investigation-3-installing-windows-client-1-with-hyper-v-client1" class="table-of-contents__link toc-highlight">Investigation 3: Installing Windows Client 1 with Hyper-V <em>(client1)</em></a><ul><li><a href="#part-1-creating-the-hyper-v-virtual-machine" class="table-of-contents__link toc-highlight">Part 1: Creating the Hyper-V Virtual Machine</a></li><li><a href="#part-2-modifying-client1-vm-for-windows-11" class="table-of-contents__link toc-highlight">Part 2: Modifying <em>client1</em> VM for Windows 11</a></li><li><a href="#part-3-hyper-v-client-management" class="table-of-contents__link toc-highlight">Part 3: Hyper-V Client Management</a></li><li><a href="#part-4-installing-windows-11-client1" class="table-of-contents__link toc-highlight">Part 4: Installing Windows 11 (<em>client1</em>)</a></li><li><a href="#part-5--first-run-setup" class="table-of-contents__link toc-highlight">Part 5:  First-Run Setup</a></li><li><a href="#part-6-account-creation" class="table-of-contents__link toc-highlight">Part 6: Account Creation</a></li></ul></li><li><a href="#investigation-4-post-installation-tasks-client1" class="table-of-contents__link toc-highlight">Investigation 4: Post-Installation Tasks <em>(client1</em>)</a><ul><li><a href="#part-1-first-login" class="table-of-contents__link toc-highlight">Part 1: First Login</a></li><li><a href="#part-2-network-configuration" class="table-of-contents__link toc-highlight">Part 2: Network Configuration</a></li><li><a href="#part-2-setting-the-time-zone" class="table-of-contents__link toc-highlight">Part 2: Setting the Time Zone</a></li><li><a href="#part-3-setting-internal-computer-name" class="table-of-contents__link toc-highlight">Part 3: Setting Internal Computer Name</a></li><li><a href="#part-4-windows-updates" class="table-of-contents__link toc-highlight">Part 4: Windows Updates</a></li></ul></li><li><a href="#investigation-5-installing-windows-client-2-with-hyper-v-client2" class="table-of-contents__link toc-highlight">Investigation 5: Installing Windows Client 2 with Hyper-V <em>(client2)</em></a><ul><li><a href="#part-1-creating-the-hyper-v-virtual-machine-1" class="table-of-contents__link toc-highlight">Part 1: Creating the Hyper-V Virtual Machine</a></li><li><a href="#part-2-installing-windows-11-client2" class="table-of-contents__link toc-highlight">Part 2: Installing Windows 11 (<em>client2</em>)</a></li><li><a href="#part-3-post-installation-tasks-client2" class="table-of-contents__link toc-highlight">Part 3: Post-Installation Tasks (<em>client2</em>)</a></li></ul></li><li><a href="#lab-2-sign-off" class="table-of-contents__link toc-highlight">Lab 2 Sign-Off</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">OSM620 - Fundamentals of Microsoft Systems</div><ul class="footer__items clean-list"><li class="footer__item"><a href="#" id="pwa-button" class="footer__link-item" hidden>Install as an App</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Seneca Polytechnic.</div></div></div></footer></div>
+</body>
+</html>
