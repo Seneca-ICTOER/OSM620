@@ -7,6 +7,12 @@ description: Lab 1 - Environment Setup
 
 # Lab 1 - Environment Setup
 
+Welcome to ***OSM620 - Fundamentals of Microsoft Systems***! In this lab, you'll install a few Windows virtual machines (VMs) using VMware Workstation. These VMs will act as your working environment for the course.
+
+We'll add a few more later in the course, make changes, explore, and learn how it all works. Don't be afraid to experiment and try things for fun.
+
+If you haven't used  our school's OER sites like this one before, take a quick look at our **How to Use This Lab Website** guide.
+
 ## Lab Preparations
 
 ### Purpose of Lab 1
@@ -42,12 +48,12 @@ Before beginning, you must have:
 
 1. Attended the Week 1 lecture.
 2. Read through the Week 1 slides, and have them handy as a reference for concepts.
-1. Working access to [portal.azure.com](https://portal.azure.com) with your Seneca credentials.
-1. Access to VMware Workstation (Seneca lab PC or personal PC meeting course specs).
-1. Your external SSD with at least 500 GB of dedicated space for this course.
-1. Your assigned **UID** (from Blackboard Grades) handy for addressing.
-1. Your physically printed **OSM620 Lab Logbook** for notetaking and saving commands.
-1. Optional, but recommended: Caffeine delivery system.
+3. Working access to [portal.azure.com](https://portal.azure.com) with your Seneca credentials.
+4. Access to VMware Workstation (Seneca lab PC or personal PC meeting course specs).
+5. Your external SSD with at least 500 GB of dedicated space for this course.
+6. Your assigned **UID** (from Blackboard Grades) handy for addressing.
+7. Your physically printed **OSM620 Lab Logbook** for notetaking and saving commands.
+8. Optional, but recommended: Caffeine delivery system.
 
 ## Investigation 1: Downloading Installation Media
 
@@ -106,6 +112,17 @@ How do you know if your particular Seneca Lab classroom has VMware Workstation i
 1. Proceed to the next investigation.
 
 ### Option 2: Personal Computer
+
+You can absolutely install and run VMware Workstation on your own personal computer if you have the following minimum hardware:
+
+1. CPU: **6-core Intel/AMD**
+1. RAM: **32 GB**
+1. Storage: **500 GB SSD free**, *reserved for this course* (if external, USB3.0 or higher)
+1. Internet connection: **High speed, stable**
+
+> **CPU architecture is vital.** You *cannot* use ARM or SnapDragon based computers for this course. This includes all Apple Silicon computers (M1/M2/M3/M4, etc).
+
+If you'd like to go this route, follow the instructions over here: [Lab 1.1 - Personal VMware Installation](lab1.1.md)
 
 #### Part 1: Computer Hardware Requirements
 
@@ -476,6 +493,7 @@ It is extremely important that you complete Lab 1 correctly as these Windows Ser
 When you have completed Lab 1, ask your instructor to come and check your installation. This must be done in class. They will ask you to complete a set of tasks/commands. If everything has been completed correctly, your instructor will mark your Lab 1 as complete.
 
 ### Sign-Off Checklist
+
 1. Open VMware Hardware Settings window for *srv1* and *srv2*.
 1. *srv1* is currently running and logged in.
 1. *srv2* is currently running and logged in.
