@@ -5,19 +5,19 @@ import rehypeKatex from 'rehype-katex';
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'OER Course Title',
+  title: 'OSM620 - Fundamentals of Microsoft Systems',
   tagline: 'OER Tag/Keyword',
   url: 'https://seneca-ictoer.github.io/',
-  baseUrl: '/OERTemplate/',
+  baseUrl: '/OSM620v2/',
   trailingSlash: false,
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'seneca-ictoer',
-  projectName: 'OERTemplate',
+  projectName: 'OSM620v2',
   themeConfig: {
     navbar: {
-      title: 'OER Course Title',
+      title: 'OSM620 - Fundamentals of Microsoft Systems',
       logo: {
         alt: 'Seneca Polytechnic',
         src: 'img/logo.svg',
@@ -37,7 +37,7 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'OER Course Title',
+          title: 'OSM620 - Fundamentals of Microsoft Systems',
           items: [
             {
               html: `<a href='#' id='pwa-button' class='footer__link-item' hidden>Install as an App</a>`,
@@ -59,7 +59,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
-          editUrl: 'https://github.com/catherine-leung/OERTemplate/tree/main',
+          editUrl: 'https://github.com/catherine-leung/OSM620v2/tree/main',
           remarkPlugins: [remarkMath],
           rehypePlugins: [[rehypeKatex, { strict: false }]],
         },
