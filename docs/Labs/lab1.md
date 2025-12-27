@@ -122,7 +122,7 @@ You can absolutely install and run VMware Workstation on your own personal compu
 
 > **CPU architecture is vital.** You *cannot* use ARM or SnapDragon based computers for this course. This includes all Apple Silicon computers (M1/M2/M3/M4, etc).
 
-If you'd like to go this route, follow the instructions over here: [Lab 1.1 - Personal VMware Installation](lab1.1.md)
+If you'd like to go this route, follow the instructions over here: [Lab 1.1 - Personal VMware Installation](../Extra%20Resources/lab1.1.md)
 
 #### Part 1: Computer Hardware Requirements
 

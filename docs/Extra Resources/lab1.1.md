@@ -1,7 +1,7 @@
 ---
 id: lab1.1
 title: Lab 1.1 - Personal VMware Installation
-sidebar_position: 2
+sidebar_position: 1
 description: Lab 1.1 - Personal VMware Installation
 --- 
 
