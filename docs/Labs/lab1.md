@@ -652,7 +652,7 @@ In this part, you will create a new Windows 11 virtual machine using the hardwar
 
 > **Note:** Keep all other VMs (except the router) off until told otherwise.
 
-### VM Specifications
+#### VM Specifications
 
 | Setting    | Value                          |
 | ---------- | -------------------------------|
