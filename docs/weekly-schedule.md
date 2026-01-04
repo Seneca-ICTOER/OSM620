@@ -15,43 +15,43 @@ This is a working schedule and may be subject to change.
 
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
-| Introduction to OSM620 | Lab 1 - Environment Setup |  |
-| Introduction to Microsoft Server 2025 and Virtual Machines | Posted slides and lecture material |  |
+| Introduction to OSM620 | Lab 1 - Environment Setup | |
+| Introduction to Microsoft Server 2025 and Virtual Machines | Posted slides and lecture material | |
 
 ## Week 2
 
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
-|   Microsoft Technologies, Windows Server, and Editions | Lab 2 - Hyper-V, NAT, and Windows Clients  | Lab 1 – Environment Setup (2.5%) |
-| Demo: Server Installation | Posted slides and lecture material |  |
+|   Microsoft Technologies, Windows Server, and Editions | Lab 1 - Environment Setup  |  |
+| Demo: Server Installation | Posted slides and lecture material | |
 
 ## Week 3
 
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
-| Basic Networking and Security Principles | Lab 3 – Security and Remote Connectivity | Lab 2 - Hyper-V, NAT, and Windows Clients (2.5%) |
+| Basic Networking and Security Principles | Lab 2 – Security and Remote Connectivity | Lab 1 – Environment Setup (5%) |
 | Demo: VM Interconnectivity and Troubleshooting | Posted slides and lecture material | |
 
 ## Week 4
 
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
-| DNS: Concepts and Implementation | Lab 4 - Implementing DNS |Lab 3 – Security and Remote Connectivity (5%) |
-| Demo: Hosting DNS | Posted slides and lecture material |  |
+| DNS: Concepts and Implementation | Lab 3 - Implementing DNS | Lab 2 – Security and Remote Connectivity (5%) |
+| Demo: Hosting DNS | Posted slides and lecture material | |
 
 ## Week 5
 
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
-|   DHCP: Concepts and Implementation | Lab 5 - Implementing DHCP | Lab 4 - Implementing DNS (5%) |
+|   DHCP: Concepts and Implementation | Lab 4 - Implementing DHCP | Lab 3 - Implementing DNS (5%) |
 | Demo: Hosting DHCP | Posted slides and lecture material | |
 
 ## Week 6
 
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
-| Release and Discuss: Assignment 1 | Assignment 1 | Lab 5 - Implementing DHCP (5%) |
-| Dedicated lab time and lab help (Work Week) | Posted slides and lecture material | Quiz 4 |
+| Release and Discuss: Assignment 1 | Assignment 1 | Lab 4 - Implementing DHCP (5%) |
+| Dedicated lab time and lab help (Work Week) | Posted slides and lecture material | |
 
 ## Week 7
 
@@ -70,35 +70,35 @@ This is a working schedule and may be subject to change.
 
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
-| Introduction to Active Directory | Lab 6 - Active Directory |  |
+| Introduction to Active Directory | Lab 5 - Active Directory |  |
 | Demo: AD Creation | Posted slides and lecture material |  |
 
 ## Week 9
 
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
-| Domain Controllers and RODCs | Lab 6 - Active Directory |  |
+| Domain Controllers and RODCs | Lab 5 - Active Directory |  |
 | Assignment 2 Discussion: Group Project Creation | Posted slides and lecture material |  |
 
 ## Week 10
 
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
-| Active Directory Users, Groups, and Group Policies | Lab 7 – Users, Groups, and Group Policies | Lab 6 - Active Directory (5%) |
+| Active Directory Users, Groups, and Group Policies | Lab 6 – Users, Groups, and Group Policies | Lab 5 - Active Directory (5%) |
 | Demo: Applying Group Policies and Downstream Effects | Posted slides and lecture material | |
 
 ## Week 11
 
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
-| Server Storage and File Shares | Lab 8 – Configuring Storage | Lab 7 – Users, Groups, and Group Policies (5%) |
+| Server Storage and File Shares | Lab 7 – Configuring Storage | Lab 6 – Users, Groups, and Group Policies (5%) |
 | Demo: Assigning and Mapping Storage | Posted slides and lecture material | |
 
 ## Week 12
 
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
-| Introduction to Microsoft Azure and Cloud Computing | Lab 9 – Introduction to Azure | Lab 8 – Configuring Storage (5%) |
+| Introduction to Microsoft Azure and Cloud Computing | Lab 8 – Introduction to Azure | Lab 7 – Configuring Storage (5%) |
 | Demo: Introduction to Azure UI and Access | Posted slides and lecture material | |
 
 ## Week 13
@@ -106,7 +106,7 @@ This is a working schedule and may be subject to change.
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
 | Group Project Presentations | Posted slides and lecture material | Group Presentations |
-| | | Lab 9 – Introduction to Azure (5%) |
+| | | Lab 8 – Introduction to Azure (5%) |
 | | | Assignment 2: Group Project (15%) |
 
 ## Week 14
