@@ -124,14 +124,174 @@ You can absolutely install and run VMware Workstation on your own personal compu
 
 If you'd like to go this route, follow the instructions over here: [Lab 1.1 - Personal VMware Installation](../Extra%20Resources/lab1.1.md)
 
-## Investigation 3: VM1 Installation - Windows Server 2025 Datacenter (*srv1*)
+## Investigation 3: Virtual Machine Installation - *router* VM
+
+In this investigation, we'll be adding a Linux-based router to our setup. This low-footprint virtual machine will take the place of typical physical router to provide an Internet connection to all your other VMs.
+
+Most on-premises installations (offices, warehouses, schools, your home) will have a physical router that does this does instead of relying on a VM to do that work.
+
+Setting this up is extremely easy and should only take a few minutes.
+
+After you're done, you will need to have this VM powered on during all lab work. We'll remind you of this often.
+
+> **IMPORTANT:** When opening virtual machines on different computers (moving from one lab to another, etc), if VMware ever asks during power on if this VM has been 'moved' or 'copied', ***always select MOVED***.
+>
+> Selecting 'copied' will *severerly* break this VM (and your Windows VMs later on.)
+
+### VM Specifications
+
+| Setting    | Value                       |
+| ---------- | --------------------------- |
+| VM Name    | router                      |
+| Role       | Router / NAT (edge)         |
+| OS / Image | VyOS (current stable ISO)   |
+| vCPU       | 1                           |
+| RAM        | 512 MB                      |
+| Disk       | 20 GB                       |
+| NICs       | 2                           |
+| NIC1       | VMware NAT                  |
+| NIC2       | VMnet10                     |
+| NIC2 IPv4  | **10.0.`UID`.254/24** (static) |
+
+Instructions to set this up are provided below.
+
+### Part 1: Create *router* VM
+
+Here we'll create the VM hardware for your VM.
+
+### Part 1: Virtual Machine Hardware
+
+1. Download the VyOS ISO directly from here: [https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso](https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso)
+1. In the main window, you should see a large + symbol icon titled **Create a New Virtual Machine**. Click it.
+1. In the new dialog box, keep *Typical* selected and click the **Next** button.
+1. On the next screen, *Guest Operating System Installation*, do the following:
+    1. Select *Installer disc image file (ISO):*
+    1. Now click **Browse**.
+    1. Navigate to where you saved your ***VyOS*** downloaded ISO and select it.
+    1. Once selected, on the previous screen select:
+
+        > **Debian 13.x 64-bit**
+
+    1. Click **Next**.
+1. On the "Name the Virtual Machine" screen, do the following:
+    1. Virtual machine name: **router-*senecausername***
+
+       > **Explanation:** For example, if my Seneca e-mail address is `cjohnson30@myseneca.ca`, then my Seneca username is *cjohnson30*. This would give me a VM name of *router-cjohnson30*.
+
+    1. Location: If using an external SSD (like with our lab computers), click **Browse** and navigate to your external SSD.
+        1. Create the following directory structure in your SSD: *OSM620 > Virtual Machines/router-cjohnson30*
+        1. Select this new *router-cjohnson30* folder.
+        1. Make sure you now see this change in the Location field.
+    1. Click **Next**.
+1. On the "Specify Disk Capacity" screen, do the following:
+    1. Maximum disk size (GB): **20**
+    1. Select *Split virtual disk into multiple files*.
+    1. Click Next.
+1. On the "Ready to Create Virtual Machine" screen, do the following:
+    1. Click on **Customize hardware...**
+1. On the new "Hardware" screen, do the following:
+    1. Select *Memory*, and change the value to: **512**
+    1. Select *Processors*, and change:
+        1. Number of processors: **1**
+        1. Number of cores per processor: **1**
+        1. Virtualize Intel VT-x/EPT or AMD-V/RVI: **Checked**
+        1. Virtualize CPU performance counters: ***Unchecked***
+        1. Virtualize IOMMU (IO memory management unit): **Checked**
+    1. Select *Network Adapter* and confirm:
+        1. *Connected at power on:* **Checked**
+        1. *NAT*: **Checked**
+    1. Click on the ***Add...*** button on the bottom left of the *Hardware* window.
+        1. Select *Network Adapter* and click **Finish**.
+        1. Back in the *Hardware* window, click on *Network Adapter 2*.
+        1. Under *Network connection*, click the **Custom: Specific virtual network** radio button.
+        1. Just below that, click the drop-down (it likely says *VMnet0* by default). Find and select **VMnet10**.
+        1. Click **Close**.
+1. Back in the "Ready to Create Virtual Machine" screen, click **Finish**.
+1. The virtual machine should launch.
+1. If you get a dialog box about *Side channel mitigations*, check the box for *Do not show this hint again* and click **OK**.
+1. Your new Virtual Machine should now finish creating and then turn on and begin the OS installation.
+
+### Part 2: OS Setup Instructions
+
+Now, we'll go through the operating system installation and configuration process. This is an incredibly quick and easy process.
+
+> **NOTE:** You will select a password for this VM in a few steps. **Use the same secure password for all VMs you create in this course.**
+>
+> At least: 8 characters, one upper-case letter, one number, and one non-alpanumeric character.
+>
+> This will make your life much easier. In a normal environment, having the same password for everything is a security risk, but we are in a learning environment.
+
+1. If it does not automatically  do so, power on the VM yourself.
+1. In the boot menu, select the first option: **Live system (vyos)**
+1. Login with these credentials:
+    1. Username: **vyos**
+    2. Password: **vyos**
+1. Install VyOS on the disk using this command: `install image`
+    1. Would you like to continue?: **y**
+    2. What would you like to name this image?: **Just hit Enter to select the default**
+    3. Please enter a password for the "vyos" user: *yourNormalAdminPassword*
+    4. What console should be used as default?: **Hit Enter to select default**
+    5. Which one should be used for installation?: **Enter to select default**
+    6. Installation will delete all data on the drive. Continue?: **y**
+    7. Would you like to use all the free space on this drive:? **y**
+    8. What would you like to use as boot config?: **Enter to select default**
+1. The installation proceeds (it's very fast). When finished, reboot: `sudo reboot`
+1. Wait for the machine OS to boot up again.
+1. Use the following credentials for your new VM:
+    1. Username: ***vyos***
+    2. Password: ***yourNormalAdminPassword***
+
+### Part 3: Configuring Routing
+
+Now that our new virtual machine is installed and running, we need to configure it to do our routing. This is a one-time process.
+
+> **NOTE:** Please have your *UID* ready before starting this section. Your UID is the 2-digit number assigned to you by your professor. Each student's UID is different.
+>
+> Example: **UID = 14**
+>
+> If you are unsure, ask your professor for help.
+
+1. Power on router VM and login. (If you haven't already.)
+2. Run the following commands ONE AT A TIME (**Replace UID!**):
+
+```bash
+configure
+set interface ethernet eth0 address dhcp
+set system name-server eth0
+set interface ethernet eth1 address 10.0.UID.254/24
+set nat source rule 20 outbound-interface name eth0
+set nat source rule 20 source address 10.0.UID.0/24
+set nat source rule 20 translation address 'masquerade'
+set system ipv6 disable 
+commit
+save
+exit
+```
+
+> *Figure 1. Example of VyOS commands*
+
+1. Check your router can access the Internet: `ping eff.org`
+
+> *Figure 2. Proper ping completion*
+
+1. If it receives proper ping, move on to the next step. If not, ask for help! Ping will be covered in more detail in Lab 2.
+2. Log out: `exit`
+3. Keep this VM up! Minimize and move on to the next Investigation.
+
+Congratulations! You now have a router VM that uses minimal resources.
+
+> **Note:** After this lab, whenever you have other Windows VMs turned on, turn this one on first. (You don't need to log into it, just let it do its thing.)
+>
+> **This is your connection to the Internet for all your other VMs.**
+
+## Investigation 4: VM1 Installation - Windows Server 2025 Datacenter (*srv1*)
 
 * Hypervisor: **VMware Workstation**
 * Name: **srv1-cjohnson30**
-* RAM: **16 GB**
-* CPU: **6 cores**
+* RAM: **8 GB**
+* CPU: **4 cores**
 * Storage: **250 GB**
-* Networking: **2 NICs**
+* Networking: **1 NICs**
 * ISO: **Windows Server 2025**
 
 #### Flowchart Visualization of Investigation 3
@@ -182,19 +342,15 @@ If you'd like to go this route, follow the instructions over here: [Lab 1.1 - Pe
 1. On the "Ready to Create Virtual Machine" screen, do the following:
     1. Click on **Customize hardware...**
 1. On the new "Hardware" screen, do the following:
-    1. Select *Memory*, and change the value to: **16384**
+    1. Select *Memory*, and change the value to: **8192**
     1. Select *Processors*, and change:
         1. Number of processors: **1**
-        1. Number of cores per processor: **6**
+        1. Number of cores per processor: **4**
         1. Virtualize Intel VT-x/EPT or AMD-V/RVI: **Checked**
         1. Virtualize CPU performance counters: ***Unchecked***
         1. Virtualize IOMMU (IO memory management unit): **Checked**
     1. Select *Network Adapter* and confirm:
         1. *Connected at power on:* **Checked**
-        1. *NAT*: **Checked**
-    1. Click on the ***Add...*** button on the bottom left of the *Hardware* window.
-        1. Select *Network Adapter* and click **Finish**.
-        1. Back in the *Hardware* window, click on *Network Adapter 2*.
         1. Under *Network connection*, click the **Custom: Specific virtual network** radio button.
         1. Just below that, click the drop-down (it likely says *VMnet0* by default). Find and select **VMnet10**.
         1. Click **Close**.
@@ -211,17 +367,15 @@ If you'd like to go this route, follow the instructions over here: [Lab 1.1 - Pe
 1. Eventually, you will be presented with the desktop and the VMware Tools installer having completed and asking if you'd like to restart. Choose **Yes**.
 1. Once you've restarted, your installation is complete.
 
-## Investigation 4: Post-Installation Tasks (*srv1*)
+### Part 2: Installing VMware Tools
 
 After installing a new operating system, there are always a number of **post-installation tasks** to complete. **These aren't optional!**
 
-#### Overview Check-In: *srv1* Internet Connection
+Our first task is to install all the drivers and software that let VMware Workstation work well with our new installation of Windows.
 
-Let's take a quick look at an overview of our NAT Internet connection as it currently stands. It's important to understand how everything is connected.
+STUFF GOES HERE
 
-> ![Fig 4. Lab 1, Investigation 4 - Network Diagram](/img/lab1-netdiag-srv1.png)
-
-### Part 1: Applying Time Zone Settings
+### Part 3: Applying Time Zone Settings
 
 This one is fairly straight-forward. Having the proper time zone set (EST) is essential for proper time keeping and ensuring encrypted webpages connect properly.
 
@@ -229,7 +383,7 @@ This one is fairly straight-forward. Having the proper time zone set (EST) is es
 1. In the main *Properties* area, on the right-hand column, look for the *Time Zone* line. It should say **(UTC-05:00) Eastern Time (US & Canada)**.
 1. If the *Time Zone* line item doesn't say the above, click on the displayed time zone and change it to UTC-05:00 as seen above.
 
-### Part 2: Server Name Change
+### Part 3: Server Name Change
 
 The default name applied to your new server will be semi-randomized. For proper identification (and to not wonder which server you're on when you have several), we're going to change this.
 
@@ -241,15 +395,6 @@ The default name applied to your new server will be semi-randomized. For proper 
 1. When you click **OK**, the system will warn you about restarting. Choose to restart the system when asked.
 1. Once you've restarted and logged back in, go back to the *Server Manager* from Part 1 and double-check your new computer name is correct. **Do not skip this step!**
 1. If it is, you're done!
-
-### Part 3: Windows Activation
-
-Activating Windows unlocks certain settings and features. Since you've used your valid serial key (right?), you can activate with Microsoft easily.
-
-1. In the *Server Manager* application, click on **Local Server** in the left-hand menubar.
-1. In the main *Properties* area, on the right-hand column, look for the *Product ID* line.
-1. Click on the **Not activated** link.
-1. Follow the instructions in the popup dialog box. If unable to activate easily, **ask your professor for help**.
 
 ### Part 4: Installing OS Updates
 
