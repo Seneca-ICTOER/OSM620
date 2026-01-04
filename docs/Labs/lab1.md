@@ -549,11 +549,11 @@ You've also have your first experience with PowerShell commands.
 
 1. Login to *srv2*.
 1. In the `sconfig` application, select Option 8 (Network Settings).
-1. You will have one network adapter. We're going to change its configuration, but not here.
+1. You will have one network adapter. We're going to change part of its configuration.
 1. Select that adapter's entry's number from the first column to go into its options.
 1. In *Network Adapter Settings*, select Option 4 (Rename network adapter).
 1. Type the following and hit Enter: `Internal Network`
-1. Note the Interface Name and its IP information. It doesn't have a valid network address *yet*. We're going to change that.
+1. Note the Interface Name and its IP information. It doesn't have a valid network address *yet*. We're going to change that, but not here.
 1. Go back to the main `sconfig` screen.
 1. Select Option 15 to exit to the command line.
 
