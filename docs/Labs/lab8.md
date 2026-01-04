@@ -1,513 +1,271 @@
 ---
 id: lab8
-title: Lab 8 - Network File Shares
+title: Lab 8 - Introduction to Azure
 sidebar_position: 8
-description: Lab 8 - Network File Shares
---- 
+description: Lab 8 - Introduction to Azure
+---
 
-# Lab 8 - Network File Shares
+# Lab 8 - Introduction to Azure
 
 ## Lab Preparation
 
-### Purpose of Lab 8
+### Purpose / Objectives of Lab 8
 
-In this lab, you’ll turn your domain into something more useful for actual humans by giving departments a central place to store their files and making those locations show up automatically when users sign in.
+In this lab, you will login to **Microsoft Azure** for the first time, navigate your way to DevTest Labs, and spin up two VM images. The main purpose of this lab is to learn how to create Windows virtual machines in the cloud using a pre-built image, how to remotely connect to each, and basic management of these VMs from the Azure web interface.
 
-You will:
+While you are working through this lab, it is highly recommended that you write down general notes and commands to help you remember how to do this lab. You may use your notes during tests, so fill it out accordingly!
 
-- Use **SMB shares** on a Windows Server to provide **department file storage**.
-- Control access with **Active Directory Global Groups**, not individual users.
-- Use **Group Policy Preferences** to automatically map **department drives** and create **desktop shortcuts** for the right people.
+If you encounter technical issues, please contact your professor via e-mail or in your section's Microsoft Teams group.
 
-You’ll build a very typical small-organization pattern that still appears in the real world:
-
- **Two department file shares + department drive letters, driven by AD groups.**
-
-> **Important:** In production, you normally **do not** host file shares on a domain controller.  
->
-> We are using **SRV2 (DC1)** as a temporary file server in this lab to save RAM/VMs. In a production environment, you would use a completely separate File Server.
-
-### Objectives
-
-By the end of this lab, you will be able to:
-
-- Create simple **department security groups** (`GG_Dept_*`) and add users to them.
-- Publish **SMB file shares** from a Windows Server for Accounting and IT.
-- Configure **NTFS permissions** so only the correct department can access its folder.
-- Use **Group Policy Preferences (GPP)** to:
-  - Automatically map **department network drives** (`M:` / `X:`).
-  - Create **desktop shortcuts** pointing at those drives.
-- Verify **end-user experience** from a domain-joined client (`laptop1`).
-
-### Minimum Progression Requirements
+### Minimum Requirements ###
 
 Before beginning, you must have:
 
-1. Successfully completed and **Lab 6** and **Lab 7**.
-2. Your **external SSD** (or personal computer) with your OSM620 VMs.
-3. Your **OSM620 Lab Logbook**.
-4. Optional, but recommended: caffeine delivery system.
+1. Read these notes AND the invitation Blackboard message on how to connect the first time.
+1. Your Seneca login credentials.
+1. A computer with an Internet connection. (Windows/macOS/Linux)
+1. A mobile device (phone/tablet) to setup 2FA (two-factor authentication).
+1. Your copy of the OSM620 Lab Logbook.
 
-### Pre-Flight Check
+## Investigation 1: Connecting to Your Azure Account
 
-Power on the following VMs:
+In this investigation, you'll log in to your Seneca-provided Azure account and ensure you have access to our DevTest Labs digital classroom.
 
-1. `router`
-2. `srv1`
-3. `srv2` (DC1)
+### Part 1: Logging In For The First Time
 
-Unless otherwise stated, perform all administrative tasks from **srv1** using your **personal domain admin account** created in Lab 7.
+1. **Follow the link to our DevTest Lab e-mailed to you via Blackboard.**
+1. Enter your Seneca credentials. (Same username and password you use for your e-mail)
+1. You'll next be asked to set up two-factor authentication. Do not bypass this step!
+1. Once you've set that up, verify it by logging out and logging back in again.
+1. Conduct a small celebration (pat on the back, a quick jig, perhaps a fist pump) and move on to Investigation 2.
 
-## Before You Begin
+### Part 2: Logging In Afterwards
 
-Your environment from Lab 6 and Lab 7 should already have:
+Logging in after initial setup is quite easy.
 
-- A domain: `yourSenecaUsername.com`
-- Two domain controllers:
-  - `srv2` (DC1)
-  - `srv3` (DC2)
-- An admin workstation / management server: `srv1`
-- A domain-joined Windows 11 client: `laptop1`
-- OUs and users similar to:
-  - `HQ\Users\Accounting`
-    - `Bob Smith` (Accounting)
-  - `HQ\Users\IT`
-    - `Enzo Matrix`, `Dot Matrix` (IT)
-- A `HQ\Groups\Global` OU where your **Global Groups (GG_)** live.
+1. Navigate to the Azure portal: `https://portal.azure.com`
+1. Use your Seneca credentials.
+1. Complete 2FA authentication.
+1. Our classroom DevTest Lab will be in your recent list, or you can use the search bar to bring up DevTest Labs by looking for **OSM620**.
 
-## Investigation 1: Department Global Groups
+> **WARNING**  
+> *DO NOT search for *Virtual Machines* in the search bar.* You will find yourself in the wrong area and things will not work.
 
-Before we build file shares, we need **AD groups** that represent who belongs to each department. We’ll use these groups for both **folder permissions** and **GPO targeting**.
+## Investigation 2: Managing a Windows Server 2025 VM in Azure
 
-### Part 1: Create Department Global Groups
+In this investigation, you'll create, configure, and manage a Windows Server 2022 Virtual Machine using Microsoft Azure and a pre-built image. This means no tedious and time-consuming Windows installation! You'll also login to the VM remotely using Microsoft's Remote Desktop Protocol to share its desktop.
 
-1. On **srv1**, sign in with your **personal domain admin** account. (Not *Administrator*!)
-1. Open **Active Directory Users and Computers**.
-1. In the left pane, expand your domain and browse to:
+**This can be done from any normal computer**. No local VMs required.
 
-   `HQ \ Groups \ Global`
+### Part 1: Creating A Windows VM From An Image
 
-1. Right-click the **Global** OU and select **New > Group**.
-1. Create the following group:
+To create your Windows Server 2025 Virtual machine, perform the following steps:
 
-   - **Group name:** `GG_Dept_Accounting`  
-   - **Group scope:** `Global`  
-   - **Group type:** `Security`
+1. Navigate to *DevTest Labs > OSM620 > My virtual machines*
+1. Click the **+ Add** button.
+1. Wait for the *Choose a base* listing to populate. This may take a few moments.
+1. Select the item titled **Windows Server 2025 Datacenter**. Be careful here! There are many other options.
+1. A new blade, *Create lab resource* appears.
 
-1. Repeat the process to create:
+    ![Image: Azure - Create Lab Resource](/img/azure-vm-labresource.png)
 
-   - **Group name:** `GG_Dept_IT`  
-   - **Group scope:** `Global`
-   - **Group type:** `Security`
+1. In the *Virtual machine name* field, type: **az-srv##** (you have been assigned a 2-digit UID, found in gradebook. Use that. Example: az-srv11)
+1. *Username:* **yourSenecaUsername**
+1. *Use a saved secret:* Unchecked
+1. *Password*: Your choice, but use the same for all VMs and resources in this course.
+1. *Save as default password:* Checked.
+1. *Virtual machine size*: **Standard_B2ms**
+1. *OS disk type*: **Standard HDD**
+1. Leave the remaining options as they are.
+1. Click on the **Create** button at the bottom of the screen.
+1. You are now back in the *My virtual machines* blade while Azure creates your personal virtual machine. This may take a few minutes.
+1. When it finishes, you should see a **Your deployment is complete.** message near the top of the page. Congratulations!
+1. Click on the **Go to resource** button at the bottom left of the page and move on to the next section of the lab.
 
-1. Under **HQ\Groups\Global**, you should now see:
+### Part 2: Accessing Your Windows Server VM Remotely Using RDP
 
-   - `GG_Dept_Accounting`
-   - `GG_Dept_IT`
+In this section, we'll discover how to remotely connect to the Windows Server's desktop environment over the Internet from your computer. It's a very simple process.
 
-### Part 2: Add Users to the Department Groups
+1. In the *Overview* tab for the Virtual Machine created in Part 1, click the **Connect** button. This will download an RDP profile file (usually *vmname.rdp*).
+1. Open the RDP file. It should launch the Remote Desktop application and automatically try to connect to your VM.
+1. Upon opening, the VM's URL, port number, and username are automatically provided.
 
-We’ll add the existing users you created in previous labs.
+    ![Image: Windows RDP Dialog](/img/azure-rdp.png)
 
-1. In **HQ\Groups\Global**, double-click **`GG_Dept_Accounting`**.
-2. Go to the **Members** tab and click **Add…**
-3. Add your Accounting user:
+1. Type the password you used when creating the VM in Part 1.
+1. Accept the certificate warning. (Click yes.)
+1. You should see a login progress screen, and a Windows Server desktop after a few moments.
+1. Congratulations! You've set up a Windows Server VM and logged in remotely.
+1. Open Notepad, and write:
 
-   - `bob.smith`
+    ```test
+    My name is *insertFullName*, and I've completed the Lab 1 Windows Server VM investigation!
+    ```
 
-4. Click **OK**, then **OK** again.
-5. Double-click **`GG_Dept_IT`**.
-6. Go to the **Members** tab and click **Add…**
-7. Add your IT users:
+1. Save the file to your VM's desktop, with the filename *yourSenecaUsername.txt*.
+1. **Do not skip Part 3 at this stage! Otherwise, you'll be bleeding funds by leaving the VM running.**
 
-   - `enzo.matrix`  
-   - `dot.matrix`
+### Part 3: Fully Stopping Your Windows Virtual Machine
 
-8. Click **OK**, then **OK** again.
+This section is fairly simple. The one thing to never forget: Ensure your VM's status is set to **Stopped (Deallocated)**.
 
-At this point:
+1. In the *Overview* blade of your Windows Server VM, click on the **Stop** button.
+1. A notification will appear in the top right of your browser window, confirming your action.
+1. Don't worry about going into the Windows OS and shutting down first. Azure sends a signal to the VM to shut down safely.
+1. If your VM status says stopped, but does not include the **(Deallocated)** text, then resources are still being held by the VM and we're still being charged. The stop button will still be available, so click it.
 
-- **Accounting staff** are in `GG_Dept_Accounting`.
-- **IT staff** are in `GG_Dept_IT`.
+![Image: Azure VM - Deallocated](/img/azure-deallocated.png)
 
-> **Remember:**  
-> OUs are **folders** for organization and GPO targeting.
+## Investigation 3: Managing a Windows 11 VM in Azure
+
+# Investigation 3: Managing an Ubuntu Linux VM in Azure
+
+In this investigation, we'll create, configure, and manage a Windows 11 Virtual Machine using Microsoft Azure.
+
+### Part 1: Creating An Ubuntu VM From An Image
+
+To create your Ubuntu VM, follow the steps from *Investigation 2, Part 1*, but with the following settings:
+
+1. **Choose a base:** Windows 11 Education
+1. **Virtual machine name:** az-w7client## (Use 2-digit UID)
+1. **User name:** yourSenecaUsername
+1. **Authentication type:** Password
+1. **Use a saved secret:** Unchecked
+1. **Password:** Same as your Windows Server VM
+1. **Save as default password:** Checked
+1. **Virtual machine size:** Standard_B2ms
+1. Leave all other options as they are.
+1. Click **Create**!
+
+When deployment is complete, click on the new VM in *My virtual machines* to verify its status and find the VM's address. Write this down.
+
+### Part 2: Accessing Your Windows 11 VM Remotely Using RDP
+
+In this section, we'll discover how to remotely connect to the Windows 11's desktop environment over the Internet from your computer. It's a very simple process.
+
+1. In the *Overview* tab for the Virtual Machine created in Part 1, click the **Connect** button. This will download an RDP profile file (usually *vmname.rdp*).
+1. Open the RDP file. It should launch the Remote Desktop application and automatically try to connect to your VM.
+1. Upon opening, the VM's URL, port number, and username are automatically provided.
+
+    ![Image: Windows RDP Dialog](/img/azure-rdp.png)
+
+1. Type the password you used when creating the VM in Part 1.
+1. Accept the certificate warning. (Click yes.)
+1. You should see a login progress screen, and a Windows Server desktop after a few moments.
+1. Congratulations! You've set up a Windows Server VM and logged in remotely.
+1. Open Notepad, and write:
+
+    ```test
+    My name is *insertFullName*, and I've completed the Lab 1 Windows 11 Client VM investigation!
+    ```
+
+1. Save the file to your VM's desktop, with the filename *yourSenecaUsername.txt*.
+1. **Turn off your VM after you're done. *Stopped (Deallocated)*.**
+
+## Investigation 4: Managing Your VMs Directly Through Azure's UI
+
+In this quick investigation, we'll walk through how to directly manage virtual machines from the Azure Dashboard interface on a basic level. This is useful for starting up VMs, shutting them down when unresponsive, and deleting them when you're finished. (**Warning:** Do not delete either VM created in this lab!)
+
+> **IMPORTANT**  
+> After creating your VMs for the first time, you must log out and log back in to Azure.
 >
-> **Groups** are how you express “who can access what.”
-
-## Investigation 2: Department SMB Shares on DC1 (SRV2)
-
-In this investigation, you’ll publish two SMB shares on **SRV2 (DC1)** and secure them with the department groups created in Investigation 1.
-
-You will create:
-
-- `C:\CorpData\Accounting` > shared as `\\srv2\Accounting`
-- `C:\CorpData\IT` > shared as `\\srv2\IT`
-
-We’ll use the **New Share Wizard** from **srv1**. The wizard will create **both** the folder and the share.
-
-> **Reminder**  
-> In a real environment, you would normally do this on a dedicated file server, not a DC.
+> When you first create a VM in DevTest Labs (DTL) and it's in a fully running state, you need to log out and log back into the Azure Portal for permissions to be added properly to your account.
 >
-> We’re using SRV2 **only for this lab** to save resources.
-
-### Part 1: Create the Accounting Share
-
-1. On **srv1**, open **Server Manager**.
-2. In the left pane, click **File and Storage Services**.
-3. Click **Shares**.
-4. In the **TASKS** dropdown (top-right of the Shares pane), click **New Share…**
-5. In the **New Share Wizard**:
-
-   1. **Select the profile:**  
-      - Choose **SMB Share – Quick** > click **Next**.
+> If you don't, you'll get *Permission denied* warnings from Azure if you try to do this investigation.
 
-   2. **Select the server:**  
-      - Select **srv2** as the server > click **Next**.
+### Part 1: Powering On A Virtual Machine
 
-   3. **Select the folder:**  
-      - Choose **Type a custom path**.
-      - Enter: `C:\CorpData\Accounting`
-      - Click **Next**.
-      - If prompted that the folder doesn’t exist, allow the wizard to **create it**.
+From the *DevTest Labs* blade:
 
-   4. **Specify share name:**  
-      - Share name: `Accounting`
-      - Confirm the remote path shows as: `\\srv2\Accounting`
-      - Click **Next**.
+1. Click on the *My virtual machines* menu bar item.
+1. Click on the virtual machine you'd like to manage to move to its *Overview* blade.
+1. Click the **Start** menu button near the top.
 
-   5. **Configure other settings:**  
-      - Leave the defaults > click **Next**.
+### Part 2: Powering Off A Virtual Machine
 
-   6. **Specify permissions:**
-      - Click **Customize permissions…**
-      - In the **Security** tab, click **Advanced**.
-      - Click **Disable inheritance**.
-      - When prompted, choose:
-        - **Convert inherited permissions into explicit permissions on this object.**
-      - Back in the permission entries list:
-        - **Keep** `SYSTEM` and `Administrators` with **Full control**.
-        - Remove **Users**, **Authenticated Users**, or any other broad “everyone” entries if present.
-      - Click **Add…** to create a new permission entry:
-        - **Principal:** `GG_Dept_Accounting`
-        - **Type:** Allow
-        - **Applies to:** This folder, subfolders and files
-        - **Basic permissions:** `Modify`
-      - Click **OK** until you return to the wizard.
+From the *DevTest Labs* blade:
 
-   7. Click **Next**, then **Create**, then **Close**.
+1. Click on the *My virtual machines* menu bar item.
+1. Click on the virtual machine you'd like to manage to move to its *Overview* blade.
+1. Click the **Stop** menu button near the top.
 
-You now have:
+Remember the difference between the status *Stopped* and *Stopped (deallocated)*!
 
-- Folder: `C:\CorpData\Accounting` on **srv2**
-- Share: `\\srv2\Accounting`
-- Permissions: only `GG_Dept_Accounting` (plus Administrators/SYSTEM) can modify the contents.
+### Part 3: Restarting A Virtual Machine
 
-### Part 2: Create the IT Share
+There are two methods to restarting a VM. Either within the OS, or through the Azure Dashboard.
 
-Repeat the process for the IT department.
+Inside the OS:
 
-1. On **srv1**, in **Server Manager  File and Storage Services > Shares**, click **TASKS > New Share…**
-2. In the **New Share Wizard**:
+* Windows: Click on Start, and select Power Off.
+* Linux: From the command line (SSH), type `sudo reboot`
 
-   1. **Profile:**  
-      - **SMB Share – Quick** > **Next**.
+In either OS, you will be disconnected from your remote session. Wait a few minutes while the VM restarts, and reconnect.
 
-   2. **Server:**  
-      - **srv2** > **Next**.
+From Azure Dashboard:
 
-   3. **Folder:**  
-      - Select **Type a custom path**.
-      - Enter: `C:\CorpData\IT`
-      - Click **Next** and allow the wizard to create the folder if prompted.
+1. Click on the **Restart** button from the VM's *Overview* blade.
+1. Wait until the VM's status has changed to **Running** before logging back in.
 
-   4. **Share name:**  
-      - `IT`
-      - Confirm remote path: `\\srv2\IT`
-      - **Next**.
+### Part 4: Deleting A Virtual Machine
 
-   5. **Other settings:**  
-      - Leave defaults > **Next**.
+> **WARNING**  
+> Do not actually do this! This is for informational purposes only.
 
-   6. **Permissions:**
-      - Click **Customize permissions…**
-      - Click **Advanced > Disable inheritance**.
-      - Choose **Convert inherited permissions into explicit permissions**.
-      - Keep `SYSTEM` and `Administrators` with **Full control**.
-      - Remove `Users` / `Authenticated Users` if present.
-      - Click **Add…**:
-        - **Principal:** `GG_Dept_IT`
-        - **Type:** Allow
-        - **Applies to:** This folder, subfolders and files
-        - **Basic permissions:** `Modify`
-      - Click **OK** until you return to the wizard.
+Deleting a Virtual Machine is useful when you no longer need it long-term, or if there's a catastrophic issue with the OS inside. Be careful! Any saved data inside the VM will be deleted as well!
 
-   7. Click **Next**, then **Create**, then **Close**.
+1. Navigate to the VM's *Overview* blade.
+1. If the VM status isn't **Stopped (Deallocated)**, stop the VM. Wait until its status updates.
+1. Click on the **Delete** button at the top of the blade.
 
-You now have:
+### Part 5: A Note About Resource Usage
 
-- `\\srv2\Accounting` secured for Accounting.
-- `\\srv2\IT` secured for IT.
+As throughout this lab, using resources responsibly is incredibly important. We pay for what we use. While we have a failsafe in place to stop all VMs at 2:00am EST daily, don't rely on it! Fully stop your VMs when you're not using them.
 
-### Part 3: Quick Sanity Check from srv1
+Your total allowed resource allocation has been restricted for this course. This means you can only have two VMs (or services) at a time. If you have two already, you won't be able to add another until you delete one.
 
-1. On **srv1**, open **File Explorer**.
-2. In the address bar, type: `\\srv2` and press **Enter**.
-3. Confirm you see these shares:
+## Investigation 5: Updating Windows via Azure
 
-   - `Accounting`
-   - `IT`
+Updating your Windows VMs in Azure is *very easy*. It takes advantage of the cloud infrastructure to allow point-and-click updates.
 
-4. As your domain admin account, verify that you can open both shares and create a test text file in each folder. (`test.txt`)
-5. Delete the test files when you’re done.
+### Part 1: Updating Windows Server 2025 with Artifacts
 
-We’ll test with real users in *Investigation 3*.
+1. Spin up your Windows Server VM, and wait until it's fully started up.
+1. In the Azure blade for your Windows Server VM, click on the **Artifacts** item in the menu bar to the left, within the **Operations** drop-down.
+1. In this new window, click on the **Apply artifacts** button. This will bring you to the *Add artifacts* screen.
+1. In the *Add artifacts* search field, type **Time**.
+1. Click on **Set Time Zone** in the results listing, select *Eastern Standard Time* from the menu in the popup, then click **OK**.
+1. You'll be returned to the *Add artifacts* window.
+1. Add the following additional artifacts:
+    1. Firefox
+    1. Windows Firewall operations – Enable ICMP (Ping)
+    1. Installs the latest Windows Updates
 
-## Investigation 3: Department Drive Mappings with Group Policy
+    ![Image: Lab 2 - Windows Artifacts](/img/lab2-artifacts.jpeg)
 
-Now that the server side is ready, you’ll configure a **User-scope GPO** to automatically:
+1. You'll be returned to the *Add artifacts* window with a list or artifacts waiting to be installed. Simply click **Install** to start the process them.
+1. The *Artifacts* window will return, and a new entry for each artifact will appear. (You may need to click on the *Refresh* button next to *Apply artifacts.) Their statuses will cycle through *Pending*, *Installing*, and finally *Succeeded*.
+1. This may take 10-20 minutes. However, you don't have to wait! You can move on to *Part 2* while this VM is running updates without having any impact on your other VM. Move to *Part 2* after reading the note below.
 
-- Map an **H:** drive to `\\srv2\Accounting` for Accounting staff.
-- Map an **I:** drive to `\\srv2\IT` for IT staff.
-- Create matching **desktop shortcuts** pointing at those drive letters.
+> **NOTE**  
+> When all artifacts are in a *Succeeded* state, they've completed their tasks. You don't even have to remain logged into the VM or the Azure website. Check back later if you want.
 
-This uses **Group Policy Preferences** and **Item-level targeting** by security group.
+### Part 2: Updating Windows 11 with Artifacts
 
-### Part 1: Create and Link the GPO
+Repeat *Part 1*'s steps, but on your Windows 11 VM.
 
-1. On **srv1**, open **Group Policy Management**.
-2. In the left pane, expand your domain until you locate the OU where your **user accounts** live, for example:
+That's it!
 
-   `yourSenecaUsername.com \ HQ \ Users`
+## Lab Submission
 
-   (Use the OU that contains your department user OUs created in Lab 7, such as `HQ\Users\Accounting` and `HQ\Users\IT`.)
+Submit to Blackboard full-desktop screenshots (PNG/JPG) of the following:
 
-3. Right-click the **Users** OU and select:
+1. Your view of the OSM620 DevTest Labs Overview blade.
+1. The Azure *Overview* blade for your **Windows Server** VM.
+1. The Azure *Overview* blade for your **Windows 11** VM.
+1. The text file created for your Windows Server VM, open in Notepad.
+1. The text file created for your Windows 11 VM, open in Notepad.
+1. Listing of your applied artifacts in Azure for your Windows Server VM.
+1. Listing of your applied artifacts in Azure for your Windows 11 VM.
 
-   **Create a GPO in this domain, and Link it here…**
-
-4. Name the GPO:
-
-   **HQ – Department Network Drives**
-
-5. Click **OK**.
-
-The GPO is now linked where it can apply to your users.
-
-### Part 2: Map M: for Accounting
-
-1. In **Group Policy Management**, right-click:
-
-   **HQ – Department Network Drives**
-
-   and choose **Edit…**
-
-2. In the GPO editor, browse to:
-
-   `User Configuration > Preferences > Windows Settings > Drive Maps`
-
-3. Right-click in the right pane and select **New > Mapped Drive**.
-4. Configure the **General** tab as follows:
-
-   - **Action:** `Create`
-   - **Location:** `\\srv2\Accounting`
-   - **Reconnect:** ✔ (checked)
-   - **Label as:** `Accounting Department Data`
-   - **Drive letter:** `M:`
-
-5. At the bottom of the **General** tab, click **Common**.
-6. Check **Item-level targeting** and click **Targeting…**
-7. In the **Targeting Editor**:
-
-   1. Click **New Item > Security Group**.
-   2. Click **…** and choose: `GG_Dept_Accounting`
-   3. Confirm it reads:  
-      `User is a member of the security group GG_Dept_Accounting`
-   4. Click **OK**.
-
-8. Click **OK** again to close the Mapped Drive properties.
-
-Result:
-
-- Any user **in `GG_Dept_Accounting`** will get **M:** mapped to `\\srv2\Accounting` when they sign in.
-- Other users will not see this mapped drive.
-
-### Part 3: Map X: for IT
-
-1. Still under **Drive Maps**, right-click in the right pane > **New > Mapped Drive**.
-2. Configure the **General** tab:
-
-   - **Action:** `Create`
-   - **Location:** `\\srv2\IT`
-   - **Reconnect:** ✔
-   - **Label as:** `IT Department Data`
-   - **Drive letter:** `X:`
-
-3. Click **Common >** check **Item-level targeting > Targeting…**
-4. Add a **Security Group** targeting item:
-
-   - Group: `GG_Dept_IT`
-   - Condition: `User is a member of the security group`
-
-5. Click **OK**, then **OK** again.
-
-Result:
-
-- Members of **`GG_Dept_IT`** get drive **X:** mapped to `\\srv2\IT`.
-
-### Part 4: Desktop Shortcuts
-
-To make the user experience even friendlier, you’ll create desktop shortcuts that point to those drive letters.
-
-1. In the same GPO editor, browse to:
-
-   `User Configuration > Preferences > Windows Settings > Shortcuts`
-
-2. Right-click in the right pane > **New > Shortcut**.
-
-#### Accounting Shortcut
-
-1. On the **General** tab:
-
-   - **Action:** `Create`
-   - **Name:** `Accounting Files`
-   - **Target type:** `File System Object`
-   - **Location:** `Desktop`
-   - **Target path:** `M:\`
-   - Leave other fields at defaults.
-
-2. Click the **Common** tab.
-3. Check **Item-level targeting > Targeting…**
-4. Add a **Security Group** item targeting `GG_Dept_Accounting`.
-5. Click **OK**, then **OK** again.
-
-#### IT Shortcut
-
-1. Right-click again in the Shortcuts pane > **New > Shortcut**.
-2. Configure:
-
-   - **Action:** `Create`
-   - **Name:** `IT Files`
-   - **Target type:** `File System Object`
-   - **Location:** `Desktop`
-   - **Target path:** `X:\`
-
-3. On the **Common** tab, enable **Item-level targeting** and target the `GG_Dept_IT` group.
-4. Click **OK**.
-
-Now:
-
-- Accounting users will see an **H:** drive and an **Accounting Files** desktop icon.
-- IT users will see an **I:** drive and an **IT Files** desktop icon.
-
-### Part 5: Test with Accounting User (Bob)
-
-1. On **laptop1**, sign in as your **Accounting** user, `bob.smith`.
-2. Open a Command Prompt and run:
-
-   ```cmd
-   gpupdate /force
-   ```
-
-3. Once `gpupdate` completes, sign out and sign back in as Bob.
-4. After logon, open File Explorer and confirm:
-   1. **M:** exists and points to `\\srv2\Accounting`.
-   1. You can create a second test file (`bob-test.txt`) on M:.
-5. On the desktop, confirm:
-   1. There is an **Accounting Files** shortcut.
-   1. Double-clicking it opens **M:**
-6. Confirm:
-   1. There is no **X:** drive.
-   1. There is no **IT Files** shortcut.
-
-### Part 6: Test with IT User - Enzo Matrix
-
- 1. Sign out Bob from **laptop1**.
- 2. Sign in as your IT user: **enzo.matrix**
- 3. Run:
-
-     ```cmd
-     gpupdate /force
-     ```
-
- 4. Sign out and sign back in as Enzo.
- 5. Open **File Explore**r and confirm:
-    1. **X:** exists and points to `\\srv2\IT`.
-    1. You can create a test file (`IT-Test.txt`) on **X:**.
- 6. On the desktop, confirm:
-    1. There is an **IT Files** shortcut.
-    1. Double-clicking it opens **X:**.
- 7. Confirm:
-    1. There is no **M:** drive.
-    1. There is no **Accounting Files** shortcut.
-
-### Part 7: Test with IT User - Dot Matrix
-
- 1. Sign out Enzo from **laptop1**.
- 2. Sign in as your IT user: **dot.matrix**
- 3. Run:
-
-     ```cmd
-     gpupdate /force
-     ```
-
- 4. Sign out and sign back in as Dot.
- 5. Open **File Explore**r and confirm:
-    1. **X:** exists and points to `\\srv2\IT`.
-    1. (`IT-Test.txt`) already exists on **X:**.
- 6. On the desktop, confirm:
-    1. There is an **IT Files** shortcut.
-    1. Double-clicking it opens **X:**.
- 7. Confirm:
-    1. There is no **M:** drive.
-    1. There is no **Accounting Files** shortcut.
-
-## Lab 8 Sign-Off
-
-**It’s essential to complete Lab 8 correctly.** Lab 8 assumes you have your users able to access their correct file shares properly.
-
-When you finish Lab 8, ask your instructor for a sign-off.
-
-### Sign-Off Checklist
-
-Please have the following on screen and ready to show. You will need to power on the following VMs:
-
- * srv1
- * srv2
- * laptop1
-
-To receive sign off for Lab 8, you must demonstrate the following in person to your instructor:
-
-#### Department Groups in AD
-
-In Active Directory Users and Computers on srv1, show:
-
-1. GG_Dept_Accounting exists and contains your Accounting user (e.g., bob.smith).
-1. GG_Dept_IT exists and contains your IT user(s) (e.g., enzo.matrix, dot.matrix).
-
-#### Department Shares on SRV2
-
-From srv1, open \\srv2 in File Explorer and show:
-1. The Accounting and IT shares are present.
-1. Open the Security properties for one of the folders (either C:\CorpData\Accounting or C:\CorpData\IT on srv2) and show:
-   1. The matching GG_Dept_* group has Modify permission.
-   1. SYSTEM and Administrators still have Full control.
-
-#### Accounting User View (laptop1)
-
-Sign in to laptop1 as your Accounting user and show:
-1. Drive M: is mapped and points to \\srv2\Accounting.
-1. There is an Accounting Files shortcut on the desktop that opens M:
-1. There is no X: drive and no IT Files shortcut.
-1. You can create and delete a test file on H:.
-
-#### IT User View (laptop1)
-
-Sign in to laptop1 as your IT user (Enzo or Dot) and show: 
-
-1. Drive X: is mapped and points to \\srv2\IT.
-1. There is an IT Files shortcut on the desktop that opens X:
-1. There is no M: drive and no Accounting Files shortcut.
-1. You can create and delete a test file on X:.
-
-Once you have demonstrated all four items, your instructor will sign off Lab 8.
+**Reminder:** Make sure to fully stop your VMs when you're done!
