@@ -541,7 +541,64 @@ Instructions to set this up are provided below.
 1. Eventually, you will be presented with the Command Prompt window open to the *SConfig* text-based application, and the VMware Tools installer having completed and asking if you'd like to restart. Choose **Yes**.
 1. Once you've restarted, your installation is complete.
 
-### Part 2: Applying Time Zone Settings
+### Part 2: Setting Up *srv2*'s Network Connection - Internal Network
+
+In this part, we'll rename the **network interface card** (NIC) and then give it a 10.x.x.x address so we can use it to communicate with the Internet.
+
+You've also have your first experience with PowerShell commands.
+
+1. Login to *srv2*.
+1. In the `sconfig` application, select Option 8 (Network Settings).
+1. You will have one network adapter. We're going to change its configuration, but not here.
+1. Select that adapter's entry's number from the first column to go into its options.
+1. In *Network Adapter Settings*, select Option 4 (Rename network adapter).
+1. Type the following and hit Enter: `Internal Network`
+1. Note the Interface Name and its IP information. It doesn't have a valid network address *yet*. We're going to change that.
+1. Go back to the main `sconfig` screen.
+1. Select Option 15 to exit to the command line.
+
+We're now going to apply network settings to our network adapter using PowerShell.
+
+1. First, confirm the name of your adapter with the following command:
+
+```powershell
+Get-NetAdapter
+```
+
+1. Now, assuming it look correct, run the following:
+
+```powershell
+New-NetIPAddress -InterfaceAlias "Internal Network" -IPAddress 10.0.UID.2 -PrefixLength 24
+```
+
+1. Double-check your work by running:
+
+```powershell
+Get-NetIPAddress -InterfaceAlias "Internal Network"
+```
+
+If it has the proper 10.x.x.x IP address, well done! Move on to **Part 2**.
+
+If the network information is wrong, you can remove it and try again by running:
+
+```powershell
+Remove-NetIPAddress -InterfaceAlias "Internal Network" -AddressFamily IPv4
+```
+
+As a quick test, check your internet connection by running the following:
+
+```powershel
+ping 1.1.1.1
+ping eff.org
+```
+
+If both work, you have successfully applied new network settings and provided *srv2* with an Internet connection!
+
+> Tip: To return to `sconfig`, either run `sconfig` or type `exit`.
+
+You can go back into the SConfig network settings and see your applied changes, if you'd like. It's a nice way to double-check your work.
+
+### Part 3: Applying Time Zone Settings
 
 This is a repeat of your *srv1* work, but done in the Core environment. Remember, post-installation tasks are NOT optional!
 
@@ -554,7 +611,7 @@ This one is fairly straight-forward. Having the proper time zone set (EST) is es
 1. Click **OK** to close out of *Date and Time*.
 1. Back in *SConfig*, choose Option 9 again to confirm your changes have stuck. If yes, continue to Part 2.
 
-### Part 3: Server Name Change
+### Part 4: Server Name Change
 
 The default name applied to your new server will be semi-randomized. For proper identification (and to not wonder which server you're on when you have several), we're going to change this.
 
@@ -565,7 +622,7 @@ The default name applied to your new server will be semi-randomized. For proper 
 1. Once you've restarted and logged back in, go back to the *Computer name* screen from Part 2 and double-check your new computer name is correct. **Do not skip this step!**
 1. If it is, you're done!
 
-### Part 4: Installing OS Updates
+### Part 5: Installing OS Updates
 
 A critical part of a security-conscious mindset is running regular updates. **This is NOT something you do only once at the start of installation.** You should be running these regularly to keep up to date with security fixes and zero-day exploits.
 
