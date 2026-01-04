@@ -6,15 +6,15 @@ import rehypeKatex from 'rehype-katex';
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'OSM620 - Fundamentals of Microsoft Systems',
-  tagline: 'OER Tag/Keyword',
+  tagline: 'Fundamentals of Microsoft Systems',
   url: 'https://seneca-ictoer.github.io/',
-  baseUrl: '/OSM620v2/',
+  baseUrl: '/OSM620/',
   trailingSlash: false,
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'seneca-ictoer',
-  projectName: 'OSM620v2',
+  projectName: 'OSM620',
   themeConfig: {
     navbar: {
       title: 'OSM620 - Fundamentals of Microsoft Systems',
