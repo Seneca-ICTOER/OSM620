@@ -2,14 +2,14 @@
 id: weekly-schedule
 title: Weekly Schedule
 sidebar_position: 2
-description: Weekly Schedule for OP705
+description: Weekly Schedule for OSM620
 ---
 
 # Weekly Schedule
 
 The following is the weekly course schedule for OSM620. It includes topic schedules, assessment due dates, and course work weighting.
 
-This is a working schedule and may be subject to change.
+This is a tentative schedule and may be subject to change.
 
 ## Week 1
 
@@ -78,7 +78,7 @@ This is a working schedule and may be subject to change.
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
 | Domain Controllers and RODCs | Lab 5 - Active Directory |  |
-| Assignment 2 Discussion: Group Project Creation | Posted slides and lecture material |  |
+| Assignment 2 Introduction and Discussion | Posted slides and lecture material |  |
 
 ## Week 10
 
@@ -105,8 +105,7 @@ This is a working schedule and may be subject to change.
 
 | Agenda/Topic | Reading | Assessment Due |
 | :--- | :--- | :--- |
-| Group Project Presentations | Posted slides and lecture material | Group Presentations |
-| | | Lab 8 – Introduction to Azure (5%) |
+| Work Period | Posted slides and lecture material | Lab 8 – Introduction to Azure (5%) |
 | | | Assignment 2: Group Project (15%) |
 
 ## Week 14

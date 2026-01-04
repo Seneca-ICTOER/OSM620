@@ -54,7 +54,8 @@ The skills you develop here will stick with you because you’ll be the one doin
 
 | **Evaluation** | **Marks** |
 | --- | --- |
-| Labs (9)  | 40% |
+| Labs (8)  | 20% |
+| Quizzes (minimum 4)  | 20% |
 | Assignments (2) | 30% |
 | Tests (2) | 30% |
 | Total | 100% |
