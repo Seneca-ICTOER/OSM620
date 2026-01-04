@@ -449,13 +449,24 @@ Remember this is you go through these labs. Turn off and on VMs as you're told.
 
 ## Investigation 5: Windows Server 2025 Core (*srv2*)
 
-* Hypervisor: **VMware Workstation**
-* Name: **srv2-cjohnson30**
-* RAM: **4 GB**
-* CPU: **2 cores**
-* Storage: **250 GB**
-* Networking: **2 NICs**
-* ISO: **Windows Server 2025**
+In this investigation, we'll create a second Windows Server virtual machine that is in **Core** mode. This is a CLI-only environment.
+
+### VM Specifications
+
+| Setting    | Value                          |
+| ---------- | -------------------------------|
+| Hypervisor | VMware Workstation             |
+| VM Name    | srv2-*yourSenecaUsername*      |
+| Role       | Windows Server - CLI           |
+| OS / Image | Windows Server 2025 Datacenter |
+| vCPU       | 2 cores                        |
+| RAM        | 4 GB                           |
+| Disk       | 250 GB                         |
+| NICs       | 1                              |
+| NIC1       | VMnet10                        |
+| NIC1 IPv4  | **10.0.`UID`.2/24** (static)   |
+
+Instructions to set this up are provided below.
 
 #### Flowchart Visualization of Investigation 5
 
@@ -486,7 +497,7 @@ Remember this is you go through these labs. Turn off and on VMs as you're told.
     1. ***Do not select "Log on automatically"***.
     1. Click **Next**.
 1. On the "Name the Virtual Machine" screen, do the following:
-    1. Virtual machine name: **srv2-*senecausername***
+    1. Virtual machine name: **srv2-*yourSenecaUsername***
 
        > **Explanation:** For example, if my Seneca e-mail address is `cjohnson30@myseneca.ca`, then my Seneca username is *cjohnson30*. This would give me a VM name of *srv2-cjohnson30*.
     1. Location: If using an external SSD (like with our lab computers), click **Browse** and navigate to your external SSD.
@@ -510,10 +521,6 @@ Remember this is you go through these labs. Turn off and on VMs as you're told.
        1. Virtualize IOMMU (IO memory management unit): **Checked**
     1. Select *Network Adapter* and confirm:
         1. *Connected at power on:* **Checked**
-        1. *NAT*: **Checked**
-    1. Click on the ***Add...*** button on the bottom left of the *Hardware* window.
-        1. Select *Network Adapter* and click **Finish**.
-        1. Back in the *Hardware* window, click on *Network Adapter 2*.
         1. Under *Network connection*, click the **Custom: Specific virtual network** radio button.
         1. Just below that, click the drop-down (it likely says *VMnet0* by default). Find and select **VMnet10**.
         1. Click **Close**.
@@ -530,17 +537,9 @@ Remember this is you go through these labs. Turn off and on VMs as you're told.
 1. Eventually, you will be presented with the Command Prompt window open to the *SConfig* text-based application, and the VMware Tools installer having completed and asking if you'd like to restart. Choose **Yes**.
 1. Once you've restarted, your installation is complete.
 
-## Investigation 6: Post-Installation Tasks (*srv2*)
+### Part 2: Applying Time Zone Settings
 
-After installing a new operating system, there are always a number of **post-installation tasks** to complete. **These aren't optional!**
-
-### Overview Check-In: srv2 Internet Connection
-
-Let's take a quick look at an overview of our NAT Internet connection as it currently stands since our newest server addition. It's important to understand how everything is connected as we continue to build out our VMs.
-
-> ![Fig 6. Lab 1, Investigation 6 - Network Diagram](/img/lab1-netdiag-srv2.png)
-
-### Part 1: Applying Time Zone Settings
+This is a repeat of your *srv1* work, but done in the Core environment. Remember, post-installation tasks are NOT optional!
 
 This one is fairly straight-forward. Having the proper time zone set (EST) is essential for proper time keeping and ensuring encrypted webpages connect properly.
 
@@ -551,24 +550,16 @@ This one is fairly straight-forward. Having the proper time zone set (EST) is es
 1. Click **OK** to close out of *Date and Time*.
 1. Back in *SConfig*, choose Option 9 again to confirm your changes have stuck. If yes, continue to Part 2.
 
-### Part 2: Server Name Change
+### Part 3: Server Name Change
 
 The default name applied to your new server will be semi-randomized. For proper identification (and to not wonder which server you're on when you have several), we're going to change this.
 
 1. In the *SConfig* application, select Option 2 (*Computer name*). Use your keyboard.
-1. In the new *Computer name* screen, enter your new computer name in the waiting text field: **srv2-SenecaUsername**
+1. In the new *Computer name* screen, enter your new computer name in the waiting text field: **srv2-yourSenecaUsername**
 1. Press **Enter** on your keyboard to confirm the change.
 1. The system now asks you about restarting. Enter **Y** to choose yes and hit the **Enter** key to confirm.
 1. Once you've restarted and logged back in, go back to the *Computer name* screen from Part 2 and double-check your new computer name is correct. **Do not skip this step!**
 1. If it is, you're done!
-
-### Part 3: Windows Activation
-
-Activating Windows unlocks certain settings and features. Since you've used your valid serial key (right?), you can activate with Microsoft easily.
-
-1. In the *SConfig* application, select Option 11 (*Windows activation*). Use your keyboard.
-1. In the new *Windows activation* screen, enter **2** (*Activate Windows*) and hit **Enter** to begin the activation process with Microsoft.
-1. Follow the instructions on screen. If unable to activate easily, **ask your professor for help**.
 
 ### Part 4: Installing OS Updates
 
@@ -592,7 +583,7 @@ That's it! Now you're done. Congratulations!
 
 ## Lab 1 Sign-Off
 
-It is extremely important that you complete Lab 1 correctly as these Windows Server installs will be the platform on which the rest of the course will be completed.
+**It is extremely important that you complete Lab 1 correctly as these virtual machines will be the platform on which the rest of the course will be completed.**
 
 When you have completed Lab 1, ask your instructor to come and check your installation. This must be done in class. They will ask you to complete a set of tasks/commands. If everything has been completed correctly, your instructor will mark your Lab 1 as complete.
 
