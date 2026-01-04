@@ -581,6 +581,55 @@ A critical part of a security-conscious mindset is running regular updates. **Th
 
 That's it! Now you're done. Congratulations!
 
+## Investigation 6: Windows 11 (*client1*)
+
+In this investigation, we'll install a Windows 11 client to simulate an employee workstation environment. Imagine a physical computer at an employee's desk.
+
+### Part 1: Creating *client1* VM
+
+In this part, you will create a new Windows 11 virtual machine using the hardware specifications below.
+
+> **Note:** Keep all other VMs (except the router) off until told otherwise.
+
+### VM Specifications
+
+| Setting    | Value                          |
+| ---------- | -------------------------------|
+| Hypervisor | VMware Workstation             |
+| VM Name    | client1-*yourSenecaUsername*   |
+| Role       | Employee Workstation           |
+| OS / Image | Windows 11 Education           |
+| vCPU       | 2 cores                        |
+| RAM        | 4 GB                           |
+| Disk       | 64 GB                          |
+| NICs       | 1                              |
+| NIC1       | VMnet10                        |
+| NIC1 IPv4  | **10.0.`UID`.2/24** (static)   |
+| Encryption | See note below.
+
+If you can't remember how to create a VMware virtual machine, please refer back to earlier investigations in this lab.
+
+#### Encryption Information Page
+
+**Windows 11 uses TPM hardware to encrypt certain important files.** VMware Worksation adds the TPM module automatically as long as you select the right options:
+
+* Choose Encryption Type: **Only the files needed to support a TPM are encrypted.**
+* Password: **Your normal VM password.**
+
+You do need to choose the encryption type and give it a password. **Use the same password you've used for all other VMs in this course.**
+
+> ![Fig 1. The Encryption Information page for creating a new Windows 11 VM in VMware.](/img/laptop1-encryption.png)  
+> *Figure 1. The Encryption Information page for creating a new Windows 11 VM in VMware.*
+
+### Part 2: OS Installation and Configuration
+
+Use the following instructions to install the OS and run post-installation tasks on your new *laptop1* VM.
+
+1. Create the VM with the specifications above.
+2. When creating the user, use your `firstname.lastname`
+3. Run through the standard **Post-Installation Tasks** you ran in previous Windows installations.
+4. When complete (including internal name and updates!), shut down the VM.
+
 ## Lab 1 Sign-Off
 
 **It is extremely important that you complete Lab 1 correctly as these virtual machines will be the platform on which the rest of the course will be completed.**
