@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
-<title data-rh="true">Lab 6 - Active Directory | OSM620 - Fundamentals of Microsoft Systems</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://seneca-ictoer.github.io/OSM620v2/Labs/lab6"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Lab 6 - Active Directory | OSM620 - Fundamentals of Microsoft Systems"><meta data-rh="true" name="description" content="Lab 6 - Active Directory"><meta data-rh="true" property="og:description" content="Lab 6 - Active Directory"><link data-rh="true" rel="icon" href="/OSM620v2/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab6"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab6" hreflang="en"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab6" hreflang="x-default"><link rel="icon" href="/OSM620v2/img/pwa/icon-512x512.png">
+<title data-rh="true">Lab 6 - AD Users, Groups, Computers, and GPOs | OSM620 - Fundamentals of Microsoft Systems</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://seneca-ictoer.github.io/OSM620v2/Labs/lab6"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Lab 6 - AD Users, Groups, Computers, and GPOs | OSM620 - Fundamentals of Microsoft Systems"><meta data-rh="true" name="description" content="Lab 6 - AD Users, Groups, Computers, and GPOs"><meta data-rh="true" property="og:description" content="Lab 6 - AD Users, Groups, Computers, and GPOs"><link data-rh="true" rel="icon" href="/OSM620v2/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab6"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab6" hreflang="en"><link data-rh="true" rel="alternate" href="https://seneca-ictoer.github.io/OSM620v2/Labs/lab6" hreflang="x-default"><link rel="icon" href="/OSM620v2/img/pwa/icon-512x512.png">
 <link rel="manifest" href="/OSM620v2/manifest.json">
 <meta name="theme-color" content="#DA291C">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -13,745 +13,951 @@
 <meta name="msapplication-TileImage" content="/OSM620v2/img/pwa/icon-512x512.png">
 <meta name="msapplication-TileColor" content="#DA291C">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css" integrity="sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM" crossorigin="anonymous"><link rel="stylesheet" href="/OSM620v2/assets/css/styles.cba3e07b.css">
-<script src="/OSM620v2/assets/js/runtime~main.a7bd023c.js" defer="defer"></script>
-<script src="/OSM620v2/assets/js/main.8ec0e352.js" defer="defer"></script>
+<script src="/OSM620v2/assets/js/runtime~main.aad7132d.js" defer="defer"></script>
+<script src="/OSM620v2/assets/js/main.63f7cdde.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
-<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/OSM620v2/img/logo.svg"><link rel="preload" as="image" href="/OSM620v2/img/logo-dark.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><a class="navbar__brand" href="/OSM620v2/"><div class="navbar__logo"><img src="/OSM620v2/img/logo.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/OSM620v2/img/logo-dark.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">OSM620 - Fundamentals of Microsoft Systems</b></a></div><div class="navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/">Welcome to OSM620</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/weekly-schedule">Weekly Schedule</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/OSM620v2/Labs/lab1">Labs</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab1">Lab 1 - Environment Setup</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab2">Lab 2 - Hyper-V, NAT, and Windows Clients</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab3">Lab 3 - Security and Remote Connectivity</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab4">Lab 4 - Implementing DNS</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab5">Lab 5 - Implementing DHCP</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/OSM620v2/Labs/lab6">Lab 6 - Active Directory</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab7">Lab 7 - AD Users, Groups, Computers, and GPOs</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab8">Lab 8 - Network File Shares</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab9">Lab 9 - Introduction to Azure</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/OSM620v2/Assignments/assignment1">Assignments</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/OSM620v2/Extra Resources/lab1.1">Extra Resources</a></div></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/OSM620v2/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Labs</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Lab 6 - Active Directory</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Lab 6 - Active Directory</h1></header>
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/OSM620v2/img/logo.svg"><link rel="preload" as="image" href="/OSM620v2/img/logo-dark.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><a class="navbar__brand" href="/OSM620v2/"><div class="navbar__logo"><img src="/OSM620v2/img/logo.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/OSM620v2/img/logo-dark.svg" alt="Seneca Polytechnic" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">OSM620 - Fundamentals of Microsoft Systems</b></a></div><div class="navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/">Welcome to OSM620</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/OSM620v2/weekly-schedule">Weekly Schedule</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/OSM620v2/Labs/lab1">Labs</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab1">Lab 1 - Environment Setup</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab2">Lab 2 - Security and Remote Connectivity</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab3">Lab 3 - Implementing DNS</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab4">Lab 4 - Implementing DHCP</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab5">Lab 5 - Active Directory</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/OSM620v2/Labs/lab6">Lab 6 - AD Users, Groups, Computers, and GPOs</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab7">Lab 7 - Network File Shares</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/OSM620v2/Labs/lab8">Lab 8 - Introduction to Azure</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/OSM620v2/Assignments/assignment1">Assignments</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/OSM620v2/Extra Resources/lab1.1">Extra Resources</a></div></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/OSM620v2/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Labs</span><meta itemprop="position" content="1"></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Lab 6 - AD Users, Groups, Computers, and GPOs</span><meta itemprop="position" content="2"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Lab 6 - AD Users, Groups, Computers, and GPOs</h1></header>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="lab-preparation">Lab Preparation<a href="#lab-preparation" class="hash-link" aria-label="Direct link to Lab Preparation" title="Direct link to Lab Preparation">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="purpose-of-lab-6">Purpose of Lab 6<a href="#purpose-of-lab-6" class="hash-link" aria-label="Direct link to Purpose of Lab 6" title="Direct link to Purpose of Lab 6">​</a></h3>
-<p>In this lab, you’ll redesign and configure your environment to a more realistic, low-footprint, on-premises design. You’ll move core network services off <strong>srv1</strong> and into <strong>Active Directory</strong> by promoting <strong>srv2</strong> to <strong>Domain Controller (DC1)</strong> with integrated <strong>DNS</strong> and <strong>DHCP</strong>, manage everything remotely from <strong>srv1</strong> using <strong>RSAT</strong>, and prove end-to-end client functionality by joining <strong>laptop1</strong> to the domain.</p>
-<p>You’ll also prepare a clean clone (<strong>srv3</strong>) and promote it to <strong>DC2</strong> for redundancy.</p>
-<p>The lightweight <strong>router</strong> VM you&#x27;ll create replaces RRAS/NAT, mirroring how real sites use a dedicated edge device.</p>
+<p>In this lab, you’ll reshape your domain into something closer to real life:</p>
+<ul>
+<li>Build a clean <strong>OU (Organizational Unit)</strong> structure for <strong>people</strong> and <strong>computers</strong>.</li>
+<li>Stop using the built-in <strong>Administrator</strong> and switch to a <strong>personal admin</strong> account.</li>
+<li>Use <strong>GPOs</strong> (Group Policy Objects) to control <strong>how things behave</strong>.</li>
+<li>Use <strong>Groups + Delegation</strong> to control <strong>who is allowed to do what</strong> in Active Directory.</li>
+<li>You’ll prove the difference between “policy” and “permission” with three concrete users:<!-- -->
+<ul>
+<li><strong>Bob (Accounting)</strong> — a normal employee who gets a <strong>lockdown</strong> user policy.</li>
+<li><strong>Enzo (IT L1)</strong> — can <strong>reset passwords</strong> in a department.</li>
+<li><strong>Dot (IT L2)</strong> — can <strong>create/modify/move/delete</strong> users in department OUs.</li>
+</ul>
+</li>
+<li>Finally, you’ll create the start of a <strong>Computers OU</strong> structure so <strong>device-level</strong> settings have a proper home.</li>
+</ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="objectives">Objectives<a href="#objectives" class="hash-link" aria-label="Direct link to Objectives" title="Direct link to Objectives">​</a></h3>
 <p>By the end of this lab, you will be able to:</p>
 <ul>
+<li>Create a tidy <strong>HQ\Users</strong> scaffold and a starter <strong>HQ\Computers</strong> scaffold.</li>
+<li>Create a <strong>personal domain admin account</strong>, verify access, and <strong>disable</strong> the built-in <strong>Administrator</strong> safely.</li>
+<li>Create a <strong>User-scope GPO</strong> (<strong>User – Employee Lockdown</strong>), link it to a specific <strong>Accounting</strong> OU, and verify that it follows the user (Bob) wherever he signs in.</li>
+<li>Create a <strong>User-scope GPO</strong> for IT (<strong>User – IT Environment</strong>), link it to <strong>HQ\Users\IT</strong>, and verify that Enzo/Dot get the intended desktop experience.</li>
+<li>Create <em><strong>Global Groups (GG_)</strong></em> to represent <strong>who people are</strong> and <strong>Role Groups (RG_)</strong> to represent <strong>what a role can do</strong>; wire them together and <strong>delegate</strong>:<!-- -->
+<ul>
+<li><strong>L1</strong>: reset passwords in a department OU (e.g., Accounting).</li>
+<li><strong>L2</strong>: create/modify/move/delete users in department OUs (not IT).</li>
+</ul>
+</li>
+<li>Build the first <strong>Computers OUs</strong> by hand, then complete the scaffold with a small <strong>CSV &gt; PowerShell script</strong>; move <em>srv1</em> and <em>laptop1</em> into place.</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="concepts">Concepts<a href="#concepts" class="hash-link" aria-label="Direct link to Concepts" title="Direct link to Concepts">​</a></h3>
+<p>This section is your mental model. Read it once now; refer back while you work.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="users-vs-computers-two-different-kinds-of-objects">Users vs Computers (two different kinds of objects)<a href="#users-vs-computers-two-different-kinds-of-objects" class="hash-link" aria-label="Direct link to Users vs Computers (two different kinds of objects)" title="Direct link to Users vs Computers (two different kinds of objects)">​</a></h4>
+<ul>
 <li>
-<p>Build a minimal <strong>VyOS router</strong> VM and configure LAN/WAN, default route, and NAT for Internet access.</p>
+<p><strong>User object</strong> = a person. When a <strong>User-scope</strong> GPO applies, it <strong>follows the person</strong> to any domain-joined machine they sign in to.</p>
+<p><strong>Example:</strong> Bob gets “no Control Panel” everywhere he signs in.</p>
 </li>
 <li>
-<p>Configure a consistent <strong>IP plan</strong> (gateway 10.0.UID.254, statics for servers, DHCP range for clients).</p>
+<p><strong>Computer object</strong> = a device. When a <strong>Computer-scope</strong> GPO applies, it <strong>sticks to that device</strong>, no matter who signs in.</p>
+<p><strong>Example:</strong> Laptop sleep/USB rules apply for every user on that laptop.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Checkpoint:</strong> If the question is “Does this follow the person or the device?” — you already know which scope to use.</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="ous-what-they-are-and-are-not">OUs: what they are (and are not)<a href="#ous-what-they-are-and-are-not" class="hash-link" aria-label="Direct link to OUs: what they are (and are not)" title="Direct link to OUs: what they are (and are not)">​</a></h4>
+<ul>
+<li>
+<p>An <strong>OU (Organizational Unit)</strong> is a folder inside AD used for <strong>targeting</strong> and <strong>delegation</strong>:</p>
+<ul>
+<li>You <strong>link GPOs</strong> to OUs to target either the <strong>users in that OU</strong> (User-scope) or the <strong>computers in that OU</strong> (Computer-scope).</li>
+<li>You <strong>delegate control</strong> on an OU to allow a group to perform tasks (like reset passwords) <strong>for the objects inside that OU</strong>.</li>
+</ul>
 </li>
 <li>
-<p>Promote <strong>srv2</strong> to <strong>AD DS</strong> as the first domain controller for <strong>yourSenecaUsername.com</strong> with integrated <strong>DNS</strong>.</p>
+<p>An OU is <strong>not</strong> a security principal. You cannot “give permissions to an OU.” You always grant permissions to <strong>groups</strong> (or users), then point those groups at an OU via <strong>delegation</strong>.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Analogy:</strong> Think of OUs as labeled <strong>folders</strong>. Policies and delegation are <strong>rules on the folder</strong>. Groups are the <strong>keyrings</strong> you hand to people.</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="groups-global-groups-vs-role-groups">Groups: Global Groups VS Role Groups<a href="#groups-global-groups-vs-role-groups" class="hash-link" aria-label="Direct link to Groups: Global Groups VS Role Groups" title="Direct link to Groups: Global Groups VS Role Groups">​</a></h4>
+<p>We use a simple naming convention to keep your head clear:</p>
+<ul>
+<li>
+<p><strong><code>GG_*</code> (Global Group)</strong> = <strong>who they are</strong> (identity buckets).<br>
+<!-- -->You put <strong>users</strong> into <strong>GGs</strong>.</p>
+<p><strong>Examples:</strong> <code>GG_IT_L1</code>, <code>GG_IT_L2</code>.</p>
 </li>
 <li>
-<p>Configure <strong>DNS forwarders</strong> and create a <strong>reverse lookup zone</strong> with <strong>Secure only</strong> dynamic updates.</p>
+<p><strong><code>RG_*</code> (Role Group)</strong> = <strong>what they can do</strong> (delegated abilities).<br>
+<!-- -->You assign <strong>rights</strong> to <strong>RGs</strong> by using the <strong>Delegation of Control</strong> wizard on an OU.</p>
+<p><strong>Examples:</strong> <code>RG_PasswordReset</code>, <code>RG_OUAdmin_AllDepts</code>.</p>
+</li>
+</ul>
+<p><strong>Wiring rule:</strong> <em>Put the GG inside the RG.</em></p>
+<ul>
+<li>You never delegate directly to a user in production.</li>
+<li>You delegate to an <strong>RG</strong> on the target <strong>OU</strong>, then make the <strong>GG</strong> a <strong>member</strong> of that <strong>RG</strong>.</li>
+<li>Users gain the delegated ability by being in the <strong>GG</strong>.</li>
+</ul>
+<blockquote>
+<p><strong>Example (you’ll do this):</strong><br>
+<!-- -->Delegate <strong>“Reset user passwords”</strong> on <code>HQ\Users\Accounting</code> <strong>to</strong> <code>RG_PasswordReset</code>.</p>
+<p>Make <code>GG_IT_L1</code> a <strong>member of</strong> <code>RG_PasswordReset</code>.</p>
+<p>Add <strong>Enzo</strong> to <code>GG_IT_L1</code>.</p>
+<p>Result: Enzo can reset passwords <strong>in that OU</strong>.</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="delegation-of-control-where--what--who">Delegation of Control (where + what + who)<a href="#delegation-of-control-where--what--who" class="hash-link" aria-label="Direct link to Delegation of Control (where + what + who)" title="Direct link to Delegation of Control (where + what + who)">​</a></h4>
+<ul>
+<li><strong>Where:</strong> right-click the <strong>target OU</strong> (e.g., <code>HQ\Users\Accounting</code>) &gt; <strong>Delegate Control…</strong></li>
+<li><strong>What:</strong> pick the task(s) (e.g., <strong>Reset user passwords</strong>, or <strong>Create, delete, and manage user accounts</strong>).</li>
+<li><strong>Who:</strong> choose the <strong>RG</strong> (e.g., <code>RG_PasswordReset</code>, <code>RG_OUAdmin_AllDepts</code>).</li>
+</ul>
+<blockquote>
+<p><strong>Important:</strong> The rights you delegate <strong>apply only to objects in that OU (and its child OUs)</strong>.<br>
+<!-- -->If you want the same right in another department, you repeat the delegation on that department’s OU.</p>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="gpos-two-halves-linked-to-an-ou">GPOs: two halves, linked to an OU<a href="#gpos-two-halves-linked-to-an-ou" class="hash-link" aria-label="Direct link to GPOs: two halves, linked to an OU" title="Direct link to GPOs: two halves, linked to an OU">​</a></h4>
+<p>A <strong>GPO</strong> is a bundle of settings with two halves:</p>
+<ul>
+<li><strong>User Configuration</strong> — shapes the <strong>user session</strong> (Start menu, Control Panel access, etc.).<br>
+<strong>Link</strong> it to a <strong>Users</strong> OU to target those users.</li>
+<li><strong>Computer Configuration</strong> — shapes the <strong>device</strong> (firewall, power settings, removable storage).<br>
+<strong>Link</strong> it to a <strong>Computers</strong> OU to target those devices.</li>
+</ul>
+<p>We avoid advanced tricks in this lab (no <strong>Block Inheritance</strong>, no <strong>Enforced</strong>). We simply <strong>link at the lowest sensible OU</strong> so there’s no ambiguity.</p>
+<blockquote>
+<p><strong>Examples you’ll build:</strong></p>
+<ul>
+<li><strong>User – Employee Lockdown</strong> <em>(User)</em> &gt; link to <code>…\Users\Accounting</code>.</li>
+<li><strong>User – IT Environment</strong> <em>(User)</em> &gt; link to <code>…\Users\IT</code>.</li>
+<li><strong>Computer – Workstations Baseline</strong> <em>(Computer)</em> &gt; link to <code>…\Computers\Workstations</code>.</li>
+<li><strong>Computer – Laptops Baseline</strong> <em>(Computer)</em> &gt; link to <code>…\Computers\Laptops</code>.</li>
+</ul>
+</blockquote>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="policies-vs-permissions-why-both-exist">Policies VS Permissions (why both exist)<a href="#policies-vs-permissions-why-both-exist" class="hash-link" aria-label="Direct link to Policies VS Permissions (why both exist)" title="Direct link to Policies VS Permissions (why both exist)">​</a></h4>
+<ul>
+<li>
+<p><strong>Policy</strong> = <strong>configuration/behavior</strong> the system adopts.</p>
+<p><em>Example:</em> “Hide Control Panel” (policy) changes the UI for Bob.</p>
 </li>
 <li>
-<p>Convert <strong>srv1</strong> into a <strong>management server</strong> (RSAT only) and manage <strong>srv2</strong> remotely via <strong>Server Manager</strong>.</p>
+<p><strong>Permission</strong> = <strong>authority</strong> to perform an action in AD.</p>
+<p><em>Example:</em> “Reset passwords in Accounting” (delegation) gives Enzo the right to change those user objects.</p>
 </li>
-<li>
-<p>Join <strong>srv1</strong> and <strong>laptop1</strong> to the domain and verify <strong>Kerberos + name resolution</strong> end-to-end.</p>
-</li>
-<li>
-<p>Validate DNS registration: confirm <strong>A</strong> and <strong>PTR</strong> records for servers and client populate correctly.</p>
-</li>
-<li>
-<p>Use GUI tools (<strong>DNS</strong>, <strong>DHCP</strong>, <strong>ADUC/AD DS</strong>) to administer services from <strong>srv1</strong>.</p>
-</li>
-<li>
-<p>Clone <strong>srv3</strong>, join it to the domain, promote it to <strong>DC2 (GC + DNS)</strong>, and verify DNS replication.</p>
-</li>
+</ul>
+<p>They solve <strong>different problems</strong> and often work together:</p>
+<ul>
+<li>policies make the environment safe and consistent</li>
+<li>permissions define who can administer AD</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="minimum-progression-requirements">Minimum Progression Requirements<a href="#minimum-progression-requirements" class="hash-link" aria-label="Direct link to Minimum Progression Requirements" title="Direct link to Minimum Progression Requirements">​</a></h3>
 <p>Before beginning, you must have:</p>
 <ol>
-<li><strong>Successfully graded <em>Labs 1-5</em> and <em>Assignment 1</em>.</strong></li>
-<li>Attended the <strong>Week 8 - Active Directory</strong> lecture.</li>
+<li><strong>Successfully graded <em>Lab 6</em></strong>.</li>
+<li>Attended the <strong>Week 10 - AD Users, Groups, Computers, and GPOs</strong> lecture.</li>
 <li>Your external SSD (or personal computer) with your VMs.</li>
 <li>Your OSM620 Lab Logbook.</li>
 <li>Optional, but recommended: Caffeine delivery system.</li>
 </ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="before-you-begin">Before You Begin<a href="#before-you-begin" class="hash-link" aria-label="Direct link to Before You Begin" title="Direct link to Before You Begin">​</a></h3>
-<p><strong>Time to Backup!</strong> <em>You will be making major changes to all virtual machines.</em> This is a good time to backup these VMs so you can restore from them if something catastrophic occurs.</p>
-<p>With all VMs turned off, copy the entire <code>Virtual Machines</code> folder on your SSD to a separate location. This can be a backup directory on your SSD, or even a separate physical drive. Leave the copy be and use the original going forward. (If you need space, compress the backup folder.)</p>
-<p><strong>Do not continue until the copy has fully completed.</strong></p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-1-adding-the-router-vm">Investigation 1: Adding the <em>router</em> VM<a href="#investigation-1-adding-the-router-vm" class="hash-link" aria-label="Direct link to investigation-1-adding-the-router-vm" title="Direct link to investigation-1-adding-the-router-vm">​</a></h2>
-<p>In this investigation, we&#x27;ll be adding a Linux-based router to our setup. This low-footprint virtual machine will take the place of the RRAS NAT work you did in previous labs. Most on-premises installations (offices, warehouses, schools) will have a physical router that does this instead of relying on Windows Server to do that work.</p>
-<p>Setting this up is extremely easy and should only take a few minutes.</p>
-<p>After you&#x27;re done, you will need to have this VM powered on during all lab work. I&#x27;ll remind you of this often.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="vm-specifications">VM Specifications<a href="#vm-specifications" class="hash-link" aria-label="Direct link to VM Specifications" title="Direct link to VM Specifications">​</a></h3>
-<table><thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody><tr><td>VM Name</td><td>router</td></tr><tr><td>Role</td><td>Router / NAT (edge)</td></tr><tr><td>OS / Image</td><td>VyOS (current stable ISO)</td></tr><tr><td>vCPU</td><td>1</td></tr><tr><td>RAM</td><td>512 MB</td></tr><tr><td>Disk</td><td>20 GB</td></tr><tr><td>NICs</td><td>2</td></tr><tr><td>NIC1</td><td>VMware NAT</td></tr><tr><td>NIC2</td><td>VMnet10</td></tr><tr><td>NIC2 IPv4</td><td><strong>10.0.<code>UID</code>.254/24</strong> (static)</td></tr></tbody></table>
-<p>Instructions to set this up are provided below.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-create-router-vm">Part 1: Create <em>router</em> VM<a href="#part-1-create-router-vm" class="hash-link" aria-label="Direct link to part-1-create-router-vm" title="Direct link to part-1-create-router-vm">​</a></h3>
-<p>Here we&#x27;ll create the VM hardware and install the VyOS operating system. This is very quick process.</p>
-<blockquote>
-<p><strong>Reminder</strong>: Remember to create a new <em>router</em> folder on your SSD for the VM files!</p>
-</blockquote>
-<ol>
-<li>Download the VyOS ISO: <a href="https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso" target="_blank" rel="noopener noreferrer">https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso</a></li>
-<li>Create a new VMware VM with the following:<!-- -->
-<ol>
-<li>ISO: <strong>VyOS ISO image</strong></li>
-<li>Type: <strong>Debian 12.x 64-bit</strong></li>
-<li>Boot firmware: <strong>UEFI</strong></li>
-<li>Name: <strong>router</strong></li>
-<li>CPU: <strong>1 core</strong></li>
-<li>RAM: <strong>512 MB</strong></li>
-<li>CPU &gt; IOMMU: <strong>Enable</strong></li>
-<li>CPU &gt; Enable hypervisor: <strong>Disabled</strong></li>
-<li>Storage: <strong>20 GB</strong></li>
-<li>NIC1: <strong>NAT</strong></li>
-<li>NIC2: <strong>VMnet10</strong></li>
-</ol>
-</li>
-<li>Power on VM.</li>
-<li>In the boot menu, select the first option: <strong>Live system (vyos)</strong></li>
-<li>Login with these credentials:<!-- -->
-<ol>
-<li>Username: <strong>vyos</strong></li>
-<li>Password: <strong>vyos</strong></li>
-</ol>
-</li>
-<li>Install VyOS on the disk using this command: <code>install image</code>
-<ol>
-<li>Would you like to continue?: <strong>y</strong></li>
-<li>What would you like to name this image?: <strong>Just hit Enter to select the default</strong></li>
-<li>Please enter a password for the &quot;vyos&quot; user: <em>yourNormalAdminPassword</em></li>
-<li>What console should be used as default?: <strong>Hit Enter to select default</strong></li>
-<li>Which one should be used for installation?: <strong>Enter to select default</strong></li>
-<li>Installation will delete all data on the drive. Continue?: <strong>y</strong></li>
-<li>Would you like to use all the free space on this drive:? <strong>y</strong></li>
-<li>What would you like to use as boot config?: <strong>Enter to select default</strong></li>
-</ol>
-</li>
-<li>The installation proceeds (it&#x27;s very fast). When finished, reboot: <code>sudo reboot</code></li>
-<li>Wait for the machine OS to boot up again.</li>
-<li>Use the following credentials for your new VM:<!-- -->
-<ol>
-<li>Username: <em><strong>vyos</strong></em></li>
-<li>Password: <em><strong>yourNormalAdminPassword</strong></em></li>
-</ol>
-</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-configuring-routing">Part 2: Configuring Routing<a href="#part-2-configuring-routing" class="hash-link" aria-label="Direct link to Part 2: Configuring Routing" title="Direct link to Part 2: Configuring Routing">​</a></h3>
-<p>Now that our new virtual machine is installed and running, we need to configure it to do our routing. This is a one-time process.</p>
-<ol>
-<li>Power on router VM and login. (If you haven&#x27;t already.)</li>
-<li>Run the following commands ONE AT A TIME (<strong>Replace UID!</strong>):</li>
-</ol>
-<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">configure</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set interface ethernet eth0 address dhcp</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set system name-server eth0</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set interface ethernet eth1 address 10.0.UID.254/24</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set nat source rule 20 outbound-interface name eth0</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set nat source rule 20 source address 10.0.UID.0/24</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set nat source rule 20 translation address &#x27;masquerade&#x27;</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">set system ipv6 disable </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">commit</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">save</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">exit</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<blockquote>
-<p><em>Figure 1. Example of VyOS commands</em></p>
-</blockquote>
-<ol start="3">
-<li>Check your router can access the Internet: <code>ping eff.org</code></li>
-</ol>
-<blockquote>
-<p><em>Figure 2. Proper ping completion</em></p>
-</blockquote>
-<ol start="4">
-<li>If it receives proper ping, move on to the next step. If not, ask for help!</li>
-<li>Log out: <code>exit</code></li>
-<li>Keep this VM up! Minimize and move on to the next Investigation.</li>
-</ol>
-<p>Congratulations! You now have a NAT router VM that uses minimal resources.</p>
-<blockquote>
-<p>Note: After this lab, whenever you have other Windows VMs turned on, turn this one on first. (You don&#x27;t need to log into it, just let it do its thing.)</p>
-</blockquote>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-2-create-srv3-vm">Investigation 2: Create srv3 VM<a href="#investigation-2-create-srv3-vm" class="hash-link" aria-label="Direct link to Investigation 2: Create srv3 VM" title="Direct link to Investigation 2: Create srv3 VM">​</a></h2>
-<p>In this investigation, we&#x27;re going to clone <em>srv2</em>, reset it to defaults, then configure the clone with <em>srv3</em> information.</p>
-<p><strong>Do not create the VM below from scratch!</strong> This is just for quick reference.</p>
-<table><thead><tr><th>Setting</th><th>Value</th></tr></thead><tbody><tr><td>VM Name</td><td>srv3</td></tr><tr><td>Role</td><td>Windows Server Core #2</td></tr><tr><td>vCPU</td><td>2</td></tr><tr><td>RAM</td><td>4 GB</td></tr><tr><td>Disk</td><td>250 GB</td></tr><tr><td>NICs</td><td>1</td></tr><tr><td>NIC1</td><td><em>Removed</em></td></tr><tr><td>NIC2</td><td>VMnet10</td></tr><tr><td>NIC2 IPv4</td><td><strong>10.0.<code>UID</code>.3</strong> (static)</td></tr></tbody></table>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-cloning-in-vmware">Part 1: Cloning in VMware<a href="#part-1-cloning-in-vmware" class="hash-link" aria-label="Direct link to Part 1: Cloning in VMware" title="Direct link to Part 1: Cloning in VMware">​</a></h3>
-<ol>
-<li>Shut down ALL VMs except the router.</li>
-<li>Create a new folder inside Virtual Machines on your SSD and call it: <em>srv3-yourSenecaUsername</em></li>
-<li>In VMware Workstation, right-click on <em>srv2</em> and select: <strong>Create Full Clone</strong></li>
-<li>Rename when asked to: <strong>srv3-yourSenecaUsername</strong></li>
-<li>Save it inside: <strong>Virtual Machines/srv3-yourSenecaUsername/</strong></li>
-<li>This may take several minutes to complete.</li>
-<li>Once complete, change the following hardware (do not power on):<!-- -->
-<ol>
-<li>Remove NIC1 (External Network)</li>
-<li>Confirm hardware:<!-- -->
-<ol>
-<li>CPU: <strong>2 cores</strong></li>
-<li>RAM: <strong>4 GB</strong></li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-cleaning-the-clone-srv3">Part 2: Cleaning the Clone (srv3)<a href="#part-2-cleaning-the-clone-srv3" class="hash-link" aria-label="Direct link to Part 2: Cleaning the Clone (srv3)" title="Direct link to Part 2: Cleaning the Clone (srv3)">​</a></h3>
-<ol>
-<li>Power on and login.</li>
-<li>Exit to PowerShell.</li>
-<li>Run the following command: <code>C:\Windows\System32\Sysprep\Sysprep.exe /oobe /generalize /shutdown</code></li>
-<li>This will take a <em>very</em> long time, around 10 minutes. When complete, the computer will shut down.</li>
-<li>Power on <em>srv3</em> again.</li>
-<li>It will ask you to change the login password. Just use the same you&#x27;ve been using before. (Tab to go to the next field, then Enter to send both fields.)</li>
-<li>When asked about diagnostics, select option 1 (Required only)</li>
-<li>Your scrubbed <em>srv3</em> will now start up.</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-configuring-srv3">Part 3: Configuring srv3<a href="#part-3-configuring-srv3" class="hash-link" aria-label="Direct link to Part 3: Configuring srv3" title="Direct link to Part 3: Configuring srv3">​</a></h3>
-<ol>
-<li>
-<p>Login to <em>srv3</em>.</p>
-</li>
-<li>
-<p>Stay in <em>sconfig</em>.</p>
-</li>
-<li>
-<p>Change the computer name to to <em>srv3</em>. (<em><strong>not srv3-yourSenecaUsername!</strong></em>)</p>
-</li>
-<li>
-<p>The computer restarts.</p>
-</li>
-<li>
-<p>After restart, log back in.</p>
-</li>
-<li>
-<p>Change your network adapter settings to the following:</p>
-<ol>
-<li>Name: <strong>Internal Network</strong></li>
-<li>IP address: <strong>10.0.<code>UID</code>.3</strong></li>
-<li>Subnet: <strong>255.255.255.0</strong></li>
-<li>Gateway: <strong>10.0.<code>UID</code>.254</strong></li>
-<li>DNS1: <strong>10.0.<code>UID</code>.2</strong></li>
-<li>DNS2: <em><strong>Blank</strong></em></li>
-<li>DNS3: <em><strong>Blank</strong></em></li>
-</ol>
-</li>
-<li>
-<p>Exit to PowerShell</p>
-</li>
-<li>
-<p>Check Internet connection by running: <code>ping 173.239.79.200</code></p>
-<blockquote>
-<p><strong>Note:</strong> DNS won&#x27;t work yet, that&#x27;s okay.</p>
-</blockquote>
-</li>
-<li>
-<p>If Step 8 worked, go back to sconfig and shutdown the system.</p>
-</li>
-<li>
-<p>Keep this VM powered off until told otherwise.</p>
-</li>
-</ol>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-3-convert-srv1-to-a-management-server">Investigation 3: Convert srv1 to a Management Server<a href="#investigation-3-convert-srv1-to-a-management-server" class="hash-link" aria-label="Direct link to Investigation 3: Convert srv1 to a Management Server" title="Direct link to Investigation 3: Convert srv1 to a Management Server">​</a></h2>
-<p>In this investigation, we&#x27;ll remove all our network services from Labs 1-5 and turn <em>srv1</em> into a <strong>Management Server</strong>. Essentially, a GUI that lets us control other servers remotely from the <strong>Server Manager</strong> application.</p>
-<p>This is a very normal on-prem setup, and you&#x27;ll see why later on in the lab. It makes everything far easier and it&#x27;s more secure.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-removing-old-roles">Part 1: Removing Old Roles<a href="#part-1-removing-old-roles" class="hash-link" aria-label="Direct link to Part 1: Removing Old Roles" title="Direct link to Part 1: Removing Old Roles">​</a></h3>
-<ol>
-<li>Turn off all VMs.</li>
-<li>Power on <em>srv1</em> and login.</li>
-<li>In <em>Server Manager &gt; Remove Roles</em>:<!-- -->
-<ol>
-<li>Roles &gt; Select these roles (Remove features when asked):<!-- -->
-<ol>
-<li>DHCP</li>
-<li>DNS</li>
-<li>Remote Access</li>
-<li>Hyper-V</li>
-<li>IIS</li>
-</ol>
-</li>
-</ol>
-</li>
-<li><strong>Do NOT select restart this server.</strong></li>
-<li>This may take a while!</li>
-<li>When complete, shut down <em>srv1</em>.</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-hardware-changes-for-srv1">Part 2: Hardware Changes for srv1<a href="#part-2-hardware-changes-for-srv1" class="hash-link" aria-label="Direct link to Part 2: Hardware Changes for srv1" title="Direct link to Part 2: Hardware Changes for srv1">​</a></h3>
-<ol>
-<li>Go into srv1&#x27;s hardware properties in VMware (do not power on!)</li>
-<li>Remove NIC1 (External Network)</li>
-<li>Reduce hardware:<!-- -->
-<ol>
-<li>CPU: <strong>4 cores</strong></li>
-<li>RAM: <strong>8 GB</strong></li>
-</ol>
-</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-network-configuration-srv1">Part 3: Network Configuration (srv1)<a href="#part-3-network-configuration-srv1" class="hash-link" aria-label="Direct link to Part 3: Network Configuration (srv1)" title="Direct link to Part 3: Network Configuration (srv1)">​</a></h3>
-<ol>
-<li>Turn on <em>router</em> VM.</li>
-<li>Power on <em>srv1</em> and login.</li>
-<li>Set static network configuration for Internal Network NIC:<!-- -->
-<ol>
-<li>IP address: <strong>10.0.<code>UID</code>.1</strong></li>
-<li>Subnet: <strong>255.255.255.0</strong></li>
-<li>Gateway: <strong>10.0.<code>UID</code>.254</strong></li>
-<li>DNS: <strong>149.112.121.20</strong></li>
-</ol>
-</li>
-<li>Confirm Internet connection.<!-- -->
-<ol>
-<li>In Command Prompt, run: <code>ping eff.org</code></li>
-<li>Confirm it works. If not, ask for help!</li>
-</ol>
-</li>
-<li>Shut down <em>srv1</em>.</li>
-</ol>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-4-promote-srv2-to-ad-dc1">Investigation 4: Promote srv2 to AD DC1<a href="#investigation-4-promote-srv2-to-ad-dc1" class="hash-link" aria-label="Direct link to Investigation 4: Promote srv2 to AD DC1" title="Direct link to Investigation 4: Promote srv2 to AD DC1">​</a></h2>
-<p>In this investigation, we&#x27;re going to promote <em>srv2</em> to an <strong>Active Directory Domain Controller</strong>. As the first Core machine, we have to do this purely from the command line with PowerShell.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-network-reconfiguration-srv2">Part 1: Network Reconfiguration (srv2)<a href="#part-1-network-reconfiguration-srv2" class="hash-link" aria-label="Direct link to Part 1: Network Reconfiguration (srv2)" title="Direct link to Part 1: Network Reconfiguration (srv2)">​</a></h3>
-<p>Let&#x27;s configure the server to get it ready for Active Directory.</p>
-<ol>
-<li>Remove NIC1 (External Network)</li>
-<li>Confirm hardware:<!-- -->
-<ol>
-<li>CPU: <strong>2 cores</strong></li>
-<li>RAM: <strong>4 GB</strong></li>
-</ol>
-</li>
-<li>Power on.</li>
-<li>Change computer name from <em>srv2-yourSenecaUsername</em> to <em>srv2</em>. <strong>Restart</strong>.</li>
-<li>Log back in.</li>
-<li>Set static network configuration for Internal Network NIC:<!-- -->
-<ol>
-<li>IP address: <strong>10.0.<code>UID</code>.2</strong></li>
-<li>Subnet: <strong>255.255.255.0</strong></li>
-<li>Gateway: <strong>10.0.<code>UID</code>.254</strong></li>
-<li>DNS: <strong>10.0.<code>UID</code>.2</strong>
-<ol>
-<li>Note: If DHCP won&#x27;t be removed, go to PowerShell and run: <code>Set-NetIPInterface -InterfaceAlias &quot;Internal Network&quot; -Dhcp disabled</code></li>
-<li>Go back to <em>sconfig</em> and rerun Step 6.</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>Exit to PowerShell.</li>
-<li>Check Internet connection by running: <code>ping 173.239.79.200</code></li>
-<li>If ping is successful, move on to the next Investigation. If not, ask for help!</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-installing-ad-and-dc-promotion">Part 2: Installing AD and DC Promotion<a href="#part-2-installing-ad-and-dc-promotion" class="hash-link" aria-label="Direct link to Part 2: Installing AD and DC Promotion" title="Direct link to Part 2: Installing AD and DC Promotion">​</a></h3>
-<p>Here, we install the Active Directory server role and then promote <em>srv2</em> to be an AD Domain Controller.</p>
-<ol>
-<li>Install the Active Directory role:</li>
-</ol>
-<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Install-WindowsFeature AD-Domain-Services</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<ol start="2">
-<li><strong>This can take a while!</strong> Be patient.</li>
-<li>Promote srv2 to a domain controller:</li>
-</ol>
-<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Install-ADDSForest -DomainName &#x27;yourSenecaUsername.com&#x27; -DomainNetbiosName &#x27;YOURSENECAUSERNAME&#x27; -InstallDNS -Force</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<ol start="4">
-<li>When asked for a password, use the same one you&#x27;ve used for your Administrator accounts.</li>
-<li><strong>This will take several minutes!</strong> Your VM will restart and take a few more minutes. Be patient.</li>
-<li>Once you can, login with: <code>YOURSENECAUSERNAME\Administrator</code></li>
-<li>In sconfig, confirm you can see:<!-- -->
-<ol>
-<li>Computer name: <strong>srv2</strong></li>
-<li>Domain: <strong>yourSenecaUsername.com</strong></li>
-</ol>
-</li>
-<li>Minimize srv2 VM but keep it on!</li>
-</ol>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-5-manage-srv2-from-srv1-gui">Investigation 5: Manage srv2 from srv1 GUI<a href="#investigation-5-manage-srv2-from-srv1-gui" class="hash-link" aria-label="Direct link to Investigation 5: Manage srv2 from srv1 GUI" title="Direct link to Investigation 5: Manage srv2 from srv1 GUI">​</a></h2>
-<p>Let&#x27;s use <em>srv1</em>&#x27;s <strong>Server Manager</strong> to manage and configure <em>srv2</em>!</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-join-srv1-to-the-new-domain">Part 1: Join srv1 to the new domain<a href="#part-1-join-srv1-to-the-new-domain" class="hash-link" aria-label="Direct link to Part 1: Join srv1 to the new domain" title="Direct link to Part 1: Join srv1 to the new domain">​</a></h3>
-<p>We now have an Active Directory domain, but we need to join <em>srv1</em> to it.</p>
-<ol>
-<li>Double-check the following VMs are already powered on:<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="pre-flight-check">Pre-Flight Check<a href="#pre-flight-check" class="hash-link" aria-label="Direct link to Pre-Flight Check" title="Direct link to Pre-Flight Check">​</a></h3>
+<p>Have the following VMs turned on:</p>
 <ol>
 <li>router</li>
+<li>srv1</li>
 <li>srv2</li>
+<li>srv3</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-1-create-personal-domain-controller-user">Investigation 1: Create Personal Domain Controller User<a href="#investigation-1-create-personal-domain-controller-user" class="hash-link" aria-label="Direct link to Investigation 1: Create Personal Domain Controller User" title="Direct link to Investigation 1: Create Personal Domain Controller User">​</a></h2>
+<p>We’re going to give the domain a proper identity backbone before we do anything clever. That means building a clean <strong>HQ\Users</strong> OU path, creating a named administrator for yourself, and retiring the <strong>built-in Administrator</strong> account. Named admins are audit-friendly and safer. OUs (not the default <em>Users</em> container) are where policy and delegation behave predictably.</p>
+<p>You’ll create your personal admin, verify it on both DCs, add a break-glass backup admin, and then disable the built-in Administrator.</p>
+<p><strong>From this point on, every right you have will be applied purpose</strong>, and every policy we link later will land exactly where we intend.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-first-ou-scaffolding-setup">Part 1: First OU Scaffolding Setup<a href="#part-1-first-ou-scaffolding-setup" class="hash-link" aria-label="Direct link to Part 1: First OU Scaffolding Setup" title="Direct link to Part 1: First OU Scaffolding Setup">​</a></h3>
+<p>Before we make any accounts, we need a proper home for them. The built-in <strong>Users</strong> container isn’t an OU, so you can’t link GPOs to it or delegate neatly. Building <strong>HQ\Users</strong> (with an <strong>IT</strong> branch) gives us a clean, predictable place where policy and delegation will behave the way we want.</p>
+<ol>
+<li>
+<p>On <em>srv1</em>, open <strong>Active Directory Users and Computers</strong> (ADUC).</p>
+</li>
+<li>
+<p>Open your domain name from the list. (Example: <em>cjohnson30.com</em>)</p>
+</li>
+<li>
+<p>Right-click your domain name and select: <strong>New &gt; Organizational Unit</strong> (Do not use the built-in Users folder!)</p>
+</li>
+<li>
+<p>Name this new OU: <strong>HQ</strong></p>
+</li>
+<li>
+<p>Using the same <strong>New &gt; Organizational Unit</strong> function, create the following hierarchy:</p>
+<blockquote>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">HQ  </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">└─ Users  </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   └─ IT  </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      ├─ Helpdesk</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      ├─ SecAdmins  </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      └─ SysAdmins</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</blockquote>
+</li>
+<li>
+<p>Verify your work. Does your HQ object hold the above items in the correct levels?</p>
+</li>
+<li>
+<p>If so, move on to the next part. If not, fix your mistakes or ask for help.</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-create-personal-user">Part 2: Create Personal User<a href="#part-2-create-personal-user" class="hash-link" aria-label="Direct link to Part 2: Create Personal User" title="Direct link to Part 2: Create Personal User">​</a></h3>
+<p><strong>Admins shouldn’t live and work in the default <em>Administrator</em> account.</strong> A named admin is safer (auditing, accountability) and lets us save the built-in Administrator for emergencies. We’ll create your personal admin under <strong>HQ\Users\IT\SysAdmins</strong> so any IT-specific policy we link there applies to you automatically.</p>
+<ol>
+<li>On <strong>srv1</strong> in ADUC, navigate to: <strong>HQ\Users\IT\SysAdmins</strong></li>
+<li>Right-click on <em>SysAdmins</em> (or the whitespace to the right) and select: <strong>New &gt; User</strong></li>
+<li>Fill out the following in the <em>New Object - User</em> dialog box:<!-- -->
+<ol>
+<li><strong>First name:</strong> <em>Your Proper First Name</em>
+<blockquote>
+<p>Example: Chris</p>
+</blockquote>
+</li>
+<li><strong>Last name:</strong> <em>Your Proper Last Name</em>
+<blockquote>
+<p>Example: Johnson</p>
+</blockquote>
+</li>
+<li><strong>User login name:</strong> <em>firstname.lastname</em>
+<blockquote>
+<p>Example: chris.johnson</p>
+</blockquote>
+</li>
+<li>Click <strong>Next</strong>.</li>
 </ol>
 </li>
-<li>Power on <em>srv1</em> and login.</li>
-<li>Change &quot;Internal Network&quot; NIC DNS to: <code>10.0.</code>UID<code>.2</code></li>
-<li>In <em>Computer Properties</em>, change the computer name from <em>srv1-yourSenecaUsername</em> to <em>srv1</em>.</li>
-<li>Restart and log back in.</li>
-<li>Open <em>Computer Properties</em> again, and click on <strong>Workgroup</strong>.</li>
-<li>Select <em>Domain</em> and enter: <em>yourSenecaUsername.com</em></li>
-<li>When asked for credentials, use your Administrator username and password.</li>
-<li>When it adds properly, you&#x27;ll get a welcome message.</li>
-<li>The computer will now restart.</li>
-<li>When the computer is up again, login using: <strong>Other &gt; YOURSENECAUSERNAME\Administrator</strong></li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-setup-srv1-as-a-gui-management-server-for-srv2">Part 2: Setup srv1 as a GUI Management Server for srv2<a href="#part-2-setup-srv1-as-a-gui-management-server-for-srv2" class="hash-link" aria-label="Direct link to Part 2: Setup srv1 as a GUI Management Server for srv2" title="Direct link to Part 2: Setup srv1 as a GUI Management Server for srv2">​</a></h3>
-<p>This is where we add <em>srv2</em> to <em>Server Manager</em> for remote control. We also install a few features that help with that remote control.</p>
+<li>Fill out the following in the next page:<!-- -->
 <ol>
-<li>In <em>Server Manager</em>, go to <strong>All Servers</strong>.</li>
-<li>Go to <em>Manage &gt; Add Servers</em></li>
-<li>Click on <strong>Find Now</strong>.</li>
-<li>Select <em>srv2</em>.</li>
+<li><strong>Password:</strong> <em>same strong password as your other accounts</em></li>
+<li><strong>Confirm password:</strong> <em>same strong password as your other accounts</em></li>
+<li>Check/uncheck the following:<!-- -->
+<ol>
+<li><strong>User must change password at next logon:</strong> <em>Unchecked</em></li>
+<li><strong>User cannot change password:</strong> <em>Unchecked</em></li>
+<li><strong>Password never expires:</strong> <em>Checked</em></li>
+<li><strong>Account is disabled:</strong> <em>Unchecked</em></li>
+</ol>
+</li>
+<li>Click <strong>Next</strong>.</li>
+</ol>
+</li>
+<li>On the final page, review your settings and click <strong>Finish</strong>.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-add-new-personal-user-to-domain-controllers">Part 3: Add New Personal User to Domain Controllers<a href="#part-3-add-new-personal-user-to-domain-controllers" class="hash-link" aria-label="Direct link to Part 3: Add New Personal User to Domain Controllers" title="Direct link to Part 3: Add New Personal User to Domain Controllers">​</a></h3>
+<p>Now we grant your account the rights to actually run the domain. Adding it to <strong>Domain Admins</strong> makes the change global.</p>
+<blockquote>
+<p><strong>NOTE:</strong> For your new personal user to have those rights <em>applied</em>, you need to log off of that account and log back in. In this case, we haven&#x27;t logged on to the account yet, so we can skip this step. But it&#x27;s important to note for changes made to accounts currently logged on.</p>
+</blockquote>
+<p>We’ll also open Server Manager under your new personal account and re-add the other DCs (<em>srv2/srv3</em>).</p>
+<ol>
+<li>On <strong>srv1</strong> in ADUC, navigate to: <strong>HQ\Users\IT\SysAdmins</strong></li>
+<li>Right-click on the user you created in Step 2 and click <strong>Properties</strong>.</li>
+<li>In the <em>Properties</em> dialog box, click on the tab: <strong>Member Of</strong></li>
+<li>In the list, you should already see one entry, <em>Domain Users</em>. Click <strong>Add</strong>.</li>
+<li>In the <em>Select Groups</em> dialog, type: <strong>Domain Admins</strong></li>
+<li>To verify an object named <em>Domain Admins</em> exists, click on the <strong>Check Names</strong> button. If it&#x27;s correct, you&#x27;ll see <em>Domain Admins</em> become underlined. (If not, check for typos or ask for help!)</li>
+<li>Click <strong>OK</strong> to add.</li>
+<li>Back in the <em>Member Of</em> tab, you should now see two entries. If so, click <strong>OK</strong> to fully apply.</li>
+<li>On <em>srv1</em>, log out of your Administrator account and log back in using your new personal account by clicking on <strong>Other user</strong>.<!-- -->
+<blockquote>
+<p>Logging in using <em>firstname.lastname</em> should be sufficient, but if not, you can use either <em><code>yourSenecaUsername\firstname.lastname</code></em> or <em><code>firstname.lastname@yourSenecaUsername.com</code></em>.</p>
+</blockquote>
+</li>
+<li>Open <em>Server Manager &gt; All Servers</em> and add <em>srv2</em> and <em>srv3</em>.</li>
+</ol>
+<p>You now have full domain admin access using your personal account instead of the default Administrator account. This is far more secure and best practice.</p>
+<blockquote>
+<p><strong>IMPORTANT: Going forward, <em>always log into your servers using this personal account</em>, never the default Administrator account.</strong></p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-create-a-secondary-backup-administrator">Part 4: Create a Secondary Backup Administrator<a href="#part-4-create-a-secondary-backup-administrator" class="hash-link" aria-label="Direct link to Part 4: Create a Secondary Backup Administrator" title="Direct link to Part 4: Create a Secondary Backup Administrator">​</a></h3>
+<p><strong>This is your break-glass admin.</strong> If your main account gets locked or broken, this one saves the day. It should work everywhere the primary does. We’ll test it right away so you know it works before you ever need it.</p>
+<ol>
+<li>On <strong>srv1</strong> in ADUC, create a new user in: <strong>HQ\Users\IT\SysAdmins</strong></li>
+<li>Same steps as Part 3, but use the following values:<!-- -->
+<ol>
+<li><strong>Full name:</strong> <em>Backup Admin</em></li>
+<li><strong>User login name:</strong> <em>backup.admin</em></li>
+<li>All others the same as Part 3.</li>
+</ol>
+</li>
+<li>In this user&#x27;s <em>Member Of</em>, add <strong>Domain Admins</strong></li>
+<li>Logout of srv1, log back in with this new user, and add <em>srv2/srv3</em> to Server Manager.</li>
+<li>On <strong>srv2</strong>, log on with <code>backup.admin</code> to confirm you have backup access to your DCs.</li>
+<li>If the previous step worked, congrats! Keep going. If not, stop and ask for help.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-5-disable-default-administrator-account">Part 5: Disable Default Administrator Account<a href="#part-5-disable-default-administrator-account" class="hash-link" aria-label="Direct link to Part 5: Disable Default Administrator Account" title="Direct link to Part 5: Disable Default Administrator Account">​</a></h3>
+<p>The built-in Administrator is a well-known target for attackers. Disabling it removes a giant bullseye without taking away any capability. Your named admin replaces it (as does your backup admin).</p>
+<p>From now on, do everything with your personal account. <strong>Make sure you&#x27;re logged on to your <em>firstname.lastname</em> admin account before continuing!</strong></p>
+<ol>
+<li>On <strong>srv1</strong> in ADUC, navigate to: <strong>yourSenecaUsername.com\Users</strong> (this is <em>not</em> inside HQ)</li>
+<li>Find the <strong>Administrator</strong> account and right-click it.</li>
+<li>From the drop-down menu, select: <strong>Disable Account</strong></li>
+</ol>
+<p>You&#x27;ve now disabled the default admin account and prevented a possible attack vector.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-2-bob-from-accounting">Investigation 2: Bob from Accounting<a href="#investigation-2-bob-from-accounting" class="hash-link" aria-label="Direct link to Investigation 2: Bob from Accounting" title="Direct link to Investigation 2: Bob from Accounting">​</a></h2>
+<p><strong>Now we add a real employee so we can see user-scope policy do real work.</strong> We’ll carve out <strong>HQ\Users\Accountants</strong> and create <strong>Bob Smith</strong> as a standard user: no special rights, just a normal person who should get normal restrictions.</p>
+<p>With that in place, we’ll link a <strong>User-scope GPO</strong> to the <strong>Accountants OU</strong> and watch the settings follow Bob wherever he signs in.</p>
+<p>This is the first half of the model: people live under Users OUs, and user policy follows the person. It also sets us up to delegate tasks to IT without giving them domain-wide power in the next investigations.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-add-accountants-ous">Part 1: Add Accountants OUs<a href="#part-1-add-accountants-ous" class="hash-link" aria-label="Direct link to Part 1: Add Accountants OUs" title="Direct link to Part 1: Add Accountants OUs">​</a></h3>
+<p>Departments deserve their own space. By carving out <strong>HQ\Users\Accountants</strong>, we get a tidy spot to place real people and a perfect target for user-scope GPOs and delegation. Policies linked here will follow accountants wherever they sign in.</p>
+<ol>
+<li>
+<p>On <strong>srv1</strong> in ADUC, navigate to: <strong>HQ\Users</strong></p>
+</li>
+<li>
+<p>Using the <strong>New &gt; Organizational Unit</strong> function, <em><strong>add</strong></em> the following to your existing hierarchy:</p>
+<blockquote>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">HQ  </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">└─ Users  </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   └─ Accountants </span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</blockquote>
+</li>
+<li>
+<p>Verify your work. Does your HQ object hold the above items in the correct levels?</p>
+</li>
+<li>
+<p>If so, move on to the next part. If not, fix your mistakes or ask for help.</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-create-user---bob-smith">Part 2: Create User - Bob Smith<a href="#part-2-create-user---bob-smith" class="hash-link" aria-label="Direct link to Part 2: Create User - Bob Smith" title="Direct link to Part 2: Create User - Bob Smith">​</a></h3>
+<p>Bob is our test user for “normal staff”. We’ll give him standard settings so we can see our <strong>Employee Lockdown</strong> user-GPO take effect exactly where we expect later in this investigation.</p>
+<ol>
+<li>
+<p>Create a new user in the following location: <strong>HQ\Users\Accountants</strong></p>
+</li>
+<li>
+<p>Sse the following values:</p>
+<ol>
+<li><strong>First name:</strong> <em>Bob</em></li>
+<li><strong>Last name:</strong> <em>Smith</em></li>
+<li><strong>User login name:</strong> <em>bob.smith</em></li>
+</ol>
+</li>
+<li>
+<p>Fill out the following in the next page:</p>
+<ol>
+<li><strong>Password:</strong> <em>same strong password as your other accounts</em></li>
+<li><strong>Confirm password:</strong> <em>same strong password as your other accounts</em></li>
+<li>Check/uncheck the following:<!-- -->
+<ol>
+<li><strong>User must change password at next logon:</strong> <em>Checked</em></li>
+<li><strong>User cannot change password:</strong> <em>Unchecked</em></li>
+<li><strong>Password never expires:</strong> <em>Checked</em></li>
+<li><strong>Account is disabled:</strong> <em>Unchecked</em></li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> Modern views on passwords are to always enable <em>Password never expires</em>. In the past, we disabled this option to deal with security issues where users would write down passwords, share them, lose them, etc.  A password would become invalid after a certain amount of time (say, 90 days).</p>
+<p>These days, we use <strong>Multi-factor Authentication (MFA)</strong> instead. We won&#x27;t set that up in this lab, but it&#x27;s a very typical addition to managed user accounts.</p>
+</blockquote>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-create-gpo-user---employee-lockdown">Part 3: Create GPO, <em>User - Employee Lockdown</em><a href="#part-3-create-gpo-user---employee-lockdown" class="hash-link" aria-label="Direct link to part-3-create-gpo-user---employee-lockdown" title="Direct link to part-3-create-gpo-user---employee-lockdown">​</a></h3>
+<p>Bob from Accounting is a <em>terrible</em> user. He ignores written computer polices and likes to mess around with settings due to boredom and &#x27;fixing things&#x27; instead of contacting IT support. So, we create a <strong>Group Policy Object (GPO)</strong> to disable his ability to change important system settings.</p>
+<p>We have to create the GPO first before we can have it applied to Bob (and other users we want).</p>
+<ol>
+<li>On <em>srv1</em>, open the <strong>Group Policy Management</strong> application.</li>
+<li>In the left-hand column, expand the following: <strong>Forest: yourSenecaUsername.com &gt; Domains &gt; yourSenecaUsername.com &gt; Group Policy Objects</strong></li>
+<li>Right-click <em>Group Policy Objects</em> and select: <strong>New</strong>
+<ol>
+<li><strong>Name:</strong> <em>User - Employee Lockdown</em></li>
+</ol>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-edit-gpo-user---employee-lockdown">Part 4: Edit GPO, <em>User - Employee Lockdown</em><a href="#part-4-edit-gpo-user---employee-lockdown" class="hash-link" aria-label="Direct link to part-4-edit-gpo-user---employee-lockdown" title="Direct link to part-4-edit-gpo-user---employee-lockdown">​</a></h3>
+<p>Let&#x27;s add those restrictions to our new <strong>User - Employee Lockdown</strong> GPO.</p>
+<ol>
+<li>In the <em>Group Policy Objects</em> list, right-click on your newly created Group Policy Object (GPO) and click <strong>Edit</strong>.</li>
+<li>This opens the <strong>Group Policy Management Editor</strong> application, and loads the <strong>User - Employee Lockdown</strong> GPO automatically.</li>
+<li>We are now going to turn on certain restrictions.</li>
+<li>Prohibit access to Control Panel and PC settings.<!-- -->
+<ol>
+<li>Navigate to: <strong>User Configuration &gt; Policies &gt; Administrative Templates &gt; Control Panel</strong>.</li>
+<li>Find <strong>Prohibit access to Control Panel and PC settings</strong> in the list and double-click it to open.</li>
+<li>Click <strong>Enabled</strong> then <strong>OK</strong> to apply.</li>
+</ol>
+</li>
+<li>Repeat for the following:<!-- -->
+<ol>
+<li>User Configuration &gt; Policies &gt; Administrative Templates &gt; System &gt; <strong>Prevent access to the command prompt = Enabled</strong></li>
+<li>User Configuration &gt; Policies &gt; Administrative Templates &gt; System &gt; <strong>Prevent access to registry editing tools = Enabled</strong></li>
+<li>User Configuration &gt; Policies &gt; Administrative Templates &gt; Start Menu and Taskbar &gt; <strong>Remove Run menu from Start Menu = Enabled</strong></li>
+<li>User Configuration &gt; Policies &gt; Administrative Templates &gt; Windows Components &gt; File Explorer &gt; <strong>Remove “Map Network Drive” and “Disconnect Network Drive” = Enabled</strong></li>
+<li>User Configuration &gt; Policies &gt; Administrative Templates &gt; Control Panel &gt; Printers &gt; <strong>Prevent addition of printers = Enabled</strong></li>
+</ol>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-5-link-the-user---employee-lockdown-gpo-to-accounting">Part 5: Link the <em>User - Employee Lockdown</em> GPO to Accounting<a href="#part-5-link-the-user---employee-lockdown-gpo-to-accounting" class="hash-link" aria-label="Direct link to part-5-link-the-user---employee-lockdown-gpo-to-accounting" title="Direct link to part-5-link-the-user---employee-lockdown-gpo-to-accounting">​</a></h3>
+<p>Now that we have our GPO with all the restrictions added, it&#x27;s time to apply it.</p>
+<p>The best method is to apply it at the <em>HQ\Users\Accounting</em> OU so <strong>any</strong> accounting employee will inherit this GPO and its restrictions, including Bob.</p>
+<p>Much better than applying it to 50 different employees one at a time!</p>
+<ol>
+<li>Back in the <em>Group Policy Management</em> application, right-click on: <strong>HQ\Users\Accounting</strong></li>
+<li>Click <strong>Link an existing GPO</strong></li>
+<li>Select <strong>User - Employee Lockdown</strong> from the list and click <strong>OK</strong>.</li>
+<li>You should now see it in the list in the main <em>Linked Group Policy Objects</em> pane for <em>Accounting</em>. If you don&#x27;t, double-check your work and ask for help before proceeding.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-6-verify-bobs-restrictions">Part 6: Verify Bob&#x27;s Restrictions<a href="#part-6-verify-bobs-restrictions" class="hash-link" aria-label="Direct link to Part 6: Verify Bob&#x27;s Restrictions" title="Direct link to Part 6: Verify Bob&#x27;s Restrictions">​</a></h3>
+<p>We should check that our restrictions have worked.</p>
+<ol>
+<li>Logout of your account on <em>srv1</em>.</li>
+<li>Log on to Bob&#x27;s account: <strong>bob.smith</strong>
+<ol>
+<li>You will be asked to reset the password on first login. This is normal. Pick something complex but basic and <strong>write it down in your Lab Logbook</strong>.</li>
+</ol>
+</li>
+<li>Once logged in, try to open up <strong>Settings</strong>. Does it let you?</li>
+<li>If not, nicely done! Move on to the next part of the lab.</li>
+</ol>
+<p>This is a good example of applying settings to a user account. No matter what HQ workstation Bob logs into, these restrictions will <em>follow him</em>.</p>
+<blockquote>
+<p><strong>Note:</strong> Normally, we&#x27;d use a workstation to test Bob&#x27;s account, not a server. We&#x27;re using <em>srv1</em> here to conserve lab resources. We&#x27;ll test with <em>laptop1</em> towards the end of this lab.</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-3-enzo-matrix---it-helpdesk">Investigation 3: Enzo Matrix - IT Helpdesk<a href="#investigation-3-enzo-matrix---it-helpdesk" class="hash-link" aria-label="Direct link to Investigation 3: Enzo Matrix - IT Helpdesk" title="Direct link to Investigation 3: Enzo Matrix - IT Helpdesk">​</a></h2>
+<p>We&#x27;re going to create a user that provides Level 1 IT support to employees in the rest of the company.</p>
+<p>Unlike Bob, who we only needed to restrict what access he had to computers he logged into directly, with Enzo, we have to grant him <em>specific</em> admin privileges in Active Directory so he can manage certain things.</p>
+<p>A Level 1 Helpdesk employee always has the same terrible job: Reset passwords for employees who have forgotten their own.</p>
+<p>This requires some extra steps beyond what we did with Bob from Accounting.</p>
+<p>Let&#x27;s set that up.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-create-gpo-user---it-environment">Part 1: Create GPO, <em>User - IT Environment</em><a href="#part-1-create-gpo-user---it-environment" class="hash-link" aria-label="Direct link to part-1-create-gpo-user---it-environment" title="Direct link to part-1-create-gpo-user---it-environment">​</a></h3>
+<p>The previous GPO we created is far too restrictive for an IT employee. They can be trusted to make changes to their own system.</p>
+<p><strong>Remember, Group Policy Objects (GPOs) are about modifying <em>default behaviour</em>.</strong> Think about when you log into a normal Windows machine you own. You can access Control Panel, right? So, to allow it here, all we need to do is <strong>not</strong> disable it. The default is to allow access. Same with the other restrictions we placed on the previous GPO.</p>
+<p>Instead of adding restrictions, we&#x27;re going to add some shortcuts for common AD management tools to the IT users&#x27; desktops.</p>
+<ol>
+<li>Open the <strong>Group Policy Management</strong> and navigate to:  <strong>Forest: yourSenecaUsername.com &gt; Domains &gt; yourSenecaUsername.com &gt; Group Policy Objects</strong></li>
+<li>Create a new GPO here called: <strong>User - IT Environment</strong></li>
+<li><strong>User Configuration &gt; Preferences &gt; Windows Settings &gt; Shortcuts &gt; <em>Right-Click</em> &gt; New &gt; Shortcut</strong></li>
+<li>Add the following shortcuts:<!-- -->
+<ol>
+<li>Server Manager<!-- -->
+<ol>
+<li><strong>Name:</strong> <em>Server Manager</em></li>
+<li><strong>Location:</strong> <em>Desktop</em></li>
+<li><strong>Target Path:</strong> <em>%SystemRoot%\System32\ServerManager.exe</em></li>
+<li>Keep all other fields as defaults.</li>
+</ol>
+</li>
+<li>Active Directory Users and Computers<!-- -->
+<ol>
+<li><strong>Name:</strong> <em>Active Directory Users and Computers</em></li>
+<li><strong>Location:</strong> <em>Desktop</em></li>
+<li><strong>Target Path:</strong> <em>%SystemRoot%\System32\dsa.msc</em></li>
+<li>Keep all other fields as defaults.</li>
+</ol>
+</li>
+<li>Group Policy Management<!-- -->
+<ol>
+<li><strong>Name:</strong> <em>Group Policy Management</em></li>
+<li><strong>Location:</strong> <em>Desktop</em></li>
+<li><strong>Target Path:</strong> <em>%SystemRoot%\System32\gpmc.msc</em></li>
+<li>Keep all other fields as defaults.</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-create-user---enzo-matrix">Part 2: Create User - Enzo Matrix<a href="#part-2-create-user---enzo-matrix" class="hash-link" aria-label="Direct link to Part 2: Create User - Enzo Matrix" title="Direct link to Part 2: Create User - Enzo Matrix">​</a></h3>
+<p>Enzo is our <strong>Level 1 Helpdesk</strong> employee. He needs an IT-friendly desktop (shortcuts, fewer restrictions than Bob) and, soon, the ability to reset passwords in a specific department.</p>
+<p>We’ll set him up now so the GPO and group wiring we do next has a real user to affect.</p>
+<ol>
+<li>Create a new user in the following location: <strong>HQ\Users\IT\Helpdesk</strong></li>
+<li>See the following values:<!-- -->
+<ol>
+<li><strong>First name:</strong> <em>Enzo</em></li>
+<li><strong>Last name:</strong> <em>Matrix</em></li>
+<li><strong>User login name:</strong> <em>enzo.matrix</em></li>
+</ol>
+</li>
+<li>Fill out the following in the next page:<!-- -->
+<ol>
+<li><strong>Password:</strong> <em>same strong password as your other accounts</em></li>
+<li><strong>Confirm password:</strong> <em>same strong password as your other accounts</em></li>
+<li>Check/uncheck the following:<!-- -->
+<ol>
+<li><strong>User must change password at next logon:</strong> <em>Checked</em></li>
+<li><strong>User cannot change password:</strong> <em>Unchecked</em></li>
+<li><strong>Password never expires:</strong> <em>Unchecked</em></li>
+<li><strong>Account is disabled:</strong> <em>Unchecked</em></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-link-the-user---it-environment-gpo-to-it">Part 3: Link the <em>User - IT Environment</em> GPO to IT<a href="#part-3-link-the-user---it-environment-gpo-to-it" class="hash-link" aria-label="Direct link to part-3-link-the-user---it-environment-gpo-to-it" title="Direct link to part-3-link-the-user---it-environment-gpo-to-it">​</a></h3>
+<p>Now that we have our GPO with all our additions included, it&#x27;s time to apply it. We&#x27;ll apply it to the <em>IT</em> OU, since it should apply to everyone there (all IT employees).</p>
+<ol>
+<li>Back in the <em>Group Policy Management</em> application, right-click on: <strong>HQ\Users\IT</strong></li>
+<li>Click <strong>Link an existing GPO</strong></li>
+<li>Select <strong>User - IT Environment</strong> from the list and click <strong>OK</strong>.</li>
+<li>You should now see it in the list in the main <em>Linked Group Policy Objects</em> pane for <em>IT</em>. If you don&#x27;t, double-check your work and ask for help before proceeding.</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-global-groups">Part 4: Global Groups<a href="#part-4-global-groups" class="hash-link" aria-label="Direct link to Part 4: Global Groups" title="Direct link to Part 4: Global Groups">​</a></h3>
+<p>This is where we get into personal desktop environment settings VS Active Directory admin settings. GPOs are for personal desktop environments that a user sees when they login.</p>
+<p>By contrast, we use Global Groups+Role Groups to grant certain AD admin tasks to groups of users.</p>
+<p>For reference:</p>
+<ol>
+<li><strong>GPO+User OU</strong> = Desktop settings and restrictions on the local machine a user logs into.</li>
+<li><strong>Global Groups+Role Groups</strong> = Combinations of AD administrative tasks assigned to groups of users. This is to allow certain users to change Active Directory settings and configuration, not local computers.</li>
+</ol>
+<p>A <strong>Global Group <em>(GG)</em></strong> is, essentially, an <em>identity group</em>. We use Global Groups to add users together, and then apply a role to the group. Each user in that group then gets that role applied. (We do the roles part a bit later.)</p>
+<p>Let&#x27;s create an AD admin-type group (Global Group, GG) for IT Level 1. Remember, this is just a group of users.</p>
+<ol>
+<li>
+<p>In ADUC, navigate to: <strong>HQ</strong></p>
+</li>
+<li>
+<p>Using the <strong>New &gt; Organizational Unit</strong> function, <em><strong>add</strong></em> the following to your existing hierarchy:</p>
+<blockquote>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">HQ  </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">└─ Groups </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   └─ Global</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</blockquote>
+</li>
+<li>
+<p>In <em>HQ\Groups\Global</em>, create a new <strong>Group</strong> object with the following settings:</p>
+<ol>
+<li><strong>Group name:</strong> <em>GG_IT_L1</em></li>
+<li><strong>Group scope:</strong> <em>Global</em></li>
+<li><strong>Group type:</strong> <em>Security</em></li>
+</ol>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-5-role-groups">Part 5: Role Groups<a href="#part-5-role-groups" class="hash-link" aria-label="Direct link to Part 5: Role Groups" title="Direct link to Part 5: Role Groups">​</a></h3>
+<p>In contrast to Global Groups, a <strong>Role Group <em>(RG)</em></strong> is a collection of AD admin privileges under a single profile. You can have many RGs, each with different sets of AD admin privileges.</p>
+<p>Let&#x27;s create our first RG and then add a single AD admin privilege to it: Reset passwords.</p>
+<ol>
+<li>
+<p>In ADUC, navigate to: <strong>HQ</strong></p>
+</li>
+<li>
+<p>Using the <strong>New &gt; Organizational Unit</strong> function, <em><strong>add</strong></em> the following to your existing hierarchy:</p>
+<blockquote>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">HQ  </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">└─ Groups </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   └─ Roles</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</blockquote>
+</li>
+<li>
+<p>In <em>HQ\Groups\Roles</em>, create a new <strong>Group</strong> object with the following settings:</p>
+<ol>
+<li><strong>Group name:</strong> <em>RG_PasswordReset</em></li>
+<li><strong>Group scope:</strong> <em>Domain Local</em></li>
+<li><strong>Group type:</strong> <em>Security</em></li>
+</ol>
+</li>
+<li>
+<p>In <em>HQ\Users\Accounting</em>, right-click and select: <strong>Delegate control...</strong></p>
+</li>
+<li>
+<p>In the <em>Delegation of Control Wizard</em>&#x27;s &gt; <em>Users or Groups</em> page, add: <strong>RG_PasswordReset</strong></p>
+</li>
+<li>
+<p>In <em>Delegation of Control Wizard</em> &gt; <em>Tasks to Delegate</em>, select: <strong>Reset user passwords and force password change at next logon</strong></p>
+</li>
+<li>
+<p>Review your settings on the last page, then click <strong>Finish</strong>.</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-6-wire-global-group-to-role-group">Part 6: Wire Global Group to Role Group<a href="#part-6-wire-global-group-to-role-group" class="hash-link" aria-label="Direct link to Part 6: Wire Global Group to Role Group" title="Direct link to Part 6: Wire Global Group to Role Group">​</a></h3>
+<p>We&#x27;ll now assign our new RG from <em>Part 5</em> to our Global Group <strong>GG_IT_L1</strong>. This means that anyone who&#x27;s a part of <em>GG_IT_L1</em> will get the AD admin privilege assigned in <em>RG_PasswordReset</em>.</p>
+<ol>
+<li>In ADUC, navigate to: <strong>HQ\Groups\Roles</strong></li>
+<li>Double-click on <strong>RG_PasswordReset</strong> to open its Properties.</li>
+<li>In the <em>Properties</em> window, go to the <strong>Members</strong> tab and click on: <strong>Add...</strong></li>
+<li>In the <em>Select Users, Contacts, Computers, Service Accounts, or Groups</em> window, type: <strong>GG_IT_L1</strong></li>
+<li>Click <strong>OK</strong> and verify it shows up in the <em>Members</em> tab.</li>
+</ol>
+<p>The Global Group of users <em>GG_IT_L1</em> now has all the AD admin privileges given to Role Group <em>RG_PasswordReset</em>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-7-add-enzo-to-gg-it-helpdesk-level-1">Part 7: Add Enzo to GG IT Helpdesk Level 1<a href="#part-7-add-enzo-to-gg-it-helpdesk-level-1" class="hash-link" aria-label="Direct link to Part 7: Add Enzo to GG IT Helpdesk Level 1" title="Direct link to Part 7: Add Enzo to GG IT Helpdesk Level 1">​</a></h3>
+<p>And now we put it all together. We add Enzo to the Global Group <em>GG_IT_L1</em>. Once we do that, Enzo will be able to reset passwords for all users inside <em>HQ\Users\Accounting</em>.</p>
+<ol>
+<li>In ADUC, navigate to: <strong>HQ\Groups\Global</strong></li>
+<li>Double-click on <strong>GG_IT_L1</strong> to open its Properties.</li>
+<li>In the <em>Properties</em> window, go to the <strong>Members</strong> tab and click on: <strong>Add...</strong></li>
+<li>In the <em>Select Users, Contacts, Computers, Service Accounts, or Groups</em> window, type: <strong>Enzo Matrix</strong></li>
+<li>Click <strong>OK</strong> and verify it shows up in the <em>Members</em> tab.</li>
+</ol>
+<p>That&#x27;s it! If we ever want to add more IT employees to Helpdesk Level 1, we&#x27;d just repeat Part 7 with the new user. The rest is already setup.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-8-verify-enzos-access-and-environment">Part 8: Verify Enzo&#x27;s Access and Environment<a href="#part-8-verify-enzos-access-and-environment" class="hash-link" aria-label="Direct link to Part 8: Verify Enzo&#x27;s Access and Environment" title="Direct link to Part 8: Verify Enzo&#x27;s Access and Environment">​</a></h3>
+<p>We should check that our new Enzo account works, has our user GPO applied (those desktop shortcuts), and our Helpdesk Level 1 admin access applied.</p>
+<ol>
+<li>Logout of your account on <em>srv1</em>.</li>
+<li>Log on to Enzo&#x27;s account: <strong>enzo.matrix</strong>
+<ol>
+<li>You will be asked to reset the password on first login. This is normal. Pick something complex but basic and <strong>write it down in your Lab Logbook</strong>.</li>
+</ol>
+</li>
+<li>Once logged in, try to open up <strong>Settings</strong>. Does it let you? It should, this time.</li>
+<li>Does the desktop contain the three shortcuts we configured:<!-- -->
+<ol>
+<li><strong>Server Manager</strong></li>
+<li><strong>Active Directory Users and Computers</strong></li>
+<li><strong>Group Policy Management</strong></li>
+</ol>
+</li>
+<li>Open ADUC and go to: <strong>HQ\Users\Accounting</strong></li>
+<li>Right-click on <strong>Bob Smith</strong> and select <em>Disable Account</em>. It doesn&#x27;t work, does it? It shouldn&#x27;t; Enzo doesn&#x27;t have permissions to do that.</li>
+<li>Right-click on <strong>Bob Smith</strong> and select <em>Reset Password</em>.</li>
+<li>Reset Bob&#x27;s password. Can you?</li>
+<li>If so, move on to the next part of the lab.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-4-dot-matrix---it-helpdesk-l2">Investigation 4: Dot Matrix - IT Helpdesk L2<a href="#investigation-4-dot-matrix---it-helpdesk-l2" class="hash-link" aria-label="Direct link to Investigation 4: Dot Matrix - IT Helpdesk L2" title="Direct link to Investigation 4: Dot Matrix - IT Helpdesk L2">​</a></h2>
+<p>We&#x27;re going to create a user that provides <strong>Level 2 IT support</strong> to employees in the rest of the company.</p>
+<p>A Level 2 Helpdesk employee has their own special AD admin privileges, along with those in Level 1.</p>
+<p>In theory, a Level 2 Helpdesk employee shouldn&#x27;t be contacted for password resets, but she may be asked to do that after completing some L2 tasks for an employee. It happens.</p>
+<p>Fortunately, most of the work here is already done. All we need to do is create a new user, and the L2 GG and RGs.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-global-group---gg_it_l2">Part 1: Global Group - GG_IT_L2<a href="#part-1-global-group---gg_it_l2" class="hash-link" aria-label="Direct link to Part 1: Global Group - GG_IT_L2" title="Direct link to Part 1: Global Group - GG_IT_L2">​</a></h3>
+<p>Let&#x27;s create an AD admin-type group (Global Group, GG) for IT Level 2. Remember, this is just a group of users.</p>
+<ol>
+<li>In ADUC, navigate to: <strong>HQ\Groups\Global</strong> and create a new <strong>Group</strong> object with the following settings:<!-- -->
+<ol>
+<li><strong>Group name:</strong> <em>GG_IT_L2</em></li>
+<li><strong>Group scope:</strong> <em>Global</em></li>
+<li><strong>Group type:</strong> <em>Security</em></li>
+</ol>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-role-group---rg_ouadmin_alldepts">Part 2: Role Group - RG_OUAdmin_AllDepts<a href="#part-2-role-group---rg_ouadmin_alldepts" class="hash-link" aria-label="Direct link to Part 2: Role Group - RG_OUAdmin_AllDepts" title="Direct link to Part 2: Role Group - RG_OUAdmin_AllDepts">​</a></h3>
+<p>Remember, a <strong>Role Group <em>(RG)</em></strong> is a collection of AD admin privileges under a single profile.</p>
+<p>Let&#x27;s create an RG that allows L2 staff to create, modify, move, and delete users in other departments.</p>
+<p>As an example, if Bob from Accounting gets reassigned to a different department, a Level 2 specialist like Dot would be the one to move him from one department to the next in the AD structure.</p>
+<p>Or disable his account if he gets fired. (<em>He is terrible, after all.</em>)</p>
+<ol>
+<li>
+<p>In ADUC, navigate to: <strong>HQ\Groups\Roles</strong> and create a new <strong>Group</strong> object with the following settings:</p>
+<ol>
+<li><strong>Group name:</strong> <em>RG_OUAdmin_AllDepts</em></li>
+<li><strong>Group scope:</strong> <em>Domain Local</em></li>
+<li><strong>Group type:</strong> <em>Security</em></li>
+</ol>
+</li>
+<li>
+<p>In <em>HQ\Users\Accounting</em>, right-click and select: <strong>Delegate control...</strong></p>
+</li>
+<li>
+<p>In the <em>Delegation of Control Wizard</em>&#x27;s &gt; <em>Users or Groups</em> page, add: <strong>RG_OUAdmin_AllDepts</strong></p>
+</li>
+<li>
+<p>In <em>Delegation of Control Wizard</em> &gt; <em>Tasks to Delegate</em>, select: <strong>Create, delete, and manage user accounts</strong></p>
+</li>
+<li>
+<p>Review your settings on the last page, then click <strong>Finish</strong>.</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-wire-global-group-to-role-group">Part 3: Wire Global Group to Role Group<a href="#part-3-wire-global-group-to-role-group" class="hash-link" aria-label="Direct link to Part 3: Wire Global Group to Role Group" title="Direct link to Part 3: Wire Global Group to Role Group">​</a></h3>
+<p>We&#x27;ll now assign our new RG from <em>Part 2</em> to our Global Group <strong>GG_IT_L2</strong>. This means that anyone who&#x27;s a part of <em>GG_IT_L2</em> will get the AD admin privilege assigned in <em>RG_OUAdmin_AllDepts</em>.</p>
+<ol>
+<li>In ADUC, navigate to: <strong>HQ\Groups\Roles</strong></li>
+<li>Double-click on <strong>RG_OUAdmin_AllDepts</strong> to open its Properties.</li>
+<li>In the <em>Properties</em> window, go to the <strong>Members</strong> tab and click on: <strong>Add...</strong></li>
+<li>In the <em>Select Users, Contacts, Computers, Service Accounts, or Groups</em> window, type: <strong>GG_IT_L2</strong></li>
+<li>Click <strong>OK</strong> and verify it shows up in the <em>Members</em> tab.</li>
+</ol>
+<p>The Global Group of users <em>GG_IT_L2</em> now has all the AD admin privileges given to Role Group <em>RG_OUAdmin_AllDepts</em>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-create-user---dot-matrix">Part 4: Create User - Dot Matrix<a href="#part-4-create-user---dot-matrix" class="hash-link" aria-label="Direct link to Part 4: Create User - Dot Matrix" title="Direct link to Part 4: Create User - Dot Matrix">​</a></h3>
+<p>Time to create our L2 user, Dot Matrix.</p>
+<ol>
+<li>Create a new user in the following location: <strong>HQ\Users\IT\Helpdesk</strong></li>
+<li>Sse the following values:<!-- -->
+<ol>
+<li><strong>First name:</strong> <em>Dot</em></li>
+<li><strong>Last name:</strong> <em>Matrix</em></li>
+<li><strong>User login name:</strong> <em>dot.matrix</em></li>
+</ol>
+</li>
+<li>Fill out the following in the next page:<!-- -->
+<ol>
+<li><strong>Password:</strong> <em>same strong password as your other accounts</em></li>
+<li><strong>Confirm password:</strong> <em>same strong password as your other accounts</em></li>
+<li>Check/uncheck the following:<!-- -->
+<ol>
+<li><strong>User must change password at next logon:</strong> <em>Checked</em></li>
+<li><strong>User cannot change password:</strong> <em>Unchecked</em></li>
+<li><strong>Password never expires:</strong> <em>Unchecked</em></li>
+<li><strong>Account is disabled:</strong> <em>Unchecked</em></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-5-add-dot-to-gg-it-helpdesk-level-1-and-level-2">Part 5: Add Dot to GG IT Helpdesk Level 1 <em>and</em> Level 2<a href="#part-5-add-dot-to-gg-it-helpdesk-level-1-and-level-2" class="hash-link" aria-label="Direct link to part-5-add-dot-to-gg-it-helpdesk-level-1-and-level-2" title="Direct link to part-5-add-dot-to-gg-it-helpdesk-level-1-and-level-2">​</a></h3>
+<p>As mentioned, a Level 2 Helpdesk staff should have L2 AD admin privileges <em>and</em> L1 AD admin privileges. <strong>Let&#x27;s add both.</strong></p>
+<ol>
+<li>In ADUC, navigate to: <strong>HQ\Groups\Global</strong></li>
+<li>Double-click on <strong>GG_IT_L1</strong> to open its Properties.</li>
+<li>In the <em>Properties</em> window, go to the <strong>Members</strong> tab and click on: <strong>Add...</strong></li>
+<li>In the <em>Select Users, Contacts, Computers, Service Accounts, or Groups</em> window, type: <strong>Dot Matrix</strong></li>
+<li>Click <strong>OK</strong> and verify it shows up in the <em>Members</em> tab.</li>
+<li>Go back to ADUC and navigate to: <strong>HQ\Groups\Global</strong></li>
+<li>Double-click on <strong>GG_IT_L2</strong> to open its Properties.</li>
+<li>In the <em>Properties</em> window, go to the <strong>Members</strong> tab and click on: <strong>Add...</strong></li>
+<li>In the <em>Select Users, Contacts, Computers, Service Accounts, or Groups</em> window, type: <strong>Dot Matrix</strong></li>
+<li>Click <strong>OK</strong> and verify it shows up in the <em>Members</em> tab.</li>
+</ol>
+<p>That&#x27;s it! Dot has now been granted the AD admin privileges for Level 1 <em><strong>and</strong></em> Level 2.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-6-verify-dots-access-and-environment">Part 6: Verify Dot&#x27;s Access and Environment<a href="#part-6-verify-dots-access-and-environment" class="hash-link" aria-label="Direct link to Part 6: Verify Dot&#x27;s Access and Environment" title="Direct link to Part 6: Verify Dot&#x27;s Access and Environment">​</a></h3>
+<p>We should check that our new Dot account works, has our user GPO applied (those desktop shortcuts), and our Helpdesk Level 1/Level 2 admin access applied.</p>
+<blockquote>
+<p><strong>Note:</strong> We didn&#x27;t have to do anything with GPOs this time, as we applied our IT GPO to the IT folder in Users earlier. So, when Dot was created there, she inherited that GPO. <strong>Cool, right?</strong></p>
+</blockquote>
+<ol>
+<li>Logout of your account on <em>srv1</em>.</li>
+<li>Log on to Dot&#x27;s account: <strong>dot.matrix</strong>
+<ol>
+<li>You will be asked to reset the password on first login. This is normal. Pick something complex but basic and <strong>write it down in your Lab Logbook</strong>.</li>
+</ol>
+</li>
+<li>Once logged in, try to open up <strong>Settings</strong>. Does it let you? It should, this time.</li>
+<li>Does the desktop contain the three shortcuts we configured:<!-- -->
+<ol>
+<li><strong>Server Manager</strong></li>
+<li><strong>Active Directory Users and Computers</strong></li>
+<li><strong>Group Policy Management</strong></li>
+</ol>
+</li>
+<li>Open ADUC and go to: <strong>HQ\Users\Accounting</strong></li>
+<li>Right-click on <strong>Bob Smith</strong> and select <em>Disable Account</em>. It works now, doesn&#x27;t it? It should. Enzo didn&#x27;t have permissions to do that, but Dot does.</li>
+<li>Right-click and Enable the Bob account again so we can keep using it.</li>
+<li>Verify your L1 permissions: Right-click on <strong>Bob Smith</strong> and select <em>Reset Password</em>.</li>
+<li>Don&#x27;t reset his password again. Opening the window is enough</li>
+<li>If all these work, move on to the next part of the lab.</li>
+</ol>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-5-computers---ous-and-gpos">Investigation 5: Computers - OUs and GPOs<a href="#investigation-5-computers---ous-and-gpos" class="hash-link" aria-label="Direct link to Investigation 5: Computers - OUs and GPOs" title="Direct link to Investigation 5: Computers - OUs and GPOs">​</a></h2>
+<p>In this investigation, we&#x27;ll create computer-based OUs and GPOs.</p>
+<p>Until now, we&#x27;ve been working with User OUs and GPOs. Complicated as they may get, at the end of the day, these are all about settings and permissions that <strong>follow a user</strong>.</p>
+<p>Computer OUs, by contrast, are applied at the computer level regardless of who&#x27;s logged on.</p>
+<p>An easy example: Network settings, like configuring an IP address, are applied at the computer level, not the user level. (Can you imagine if network settings changed every time a different user logged in?)</p>
+<p>The following investigation allows us to organize the computers we have joined to our Active Directory domain and what settings to apply to each.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-first-ou-scaffolding-setup-1">Part 1: First OU Scaffolding Setup<a href="#part-1-first-ou-scaffolding-setup-1" class="hash-link" aria-label="Direct link to Part 1: First OU Scaffolding Setup" title="Direct link to Part 1: First OU Scaffolding Setup">​</a></h3>
+<ol>
+<li>
+<p>On <em>srv1</em>, open <strong>Active Directory Users and Computers</strong> (ADUC).</p>
+</li>
+<li>
+<p>Open your domain name from the list. (Example: <em>cjohnson30.com</em>)</p>
+</li>
+<li>
+<p>Open the <strong>HQ</strong> OU as before.</p>
+</li>
+<li>
+<p>Inside it, right-click <strong>HQ</strong> and select: <strong>New &gt; Organizational Unit</strong></p>
+</li>
+<li>
+<p>Name this new OU: <strong>Computers</strong></p>
+</li>
+<li>
+<p>Using the same <strong>New &gt; Organizational Unit</strong> function, <em><strong>add</strong></em> the following to your existing HQ\Computers hierarchy:</p>
+<blockquote>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">HQ  </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">└─ Computers </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   └─ Workstations  </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      ├─ Accounting</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      └─ IT</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   └─ Laptops </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      ├─ Accounting</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      └─ IT</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   └─ Servers </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      └─ Members</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</blockquote>
+</li>
+<li>
+<p>Verify your work. Does your HQ object hold the above items in the correct levels?</p>
+</li>
+<li>
+<p>If so, move on to the next part. If not, fix your mistakes or ask for help.</p>
+</li>
+</ol>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-move-computers-into-the-correct-ous">Part 2: Move Computers into the Correct OUs<a href="#part-2-move-computers-into-the-correct-ous" class="hash-link" aria-label="Direct link to Part 2: Move Computers into the Correct OUs" title="Direct link to Part 2: Move Computers into the Correct OUs">​</a></h3>
+<ol>
+<li>
+<p>In ADUC, click the built-in Computers container (CN=Computers) and your domain root to find machine accounts.</p>
+</li>
+<li>
+<p>Move (drag and drop) to the new OUs:</p>
+<ol>
+<li><em>srv1</em> &gt; <strong>HQ\Computers\Servers\Members</strong></li>
+<li><em>laptop1</em> &gt; <strong>HQ\Computers\Laptops\Accounting</strong></li>
+</ol>
+<blockquote>
+<p><strong>Note:</strong> Do not move <em>srv2</em> and <em>srv3</em>! Keep them where they are.</p>
+</blockquote>
+</li>
+<li>
+<p>Verify your work. Are your <em>srv1</em> and <em>laptop1</em> computers in the correct OUs?</p>
+</li>
+<li>
+<p>If so, move on to the next part. If not, fix your mistakes or ask for help.</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Why not move <em>srv2</em> and <em>srv3</em>?</strong><br>
+<!-- -->Domain Controllers live in a special <strong>Domain Controllers</strong> OU with their own built-in GPO (<code>Default Domain Controllers Policy</code>).</p>
+<p>In real environments, DCs are usually managed separately from normal servers, so we’re leaving them where they are.</p>
+</blockquote>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-create-computer-baseline-gpos">Part 3: Create Computer Baseline GPOs<a href="#part-3-create-computer-baseline-gpos" class="hash-link" aria-label="Direct link to Part 3: Create Computer Baseline GPOs" title="Direct link to Part 3: Create Computer Baseline GPOs">​</a></h3>
+<p>Now that we have our Computers OUs, we’ll create <strong>Computer-scope</strong> GPOs that can apply to devices in those OUs.</p>
+<p>We’ll make two simple baseline GPOs:</p>
+<ul>
+<li><strong>Computer – Workstations Baseline</strong></li>
+<li><strong>Computer – Laptops Baseline</strong></li>
+</ul>
+<p>In a real company, these would eventually diverge (different sleep policies, USB rules, etc.). For this lab, we’ll give them the same simple setting so you can <em>see</em> a device-level policy in action on <code>laptop1</code>.</p>
+<p>We’ll add a standard <strong>logon banner</strong>. This is a message that appears before anyone logs in. Because it’s a <strong>Computer</strong> setting, it will apply to <em>any</em> user who signs in on that device. (In this case, before anyone logs in at all, too.)</p>
+<ol>
+<li>On <em>srv1</em>, open <strong>Group Policy Management</strong>.</li>
+<li>In the left pane, navigate to:<br>
+<strong>Forest: yourSenecaUsername.com &gt; Domains &gt; yourSenecaUsername.com &gt; Group Policy Objects</strong></li>
+<li>Right-click <strong>Group Policy Objects</strong> &gt; <strong>New…</strong></li>
+<li>Create a new GPO:<!-- -->
+<ol>
+<li><strong>Name:</strong> <code>Computer – Workstations Baseline</code></li>
+</ol>
+</li>
+<li>Repeat <strong>Step 3–4</strong> to create a second GPO:<!-- -->
+<ol>
+<li><strong>Name:</strong> <code>Computer – Laptops Baseline</code></li>
+</ol>
+</li>
+</ol>
+<p>Now we’ll edit <strong>both</strong> GPOs to add the same logon message.</p>
+<ol>
+<li>
+<p>Right-click <strong>Computer – Workstations Baseline</strong> &gt; <strong>Edit…</strong></p>
+</li>
+<li>
+<p>In the <em>Group Policy Management Editor</em> window, go to:</p>
+<p><strong>Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Local Policies &gt; Security Options</strong></p>
+</li>
+<li>
+<p>In the right pane, find the following two policies:</p>
+<ol>
+<li><strong>Interactive logon: Message title for users attempting to log on</strong></li>
+<li><strong>Interactive logon: Message text for users attempting to log on</strong></li>
+</ol>
+</li>
+<li>
+<p>Double-click <strong>Interactive logon: Message title for users attempting to log on</strong>:</p>
+<ol>
+<li>Set <strong>Security Setting</strong> to something like:<br>
+<code>OSM620 HQ – Authorized Use Only</code></li>
 <li>Click <strong>OK</strong>.</li>
-<li>It may take a few moments to appear properly. <strong>Ensure it says &quot;Online - Performance counters not started.&quot;</strong></li>
-<li>Go to <em>Manage &gt; Add Roles and Features</em></li>
-<li>Select <strong>srv1</strong> from the list.</li>
-<li>Skip <em>Roles</em>, and select the following <em>Features</em>:</li>
-<li><em>Remote Server Administration Tools &gt; Role Administration Tools:</em>
-<ol>
-<li><strong>AD DS and AD LDS Tools</strong></li>
-<li><strong>DHCP Server Tools</strong></li>
-<li><strong>DNS Server Tools</strong></li>
 </ol>
 </li>
-<li>Click <strong>Next</strong> through the rest of the wizard and then <strong>Install</strong>.</li>
-<li>Any other message, ask for help!</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-configure-dns-on-srv2-with-srv1">Part 3: Configure DNS on srv2 with srv1<a href="#part-3-configure-dns-on-srv2-with-srv1" class="hash-link" aria-label="Direct link to Part 3: Configure DNS on srv2 with srv1" title="Direct link to Part 3: Configure DNS on srv2 with srv1">​</a></h3>
-<p>We&#x27;re now going to set up Active Directory DNS on <em>srv2</em>. This is much more advanced than the previous standalone DNS service we installed in a previous lab, and you&#x27;ll see that shortly.</p>
+<li>
+<p>Double-click <strong>Interactive logon: Message text for users attempting to log on</strong>:</p>
 <ol>
-<li>Go to <em>Server Manager &gt; Tools &gt; DNS</em></li>
-<li>When asked to connect to a DNS server, select &quot;The following computer&quot; and enter: <code>srv2</code></li>
-<li>You will now be connected to the DNS server on <em>srv2</em> remotely, using the GUI on <em>srv1</em>.</li>
-<li>Find <em>srv2</em> in the list, right-click, and select <strong>Properties</strong>.</li>
-<li>Add forwarders: <strong>149.112.121.20</strong></li>
-<li>Right-click on <strong>Reverse Lookup</strong> and select <strong>New Zone</strong>.</li>
-<li>Stick with the wizard defaults until <em>Network ID</em>.</li>
-<li>Enter Network ID: <code>10.0.</code>UID``</li>
-<li>Click <strong>Next</strong> and then <strong>Finish</strong> through the rest of the wizard.</li>
-<li>Go to <em>Reverse Lookup Zones &gt; <code>UID</code>.0.10.in-addr.arpa</em></li>
-<li>Notice the list is currently empty.</li>
-<li>Run <code>ipconfig /registerdns</code> on both <em>srv1</em> and <em>srv2</em>.</li>
-<li>Refresh the view in reverse lookup and confirm the two server entries.</li>
-<li>Check the <em>Forward Lookup Zone &gt; yourSenecaUsername.com</em>. Your two servers are already there!</li>
-<li>On <em>srv1</em>, open <strong>Command Prompt</strong> and run:</li>
+<li>
+<p>Set <strong>Security Setting</strong> to something like:</p>
+<p><code>This system is for authorized use only. Activity may be monitored. By signing in, you agree to comply with company policy.</code></p>
+</li>
+<li>
+<p>Click <strong>OK</strong>.</p>
+</li>
 </ol>
-<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">ipconfig /flushdns</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv2</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup eff.org</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping srv2</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping eff.org</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<ol start="16">
-<li>Open Firefox and go to: <strong>reddit.com</strong></li>
-<li>If those two steps worked, you now have full Internet using the DNS service on <em>srv2</em>!</li>
-</ol>
-<p>Notice how you didn&#x27;t have to create any A or PTR records! The servers self-registered. <em>How cool is that?</em></p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-configure-dhcp-on-srv2-with-srv1">Part 4: Configure DHCP on <em>srv2</em> with <em>srv1</em><a href="#part-4-configure-dhcp-on-srv2-with-srv1" class="hash-link" aria-label="Direct link to part-4-configure-dhcp-on-srv2-with-srv1" title="Direct link to part-4-configure-dhcp-on-srv2-with-srv1">​</a></h3>
-<p>We&#x27;re now going to set up Active Directory DHCP on <em>srv2</em>. As with DNS, this is much more advanced than the standalone we did earlier.</p>
-<p>Unlike DNS, which was installed along with the AD Domain Controller, the DHCP role isn&#x27;t currently on <em>srv2</em>. We have to install it and then configure.</p>
-<ol>
-<li>Go to <em>Server Manager &gt; Manage &gt; Add Roles and Features</em></li>
-<li>Select <strong>srv2</strong> from the list.</li>
+</li>
+<li>
+<p>Close the <em>Group Policy Management Editor</em> window.</p>
+</li>
+<li>
+<p>Repeat <strong>Steps 6–11</strong>, but this time for <strong>Computer – Laptops Baseline</strong> so that both GPOs have the same logon banner configured.</p>
+</li>
 </ol>
 <blockquote>
-<p><strong>WARNING:</strong> Make sure you select <em>srv2</em>! Not <em>srv1</em>!</p>
+<p><strong>Why a logon banner?</strong><br>
+<!-- -->It’s a <strong>Computer-scope</strong> setting that shows up <em>before</em> anyone signs in.<br>
+<!-- -->That makes it a perfect visual example of “policy sticks to the device, not the person.”</p>
 </blockquote>
-<ol start="3">
-<li>Select the DHCP role.</li>
-<li>Go through the DHCP wizard and finish.</li>
-<li>When installation is complete, click on <strong>Complete DHCP configuration</strong>.</li>
-<li>Click <strong>Next</strong> and then <strong>Commit</strong>.</li>
-<li>Close the window.</li>
-<li>Go to <em>Server Manager &gt; Tools &gt; DHCP</em></li>
-<li>Right-click the DHCP entry in the left and select <strong>Manage authorized servers...</strong></li>
-<li>Select <em>srv2</em>, then click <strong>OK</strong>.</li>
-<li>In the new <em>srv2</em> entry, create a new scope.</li>
-<li>Configure it with the following:<!-- -->
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-4-link-computer-gpos-to-the-computers-ous">Part 4: Link Computer GPOs to the Computers OUs<a href="#part-4-link-computer-gpos-to-the-computers-ous" class="hash-link" aria-label="Direct link to Part 4: Link Computer GPOs to the Computers OUs" title="Direct link to Part 4: Link Computer GPOs to the Computers OUs">​</a></h3>
+<p>Now we’ll link our new Computer GPOs at the correct places in the <strong>HQ\Computers</strong> tree.</p>
 <ol>
-<li>Name: <strong>OSM620 Fall 2025 - AD DHCP</strong></li>
-<li>Range: <strong>10.0.<code>UID</code>.1 - 10.0.<code>UID</code>.254</strong></li>
-<li>Exclude:<!-- -->
+<li>In <strong>Group Policy Management</strong>, expand:<br>
+<strong>Forest: yourSenecaUsername.com &gt; Domains &gt; yourSenecaUsername.com &gt; yourSenecaUsername.com &gt; HQ &gt; Computers</strong></li>
+<li>Right-click <strong>Workstations</strong> &gt; <strong>Link an Existing GPO…</strong></li>
+<li>Choose <strong>Computer – Workstations Baseline</strong> &gt; <strong>OK</strong>.</li>
+<li>Right-click <strong>Laptops</strong> &gt; <strong>Link an Existing GPO…</strong></li>
+<li>Choose <strong>Computer – Laptops Baseline</strong> &gt; <strong>OK</strong>.</li>
+</ol>
+<p>You should now see:</p>
+<ul>
+<li><code>Computer – Workstations Baseline</code> linked at <strong>HQ\Computers\Workstations</strong></li>
+<li><code>Computer – Laptops Baseline</code> linked at <strong>HQ\Computers\Laptops</strong></li>
+</ul>
+<p>Remember from <strong>Part 2</strong>:</p>
+<ul>
+<li><code>srv1</code> is in <strong>HQ\Computers\Servers\Members</strong></li>
+<li><code>laptop1</code> is in <strong>HQ\Computers\Laptops\Accounting</strong></li>
+</ul>
+<p>So right now, <strong>only <code>laptop1</code></strong> will actually inherit <strong>Computer – Laptops Baseline</strong>.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-5-verify-laptop-baseline-on-laptop1">Part 5: Verify Laptop Baseline on <em>laptop1</em><a href="#part-5-verify-laptop-baseline-on-laptop1" class="hash-link" aria-label="Direct link to part-5-verify-laptop-baseline-on-laptop1" title="Direct link to part-5-verify-laptop-baseline-on-laptop1">​</a></h3>
+<p>Let’s prove that this GPO is really a <strong>Computer-scope</strong> policy that “sticks” to <code>laptop1</code>.</p>
 <ol>
-<li><strong>10.0.<code>UID</code>.1-10.0.<code>UID</code>.9</strong></li>
-<li><strong>10.0.<code>UID</code>.254</strong></li>
+<li>On <em>laptop1</em>, sign in with your normal domain account (<em>yourSenecaUsername</em>).</li>
+<li>Open <strong>Command Prompt</strong> using <em>Run as Adminstrator</em>.</li>
+<li>Run: <code>gpupdate /force</code><br>
+<!-- -->This forces the new Computer policy to apply right away instead of waiting.</li>
+<li>When it completes, confirm your work by running the following: <code>gpresult /r /scope computer</code></li>
+<li>You should see something similar to the following:</li>
+</ol>
+<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">C:\Windows\System32&gt;gpresult /r /scope computer</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Microsoft (R) Windows (R) Operating System Group Policy Result tool v2.0</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">© Microsoft Corporation. All rights reserved.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Created on 2025-11-22 at 4:47:29 PM</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">RSOP data for  on LAPTOP1 : Logging Mode</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">-----------------------------------------</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">OS Configuration:            Member Workstation</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">OS Version:                  10.0.26200</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Site Name:                   Default-First-Site-Name</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Roaming Profile:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Local Profile:</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Connected over a slow link?: No</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">COMPUTER SETTINGS</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">------------------</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    CN=LAPTOP1,OU=IT,OU=Laptops,OU=Computers,OU=HQ,DC=cjohnson30,DC=com</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Last time Group Policy was applied: 2025-11-22 at 4:37:30 PM</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Group Policy was applied from:      srv2.cjohnson30.com</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Group Policy slow link threshold:   500 kbps</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Domain Name:                        CJOHNSON30</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Domain Type:                        Windows 2008 or later</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Applied Group Policy Objects</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    -----------------------------</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Computer - Laptop Baseline</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Default Domain Policy</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    The following GPOs were not applied because they were filtered out</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    -------------------------------------------------------------------</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Local Group Policy</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            Filtering:  Not Applied (Empty)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    The computer is a part of the following security groups</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    -------------------------------------------------------</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        BUILTIN\Administrators</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Everyone</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        BUILTIN\Users</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        NT AUTHORITY\NETWORK</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        NT AUTHORITY\Authenticated Users</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        This Organization</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        LAPTOP1$</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Domain Computers</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Authentication authority asserted identity</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        System Mandatory Level</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<blockquote>
+<p><strong>Notice the line: <em>Computer - Laptop Baseline</em></strong></p>
+</blockquote>
+<ol>
+<li>Once confirmed, restart <code>laptop1</code>.</li>
+<li>After the restart, look carefully at the <strong>logon screen</strong>:<!-- -->
+<ol>
+<li>Do you see the <strong>title</strong> and <strong>message text</strong> you configured in Part 3?</li>
 </ol>
 </li>
-<li>Router: <strong>10.0.<code>UID</code>.254</strong></li>
-<li>DNS:<!-- -->
+<li>Sign in as a different domain user (for example, Enzo or Dot, once their accounts are set up).</li>
+<li>Confirm that the <strong>same logon banner</strong> appears for them as well.</li>
+</ol>
+<p>If the banner shows up before <em>any</em> user signs in, you’ve just seen a <strong>Computer-scope</strong> GPO in action:</p>
+<ul>
+<li>It follows the <strong>device (<code>laptop1</code>)</strong>, not the individual user.</li>
+<li>Every domain user on that device must see and acknowledge the message.</li>
+</ul>
+<p>If you <strong>don’t</strong> see the message:</p>
 <ol>
-<li>DNS1: <strong>10.0.<code>UID</code>.2</strong></li>
-<li>DNS2: <strong>10.0.<code>UID</code>.3</strong></li>
+<li>Double-check that:<!-- -->
+<ol>
+<li><code>laptop1</code> is in <strong>HQ\Computers\Laptops\Accounting</strong> in ADUC.</li>
+<li><strong>Computer – Laptops Baseline</strong> is linked at <strong>HQ\Computers\Laptops</strong>.</li>
 </ol>
 </li>
-<li>WINS: <strong>Leave defaults</strong></li>
-<li>Select <strong>Activate now</strong>.</li>
-</ol>
-</li>
-<li>Back in the main DHCP window, go to the <em>IPv4</em> folder, right-click, and select <strong>Properties</strong>.</li>
-<li>Click the DNS tab.</li>
-<li>Select <strong>Always dynamically update DNS records</strong></li>
-<li>Click <strong>OK</strong></li>
-<li>That&#x27;s it, you&#x27;re done!</li>
-</ol>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-6-add-laptop1-to-domain">Investigation 6: Add laptop1 to Domain<a href="#investigation-6-add-laptop1-to-domain" class="hash-link" aria-label="Direct link to Investigation 6: Add laptop1 to Domain" title="Direct link to Investigation 6: Add laptop1 to Domain">​</a></h2>
-<p>Now that we&#x27;ve set up our AD Domain Controller on <em>srv2</em> and remote control on <em>srv1</em>, it&#x27;s time to add a normal client machine to our Active Directory domain. We&#x27;ll use <em>laptop1</em> for this.</p>
-<p>The initial &quot;join to AD&quot; is typically done by an administrator such as yourself. After the laptop is part of the AD domain, you would then give it to the employee.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-setting-proper-network-configuration">Part 1: Setting Proper Network Configuration<a href="#part-1-setting-proper-network-configuration" class="hash-link" aria-label="Direct link to Part 1: Setting Proper Network Configuration" title="Direct link to Part 1: Setting Proper Network Configuration">​</a></h3>
-<ol>
-<li>Have the following VMs powered on:<!-- -->
-<ol>
-<li>router</li>
-<li>srv2</li>
-<li>srv1 (if you have the hardware resources)</li>
-</ol>
-</li>
-<li>Before powering on <em>laptop1</em>, check NIC1 in VMware. Make sure it&#x27;s set to <strong>VMnet10</strong>.</li>
-<li>Power on <em>laptop1</em> and login.</li>
-<li>If you named this machine <em>laptop1-yourSenecaUsername</em>, change it to <em>laptop1</em> and restart.</li>
-<li>Check Windows NIC1 network settings. They should be set to <strong>DHCP</strong>.<!-- -->
-<ol>
-<li>If it was static until now, open <strong>Command Prompt</strong> and run to check it has an Internet connection:<!-- -->
-<ol>
-<li><code>ipconfig /release</code></li>
-<li><code>ipconfig /renew</code></li>
-</ol>
-</li>
-</ol>
-</li>
-<li>In Command Prompt, run: <code>ipconfig /all</code></li>
-<li>Check the information. You should have a 10.0.<code>UID</code>.x address, DNS as <em>srv2</em>, and gateway as 10.0.<code>UID</code>.254.</li>
-<li>In Command Prompt, run:</li>
-</ol>
-<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">ipconfig /flushdns</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv2</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup eff.org</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping srv1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping srv2</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping eff.org</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<ol start="9">
-<li>Back on <em>srv1</em>, go to <em>Server Manager &gt; Tools &gt; DHCP</em></li>
-<li>In the DHCP window, go to: <em>srv2 &gt; IPv4 &gt; Scope &gt; Leases</em></li>
-<li>You should see your <em>laptop1</em> in the leases section.</li>
-<li>If all this works, continue to the next section!</li>
-</ol>
-<p><em>Laptop1</em> now has a stable Internet connection using DHCP and DNS from <em>srv2</em>, and is routing to the Internet through the <em>router</em> VM.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-domain-join-for-laptop1">Part 2: Domain Join for laptop1<a href="#part-2-domain-join-for-laptop1" class="hash-link" aria-label="Direct link to Part 2: Domain Join for laptop1" title="Direct link to Part 2: Domain Join for laptop1">​</a></h3>
-<p>Now, it&#x27;s time to join <em>laptop1</em> to our AD domain.</p>
-<ol>
-<li>Open <em>Settings &gt; System &gt; About</em> (at the very bottom)</li>
-<li>Click on the <strong>Domain or workgroup</strong> link.</li>
-<li>In the new <em>System Properties &gt; Computer Name</em> tab, click on <strong>Change</strong>.</li>
-<li>Change from workgroup to domain: <strong>yourSenecaUsername.com</strong></li>
-<li>Authenticate the same as you did with <em>srv1</em>.</li>
-<li>After the congratulations message, allow the machine to restart.</li>
-<li>Do not log in with your normal account.</li>
-<li>Click on Other, and use: <strong>YOURSENECAUSERNAME\Administrator</strong></li>
-<li>Your profile may take a minute to setup. That&#x27;s normal.</li>
-<li>Once you see the desktop, minimize this VM.</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-confirm-laptop1-is-in-dns">Part 3: Confirm laptop1 is in DNS<a href="#part-3-confirm-laptop1-is-in-dns" class="hash-link" aria-label="Direct link to Part 3: Confirm laptop1 is in DNS" title="Direct link to Part 3: Confirm laptop1 is in DNS">​</a></h3>
-<p>Let&#x27;s check that <em>laptop1</em> auto-registered to DNS after the AD join.</p>
-<ol>
-<li>On <em>srv1</em>, open the DNS tool.</li>
-<li>Go to <em>srv2 &gt; Forward Lookup Zones</em> &gt; <em>yourSenecaUsername.com</em></li>
-<li>Do you see laptop1? If yes, congrats! It auto-registered, just as we wanted.</li>
-<li>If not, ask for help. Do not continue.</li>
-</ol>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-7-promote-srv3-to-ad-dc2">Investigation 7: Promote <em>srv3</em> to AD DC2<a href="#investigation-7-promote-srv3-to-ad-dc2" class="hash-link" aria-label="Direct link to investigation-7-promote-srv3-to-ad-dc2" title="Direct link to investigation-7-promote-srv3-to-ad-dc2">​</a></h2>
-<p>In this investigation, we&#x27;ll create a second AD Domain Controller by using <em>srv3</em>. This is a much simpler process than <em>srv2</em>, as we can use <em>srv1</em> for part of it.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-1-domain-join-for-srv3">Part 1: Domain Join for <em>srv3</em><a href="#part-1-domain-join-for-srv3" class="hash-link" aria-label="Direct link to part-1-domain-join-for-srv3" title="Direct link to part-1-domain-join-for-srv3">​</a></h3>
-<p>Time to add <em>srv3</em> to our new AD domain.</p>
-<ol>
-<li>Power on <em>srv2</em> and <em>router</em> (if not already on). Leave all other VMs off.</li>
-<li>Power on <em>srv3</em> and login.</li>
-<li>Change workgroup to domain: <strong>yourSenecaUsername.com</strong></li>
-<li>Authenticate with your Administrator credentials when asked.</li>
-<li>The computer will restart. This will take some time.</li>
-<li>Once you can, login with <code>YOURSENECAUSERNAME\Administrator</code> by hitting the ESC key on your keyboard. (Twice.)</li>
-<li>When it says <em>Select a user</em>, select <strong>Other user</strong>.</li>
-<li>In the next page, use the following credentials to login (tab on your keyboard to go to the next field):<!-- -->
-<ol>
-<li>User name: <strong>YOURSENECAUSERNAME\Administrator</strong></li>
-<li>Password: <em><strong>yournormalpassword</strong></em></li>
-</ol>
-</li>
-<li>If it asks you about diagnostics again, select <strong>1</strong>.</li>
-<li>In sconfig, confirm you can see:<!-- -->
-<ol>
-<li>Computer name: <strong>srv3</strong></li>
-<li>Domain: <strong>yourSenecaUsername.com</strong></li>
-</ol>
-</li>
-<li>Minimize <em>srv3</em> VM but keep it on!</li>
-</ol>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-2-install-ad-and-dc-promotion-srv3">Part 2: Install AD and DC Promotion (srv3)<a href="#part-2-install-ad-and-dc-promotion-srv3" class="hash-link" aria-label="Direct link to Part 2: Install AD and DC Promotion (srv3)" title="Direct link to Part 2: Install AD and DC Promotion (srv3)">​</a></h3>
-<p>Now, let&#x27;s use <em>srv1</em>&#x27;s <strong>Server Manager</strong> to install the Active Directory role on <em>srv3</em> and promote <em>srv3</em> to a secondary Domain Controller. All remotely through the GUI.</p>
-<ol>
-<li>Power on srv1 and login using: <strong>YOURSENECAUSERNAME\Administrator</strong></li>
+<li>Run <code>gpupdate /force</code> again on <em>laptop1</em> and restart one more time.</li>
+<li>If it still doesn’t work, ask your instructor for help.</li>
 </ol>
 <blockquote>
-<p><strong>NOTE:</strong> You <strong>must</strong> login as the domain administrator. Otherwise, none of this will work!</p>
+<p><strong>Note:</strong> In a real environment, admins can trigger a <em>Group Policy Update</em> remotely from GPMC on the domain or OU, but for this lab you’ll run <code>gpupdate /force</code> locally on <em>laptop1</em>.</p>
 </blockquote>
-<ol start="2">
-<li>
-<p>In Server Manager, go to All Servers.</p>
-</li>
-<li>
-<p>Click on <em>Manage &gt; Add Servers</em></p>
-</li>
-<li>
-<p>Add <em>srv3</em>.</p>
-</li>
-<li>
-<p>This will take a few minutes to process. <strong>Wait until the SRV3 line says: &quot;Online - Performance counters not started.&quot;</strong></p>
-</li>
-<li>
-<p>In Server Manager, add a new role. (<em>Manage &gt; Add Roles and Features</em>)</p>
-<ol>
-<li>Select: <strong>srv3</strong></li>
-<li>Select: <strong>Active Directory Domain Services</strong></li>
-<li>Go through wizard and select defaults until you get to the <em>Confirmation</em> page.</li>
-<li>On the <em>Confirmation</em> page, select the option <strong>&quot;Restart the destination server automatically if required&quot;</strong>, then click <strong>Install</strong></li>
-<li>Active Directory will now install onto <em>srv3</em>.</li>
-<li>When complete, the <strong>Promote this server to a domain controller</strong> link is active on the <em>Results</em> page. <strong>Click it</strong>.</li>
-</ol>
-</li>
-<li>
-<p>The <em>Active Directory Domain Services Configuration Wizard</em> now opens.</p>
-<ol>
-<li>
-<p>Keep the defaults on the first page, but click on the <strong>Change...</strong> button. We need to authorize this connection.</p>
-</li>
-<li>
-<p>The credentials window opens. Enter the following:</p>
-<ol>
-<li>User name: <strong>Administrator</strong></li>
-<li>Password: <em><strong>yournormalpassword</strong></em></li>
-</ol>
-</li>
-<li>
-<p>Back in the main wizard, click <strong>Next</strong>,</p>
-</li>
-<li>
-<p>On the next page, its asking for a <em>DSRM password</em>. Enter the same password you&#x27;ve been using for all your admin accounts.</p>
-</li>
-<li>
-<p>Keep all other defaults and click <strong>Next</strong>.</p>
-</li>
-<li>
-<p>The DNS page gives you a warning. Don&#x27;t worry about it and click <strong>Next</strong>.</p>
-</li>
-<li>
-<p>On the <em>Additional options</em> page, for the <em>Replicate from:</em> field, select <em>srv2</em> from the drop down. Click <strong>Next</strong>.</p>
-</li>
-<li>
-<p>Click <strong>Next</strong> on the rest of the pages to accept defaults until you arrive on <em>Prerequisites Check</em> page.</p>
-</li>
-<li>
-<p>Look for the green check mark that says: <em><strong>&quot;All prerequisites checks passed successfully. Click Install to begin installation.&quot;</strong></em></p>
-<blockquote>
-<p><strong>NOTE: If you do NOT see the green check mark, do not continue! Ask for help!</strong></p>
-</blockquote>
-</li>
-<li>
-<p>Click <strong>Install</strong>.</p>
-</li>
-<li>
-<p>It will now install. The DNS warning will come up again. Continue to ignore it.</p>
-</li>
-<li>
-<p>Once it finishes, click <strong>Close</strong>.</p>
-</li>
-</ol>
-</li>
-<li>
-<p>Give it a few minutes as it processes.</p>
-</li>
-<li>
-<p>When the <em>srv3</em> VM is back to the login screen, go to <em>srv1</em>. (This will take a few minutes.)</p>
-</li>
-<li>
-<p>Open <strong>Server Manager</strong> on <em>srv1</em>.</p>
-</li>
-<li>
-<p>Go to <strong>AD DS</strong> and confirm <em>srv3</em> is there.</p>
-</li>
-<li>
-<p>It may take a few moments to appear properly. <strong>Ensure it says &quot;Online - Performance counters not started.&quot;</strong></p>
-</li>
-<li>
-<p>Any other message, ask for help!</p>
-</li>
-</ol>
-<p>You have now converted <em>srv3</em> into our second AD Domain Controller, mostly using the GUI remotely!</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="part-3-confirm-dns-replication">Part 3: Confirm DNS replication<a href="#part-3-confirm-dns-replication" class="hash-link" aria-label="Direct link to Part 3: Confirm DNS replication" title="Direct link to Part 3: Confirm DNS replication">​</a></h3>
-<p>Always confirm your work. Let&#x27;s check on DNS.</p>
-<ol>
-<li>In <em>srv1</em>, open the DNS tool.</li>
-<li>When asked, tell it to connect to <strong>srv3</strong>.</li>
-<li>In the new window, right-click on DNS and select <strong>Connect to DNS Server</strong>.</li>
-<li>Add <em>srv2</em> to your list of servers in DNS.</li>
-<li>Open <em>IPv4 &gt; Forward Lookup Zones</em> in both <em>srv2</em> and <em>srv3</em>.</li>
-<li>They should look identical.</li>
-<li>If they do, then DNS replication is working.</li>
-<li>Find <em>srv3</em> in the list, right-click, and select <strong>Properties</strong>.</li>
-<li>Add forwarders: <strong>149.112.121.20</strong></li>
-<li>Congratulations, you now have two Domain Controllers!</li>
-</ol>
-<p>This confirms <em>srv2</em> and <em>srv3</em> are communicating and syncing information, including DNS records.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="investigation-8-test-without-srv1">Investigation 8: Test Without srv1<a href="#investigation-8-test-without-srv1" class="hash-link" aria-label="Direct link to Investigation 8: Test Without srv1" title="Direct link to Investigation 8: Test Without srv1">​</a></h2>
-<p>In this investigation, we&#x27;ll explore the consequences of what we&#x27;ve set up in this lab and how much more efficient on hardware resources it is.</p>
-<ol>
-<li>Shut down <em>srv1</em> and <em>srv3</em>.</li>
-<li>Have the following VMs powered on:<!-- -->
-<ol>
-<li>router</li>
-<li>srv2</li>
-</ol>
-</li>
-<li>Power on <em>laptop1</em>.</li>
-<li>Login to <em>laptop1</em> with: <strong>YOURSENECAUSERNAME\Administrator</strong></li>
-<li>Use Command Prompt and run: <code>ipconfig /all</code></li>
-<li>Does it look correct? If so, move to the next step.</li>
-<li>Open <em>Firefox</em> and go to: <strong>reddit.com</strong></li>
-<li>Did that work? If so, move to the next step. <strong>Otherwise, ask for help.</strong></li>
-<li>In Command Prompt, run:</li>
-</ol>
-<div class="language-powershell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-powershell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">ipconfig /flushdns</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv2</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup srv3</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">nslookup eff.org</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping srv1</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping srv2</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping srv3</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">ping eff.org</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
-<ol start="10">
-<li>Why did some of these work and not the others?</li>
-</ol>
-<p>Congrats! You now have a low profile Domain Controller. Resource usage is at a minimum.</p>
-<blockquote>
-<p><strong>A note about Hyper-V:</strong> In a real production environment, we could use <em>srv1</em> to install Hyper-V VMs on <em>srv2</em>, allowing us to run these VMs on a lower resource Core machine. That&#x27;s beyond the scope of this course, but something cool to know.</p>
-</blockquote>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lab-6-sign-off">Lab 6 Sign-Off<a href="#lab-6-sign-off" class="hash-link" aria-label="Direct link to Lab 6 Sign-Off" title="Direct link to Lab 6 Sign-Off">​</a></h2>
-<p>It’s essential to complete Lab 6 correctly. All later labs assume working Active Directory Domain Controllers and its services.</p>
-<p>When you finish Lab 6, ask your instructor for a sign-off.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lab-7-sign-off">Lab 7 Sign-Off<a href="#lab-7-sign-off" class="hash-link" aria-label="Direct link to Lab 7 Sign-Off" title="Direct link to Lab 7 Sign-Off">​</a></h2>
+<p><strong>It’s essential to complete Lab 7 correctly.</strong> Lab 8 assumes you have your users, groups, and computers properly organized in Active Directory.</p>
+<p>When you finish Lab 7, ask your instructor for a sign-off.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="sign-off-checklist">Sign-Off Checklist<a href="#sign-off-checklist" class="hash-link" aria-label="Direct link to Sign-Off Checklist" title="Direct link to Sign-Off Checklist">​</a></h3>
-<p>Please have the following on screen and ready to show. You will need to power on ALL VMs for the check.</p>
+<p>Please have the following on screen and ready to show. You will need to power on the following VMs:</p>
+<ul>
+<li>srv1</li>
+<li>srv2</li>
+<li>laptop1</li>
+</ul>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="on-srv1">On srv1<a href="#on-srv1" class="hash-link" aria-label="Direct link to On srv1" title="Direct link to On srv1">​</a></h4>
+<p><strong>Using your <code>firstname.lastname</code> Domain Administrator account</strong>, show the following in <em>Active Directory Users and Computers</em>.</p>
+<p>HQ\Users OU structure</p>
 <ol>
-<li><em>Server Manager &gt; All Servers</em>: Shows <em>srv1</em>, <em>srv2</em>, and <em>srv3</em></li>
-<li><em>Server Manager &gt; AD DS</em>: Shows <em>srv2</em> and <em>srv3</em></li>
-<li><code>ipconfig /all</code> shows the correct information.</li>
-<li>Firefox loads: <strong>eff.org</strong></li>
+<li>In Active Directory Users and Computers, show:</li>
+<li>Bob Smith in HQ &gt; Users &gt; Accountants</li>
+<li>Enzo Matrix in HQ &gt; Users &gt; IT &gt; Helpdesk</li>
+<li>Dot Matrix in HQ &gt; Users &gt; IT &gt; SysAdmins</li>
 </ol>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="on-srv2">On srv2<a href="#on-srv2" class="hash-link" aria-label="Direct link to On srv2" title="Direct link to On srv2">​</a></h4>
+<p>HQ\Computers OU structure</p>
 <ol>
-<li>Sconfig shows:<!-- -->
-<ol>
-<li>Name: <strong>srv2</strong></li>
-<li>Domain: <strong>yourSenecaUsername.com</strong></li>
+<li>In HQ &gt; Computers, show:</li>
+<li>srv1 in Servers &gt; Members</li>
+<li>laptop1 in Laptops &gt; Accounting</li>
+<li>User and Computer GPOs</li>
+<li>In Group Policy Management, show that:</li>
+<li>Your Employee user GPO (for example, User – Employee Lockdown) is linked at HQ &gt; Users &gt; Accountants.</li>
+<li>Your IT user GPO (for example, User – IT Environment) is linked at HQ &gt; Users &gt; IT.</li>
+<li>Your Laptop computer GPO (for example, Computer – Laptops Baseline) is linked at HQ &gt; Computers &gt; Laptops.</li>
 </ol>
-</li>
-<li>In PowerShell, <code>ipconfig /all</code> shows the correct information.</li>
-<li>You can ping:<!-- -->
+<p>If all of the above are present, your directory structure and GPO links are considered correct for this lab.</p>
+<p>Test your user accounts:</p>
 <ol>
-<li>srv1</li>
-<li>srv3</li>
-<li>laptop1</li>
-<li>eff.org</li>
-<li>reddit.com</li>
-</ol>
-</li>
-</ol>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="on-srv3">On srv3<a href="#on-srv3" class="hash-link" aria-label="Direct link to On srv3" title="Direct link to On srv3">​</a></h4>
-<ol>
-<li>Sconfig shows:<!-- -->
-<ol>
-<li>Name: <strong>srv3</strong></li>
-<li>Domain: <strong>yourSenecaUsername.com</strong></li>
-</ol>
-</li>
-<li>In PowerShell, <code>ipconfig /all</code> shows the correct information.</li>
-<li>You can ping:<!-- -->
-<ol>
-<li>srv1</li>
-<li>srv3</li>
-<li>laptop1</li>
-<li>eff.org</li>
-<li>reddit.com</li>
-</ol>
-</li>
+<li>Log into Enzo Matrix.</li>
+<li>Log into Dot Matrix.</li>
 </ol>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="on-laptop1">On laptop1<a href="#on-laptop1" class="hash-link" aria-label="Direct link to On laptop1" title="Direct link to On laptop1">​</a></h4>
 <ol>
-<li>System Properties shows:<!-- -->
-<ol>
-<li>Name: <strong>laptop1</strong></li>
-<li>Domain: <strong>yourSenecaUsername.com</strong></li>
-</ol>
-</li>
-<li>In Command Prompt, <code>ipconfig /all</code> shows the correct information.</li>
-<li>You can ping:<!-- -->
-<ol>
-<li>srv1</li>
-<li>srv2</li>
-<li>srv3</li>
-<li>eff.org</li>
-<li>reddit.com</li>
-</ol>
-</li>
-<li>In Firefox: <code>http://www.reddit.com</code> loads the Reddit main page.</li>
-</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/catherine-leung/OSM620v2/tree/main/docs/Labs/lab6.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/OSM620v2/Labs/lab5"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Lab 5 - Implementing DHCP</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/OSM620v2/Labs/lab7"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Lab 7 - AD Users, Groups, Computers, and GPOs</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#lab-preparation" class="table-of-contents__link toc-highlight">Lab Preparation</a><ul><li><a href="#purpose-of-lab-6" class="table-of-contents__link toc-highlight">Purpose of Lab 6</a></li><li><a href="#objectives" class="table-of-contents__link toc-highlight">Objectives</a></li><li><a href="#minimum-progression-requirements" class="table-of-contents__link toc-highlight">Minimum Progression Requirements</a></li><li><a href="#before-you-begin" class="table-of-contents__link toc-highlight">Before You Begin</a></li></ul></li><li><a href="#investigation-1-adding-the-router-vm" class="table-of-contents__link toc-highlight">Investigation 1: Adding the <em>router</em> VM</a><ul><li><a href="#vm-specifications" class="table-of-contents__link toc-highlight">VM Specifications</a></li><li><a href="#part-1-create-router-vm" class="table-of-contents__link toc-highlight">Part 1: Create <em>router</em> VM</a></li><li><a href="#part-2-configuring-routing" class="table-of-contents__link toc-highlight">Part 2: Configuring Routing</a></li></ul></li><li><a href="#investigation-2-create-srv3-vm" class="table-of-contents__link toc-highlight">Investigation 2: Create srv3 VM</a><ul><li><a href="#part-1-cloning-in-vmware" class="table-of-contents__link toc-highlight">Part 1: Cloning in VMware</a></li><li><a href="#part-2-cleaning-the-clone-srv3" class="table-of-contents__link toc-highlight">Part 2: Cleaning the Clone (srv3)</a></li><li><a href="#part-3-configuring-srv3" class="table-of-contents__link toc-highlight">Part 3: Configuring srv3</a></li></ul></li><li><a href="#investigation-3-convert-srv1-to-a-management-server" class="table-of-contents__link toc-highlight">Investigation 3: Convert srv1 to a Management Server</a><ul><li><a href="#part-1-removing-old-roles" class="table-of-contents__link toc-highlight">Part 1: Removing Old Roles</a></li><li><a href="#part-2-hardware-changes-for-srv1" class="table-of-contents__link toc-highlight">Part 2: Hardware Changes for srv1</a></li><li><a href="#part-3-network-configuration-srv1" class="table-of-contents__link toc-highlight">Part 3: Network Configuration (srv1)</a></li></ul></li><li><a href="#investigation-4-promote-srv2-to-ad-dc1" class="table-of-contents__link toc-highlight">Investigation 4: Promote srv2 to AD DC1</a><ul><li><a href="#part-1-network-reconfiguration-srv2" class="table-of-contents__link toc-highlight">Part 1: Network Reconfiguration (srv2)</a></li><li><a href="#part-2-installing-ad-and-dc-promotion" class="table-of-contents__link toc-highlight">Part 2: Installing AD and DC Promotion</a></li></ul></li><li><a href="#investigation-5-manage-srv2-from-srv1-gui" class="table-of-contents__link toc-highlight">Investigation 5: Manage srv2 from srv1 GUI</a><ul><li><a href="#part-1-join-srv1-to-the-new-domain" class="table-of-contents__link toc-highlight">Part 1: Join srv1 to the new domain</a></li><li><a href="#part-2-setup-srv1-as-a-gui-management-server-for-srv2" class="table-of-contents__link toc-highlight">Part 2: Setup srv1 as a GUI Management Server for srv2</a></li><li><a href="#part-3-configure-dns-on-srv2-with-srv1" class="table-of-contents__link toc-highlight">Part 3: Configure DNS on srv2 with srv1</a></li><li><a href="#part-4-configure-dhcp-on-srv2-with-srv1" class="table-of-contents__link toc-highlight">Part 4: Configure DHCP on <em>srv2</em> with <em>srv1</em></a></li></ul></li><li><a href="#investigation-6-add-laptop1-to-domain" class="table-of-contents__link toc-highlight">Investigation 6: Add laptop1 to Domain</a><ul><li><a href="#part-1-setting-proper-network-configuration" class="table-of-contents__link toc-highlight">Part 1: Setting Proper Network Configuration</a></li><li><a href="#part-2-domain-join-for-laptop1" class="table-of-contents__link toc-highlight">Part 2: Domain Join for laptop1</a></li><li><a href="#part-3-confirm-laptop1-is-in-dns" class="table-of-contents__link toc-highlight">Part 3: Confirm laptop1 is in DNS</a></li></ul></li><li><a href="#investigation-7-promote-srv3-to-ad-dc2" class="table-of-contents__link toc-highlight">Investigation 7: Promote <em>srv3</em> to AD DC2</a><ul><li><a href="#part-1-domain-join-for-srv3" class="table-of-contents__link toc-highlight">Part 1: Domain Join for <em>srv3</em></a></li><li><a href="#part-2-install-ad-and-dc-promotion-srv3" class="table-of-contents__link toc-highlight">Part 2: Install AD and DC Promotion (srv3)</a></li><li><a href="#part-3-confirm-dns-replication" class="table-of-contents__link toc-highlight">Part 3: Confirm DNS replication</a></li></ul></li><li><a href="#investigation-8-test-without-srv1" class="table-of-contents__link toc-highlight">Investigation 8: Test Without srv1</a></li><li><a href="#lab-6-sign-off" class="table-of-contents__link toc-highlight">Lab 6 Sign-Off</a><ul><li><a href="#sign-off-checklist" class="table-of-contents__link toc-highlight">Sign-Off Checklist</a><ul><li><a href="#on-srv1" class="table-of-contents__link toc-highlight">On srv1</a></li><li><a href="#on-srv2" class="table-of-contents__link toc-highlight">On srv2</a></li><li><a href="#on-srv3" class="table-of-contents__link toc-highlight">On srv3</a></li><li><a href="#on-laptop1" class="table-of-contents__link toc-highlight">On laptop1</a></li></ul></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">OSM620 - Fundamentals of Microsoft Systems</div><ul class="footer__items clean-list"><li class="footer__item"><a href="#" id="pwa-button" class="footer__link-item" hidden>Install as an App</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Seneca Polytechnic.</div></div></div></footer></div>
+<li>Log into Bob Smith.</li>
+<li>Log into your <code>firstname.lastname</code> Domain Administrator account.</li>
+</ol></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/catherine-leung/OSM620v2/tree/main/docs/Labs/lab6.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/OSM620v2/Labs/lab5"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Lab 5 - Active Directory</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/OSM620v2/Labs/lab7"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Lab 7 - Network File Shares</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#lab-preparation" class="table-of-contents__link toc-highlight">Lab Preparation</a><ul><li><a href="#purpose-of-lab-6" class="table-of-contents__link toc-highlight">Purpose of Lab 6</a></li><li><a href="#objectives" class="table-of-contents__link toc-highlight">Objectives</a></li><li><a href="#concepts" class="table-of-contents__link toc-highlight">Concepts</a><ul><li><a href="#users-vs-computers-two-different-kinds-of-objects" class="table-of-contents__link toc-highlight">Users vs Computers (two different kinds of objects)</a></li><li><a href="#ous-what-they-are-and-are-not" class="table-of-contents__link toc-highlight">OUs: what they are (and are not)</a></li><li><a href="#groups-global-groups-vs-role-groups" class="table-of-contents__link toc-highlight">Groups: Global Groups VS Role Groups</a></li><li><a href="#delegation-of-control-where--what--who" class="table-of-contents__link toc-highlight">Delegation of Control (where + what + who)</a></li><li><a href="#gpos-two-halves-linked-to-an-ou" class="table-of-contents__link toc-highlight">GPOs: two halves, linked to an OU</a></li><li><a href="#policies-vs-permissions-why-both-exist" class="table-of-contents__link toc-highlight">Policies VS Permissions (why both exist)</a></li></ul></li><li><a href="#minimum-progression-requirements" class="table-of-contents__link toc-highlight">Minimum Progression Requirements</a></li><li><a href="#pre-flight-check" class="table-of-contents__link toc-highlight">Pre-Flight Check</a></li></ul></li><li><a href="#investigation-1-create-personal-domain-controller-user" class="table-of-contents__link toc-highlight">Investigation 1: Create Personal Domain Controller User</a><ul><li><a href="#part-1-first-ou-scaffolding-setup" class="table-of-contents__link toc-highlight">Part 1: First OU Scaffolding Setup</a></li><li><a href="#part-2-create-personal-user" class="table-of-contents__link toc-highlight">Part 2: Create Personal User</a></li><li><a href="#part-3-add-new-personal-user-to-domain-controllers" class="table-of-contents__link toc-highlight">Part 3: Add New Personal User to Domain Controllers</a></li><li><a href="#part-4-create-a-secondary-backup-administrator" class="table-of-contents__link toc-highlight">Part 4: Create a Secondary Backup Administrator</a></li><li><a href="#part-5-disable-default-administrator-account" class="table-of-contents__link toc-highlight">Part 5: Disable Default Administrator Account</a></li></ul></li><li><a href="#investigation-2-bob-from-accounting" class="table-of-contents__link toc-highlight">Investigation 2: Bob from Accounting</a><ul><li><a href="#part-1-add-accountants-ous" class="table-of-contents__link toc-highlight">Part 1: Add Accountants OUs</a></li><li><a href="#part-2-create-user---bob-smith" class="table-of-contents__link toc-highlight">Part 2: Create User - Bob Smith</a></li><li><a href="#part-3-create-gpo-user---employee-lockdown" class="table-of-contents__link toc-highlight">Part 3: Create GPO, <em>User - Employee Lockdown</em></a></li><li><a href="#part-4-edit-gpo-user---employee-lockdown" class="table-of-contents__link toc-highlight">Part 4: Edit GPO, <em>User - Employee Lockdown</em></a></li><li><a href="#part-5-link-the-user---employee-lockdown-gpo-to-accounting" class="table-of-contents__link toc-highlight">Part 5: Link the <em>User - Employee Lockdown</em> GPO to Accounting</a></li><li><a href="#part-6-verify-bobs-restrictions" class="table-of-contents__link toc-highlight">Part 6: Verify Bob&#39;s Restrictions</a></li></ul></li><li><a href="#investigation-3-enzo-matrix---it-helpdesk" class="table-of-contents__link toc-highlight">Investigation 3: Enzo Matrix - IT Helpdesk</a><ul><li><a href="#part-1-create-gpo-user---it-environment" class="table-of-contents__link toc-highlight">Part 1: Create GPO, <em>User - IT Environment</em></a></li><li><a href="#part-2-create-user---enzo-matrix" class="table-of-contents__link toc-highlight">Part 2: Create User - Enzo Matrix</a></li><li><a href="#part-3-link-the-user---it-environment-gpo-to-it" class="table-of-contents__link toc-highlight">Part 3: Link the <em>User - IT Environment</em> GPO to IT</a></li><li><a href="#part-4-global-groups" class="table-of-contents__link toc-highlight">Part 4: Global Groups</a></li><li><a href="#part-5-role-groups" class="table-of-contents__link toc-highlight">Part 5: Role Groups</a></li><li><a href="#part-6-wire-global-group-to-role-group" class="table-of-contents__link toc-highlight">Part 6: Wire Global Group to Role Group</a></li><li><a href="#part-7-add-enzo-to-gg-it-helpdesk-level-1" class="table-of-contents__link toc-highlight">Part 7: Add Enzo to GG IT Helpdesk Level 1</a></li><li><a href="#part-8-verify-enzos-access-and-environment" class="table-of-contents__link toc-highlight">Part 8: Verify Enzo&#39;s Access and Environment</a></li></ul></li><li><a href="#investigation-4-dot-matrix---it-helpdesk-l2" class="table-of-contents__link toc-highlight">Investigation 4: Dot Matrix - IT Helpdesk L2</a><ul><li><a href="#part-1-global-group---gg_it_l2" class="table-of-contents__link toc-highlight">Part 1: Global Group - GG_IT_L2</a></li><li><a href="#part-2-role-group---rg_ouadmin_alldepts" class="table-of-contents__link toc-highlight">Part 2: Role Group - RG_OUAdmin_AllDepts</a></li><li><a href="#part-3-wire-global-group-to-role-group" class="table-of-contents__link toc-highlight">Part 3: Wire Global Group to Role Group</a></li><li><a href="#part-4-create-user---dot-matrix" class="table-of-contents__link toc-highlight">Part 4: Create User - Dot Matrix</a></li><li><a href="#part-5-add-dot-to-gg-it-helpdesk-level-1-and-level-2" class="table-of-contents__link toc-highlight">Part 5: Add Dot to GG IT Helpdesk Level 1 <em>and</em> Level 2</a></li><li><a href="#part-6-verify-dots-access-and-environment" class="table-of-contents__link toc-highlight">Part 6: Verify Dot&#39;s Access and Environment</a></li></ul></li><li><a href="#investigation-5-computers---ous-and-gpos" class="table-of-contents__link toc-highlight">Investigation 5: Computers - OUs and GPOs</a><ul><li><a href="#part-1-first-ou-scaffolding-setup-1" class="table-of-contents__link toc-highlight">Part 1: First OU Scaffolding Setup</a></li><li><a href="#part-2-move-computers-into-the-correct-ous" class="table-of-contents__link toc-highlight">Part 2: Move Computers into the Correct OUs</a></li><li><a href="#part-3-create-computer-baseline-gpos" class="table-of-contents__link toc-highlight">Part 3: Create Computer Baseline GPOs</a></li><li><a href="#part-4-link-computer-gpos-to-the-computers-ous" class="table-of-contents__link toc-highlight">Part 4: Link Computer GPOs to the Computers OUs</a></li><li><a href="#part-5-verify-laptop-baseline-on-laptop1" class="table-of-contents__link toc-highlight">Part 5: Verify Laptop Baseline on <em>laptop1</em></a></li></ul></li><li><a href="#lab-7-sign-off" class="table-of-contents__link toc-highlight">Lab 7 Sign-Off</a><ul><li><a href="#sign-off-checklist" class="table-of-contents__link toc-highlight">Sign-Off Checklist</a><ul><li><a href="#on-srv1" class="table-of-contents__link toc-highlight">On srv1</a></li><li><a href="#on-laptop1" class="table-of-contents__link toc-highlight">On laptop1</a></li></ul></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">OSM620 - Fundamentals of Microsoft Systems</div><ul class="footer__items clean-list"><li class="footer__item"><a href="#" id="pwa-button" class="footer__link-item" hidden>Install as an App</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Seneca Polytechnic.</div></div></div></footer></div>
 </body>
 </html>
