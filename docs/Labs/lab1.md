@@ -140,26 +140,25 @@ After you're done, you will need to have this VM powered on during all lab work.
 
 ### VM Specifications
 
-| Setting    | Value                       |
-| ---------- | --------------------------- |
-| VM Name    | router                      |
-| Role       | Router / NAT (edge)         |
-| OS / Image | VyOS (current stable ISO)   |
-| vCPU       | 1                           |
-| RAM        | 512 MB                      |
-| Disk       | 20 GB                       |
-| NICs       | 2                           |
-| NIC1       | VMware NAT                  |
-| NIC2       | VMnet10                     |
+| Setting    | Value                          |
+| ---------- | -------------------------------|
+| Hypervisor | VMware Workstation             |
+| VM Name    | router                         |
+| Role       | Router / NAT (edge)            |
+| OS / Image | VyOS (current stable ISO)      |
+| vCPU       | 1                              |
+| RAM        | 512 MB                         |
+| Disk       | 20 GB                          |
+| NICs       | 2                              |
+| NIC1       | VMware NAT                     |
+| NIC2       | VMnet10                        |
 | NIC2 IPv4  | **10.0.`UID`.254/24** (static) |
 
 Instructions to set this up are provided below.
 
-### Part 1: Create *router* VM
+### Part 1: Virtual Machine Hardware
 
 Here we'll create the VM hardware for your VM.
-
-### Part 1: Virtual Machine Hardware
 
 1. Download the VyOS ISO directly from here: [https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso](https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso)
 1. In the main window, you should see a large + symbol icon titled **Create a New Virtual Machine**. Click it.
@@ -284,21 +283,34 @@ Congratulations! You now have a router VM that uses minimal resources.
 >
 > **This is your connection to the Internet for all your other VMs.**
 
-## Investigation 4: VM1 Installation - Windows Server 2025 Datacenter (*srv1*)
+## Investigation 4: Windows Server 2025 Datacenter (*srv1*)
 
-* Hypervisor: **VMware Workstation**
-* Name: **srv1-cjohnson30**
-* RAM: **8 GB**
-* CPU: **4 cores**
-* Storage: **250 GB**
-* Networking: **1 NICs**
-* ISO: **Windows Server 2025**
+Now that we have our starting network, we will now install our very first Windows Server virtual machine.
 
-#### Flowchart Visualization of Investigation 3
+### VM Specifications
+
+| Setting    | Value                          |
+| ---------- | -------------------------------|
+| Hypervisor | VMware Workstation             |
+| VM Name    | srv1-*yourSenecaUsername*      |
+| Role       | Windows Server - GUI           |
+| OS / Image | Windows Server 2025 Datacenter |
+| vCPU       | 4 cores                        |
+| RAM        | 8 GB                           |
+| Disk       | 250 GB                         |
+| NICs       | 1                              |
+| NIC1       | VMnet10                        |
+| NIC1 IPv4  | **10.0.`UID`.1/24** (static)   |
+
+Instructions to set this up are provided below.
+
+#### Flowchart Visualization of Investigation 4
 
 > ![Fig 2. Lab 1, Investigation - Flowchart Visualization](/img/lab1-investigation3-flowchart.png)
 
 ### Part 1: Setup Instructions
+
+In this part, we'll create the VM and start the OS install process all in one go.
 
 1. In the main window, you should see a large + symbol icon titled **Create a New Virtual Machine**. Click it.
 1. In the new dialog box, keep *Typical* selected and click the **Next** button.
@@ -367,17 +379,11 @@ Congratulations! You now have a router VM that uses minimal resources.
 1. Eventually, you will be presented with the desktop and the VMware Tools installer having completed and asking if you'd like to restart. Choose **Yes**.
 1. Once you've restarted, your installation is complete.
 
-### Part 2: Installing VMware Tools
+### Part 2: Applying Time Zone Settings
 
 After installing a new operating system, there are always a number of **post-installation tasks** to complete. **These aren't optional!**
 
-Our first task is to install all the drivers and software that let VMware Workstation work well with our new installation of Windows.
-
-STUFF GOES HERE
-
-### Part 3: Applying Time Zone Settings
-
-This one is fairly straight-forward. Having the proper time zone set (EST) is essential for proper time keeping and ensuring encrypted webpages connect properly.
+Our first post-installation task is fairly straight-forward. Having the proper time zone set (EST) is essential for proper time keeping and ensuring encrypted webpages connect properly.
 
 1. In the *Server Manager* application, click on **Local Server** in the left-hand menubar.
 1. In the main *Properties* area, on the right-hand column, look for the *Time Zone* line. It should say **(UTC-05:00) Eastern Time (US & Canada)**.
@@ -435,7 +441,7 @@ There are a ton of feature and privacy reasons *not* to use Microsoft Edge. Inst
 1. Once complete, open *Firefox* and navigate to **eff.org** to check everything is okay.
 1. Close *Microsoft Edge* forever.
 
-## Investigation 5: VM2 Installation - Windows Server 2025 Core (*srv2*)
+## Investigation 5: Windows Server 2025 Core (*srv2*)
 
 * Hypervisor: **VMware Workstation**
 * Name: **srv2-cjohnson30**
