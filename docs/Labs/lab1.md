@@ -61,7 +61,11 @@ Before beginning, you must have:
 
 ## Investigation 1: Downloading Installation Media
 
-In this investigation, you will be downloading your Windows OS installation media by logging into your Seneca-based Azure account. You will also generate your personal serial keys.
+In this investigation, you will download the three ISOs required to install all our virtual machines for this course, along with serial keys assigned to your Seneca username.
+
+### Part 1: Windows Server 2025 Datacenter
+
+In this part, you will be downloading your Windows Server OS installation media by logging into your Seneca-based Azure account. You will also generate your personal serial keys for your copy of Server.
 
 1. Navigate to the Microsoft Azure site: [portal.azure.com](https://portal.azure.com)
 1. Use your Seneca e-mail address and password to login.
@@ -76,10 +80,33 @@ In this investigation, you will be downloading your Windows OS installation medi
 1. You should now see two items: **View Key** and **Download**
 1. Click on **Download** first to begin downloading the Server 2025 ISO. You will need this for your operating system installation. (Don't forget where you've saved it!)
 1. While the ISO file is downloading, click on **View Key**.
-1. Copy this key into a text file that you save locally on your personal computer or personal USB key. You will need this for the Server installation and for any reinstalls later in the semester. **Do not lose this key and do NOT share it with anyone!**
-1. Repeat steps 8-14 for the **Windows 11 Education** ISO and serial key. You will need that for later.
+1. Copy this key into a text file that you save locally on your personal computer or personal USB key. You will need this for the Server installation and for any reinstalls later in the semester.
 
 > **Reminder:** Always store all serial keys in a secure location only you have access to.
+>
+> **Do not lose this key and do NOT share it with anyone!**
+
+### Part 2: Windows 11 Education
+
+This part is similar to **Part 1**. We'll follow many of the same steps and download a copy of Windows 11 instead.
+
+1. Log back into the Microsoft Azure website.
+1. Go to: **Education > Learning Resources > Software**
+1. In the search field, type and enter: **Windows 11 Education**
+1. Download the ISO.
+1. Click on **View Key** to save your Windows 11 Education serial key in a secure text file.
+
+> **Reminder:** Always store all serial keys in a secure location only you have access to.
+>
+> **Do not lose this key and do NOT share it with anyone!**
+
+### Part 3: Linux VyOS
+
+Here, we'll download a small Linux ISO that will act as our router.
+
+1. Download the VyOS ISO directly from here: [https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso](https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso)
+1. If it has saved to your default *Downloads* folder (especially on Seneca Lab computers!), move it to your SSD or wherever you are storing OSM620 material.
+1. As this is Linux, there is no serial key required.
 
 ## Investigation 2: Using VMware Workstation
 
@@ -164,7 +191,7 @@ Instructions to set this up are provided below.
 
 Here we'll create the hardware for your VM.
 
-1. Download the VyOS ISO directly from here: [https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso](https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso)
+1. Open VMware Workstation.
 1. In the main window, you should see a large + symbol icon titled **Create a New Virtual Machine**. Click it.
 1. In the new dialog box, keep *Typical* selected and click the **Next** button.
 1. On the next screen, *Guest Operating System Installation*, do the following:
