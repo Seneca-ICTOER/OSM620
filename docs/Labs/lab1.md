@@ -335,7 +335,7 @@ In this part, we'll create the VM and start the OS install process all in one go
         1. ***Do not select "Log on automatically"***.
         1. Click **Next**.
 1. On the "Name the Virtual Machine" screen, do the following:
-    1. Virtual machine name: **srv1-*senecausername***
+    1. Virtual machine name: **srv1-*yourSenecaUsername***
        > **Explanation:** For example, if my Seneca e-mail address is `cjohnson30@myseneca.ca`, then my Seneca username is *cjohnson30*. This would give me a VM name of *srv1-cjohnson30*.
     1. Location: If using an external SSD (like with our lab computers), click **Browse** and navigate to your external SSD.
         1. Create the following directory structure in your SSD: *OSM620 > Virtual Machines/srv1-cjohnson30*
