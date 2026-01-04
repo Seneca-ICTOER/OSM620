@@ -126,7 +126,7 @@ If you'd like to go this route, follow the instructions over here: [Lab 1.1 - Pe
 
 ## Investigation 3: Virtual Machine Installation - *router* VM
 
-In this investigation, we'll be adding a Linux-based router to our setup. This low-footprint virtual machine will take the place of typical physical router to provide an Internet connection to all your other VMs.
+In this investigation, we'll be adding a Linux-based router to our setup. This low-footprint virtual machine will take the place of a typical physical router to provide an Internet connection to all your other VMs.
 
 Most on-premises installations (offices, warehouses, schools, your home) will have a physical router that does this does instead of relying on a VM to do that work.
 
@@ -158,7 +158,7 @@ Instructions to set this up are provided below.
 
 ### Part 1: Virtual Machine Hardware
 
-Here we'll create the VM hardware for your VM.
+Here we'll create the hardware for your VM.
 
 1. Download the VyOS ISO directly from here: [https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso](https://community-downloads.vyos.dev/stream/1.5-stream-2025-Q2/vyos-1.5-stream-2025-Q2-generic-amd64.iso)
 1. In the main window, you should see a large + symbol icon titled **Create a New Virtual Machine**. Click it.
@@ -173,7 +173,7 @@ Here we'll create the VM hardware for your VM.
 
     1. Click **Next**.
 1. On the "Name the Virtual Machine" screen, do the following:
-    1. Virtual machine name: **router-*senecausername***
+    1. Virtual machine name: **router-*yourSenecaUsername***
 
        > **Explanation:** For example, if my Seneca e-mail address is `cjohnson30@myseneca.ca`, then my Seneca username is *cjohnson30*. This would give me a VM name of *router-cjohnson30*.
 
@@ -440,6 +440,12 @@ There are a ton of feature and privacy reasons *not* to use Microsoft Edge. Inst
 1. Follow the installer instructions.
 1. Once complete, open *Firefox* and navigate to **eff.org** to check everything is okay.
 1. Close *Microsoft Edge* forever.
+
+> **When complete, shut down this VM from within Windows. You will not need it again until the end of the lab.**
+
+Resource conservation is important. There's no reason to tie up 4 CPU cores and 8 GB of RAM if we're not using it at the moment. It'll make your second VM install slower.
+
+Remember this is you go through these labs. Turn off and on VMs as you're told.
 
 ## Investigation 5: Windows Server 2025 Core (*srv2*)
 
