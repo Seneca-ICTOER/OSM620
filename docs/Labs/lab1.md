@@ -17,25 +17,29 @@ If you haven't used  our school's OER sites like this one before, take a quick l
 
 ### Purpose of Lab 1
 
-In this lab you will stand up the base environment you’ll use for the course. You’ll obtain official installation media and keys, prepare VMware Workstation, and deploy two servers:
+In this lab you will stand up the base environment you’ll use for the course. You’ll obtain official installation media and keys, prepare VMware Workstation, and deploy two servers, one router, and one client:
 
 * srv1: **Windows Server 2025 Datacenter, GUI** (Desktop Experience)
 * srv2: **Windows Server 2025 Datacenter, CLI** (Core)
+* client1: **Windows 11 Education**
+* router: **Linux VyOS**
 
-You’ll complete essential post-install tasks (time zone, naming, activation, updates), then place both servers on a two-NIC layout so they can talk to each other on a private subnet while still reaching the internet for updates.
+You’ll complete essential post-install tasks (time zone, naming, activation, updates), then place both servers on a internal network layout so they can talk to each other on a private subnet while still reaching the internet for updates.
 
-By the end, the machines are clean, consistent, and ready for later labs (Hyper-V, security hardening, DNS, DHCP, and eventually AD).
+By the end, the machines are clean, consistent, and ready for later labs (security hardening, DNS, DHCP, Hyper-V and eventually Active Directory).
 
 ### Objectives
 
 By the end of this lab, you will be able to:
 
-* Acquire **Windows Server 2025 Datacenter** installation media and your individual product key from Azure Education and store them securely.
-* Access **VMware Workstation** on a Seneca lab PC (locally or via MyApps) or install it on a personal PC.
-* Provision two VMs with the required specs and networks:
-  * srv1-`senecaUsername` (GUI) with NAT + VMnet10 NICs.
-  * srv2-`senecaUsername` (Core) with NAT + VMnet10 NICs.
-* Complete essential post-install tasks on each server.
+* Acquire **Windows Server 2025 Datacenter**, ***Windows 11 Education**, and **Linux VyOS** installation media and your individual product key from Azure Education and store them securely.
+* Access **VMware Workstation** on a Seneca Lab PC (locally or via MyApps) or install it on a personal PC.
+* Provision four VMs with the required specs and networks:
+  * Linux VyOS Router - *router-`yourSenecaUsername`*
+  * Windows Server 2025 GUI - *srv1-`yourSenecaUsername`*
+  * Windows Server 2025 CLI - *srv2-`yourSenecaUsername`*
+  * Windows 11 Education - *client1-`yourSenecaUsername`*
+* Complete essential post-install tasks on each VM.
 * Verify basic Internet connectivity prerequisites for later labs within each VM.
 
 Here's a basic flowchart of what we'll be doing with Lab 1 to give you a visual overview:
@@ -621,14 +625,111 @@ You do need to choose the encryption type and give it a password. **Use the same
 > ![Fig 1. The Encryption Information page for creating a new Windows 11 VM in VMware.](/img/laptop1-encryption.png)  
 > *Figure 1. The Encryption Information page for creating a new Windows 11 VM in VMware.*
 
-### Part 2: OS Installation and Configuration
+### Part 2: Installing Windows 11 (*client1*)
 
-Use the following instructions to install the OS and run post-installation tasks on your new *laptop1* VM.
+Installing Windows 11 is a bit different from Windows Server 2025. There's a bit more manual work without the *Easy Install* option available.
 
-1. Create the VM with the specifications above.
-2. When creating the user, use your `firstname.lastname`
-3. Run through the standard **Post-Installation Tasks** you ran in previous Windows installations.
-4. When complete (including internal name and updates!), shut down the VM.
+1. Power on the *client1* VM.
+1. Once the Windows 11 Setup screen appears:
+1. On *Select language settings*, keep the defaults and click **Next**.
+1. On *Select keyboard settings*, keep the defaults and click **Next**.
+1. On *Select setup option*, do the following:
+    1. Select *Install Windows 11*
+    1. Check the box next to *I agree everything will be deleted, including files, apps, and settings*
+    1. Click **Next**.
+1. On the *Product key* page, enter your product key and click **Next**.
+1. On *Applicable notices and license terms*, click **Accept**.
+1. On *Select location to install Windows 11*, keep the defaults and click **Next**.
+1. On *Ready to install*, click **Install**.
+1. The Windows Installer will now install the OS. This may take some time, and the percentage may freeze at certain points. Be patient.
+1. When the installer finishes, Windows 11 will start up and you will be launched into the First-Run Setup. Go to Part 3.
+
+### Part 2:  First-Run Setup
+
+1. On *Is this the right country or region?*, select **Canada** and click **Yes.**
+1. On *Is this the right keyboard layout or input method?*, stick with the default and click **Yes**.
+1. On *Want to add a secondary keyboard layout?*, click **Skip**.
+
+  > **Note:** If it has an Internet connection, Windows will now check for available updates from the Internet. If it finds any, it will install them automatically.
+  >
+  > If it doesn't have an Internet connection, this step will be skipped.
+
+This process may take some time. Please be patient. Your VM may restart on its own.
+
+### Part 3: Account Creation
+
+Now that language/keyboard and installer updates have been applied, it's time to create your account.
+
+> **Note:** Steps 1-2 may not be necessary. If you're asked for a name, start with Step 3.
+
+1. On *Let's set things up for work or school*, select **Sign-in options**.
+1. On this next screen, click on **Domain join instead**.
+1. On *Who's going to use this device?*, enter your **Seneca username**, (*Not* your full name), then click **Next**.
+1. On *Create a super memorable password*, enter the same password you've used for your other VMs and click **Next**.
+1. Confirm it on the next screen and continue.
+1. On *Now add security questions*, fill out three security questions, clicking **Next** after each.
+1. On *Let Microsoft and apps use your location*, select **No**, then click **Accept**.
+1. On *Find my device*, select **No**, then click **Accept**.
+1. On *Send diagnostic data to Microsoft*, scroll down to select **Required only**, then click **Accept**.
+1. On *Improve inking & typing*, select **No**, then click **Accept**.
+1. On *Get tailored experiences with diagnostic data*, select **No**, then click **Accept**.
+
+> **Note:** If it has a valid Internet connection, Windows will now check for *more* available updates. As before, if it finds any, it will install them automatically.
+>
+> If not, it will simply continue.
+
+This process may take some time. Please be patient. Your VM may restart on its own.
+
+Once complete, you will be presented with a login screen. Move to the next part to continue.
+
+### Part 4: Network Configuration *(client1*)
+
+In this part, we'll log in for the first time and configure our client's network connection.
+
+1. Enter your password to login. First-login may take a few minutes as your profile is set up.
+1. Click on the *Start* button and search for **Network Connections**. Open it when found.
+1. Find the only Ethernet adapter (it may have different names).
+1. Right-click it → Properties and do the following:
+    1. Internet Protocol Version 6 (TCP/IPv6): **Unchecked**
+    1. Internet Protocol Version 4 (TCP/IPv4): Select and click **Properties**
+        1. IPv4 address: **10.0.`UID`.11**
+        1. Subnet mask: **255.255.255.0**
+        1. Default gateway: 10.0.`UID`.1
+        1. Preferred DNS server: 10.0.`UID`.1
+        1. Alternate DNS server: 8.8.8.8
+        1. Leave all other fields blank and click OK.
+1. Open *Microsoft Edge* and navigate to **eff.org**. If the page loads, you're done!
+
+### Part 5: Setting the Time Zone (*client1*)
+
+1. Login again if you aren't still there.
+1. Find the time on the bottom right of the screen (in the VM, not your host machine!)
+1. Right-click on the time and select **Adjust date and time**.
+1. Check the displayed time and time zone.
+1. The time should match current time, and the time zone should say *"(UTC-5:00) Eastern Time (US & Canada)"*.
+1. If the time zone is wrong, change it to the value above.
+1. Confirm your time zone and time matches local time.
+
+### Part 3: Setting Internal Computer Name
+
+When we created our VM, we gave it the name *client1-SenecaUsername*. This only applies to how VMware Workstation sees the VM, not to how the internal Windows OS sees itself. We need to change that to match.
+
+1. In the *Settings* window you still have open (or reopen it from the Search bar), look to the left-hand menu bar and select **System**.
+1. The very first thing you see at the top is the current computer name. This is what we're going to change.
+1. Click on the **Rename** text link.
+1. In the *Name your device* field, enter your VM's name: **client1-SenecaUsername** (replacing *SenecaUsername* with your actual username)
+1. Click **Next**.
+1. You will now be asked if you'd like to restart. Click **Restart now**.
+1. After restarting and logging back in, go into *Settings* > *System* and confirm your computer name is now **client1-SenecaUsername**.
+
+### Part 4: Remaining Post-Installation Tasks
+
+Use the following list to run the remaining post-installation tasks on your new *client1* VM.
+
+1. Install all available updates.
+1. Install VMware Tools (if you haven't already).
+1. Install Firefox.
+1. When complete (including internal name and updates!), shut down the VM.
 
 ## Lab 1 Sign-Off
 
@@ -638,11 +739,16 @@ When you have completed Lab 1, ask your instructor to come and check your instal
 
 ### Sign-Off Checklist
 
-1. Open VMware Hardware Settings window for *srv1* and *srv2*.
-1. *srv1* is currently running and logged in.
-1. *srv2* is currently running and logged in.
-1. No new updates available for both VMs.
+For your *router* VM:
+
+1. Open VMware Hardware Settings window for *router* to confirm you're using the right hardware resources.
+1. *router* is currently running.
+
+For each of your three Windows VMs:
+
+1. Open VMware Hardware Settings window to confirm you're using the right hardware resources.
+1. The VM is currently running and logged in.
+1. No new updates available.
 1. Server names have been applied correctly.
 1. Time zone is in EST.
-1. Servers have been properly activated.
-1. *srv1*: Firefox installed and open.
+1. *srv1* and *client1*: Firefox installed and open to **eff.org**.
