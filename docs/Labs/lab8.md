@@ -53,9 +53,9 @@ Logging in after initial setup is quite easy.
 
 ## Investigation 2: Managing a Windows Server 2025 VM in Azure
 
-In this investigation, you'll create, configure, and manage a Windows Server 2022 Virtual Machine using Microsoft Azure and a pre-built image. This means no tedious and time-consuming Windows installation! You'll also login to the VM remotely using Microsoft's Remote Desktop Protocol to share its desktop.
+In this investigation, you'll create, configure, and manage a Windows Server 2025 Virtual Machine using Microsoft Azure and a pre-built image. This means no tedious and time-consuming Windows installation! You'll also login to the VM remotely using Microsoft's **Remote Desktop Protocol** to share its desktop.
 
-**This can be done from any normal computer**. No local VMs required.
+**This can be done from any normal computer**. No local VMs required. (Put down that copy of VMware Workstation!)
 
 ### Part 1: Creating A Windows VM From An Image
 
@@ -78,21 +78,21 @@ To create your Windows Server 2025 Virtual machine, perform the following steps:
 1. *OS disk type*: **Standard HDD**
 1. Leave the remaining options as they are.
 1. Click on the **Create** button at the bottom of the screen.
-1. You are now back in the *My virtual machines* blade while Azure creates your personal virtual machine. This may take a few minutes.
-1. When it finishes, you should see a **Your deployment is complete.** message near the top of the page. Congratulations!
-1. Click on the **Go to resource** button at the bottom left of the page and move on to the next section of the lab.
+1. You are now back in the *My virtual machines* blade while Azure creates your personal virtual machine. **This may take a few minutes.**
+1. When it finishes, you should see a **"Your deployment is complete."** message near the top of the page. Congratulations!
+1. Click on the **Go to resource** button at the bottom left of the page and move on to the next part of the lab.
 
 ### Part 2: Accessing Your Windows Server VM Remotely Using RDP
 
 In this section, we'll discover how to remotely connect to the Windows Server's desktop environment over the Internet from your computer. It's a very simple process.
 
-1. In the *Overview* tab for the Virtual Machine created in Part 1, click the **Connect** button. This will download an RDP profile file (usually *vmname.rdp*).
+1. In the *Overview* tab for the Virtual Machine created in *Part 1*, click the **Connect** button. This will download an RDP profile file (usually *vmname.rdp*).
 1. Open the RDP file. It should launch the Remote Desktop application and automatically try to connect to your VM.
-1. Upon opening, the VM's URL, port number, and username are automatically provided.
+1. Upon opening, the VM's URL, port number, and username are automatically provided to the RDP application.
 
     ![Image: Windows RDP Dialog](/img/azure-rdp.png)
 
-1. Type the password you used when creating the VM in Part 1.
+1. Type the password you used when creating the VM in *Part 1*.
 1. Accept the certificate warning. (Click yes.)
 1. You should see a login progress screen, and a Windows Server desktop after a few moments.
 1. Congratulations! You've set up a Windows Server VM and logged in remotely.
@@ -111,7 +111,7 @@ This section is fairly simple. The one thing to never forget: Ensure your VM's s
 
 1. In the *Overview* blade of your Windows Server VM, click on the **Stop** button.
 1. A notification will appear in the top right of your browser window, confirming your action.
-1. Don't worry about going into the Windows OS and shutting down first. Azure sends a signal to the VM to shut down safely.
+1. Don't worry about going into the Windows OS and shutting down first. Azure sends a signal to the VM to shut down safely. This may take a minute or two.
 1. If your VM status says stopped, but does not include the **(Deallocated)** text, then resources are still being held by the VM and we're still being charged. The stop button will still be available, so click it.
 
 ![Image: Azure VM - Deallocated](/img/azure-deallocated.png)
