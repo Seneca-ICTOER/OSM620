@@ -118,15 +118,13 @@ This section is fairly simple. The one thing to never forget: Ensure your VM's s
 
 ## Investigation 3: Managing a Windows 11 VM in Azure
 
-# Investigation 3: Managing an Ubuntu Linux VM in Azure
-
 In this investigation, we'll create, configure, and manage a Windows 11 Virtual Machine using Microsoft Azure.
 
-### Part 1: Creating An Ubuntu VM From An Image
+### Part 1: Creating A Windows 11 VM From An Image
 
-To create your Ubuntu VM, follow the steps from *Investigation 2, Part 1*, but with the following settings:
+To create your Windows 11 VM, follow the steps from *Investigation 2, Part 1*, but with the following settings:
 
-1. **Choose a base:** Windows 11 Education
+1. **Choose a base:** Windows 11 Pro
 1. **Virtual machine name:** az-w7client## (Use 2-digit UID)
 1. **User name:** yourSenecaUsername
 1. **Authentication type:** Password
